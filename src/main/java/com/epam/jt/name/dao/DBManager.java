@@ -1,6 +1,5 @@
 package com.epam.jt.name.dao;
 
-import com.epam.jt.name.dao.SQLConstants;
 import com.epam.jt.name.entity.Book;
 import com.epam.jt.name.entity.User;
 
@@ -8,15 +7,15 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.epam.jt.name.dao.SQLConstants.SELECT_ALL_BOOKS;
-import static com.epam.jt.name.dao.SQLConstants.SELECT_ALL_USERS;
+import static com.epam.jt.name.dao.SQLConstants.*;
 
 
 public class DBManager {
-    private static DBManager dbManager;;
+    private static DBManager dbManager;
     private static final String USER = "root";
     private static final String PASSWORD = "root";
     // sslMode: since MySQL 8.0.13.
@@ -37,7 +36,7 @@ public class DBManager {
         // hello everyone
     }
 
-    public Connection getConnection() throws SQLException, IOException {
+    public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL);
     }
 
@@ -55,8 +54,6 @@ public class DBManager {
             Logger logger = Logger.getAnonymousLogger();
             logger.log(Level.SEVERE, "MESSAGE");
             throw ex;
-        }catch (IOException e){
-            e.printStackTrace();
         }
         return users;
     }
@@ -75,10 +72,78 @@ public class DBManager {
             Logger logger = Logger.getAnonymousLogger();
             logger.log(Level.SEVERE, "MESSAGE");
             throw ex;
-        }catch (IOException e){
-            e.printStackTrace();
         }
         return books;
+    }
+
+    public boolean isUserExistsByLoginAndPassword(String login, String password){
+        try (Connection con = getConnection();
+             PreparedStatement pstmt = con.prepareStatement(GET_USER_BY_LOGIN_AND_PASSWORD,
+                     Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setString(1, login);
+            pstmt.setString(2, password);
+            if (pstmt.execute()) {
+                    return true;
+            }
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+            try {
+                throw throwable;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public User getUserByLoginAndPassword(String login, String password) {
+        User user = new User();
+        try (Connection con = dbManager.getConnection();
+                PreparedStatement preparedStatement = con.prepareStatement(GET_USER_BY_LOGIN_AND_PASSWORD)
+        ) {
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, password);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (rs.next()) {
+                    user.setId(rs.getLong(ID));
+                    user.setUsername(rs.getString(USERNAME));
+                    user.setPassword(rs.getString(USER_PASSWORD));
+                    user.setFine(rs.getDouble(USER_FINE));
+                    user.setMail(rs.getString(USER_MAIL));
+                    user.setRole(rs.getString(USER_ROLE));
+                }
+            }
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+        return user;
+    }
+
+    public void insertUser(User user) throws SQLException {
+        ResultSet rs = null;
+
+        try(Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(SQL_ADD_NEW_USER,
+                    Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setString(1, user.getUsername());
+            pstmt.setString(2, user.getPassword());
+            pstmt.setString(3, user.getMail());
+            pstmt.setDouble(4, user.getFine());
+            pstmt.setString(5, user.getRole().toUpperCase(Locale.ROOT));
+
+            if (pstmt.executeUpdate() > 0) {
+                rs = pstmt.getGeneratedKeys();
+                if (rs.next()) {
+                    user.setId(rs.getLong(1));
+                }
+            }
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        } finally {
+            close(rs);
+        }
     }
 
     private Book mapBook(ResultSet rs) {
@@ -110,5 +175,15 @@ public class DBManager {
             throwable.printStackTrace();
         }
         return user;
+    }
+
+    private void close(AutoCloseable ac) {
+        if (ac != null) {
+            try {
+                ac.close();
+            } catch (Exception ex) {
+                throw new IllegalStateException("Cannot close " + ac);
+            }
+        }
     }
 }

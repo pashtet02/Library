@@ -1,13 +1,19 @@
 package com.epam.jt.name.dao;
 
 public class SQLConstants {
-    String ID = "id";
-    String USERNAME = "username";
-    String PASSWORD = "password";
-    String USER_MAIL = "mail";
-    String USER_FINE = "fine";
-    String USER_ROLE = "role";
+    private SQLConstants(){
+        //hello
+    }
+
+    public static final String ID = "id";
+    public static final String USERNAME = "username";
+    public static final String USER_PASSWORD = "password";
+    public static final String USER_MAIL = "mail";
+    public static final String USER_FINE = "fine";
+    public static final String USER_ROLE = "role";
 
    public static String SELECT_ALL_USERS = "select * from users";
-    public static String SELECT_ALL_BOOKS = "SELECT * FROM books";
+   public static String SELECT_ALL_BOOKS = "SELECT * FROM books";
+   public static String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE username = ? AND password = ?;";
+   public static String SQL_ADD_NEW_USER = "insert into users (username, password, mail, fine, role) values (?, ?, ?, ?, ?);";
 }

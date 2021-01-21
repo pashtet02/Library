@@ -51,7 +51,11 @@
     %>
     </tbody>
 </table>
-<a href="test.jsp">to users list</a>
-<a href="/demo/test">to main page</a>
+<a href="users.jsp">to users list</a>
+<br>
+<a href="test.html">to main page</a>
+<br>
+
+<a href="addBook.jsp">to main page</a>
 </body>
 </html>

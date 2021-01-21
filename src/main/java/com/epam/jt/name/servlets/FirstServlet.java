@@ -19,14 +19,14 @@ public class FirstServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        final HttpSession session = request.getSession();
         DBManager dbManager = DBManager.getInstance();
         try {
             List<User> users = dbManager.findAllUsers();
             List<Book> books = dbManager.findAllBooks();
             System.out.println("BOOKS" + books);
 
-            HttpSession session = request.getSession();
+
             session.setAttribute("usrLst", users);
             session.setAttribute("bookList", books);
 
@@ -36,6 +36,6 @@ public class FirstServlet extends HttpServlet {
         }
        // User usr = dbManager.getStudentById(1);
         //request.setAttribute("st", st);
-        //request.getRequestDispatcher("/test.jsp").forward(request, response);
+        //request.getRequestDispatcher("/users.jsp").forward(request, response);
     }
 }

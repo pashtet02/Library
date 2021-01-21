@@ -62,7 +62,7 @@
 
 	<build>
 		<!-- FIXME change it to the project context path -->
-		<finalName>demo</finalName>
+		<finalName>Library</finalName>
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven 
 				defaults (may be moved to parent pom) -->
 			<plugins>
@@ -105,7 +105,7 @@
 						<username>tomcat</username>
 						<password>tomcat</password>
 						<!-- FIXME change it to the project context path -->
-						<path>/demo</path>
+						<path>/library</path>
 					</configuration>
 				</plugin>
 			</plugins>
