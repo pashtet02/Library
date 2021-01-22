@@ -1,19 +1,13 @@
-<%--
-  Author: Pavel Ravvich.
-  Date: 29/10/2017.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<html>
+<html lang="en">
 <head>
     <jsp:include page="header.jsp"/>
 </head>
+
 <body>
 <jsp:include page="navbar.jsp"/>
-<h1>Hello ADMIN!</h1>
-<a href="<c:url value='/logout' />">Logout</a>
-<br/>
-<a href="<c:url value="/menu"/>">menu</a>
+<h5>Hello, guest</h5>
+<div>This is my selfeducation</div>
 </body>
 </html>

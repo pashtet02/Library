@@ -4,19 +4,20 @@
 <%@ page import="com.epam.jt.name.entity.User" %>
 <html>
 <head>
-    <title>All books</title>
+    <jsp:include page="header.jsp"/>
 </head>
 <body>
+<jsp:include page="navbar.jsp"/>
 <h2>My library users</h2>
-<table border="1">
+<table class="table table-striped">
     <thead>
     <tr>
-        <th>Id</th>
-        <th>username</th>
-        <th>Email</th>
-        <th>ROLE</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th scope="col">Id</th>
+        <th scope="col">username</th>
+        <th scope="col">Email</th>
+        <th scope="col">ROLE</th>
+        <th scope="col">Fine</th>
+        <th scope="col">Hello</th>
     </tr>
     </thead>
     <tbody>
@@ -27,8 +28,7 @@
         for (User s : list) {
     %>
     <tr>
-        <td><%=s.getId()%>
-        </td>
+        <th scope="row"><%=s.getId()%></th>
         <td><%=s.getUsername()%>
         </td>
         <td><%=s.getMail()%>
@@ -44,7 +44,9 @@
         }
     %>
     </tbody>
+
 </table>
+
 <a href="books.jsp">show all books</a>
 </body>
 </html>

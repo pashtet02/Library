@@ -96,14 +96,10 @@ i
 9src/main/java/com/epam/jt/name/servlets/FirstServlet.java,f\b\fbac595e8ce7f31917dfd1d95acdd172002f4683
 a
 1src/main/java/com/epam/jt/name/dao/DBManager.java,f\6\f6d1054ce45afc78c23fadb154bf6e1d302c4d25
-Q
-!src/main/resources/app.properties,7\1\71eabe60850628ac467d39be937efda3c107e4da
 I
 src/main/webapp/books.jsp,5\1\511774cd90f2098352d78780d58227b065c2e07d
 I
 src/main/webapp/users.jsp,2\7\27a8e25ae3121819d54adfe4e25e0b425d1cf9a7
-[
-+src/main/java/com/epam/jt/name/SandBox.java,4\3\43a67b6be22d5f9a0a9d5add65e8a8500db4c809
 l
 <src/main/java/com/epam/jt/name/servlets/ContextListener.java,8\4\84dad7eec25b489c4f56dee99e1f4cad07835f27
 I
@@ -126,3 +122,7 @@ K
 src/main/webapp/addBook.jsp,c\9\c981ad8ec25423dbf0f4da89e25263a6436d9404
 P
  src/main/webapp/registration.jsp,d\d\dd51f7041d5a8d7bb17c79a85099a350e198ae09
+H
+src/main/webapp/main.jsp,3\7\37a7e7efd6aa64ede7eb56f2f71c420a37050399
+J
+src/main/webapp/header.jsp,0\5\051b0ac501a865704d2b6b36f8cfabfa311becc2

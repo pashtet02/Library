@@ -5,6 +5,7 @@ import com.epam.jt.name.dao.DBManager;
 import com.epam.jt.name.entity.User;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,7 @@ import java.util.Locale;
 import static java.util.Objects.nonNull;
 
 
-
+@WebFilter
 public class AuthFilter implements Filter {
     private void moveToMenu(final HttpServletRequest req,
                             final HttpServletResponse res,

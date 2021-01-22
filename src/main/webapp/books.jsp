@@ -3,10 +3,15 @@
 <%@ page import="com.epam.jt.name.entity.Book" %>
 <%@ page import="com.epam.jt.name.entity.User" %>
 <html>
+<body>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>All books</title>
+    <jsp:include page="header.jsp"/>
 </head>
 <body>
+<jsp:include page="navbar.jsp"/>
 <h2>My library books list</h2>
 <table border="1">
     <thead>
