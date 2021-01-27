@@ -6,7 +6,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,7 +13,6 @@ import static com.epam.jt.name.dao.SQLConstants.*;
 
 public class UserDao implements Dao<User> {
 
-    private List<User> users = new ArrayList<>();
     private static UserDao userDao;
 
     public static UserDao getInstance() {
@@ -23,7 +21,8 @@ public class UserDao implements Dao<User> {
         }
         return userDao;
     }
-    private UserDao(){
+
+    private UserDao() {
         //hello
     }
 
@@ -44,7 +43,6 @@ public class UserDao implements Dao<User> {
                 user.setFine(rs.getDouble(USER_FINE));
                 user.setRole(rs.getString(USER_ROLE));
             }
-
         } catch (SQLException throwable) {
             Logger logger = Logger.getAnonymousLogger();
             logger.log(Level.SEVERE, "Hello");
@@ -80,8 +78,45 @@ public class UserDao implements Dao<User> {
         return user;
     }
 
+    public User getUserByLoginAndPassword(String login, String password) {
+        User user = new User();
+        try (Connection con = getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(GET_USER_BY_LOGIN_AND_PASSWORD)
+        ) {
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, password);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (rs.next()) {
+                    user.setId(rs.getLong(ID));
+                    user.setUsername(rs.getString(USERNAME));
+                    user.setPassword(rs.getString(USER_PASSWORD));
+                    user.setFine(rs.getDouble(USER_FINE));
+                    user.setMail(rs.getString(USER_MAIL));
+                    user.setRole(rs.getString(USER_ROLE));
+                }
+            }
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+        return user;
+    }
+
     @Override
-    public List<User> getAll() {
+    public List<User> getAll() throws SQLException {
+        List<User> users = new ArrayList<>();
+
+        try (Connection con = getConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(SELECT_ALL_USERS)) {
+
+            while (rs.next()) {
+                users.add(mapUser(rs));
+            }
+        } catch (SQLException ex) {
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, "MESSAGE");
+            throw ex;
+        }
         return users;
     }
 
@@ -112,14 +147,31 @@ public class UserDao implements Dao<User> {
         }
     }
 
-    @Override
-    public void update(User user, String[]params) {
-        user.setName(Objects.requireNonNull(
-                params[0], "Name cannot be null"));
-        user.setEmail(Objects.requireNonNull(
-                params[1], "Email cannot be null"));
+    public boolean isUserExistsByLoginAndPassword(String login, String password) {
+        try (Connection con = getConnection();
+             PreparedStatement pstmt = con.prepareStatement(GET_USER_BY_LOGIN_AND_PASSWORD,
+                     Statement.RETURN_GENERATED_KEYS)) {
 
-        users.add(user);
+            pstmt.setString(1, login);
+            pstmt.setString(2, password);
+            if (pstmt.execute()) {
+                return true;
+            }
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+            try {
+                throw throwable;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+
+    @Override
+    public void update(User user, String[] params) {
+
     }
 
     private User mapUser(ResultSet rs) {
@@ -139,7 +191,6 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void delete(User user) {
-        users.remove(user);
     }
 
     private void close(AutoCloseable ac) {

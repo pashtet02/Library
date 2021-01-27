@@ -1,9 +1,7 @@
 package com.epam.jt.name.servlets;
 
-import com.epam.jt.name.dao.DBManager;
+import com.epam.jt.name.dao.BookDao;
 import com.epam.jt.name.domain.Book;
-import com.epam.jt.name.domain.User;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,22 +17,14 @@ public class FirstServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final HttpSession session = request.getSession();
-        DBManager dbManager = DBManager.getInstance();
+        BookDao bookDao = BookDao.getInstance();
         try {
-            List<User> users = dbManager.findAllUsers();
-            List<Book> books = dbManager.findAllBooks();
-            System.out.println("BOOKS" + books);
-
-
-            session.setAttribute("usrLst", users);
+            List<Book> books = bookDao.getAll();
             session.setAttribute("bookList", books);
 
             request.getRequestDispatcher("/books.jsp").forward(request, response);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-       // User usr = dbManager.getStudentById(1);
-        //request.setAttribute("st", st);
-        //request.getRequestDispatcher("/users.jsp").forward(request, response);
     }
 }

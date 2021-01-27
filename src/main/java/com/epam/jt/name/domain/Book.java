@@ -1,8 +1,9 @@
 package com.epam.jt.name.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Book {
+public class Book implements Serializable {
     private long id;
     private String title;
     private String author;
@@ -10,6 +11,16 @@ public class Book {
     private String publisher;
     private Date publishingDate;
     private int number;
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    private String language;
 
     public long getId() {
         return id;
@@ -77,10 +88,11 @@ public class Book {
                 ", publisher='" + publisher + '\'' +
                 ", publishingDate=" + publishingDate +
                 ", number=" + number +
+                ", language=" + language +
                 '}';
     }
 
-    public Book(long id, String title, String author, long ISBN, String publisher, Date publishingDate, int number) {
+    public Book(long id, String title, String author, long ISBN, String publisher, Date publishingDate, int number, String language) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -88,6 +100,7 @@ public class Book {
         this.publisher = publisher;
         this.publishingDate = publishingDate;
         this.number = number;
+        this.language = language;
     }
     public Book(){
         //hello

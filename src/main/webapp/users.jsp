@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.epam.jt.name.domain.Book" %>
-<%@ page import="com.epam.jt.name.domain.User" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
     <jsp:include page="header.jsp"/>
@@ -21,30 +20,20 @@
     </tr>
     </thead>
     <tbody>
-
-    <%
-
-        List<User> list = (List<User>) session.getAttribute("usrLst");
-        for (User s : list) {
-    %>
-    <tr>
-        <th scope="row"><%=s.getId()%></th>
-        <td><%=s.getUsername()%>
-        </td>
-        <td><%=s.getMail()%>
-        </td>
-        <td><%=s.getRole()%>
-        </td>
-        <td><%=s.getFine()%>
-        </td>
-        <td><a href="update.jsp?id=<%=s.getId()%>">update</a></td>
-        <td><a href="deleteStudent.jsp?id=<%=s.getId()%>">delete</a></td>
-    </tr>
-    <%
-        }
-    %>
+    <c:forEach var="user" items="${usersList}">
+        <tr>
+            <th scope="row">${user.getId()}</th>
+            <td><c:out value="${user.getUsername()}" />
+            </td>
+            <td><c:out value="${user.getMail()}" />
+            </td>
+            <td><c:out value="${user.getRole()}" />
+            </td>
+            <td><c:out value="${user.getFine()}" />
+            </td>
+        </tr>
+    </c:forEach>
     </tbody>
-
 </table>
 
 <a href="books.jsp">show all books</a>

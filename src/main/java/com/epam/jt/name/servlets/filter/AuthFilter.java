@@ -1,7 +1,7 @@
 package com.epam.jt.name.servlets.filter;
 
 
-import com.epam.jt.name.dao.DBManager;
+import com.epam.jt.name.dao.UserDao;
 import com.epam.jt.name.domain.User;
 
 import javax.servlet.*;
@@ -46,10 +46,9 @@ public class AuthFilter implements Filter {
 
         final String login = req.getParameter("login");
         final String password = req.getParameter("password");
-        final String userRole = req.getParameter("role");
 
         @SuppressWarnings("unchecked")
-        final DBManager dbManager = (DBManager) req.getServletContext().getAttribute("dao");
+        final UserDao userDao = (UserDao) req.getServletContext().getAttribute("dao");
         final HttpSession session = req.getSession();
 
         //Logged user.
@@ -61,13 +60,11 @@ public class AuthFilter implements Filter {
 
             moveToMenu(req, res, role.toUpperCase(Locale.ROOT));
 
-        } else if (dbManager.getUserByLoginAndPassword(login, password).getUsername() != null) {
-            System.out.println("USER LOGINNED: " + dbManager.getUserByLoginAndPassword(login, password).getUsername());
-            User user = dbManager.getUserByLoginAndPassword(login, password);
+        } else if (userDao.getUserByLoginAndPassword(login, password).getUsername() != null) {
+            User user = userDao.getUserByLoginAndPassword(login, password);
             String role = user.getRole().toUpperCase();
 
             req.getSession().setAttribute("password", password);
-            System.out.println(req.getSession().getAttribute("password"));
             req.getSession().setAttribute("login", login);
             req.getSession().setAttribute("role", role);
 

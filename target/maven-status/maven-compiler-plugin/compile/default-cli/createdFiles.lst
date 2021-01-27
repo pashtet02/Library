@@ -1,6 +1,12 @@
+com\epam\jt\name\dao\UserDao.class
 com\epam\jt\name\servlets\servlet\LibrarianServlet.class
 com\epam\jt\name\servlets\ContextListener.class
+com\epam\jt\name\domain\ROLE.class
 com\epam\jt\name\servlets\filter\AuthFilter.class
+com\epam\jt\name\domain\User.class
 com\epam\jt\name\dao\SQLConstants.class
+com\epam\jt\name\dao\Dao.class
+com\epam\jt\name\servlets\servlet\CatalogServlet.class
 com\epam\jt\name\servlets\servlet\UserServlet.class
 com\epam\jt\name\servlets\filter\EncodingFilter.class
+com\epam\jt\name\domain\Book.class

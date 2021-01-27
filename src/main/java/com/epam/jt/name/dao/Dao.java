@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +25,7 @@ public interface Dao<T> {
 
     T get(long id);
 
-    List<T> getAll();
+    List<T> getAll() throws SQLException;
 
     void save(T t);
 

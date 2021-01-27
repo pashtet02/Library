@@ -1,16 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Pashtet
-  Date: 22.01.2021
-  Time: 17:27
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <div class="container mt-5">
     <fmt:setBundle basename="global" var="glo"/>
+    <fmt:setLocale value="RU"/>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/library">Library</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,16 +14,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/library/first"><fmt:message key="global.home" bundle="${glo}"/>
-                    </a>
+                    <a class="nav-link" href="/library/catalog">Catalog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/menu"/>">Books list</a>
+                    <a class="nav-link" href="<c:url value="/usermenu"/>">My books</a>
                     <%--<a class="nav-link" href="/library/books.jsp"></a>--%>
                 </li>
                 <c:if test="${sessionScope.role == 'LIBRARIAN'}">
                     <li class="nav-item">
-                        <a class="nav-link" href="/library/users.jsp">Users list</a>
+                        <a class="nav-link" href="<c:url value="/menu"/>">Users list</a>
                     </li>
                 </c:if>
             </ul>

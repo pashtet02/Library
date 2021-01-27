@@ -2,7 +2,6 @@ package com.epam.jt.name.servlets.servlet;
 
 import com.epam.jt.name.dao.BookDao;
 import com.epam.jt.name.domain.Book;
-import com.epam.jt.name.domain.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,9 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-public class UserServlet extends HttpServlet {
-    private static final String LOGIN = "login";
-    private static final String PASSWORD = "password";
+public class CatalogServlet extends HttpServlet {
     private HttpSession session;
     private final BookDao bookDao = BookDao.getInstance();
     @Override
@@ -28,7 +25,7 @@ public class UserServlet extends HttpServlet {
 
             session.setAttribute("bookList", books);
 
-            request.getRequestDispatcher("/books.jsp").forward(request, response);
+            request.getRequestDispatcher("/catalog.jsp").forward(request, response);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -36,18 +33,6 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = new User();
-        user.setUsername(req.getParameter(LOGIN));
-        user.setPassword(req.getParameter(PASSWORD));
 
-
-        user.setMail(req.getParameter("mail"));
-        user.setFine(0.0);
-        user.setRole("USER");
-
-        req.getSession().setAttribute(LOGIN, req.getParameter(LOGIN));
-        req.getSession().setAttribute(PASSWORD, req.getParameter(PASSWORD));
-        req.getSession().setAttribute("role", user.getRole());
-        req.getRequestDispatcher("/main.jsp").forward(req, resp);
     }
 }

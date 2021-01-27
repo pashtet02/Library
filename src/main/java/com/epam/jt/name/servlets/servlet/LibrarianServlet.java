@@ -1,7 +1,7 @@
 package com.epam.jt.name.servlets.servlet;
 
-import com.epam.jt.name.dao.DBManager;
-import com.epam.jt.name.domain.Book;
+import com.epam.jt.name.dao.BookDao;
+import com.epam.jt.name.dao.UserDao;
 import com.epam.jt.name.domain.User;
 
 import javax.servlet.ServletException;
@@ -17,17 +17,13 @@ public class LibrarianServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DBManager dbManager = DBManager.getInstance();
+        UserDao userDao = UserDao.getInstance();
         try {
-            List<User> users = dbManager.findAllUsers();
-            List<Book> books = dbManager.findAllBooks();
-            System.out.println("BOOKS" + books);
+            List<User> users = userDao.getAll();
 
+            request.getSession().setAttribute("usersList", users);
 
-            request.getSession().setAttribute("usrLst", users);
-            request.getSession().setAttribute("bookList", books);
-
-            request.getRequestDispatcher("/books.jsp").forward(request, response);
+            request.getRequestDispatcher("/users.jsp").forward(request, response);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

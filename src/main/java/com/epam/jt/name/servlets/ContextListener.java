@@ -1,6 +1,6 @@
 package com.epam.jt.name.servlets;
 
-import com.epam.jt.name.dao.DBManager;
+import com.epam.jt.name.dao.UserDao;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -9,23 +9,17 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class ContextListener implements ServletContextListener {
-    /**
-     * Fake database connector.
-     */
-    private DBManager dbManager;
+
+
+    private UserDao userDao;
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-
-        dbManager = DBManager.getInstance();
-
-        dbManager.getUserByLoginAndPassword("Cardinal", "1111");
-        dbManager.getUserByLoginAndPassword("Pashtet", "1111");
-
+        userDao = UserDao.getInstance();
         final ServletContext servletContext =
                 servletContextEvent.getServletContext();
 
-        servletContext.setAttribute("dao", dbManager);
+        servletContext.setAttribute("dao", userDao);
     }
 
     @Override
