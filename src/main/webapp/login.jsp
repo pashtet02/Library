@@ -1,11 +1,8 @@
-<%--
-  Author: Pavel Ravvich.
-  Date: 14.10.17.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Login</title>
 
 </head>
@@ -21,6 +18,6 @@
     </form>
 </div>
 <br>
-<a href="/library/registration.jsp">I don`t have an account :( </a>
+<a href="registration.jsp">I don`t have an account :( </a>
 </body>
 </html>

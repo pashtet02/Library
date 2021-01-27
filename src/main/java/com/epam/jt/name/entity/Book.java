@@ -67,6 +67,19 @@ public class Book {
         this.number = number;
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", ISBN=" + ISBN +
+                ", publisher='" + publisher + '\'' +
+                ", publishingDate=" + publishingDate +
+                ", number=" + number +
+                '}';
+    }
+
     public Book(long id, String title, String author, long ISBN, String publisher, Date publishingDate, int number) {
         this.id = id;
         this.title = title;

@@ -1,10 +1,11 @@
 package com.epam.jt.name.servlets;
 
+import com.epam.jt.name.entity.Book;
+import com.epam.jt.name.servlets.servlet.BookServlet;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -15,9 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import static com.epam.jt.name.dao.SQLConstants.SQL_ADD_NEW_BOOK;
+
 @WebServlet("/test")
 public class TestServlet extends HttpServlet {
-    private static final String  URL = "jdbc:mysql://localhost:3306/mydb?user=root&password=root&serverTimezone=UTC";
+    private static final String  URL = "jdbc:mysql://localhost:3306/library?user=root&password=root&serverTimezone=UTC";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String msg = "JDBC Pool connection successfully created";
@@ -28,11 +31,9 @@ public class TestServlet extends HttpServlet {
             DataSource dataSource = (DataSource) context.lookup("jdbc/mysql");
             System.out.println(dataSource.getClass().getName());
             con = DriverManager.getConnection(URL);
-
-        } catch (NamingException e) {
+            System.out.println(con);
+        } catch (NamingException | SQLException e) {
             e.printStackTrace();
-            msg = e.getMessage();
-        } catch (SQLException e) {
             msg = e.getMessage();
         } finally {
             if (con != null) {

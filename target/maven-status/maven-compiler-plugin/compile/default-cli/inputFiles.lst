@@ -1,8 +1,9 @@
 C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\dao\DBManager.java
+C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\servlets\filter\EncodingFilter.java
 C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\servlets\servlet\LibrarianServlet.java
 C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\servlets\FirstServlet.java
+C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\servlets\servlet\BookServlet.java
 C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\entity\Book.java
-C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\servlets\Filter.java
 C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\servlets\filter\AuthFilter.java
 C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\entity\ROLE.java
 C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\servlets\TestServlet.java
@@ -10,4 +11,5 @@ C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\
 C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\entity\User.java
 C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\servlets\ContextListener.java
 C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\servlets\servlet\LogoutServlet.java
+C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\dao\BookDao.java
 C:\Users\Pashtet\Desktop\код по JDBS\DemoWebMavenProject\src\main\java\com\epam\jt\name\servlets\servlet\UserServlet.java

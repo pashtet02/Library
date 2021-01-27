@@ -74,7 +74,6 @@ public class User {
                 "username='" + username + '\'' +
                 ", mail='" + mail + '\'' +
                 ", id=" + id +
-                ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 ", fine=" + fine +
                 '}';

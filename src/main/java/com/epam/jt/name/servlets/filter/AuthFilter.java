@@ -46,6 +46,7 @@ public class AuthFilter implements Filter {
 
         final String login = req.getParameter("login");
         final String password = req.getParameter("password");
+        final String userRole = req.getParameter("role");
 
         @SuppressWarnings("unchecked")
         final DBManager dbManager = (DBManager) req.getServletContext().getAttribute("dao");
@@ -61,9 +62,8 @@ public class AuthFilter implements Filter {
             moveToMenu(req, res, role.toUpperCase(Locale.ROOT));
 
         } else if (dbManager.getUserByLoginAndPassword(login, password).getUsername() != null) {
-            System.out.println("FKSLNFSKLMNFSL:M" + dbManager.getUserByLoginAndPassword(login, password).getUsername());
+            System.out.println("USER LOGINNED: " + dbManager.getUserByLoginAndPassword(login, password).getUsername());
             User user = dbManager.getUserByLoginAndPassword(login, password);
-            System.out.println(user);
             String role = user.getRole().toUpperCase();
 
             req.getSession().setAttribute("password", password);

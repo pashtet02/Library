@@ -126,3 +126,9 @@ H
 src/main/webapp/main.jsp,3\7\37a7e7efd6aa64ede7eb56f2f71c420a37050399
 J
 src/main/webapp/header.jsp,0\5\051b0ac501a865704d2b6b36f8cfabfa311becc2
+_
+/src/main/java/com/epam/jt/name/dao/BookDao.java,6\e\6e25dd205ccea34534938df93b4a6a7ef52a2932
+p
+@src/main/java/com/epam/jt/name/servlets/servlet/BookServlet.java,1\9\19507c153f0661c728499c8424a78a8ca097c7d8
+J
+src/main/webapp/navbar.jsp,a\7\a7ba207bfa74ca8b935b52012e2659693fd94e87

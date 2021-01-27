@@ -3,11 +3,13 @@ package com.epam.jt.name.dao;
 import com.epam.jt.name.entity.Book;
 import com.epam.jt.name.entity.User;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,7 +26,7 @@ public class DBManager {
     private static final String URL_PROPERTIES = "sslMode=DISABLED&serverTimezone=UTC";
     private static final String URL_CREDENTIALS = "user=" + USER + "&password=" + PASSWORD;
     private static final String URL = BASE_URL + "?" + URL_PROPERTIES + "&" + URL_CREDENTIALS;
-
+    //jdbc:mysql://localhost:3306/library?sslMode=DISABLED&serverTimezone=UTC&user=root&password=root
     public static synchronized DBManager getInstance() {
         if (dbManager == null) {
             dbManager = new DBManager();
@@ -37,7 +39,14 @@ public class DBManager {
     }
 
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL);
+        Properties properties = new Properties();
+        try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/app.properties")) {
+            properties.load(fileInputStream);
+        } catch (IOException e) {
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, e.getMessage(), e);
+        }
+        return DriverManager.getConnection(properties.getProperty("connection.url"));
     }
 
     public List<User> findAllUsers() throws SQLException {
@@ -184,6 +193,32 @@ public class DBManager {
             } catch (Exception ex) {
                 throw new IllegalStateException("Cannot close " + ac);
             }
+        }
+    }
+
+    public void insertBook(Book book) {
+        ResultSet rs = null;
+
+        try(Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(SQL_ADD_NEW_BOOK,
+                    Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setString(1, book.getTitle());
+            pstmt.setString(2, book.getAuthor());
+            pstmt.setLong(3, book.getISBN());
+            pstmt.setString(4, book.getPublisher());
+            pstmt.setInt(5, book.getNumber());
+
+            if (pstmt.executeUpdate() > 0) {
+                rs = pstmt.getGeneratedKeys();
+                if (rs.next()) {
+                    book.setId(rs.getLong(1));
+                }
+            }
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        } finally {
+            close(rs);
         }
     }
 }

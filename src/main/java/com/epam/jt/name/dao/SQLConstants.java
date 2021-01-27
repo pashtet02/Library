@@ -16,4 +16,6 @@ public class SQLConstants {
    public static String SELECT_ALL_BOOKS = "SELECT * FROM books";
    public static String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE username = ? AND password = ?;";
    public static String SQL_ADD_NEW_USER = "insert into users (username, password, mail, fine, role) values (?, ?, ?, ?, ?);";
+   public static String SQL_ADD_NEW_BOOK = "insert into books (title, author, ISBN, publisher, number) values (?, ?, ?, ?, ?);";
+
 }
