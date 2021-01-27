@@ -1,8 +1,5 @@
 package com.epam.jt.name.servlets;
 
-import com.epam.jt.name.entity.Book;
-import com.epam.jt.name.servlets.servlet.BookServlet;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -15,8 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-
-import static com.epam.jt.name.dao.SQLConstants.SQL_ADD_NEW_BOOK;
 
 @WebServlet("/test")
 public class TestServlet extends HttpServlet {

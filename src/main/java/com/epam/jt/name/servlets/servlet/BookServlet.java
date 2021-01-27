@@ -1,7 +1,7 @@
 package com.epam.jt.name.servlets.servlet;
 
 import com.epam.jt.name.dao.DBManager;
-import com.epam.jt.name.entity.Book;
+import com.epam.jt.name.domain.Book;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

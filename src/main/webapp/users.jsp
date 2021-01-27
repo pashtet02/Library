@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.epam.jt.name.entity.Book" %>
-<%@ page import="com.epam.jt.name.entity.User" %>
+<%@ page import="com.epam.jt.name.domain.Book" %>
+<%@ page import="com.epam.jt.name.domain.User" %>
 <html>
 <head>
     <jsp:include page="header.jsp"/>

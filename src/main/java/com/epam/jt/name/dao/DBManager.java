@@ -1,7 +1,7 @@
 package com.epam.jt.name.dao;
 
-import com.epam.jt.name.entity.Book;
-import com.epam.jt.name.entity.User;
+import com.epam.jt.name.domain.Book;
+import com.epam.jt.name.domain.User;
 
 import java.io.FileInputStream;
 import java.io.IOException;

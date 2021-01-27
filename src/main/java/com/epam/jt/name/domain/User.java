@@ -1,4 +1,4 @@
-package com.epam.jt.name.entity;
+package com.epam.jt.name.domain;
 
 public class User {
     private String username;
