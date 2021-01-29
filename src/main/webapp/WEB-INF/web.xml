@@ -37,6 +37,8 @@
     <filter-mapping>
         <filter-name>EncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
+        <url-pattern>/catalog</url-pattern>
+
     </filter-mapping>
 
 
@@ -47,6 +49,14 @@
     <servlet-mapping>
         <servlet-name>FirstServlet</servlet-name>
         <url-pattern>/first</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ViewServlet</servlet-name>
+        <servlet-class>com.epam.jt.name.servlets.servlet.ViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewServlet</servlet-name>
+        <url-pattern>/view</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>

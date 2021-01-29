@@ -1,7 +1,5 @@
 
 I
-src/main/webapp/test.html,a\c\acb3856b6e4ba516f4d4c4edcbcefef3d74e9692
-I
 src/main/webapp/index.jsp,8\e\8e6d3b70c9f5b02570779b0441540d45eceb0ded
 H
 src/main/java/ReadMe.txt,a\e\aeb99630ffb0a37717083f96f0743566d7499602
@@ -88,8 +86,6 @@ d
 4src/main/java/com/epam/jt/name/dao/SQLConstants.java,1\3\131bb8802caa490d735c96ee645711d284e276a7
 i
 9src/main/java/com/epam/jt/name/servlets/FirstServlet.java,f\b\fbac595e8ce7f31917dfd1d95acdd172002f4683
-a
-1src/main/java/com/epam/jt/name/dao/DBManager.java,f\6\f6d1054ce45afc78c23fadb154bf6e1d302c4d25
 I
 src/main/webapp/books.jsp,5\1\511774cd90f2098352d78780d58227b065c2e07d
 I
@@ -136,3 +132,19 @@ _
 +src/main/java/com/epam/jt/name/dao/Dao.java,0\3\03ef8fbf2f00e0dc106e8027f598eccdd2f32454
 _
 /src/main/java/com/epam/jt/name/dao/UserDao.java,8\9\89915f17904e441db9c162342b84debb4e9cf914
+_
+/src/main/java/com/epam/jt/name/domain/ROLE.java,4\7\476861e6f4f730b9809b95b1adc8d58ebe1a2159
+s
+Csrc/main/java/com/epam/jt/name/servlets/servlet/CatalogServlet.java,0\c\0cced2e2ad0900397f7b1fa81cbcbd19001b8ddc
+W
+'src/main/resources/global_en.properties,f\d\fd38786146269bfc9430a5e809f3bef9c0ac347b
+W
+'src/main/resources/global_ru.properties,c\f\cf8b509a4a8721740e75ac0de342a020bcce5c92
+W
+'src/main/resources/global_ua.properties,c\b\cb6be30c04e006af552e586b1744896d2aba8867
+Q
+!src/main/webapp/static/custom.css,5\2\52d8025bf096968b17a1e86b0150064ab5670863
+P
+ src/main/webapp/static/style.css,2\2\22b82bf3c22099a38852495063101540b452fab2
+K
+src/main/webapp/catalog.jsp,3\1\31f1107307ac6cc200e7489f94a75fe043cd4a84

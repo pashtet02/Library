@@ -11,6 +11,7 @@ public class Book implements Serializable {
     private String publisher;
     private Date publishingDate;
     private int number;
+    private String language;
 
     public String getLanguage() {
         return language;
@@ -19,8 +20,6 @@ public class Book implements Serializable {
     public void setLanguage(String language) {
         this.language = language;
     }
-
-    private String language;
 
     public long getId() {
         return id;

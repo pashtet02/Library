@@ -8,6 +8,16 @@ public class User {
     private String role;
     private double fine;
 
+    public boolean isBanned() {
+        return isBanned;
+    }
+
+    public void setBanned(boolean banned) {
+        isBanned = banned;
+    }
+
+    private boolean isBanned;
+
     public String getUsername() {
         return username;
     }

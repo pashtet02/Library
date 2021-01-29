@@ -1,5 +1,6 @@
 package com.epam.jt.name.dao;
 
+import com.epam.jt.name.domain.Book;
 import com.epam.jt.name.domain.User;
 
 import java.sql.*;
@@ -14,6 +15,7 @@ import static com.epam.jt.name.dao.SQLConstants.*;
 public class UserDao implements Dao<User> {
 
     private static UserDao userDao;
+    private static BookDao bookDao;
 
     public static UserDao getInstance() {
         if (userDao == null) {
@@ -76,6 +78,71 @@ public class UserDao implements Dao<User> {
             close(rs);
         }
         return user;
+    }
+
+    public List<Book> getUserBooks(User user) {
+        List<Book> books = new ArrayList<>();
+        try (Connection con = getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SELECT_ALL_USER_BOOKS)
+        ) {
+            preparedStatement.setLong(1, user.getId());
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    bookDao = BookDao.getInstance();
+                    books.add(bookDao.get(resultSet.getInt(1)));
+                }
+            }
+        } catch (SQLException throwable) {
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+        }
+        return books;
+    }
+
+    public void setBookForUser(User user, Book book) {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            con = getConnection();
+            con.setAutoCommit(false);
+            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+
+            //set users_books value
+            preparedStatement = con.prepareStatement(SET_BOOK);
+            preparedStatement.setLong(1, user.getId());
+            preparedStatement.setLong(2, book.getId());
+            preparedStatement.executeUpdate();
+
+            //decrement book.number;
+            book.setNumber(book.getNumber() - 1);
+            bookDao = BookDao.getInstance();
+            bookDao.save(book);
+
+            con.commit();
+        } catch (SQLException throwable) {
+            try {
+                if (con != null) {
+                    con.rollback();
+                }
+            } catch (SQLException e) {
+                Logger logger = Logger.getAnonymousLogger();
+                logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+            } finally {
+                Logger logger = Logger.getAnonymousLogger();
+                logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+            }
+        } finally {
+            if (preparedStatement != null){
+                close(preparedStatement);
+            }
+            if (con != null) {
+                close(con);
+            }
+        }
+    }
+
+    public static void setBookForUser(Connection con, User user, Book book) {
+
     }
 
     public User getUserByLoginAndPassword(String login, String password) {
@@ -170,7 +237,7 @@ public class UserDao implements Dao<User> {
 
 
     @Override
-    public void update(User user, String[] params) {
+    public void update(User user) {
 
     }
 
@@ -183,6 +250,7 @@ public class UserDao implements Dao<User> {
             user.setMail(rs.getString("mail"));
             user.setFine(rs.getInt("fine"));
             user.setRole(rs.getString("role"));
+            user.setBanned(rs.getBoolean("isBanned"));
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }

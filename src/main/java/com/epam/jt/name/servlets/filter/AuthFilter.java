@@ -67,7 +67,7 @@ public class AuthFilter implements Filter {
             req.getSession().setAttribute("password", password);
             req.getSession().setAttribute("login", login);
             req.getSession().setAttribute("role", role);
-
+            req.getSession().setAttribute("user", user);
             moveToMenu(req, res, role);
 
         } else {

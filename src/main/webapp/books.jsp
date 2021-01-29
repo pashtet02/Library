@@ -21,7 +21,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="book" items="${bookList}">
+    <c:forEach var="book" items="${userBookList}">
     <tr>
         <td><c:out value="${book.getId()}" />
         </td>
@@ -43,6 +43,7 @@
 <c:if test="${role == 'LIBRARIAN'}">
     <a href="users.jsp">to users list</a>
     <br>
+    <a href="addBook.jsp">add book</a>
 </c:if>
 
 <a href="main.jsp">to main page</a>

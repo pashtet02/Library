@@ -14,11 +14,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/library/catalog">Catalog</a>
+                    <a class="nav-link" href="/library/catalog?page=1">Catalog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/usermenu"/>">My books</a>
-                    <%--<a class="nav-link" href="/library/books.jsp"></a>--%>
                 </li>
                 <c:if test="${sessionScope.role == 'LIBRARIAN'}">
                     <li class="nav-item">
