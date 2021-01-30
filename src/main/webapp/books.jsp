@@ -40,13 +40,10 @@
     </tbody>
 </table>
 
-<c:if test="${role == 'LIBRARIAN'}">
+<c:if test="${role == 'ADMIN'}">
     <a href="users.jsp">to users list</a>
     <br>
     <a href="addBook.jsp">add book</a>
 </c:if>
-
-<a href="main.jsp">to main page</a>
-
 </body>
 </html>

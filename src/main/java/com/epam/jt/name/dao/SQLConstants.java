@@ -14,10 +14,14 @@ public class SQLConstants {
     public static final String SQL_FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE login= ?;";
     public static final String SQL_FIND_BOOK_BY_TITLE = "SELECT * FROM books WHERE title= ?;";
 
+
+
+    public static String UPDATE_USER_BY_ID = "update users\n" +
+            "    set username = ?, password = ?,mail = ?, role = ?,  fine = ?, isBanned = ? where id = ?;";
     public static String SELECT_ALL_USERS = "select * from users";
     public static String SELECT_ALL_BOOKS = "SELECT * FROM books";
     public static String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE username = ? AND password = ?;";
-    public static String SQL_ADD_NEW_USER = "insert into users (username, password, mail, fine, role) values (?, ?, ?, ?, ?);";
+    public static String SQL_ADD_NEW_USER = "insert into users (username, password, mail, fine, role, isBanned) values (?, ?, ?, ?, ?, ?);";
     public static String SQL_ADD_NEW_BOOK = "insert into books (title, author, ISBN, publisher, number) values (?, ?, ?, ?, ?);";
     public static String GET_BOOK_BY_TITLE = "SELECT * FROM books WHERE title = ?;";
     public static String UPDATE_BOOK = "UPDATE books SET title = ?, author= ?, ISBN= ?, publisher= ?," +

@@ -19,7 +19,8 @@
         <input type="text" placeholder="Enter login" name="login" id="login" required>
 
         <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter email" name="email" id="email" required>
+        <input type="email" placeholder="Enter email" name="email" id="email" required>
+        <br>
 
         <label for="password"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" id="password" required>

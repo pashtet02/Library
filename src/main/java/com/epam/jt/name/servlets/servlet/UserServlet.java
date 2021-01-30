@@ -38,6 +38,7 @@ public class UserServlet extends HttpServlet {
         user.setMail(req.getParameter("mail"));
         user.setFine(0.0);
         user.setRole("USER");
+        user.setBanned(false);
 
         userDao.save(user);
 

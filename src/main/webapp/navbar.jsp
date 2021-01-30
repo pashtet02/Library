@@ -19,7 +19,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/usermenu"/>">My books</a>
                 </li>
-                <c:if test="${sessionScope.role == 'LIBRARIAN'}">
+                <c:if test="${sessionScope.role == 'ADMIN'}">
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/menu"/>">Users list</a>
                     </li>

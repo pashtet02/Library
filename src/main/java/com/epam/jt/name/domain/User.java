@@ -86,6 +86,7 @@ public class User {
                 ", id=" + id +
                 ", role='" + role + '\'' +
                 ", fine=" + fine +
+                ", isBanned=" + isBanned +
                 '}';
     }
 }

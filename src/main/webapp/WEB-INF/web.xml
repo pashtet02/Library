@@ -65,6 +65,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>com.epam.jt.name.servlets.servlet.AdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/adminmenu</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>UserServlet</servlet-name>
         <servlet-class>com.epam.jt.name.servlets.servlet.UserServlet</servlet-class>
     </servlet>
@@ -74,11 +83,11 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>AdminServlet</servlet-name>
+        <servlet-name>LibrarianServlet</servlet-name>
         <servlet-class>com.epam.jt.name.servlets.servlet.LibrarianServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>AdminServlet</servlet-name>
+        <servlet-name>LibrarianServlet</servlet-name>
         <url-pattern>/menu</url-pattern>
     </servlet-mapping>
 

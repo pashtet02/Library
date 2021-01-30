@@ -22,13 +22,19 @@ public class AuthFilter implements Filter {
             throws ServletException, IOException {
 
 
-        if (role.equals("LIBRARIAN")) {
-            req.getRequestDispatcher("/admin_menu.jsp").forward(req, res);
-        }
-        else if (role.equals("USER")) {
-            req.getRequestDispatcher("/user_menu.jsp").forward(req, res);
-        } else {
-            req.getRequestDispatcher("/login.jsp").forward(req, res);
+        switch (role) {
+            case "ADMIN":
+                req.getRequestDispatcher("/admin_menu.jsp").forward(req, res);
+                break;
+            case "LIBRARIAN":
+                req.getRequestDispatcher("/librarian_menu.jsp").forward(req, res);
+                break;
+            case "USER":
+                req.getRequestDispatcher("/user_menu.jsp").forward(req, res);
+                break;
+            default:
+                req.getRequestDispatcher("/login.jsp").forward(req, res);
+                break;
         }
     }
 
@@ -54,7 +60,8 @@ public class AuthFilter implements Filter {
         //Logged user.
         if (nonNull(session) &&
                 nonNull(session.getAttribute("login")) &&
-                nonNull(session.getAttribute("password"))) {
+                nonNull(session.getAttribute("password")) &&
+                session.getAttribute("isBanned") != "true") {
 
             final String role = (String) session.getAttribute("role");
 
@@ -63,11 +70,14 @@ public class AuthFilter implements Filter {
         } else if (userDao.getUserByLoginAndPassword(login, password).getUsername() != null) {
             User user = userDao.getUserByLoginAndPassword(login, password);
             String role = user.getRole().toUpperCase();
+            boolean isBanned = user.isBanned();
 
             req.getSession().setAttribute("password", password);
             req.getSession().setAttribute("login", login);
             req.getSession().setAttribute("role", role);
             req.getSession().setAttribute("user", user);
+            System.out.println("IS BANNED " + isBanned);
+            req.getSession().setAttribute("isBanned", Boolean.toString(isBanned));
             moveToMenu(req, res, role);
 
         } else {

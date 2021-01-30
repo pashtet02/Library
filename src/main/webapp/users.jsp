@@ -16,7 +16,7 @@
         <th scope="col">Email</th>
         <th scope="col">ROLE</th>
         <th scope="col">Fine</th>
-        <th scope="col">Hello</th>
+        <th scope="col">Edit</th>
     </tr>
     </thead>
     <tbody>
@@ -30,6 +30,9 @@
             <td><c:out value="${user.getRole()}" />
             </td>
             <td><c:out value="${user.getFine()}" />
+            </td>
+            <td>
+                <a href="/library/adminmenu?id=${user.id}">edit</a>
             </td>
         </tr>
     </c:forEach>

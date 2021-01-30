@@ -10,6 +10,8 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.epam.jt.name.dao.SQLConstants.UPDATE_USER_BY_ID;
+
 public class UserDao implements Dao<User> {
 
     private static UserDao userDao;
@@ -198,6 +200,7 @@ public class UserDao implements Dao<User> {
             pstmt.setString(3, user.getMail());
             pstmt.setDouble(4, user.getFine());
             pstmt.setString(5, user.getRole().toUpperCase(Locale.ROOT));
+            pstmt.setBoolean(6, user.isBanned());
 
             if (pstmt.executeUpdate() > 0) {
                 rs = pstmt.getGeneratedKeys();
@@ -233,11 +236,51 @@ public class UserDao implements Dao<User> {
         return false;
     }
 
+    public void blockOrUnblockUser(User user, int value){
+        try (Connection con = getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement("UPDATE users SET isBanned= ? where id=?")) {
+            preparedStatement.setInt(1, value);
+            preparedStatement.setLong(2, user.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwable) {
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+        }
+    }
+    public void updateRoleById(User user, long id){
+        try (Connection con = getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(
+                     "update users set fine = ?, role = ?, isBanned = ? where id =?")) {
+            preparedStatement.setDouble(1, user.getFine());
+            preparedStatement.setString(2, user.getRole());
+            preparedStatement.setBoolean(3, user.isBanned());
+            preparedStatement.setLong(4, user.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwable) {
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+        }
+    }
 
+    //updates by username
     @Override
     public void update(User user) {
-
+        try (Connection con = getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(UPDATE_USER_BY_ID)) {
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getMail());
+            preparedStatement.setString(4, user.getRole());
+            preparedStatement.setDouble(5, user.getFine());
+            preparedStatement.setBoolean(6, user.isBanned());
+            preparedStatement.setLong(7, user.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwable) {
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+        }
     }
+
 
     private User mapUser(ResultSet rs) {
         User user = new User();
@@ -257,6 +300,14 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void delete(User user) {
+        try (Connection con = getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement("delete from users where username=?")) {
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwable) {
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+        }
     }
 
     private void close(AutoCloseable ac) {
