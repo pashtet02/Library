@@ -1,4 +1,4 @@
-package com.library.domain;
+package com.epam.jt.name.domain;
 
 import java.io.Serializable;
 import java.util.Date;

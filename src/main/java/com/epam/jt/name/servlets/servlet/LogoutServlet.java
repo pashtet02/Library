@@ -1,4 +1,4 @@
-package com.library.servlets.servlet;
+package com.epam.jt.name.servlets.servlet;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package com.library.dao;
+package com.epam.jt.name.dao;
 
 public class SQLConstants {
     private SQLConstants() {

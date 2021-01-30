@@ -1,8 +1,8 @@
-package com.library.servlets.filter;
+package com.epam.jt.name.servlets.filter;
 
 
-import com.library.dao.UserDao;
-import com.library.domain.User;
+import com.epam.jt.name.dao.UserDao;
+import com.epam.jt.name.domain.User;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

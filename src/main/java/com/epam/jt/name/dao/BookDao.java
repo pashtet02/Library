@@ -1,6 +1,6 @@
-package com.library.dao;
+package com.epam.jt.name.dao;
 
-import com.library.domain.Book;
+import com.epam.jt.name.domain.Book;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class BookDao implements Dao<Book> {
             statement.setLong(1, id);
             rs = statement.executeQuery();
             while (rs.next()) {
-                book.setId(rs.getLong(SQLConstants.ID));
+                book.setId(rs.getLong("id"));
                 book.setTitle(rs.getString("title"));
                 book.setAuthor(rs.getString("author"));
                 book.setISBN(rs.getLong("ISBN"));

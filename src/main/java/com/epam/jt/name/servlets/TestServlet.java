@@ -1,4 +1,4 @@
-package com.library.servlets;
+package com.epam.jt.name.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;

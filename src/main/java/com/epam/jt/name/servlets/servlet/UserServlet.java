@@ -1,8 +1,8 @@
-package com.library.servlets.servlet;
+package com.epam.jt.name.servlets.servlet;
 
-import com.library.dao.UserDao;
-import com.library.domain.Book;
-import com.library.domain.User;
+import com.epam.jt.name.dao.UserDao;
+import com.epam.jt.name.domain.Book;
+import com.epam.jt.name.domain.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

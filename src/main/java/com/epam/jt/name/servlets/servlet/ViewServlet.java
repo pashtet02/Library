@@ -1,6 +1,6 @@
-package com.library.servlets.servlet;
+package com.epam.jt.name.servlets.servlet;
 
-import com.library.dao.BookDao;
+import com.epam.jt.name.dao.BookDao;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

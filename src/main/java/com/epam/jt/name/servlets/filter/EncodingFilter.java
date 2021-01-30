@@ -1,4 +1,4 @@
-package com.library.servlets.filter;
+package com.epam.jt.name.servlets.filter;
 
 import javax.servlet.*;
 import java.io.IOException;
