@@ -1,7 +1,7 @@
-package com.epam.jt.name.dao;
+package com.library.dao;
 
-import com.epam.jt.name.domain.Book;
-import com.epam.jt.name.domain.User;
+import com.library.domain.Book;
+import com.library.domain.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static com.epam.jt.name.dao.SQLConstants.*;
 
 public class UserDao implements Dao<User> {
 
@@ -38,12 +36,12 @@ public class UserDao implements Dao<User> {
             statement.setLong(1, id);
             rs = statement.executeQuery();
             while (rs.next()) {
-                user.setId(rs.getLong(ID));
-                user.setUsername(rs.getString(USERNAME));
-                user.setPassword(rs.getString(USER_PASSWORD));
-                user.setMail(rs.getString(USER_MAIL));
-                user.setFine(rs.getDouble(USER_FINE));
-                user.setRole(rs.getString(USER_ROLE));
+                user.setId(rs.getLong(SQLConstants.ID));
+                user.setUsername(rs.getString(SQLConstants.USERNAME));
+                user.setPassword(rs.getString(SQLConstants.USER_PASSWORD));
+                user.setMail(rs.getString(SQLConstants.USER_MAIL));
+                user.setFine(rs.getDouble(SQLConstants.USER_FINE));
+                user.setRole(rs.getString(SQLConstants.USER_ROLE));
             }
         } catch (SQLException throwable) {
             Logger logger = Logger.getAnonymousLogger();
@@ -59,16 +57,16 @@ public class UserDao implements Dao<User> {
         User user = new User();
 
         try (Connection con = getConnection();
-             PreparedStatement statement = con.prepareStatement(SQL_FIND_USER_BY_LOGIN)) {
+             PreparedStatement statement = con.prepareStatement(SQLConstants.SQL_FIND_USER_BY_LOGIN)) {
             statement.setString(1, login);
             rs = statement.executeQuery();
             while (rs.next()) {
-                user.setId(rs.getLong(ID));
-                user.setUsername(rs.getString(USERNAME));
-                user.setPassword(rs.getString(USER_PASSWORD));
-                user.setMail(rs.getString(USER_MAIL));
-                user.setFine(rs.getDouble(USER_FINE));
-                user.setRole(rs.getString(USER_ROLE));
+                user.setId(rs.getLong(SQLConstants.ID));
+                user.setUsername(rs.getString(SQLConstants.USERNAME));
+                user.setPassword(rs.getString(SQLConstants.USER_PASSWORD));
+                user.setMail(rs.getString(SQLConstants.USER_MAIL));
+                user.setFine(rs.getDouble(SQLConstants.USER_FINE));
+                user.setRole(rs.getString(SQLConstants.USER_ROLE));
             }
 
         } catch (SQLException throwable) {
@@ -83,7 +81,7 @@ public class UserDao implements Dao<User> {
     public List<Book> getUserBooks(User user) {
         List<Book> books = new ArrayList<>();
         try (Connection con = getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SELECT_ALL_USER_BOOKS)
+             PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.SELECT_ALL_USER_BOOKS)
         ) {
             preparedStatement.setLong(1, user.getId());
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -108,7 +106,7 @@ public class UserDao implements Dao<User> {
             con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 
             //set users_books value
-            preparedStatement = con.prepareStatement(SET_BOOK);
+            preparedStatement = con.prepareStatement(SQLConstants.SET_BOOK);
             preparedStatement.setLong(1, user.getId());
             preparedStatement.setLong(2, book.getId());
             preparedStatement.executeUpdate();
@@ -148,18 +146,18 @@ public class UserDao implements Dao<User> {
     public User getUserByLoginAndPassword(String login, String password) {
         User user = new User();
         try (Connection con = getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(GET_USER_BY_LOGIN_AND_PASSWORD)
+             PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.GET_USER_BY_LOGIN_AND_PASSWORD)
         ) {
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
-                    user.setId(rs.getLong(ID));
-                    user.setUsername(rs.getString(USERNAME));
-                    user.setPassword(rs.getString(USER_PASSWORD));
-                    user.setFine(rs.getDouble(USER_FINE));
-                    user.setMail(rs.getString(USER_MAIL));
-                    user.setRole(rs.getString(USER_ROLE));
+                    user.setId(rs.getLong(SQLConstants.ID));
+                    user.setUsername(rs.getString(SQLConstants.USERNAME));
+                    user.setPassword(rs.getString(SQLConstants.USER_PASSWORD));
+                    user.setFine(rs.getDouble(SQLConstants.USER_FINE));
+                    user.setMail(rs.getString(SQLConstants.USER_MAIL));
+                    user.setRole(rs.getString(SQLConstants.USER_ROLE));
                 }
             }
         } catch (SQLException throwable) {
@@ -174,7 +172,7 @@ public class UserDao implements Dao<User> {
 
         try (Connection con = getConnection();
              Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery(SELECT_ALL_USERS)) {
+             ResultSet rs = stmt.executeQuery(SQLConstants.SELECT_ALL_USERS)) {
 
             while (rs.next()) {
                 users.add(mapUser(rs));
@@ -192,7 +190,7 @@ public class UserDao implements Dao<User> {
         ResultSet rs = null;
 
         try (Connection con = getConnection();
-             PreparedStatement pstmt = con.prepareStatement(SQL_ADD_NEW_USER,
+             PreparedStatement pstmt = con.prepareStatement(SQLConstants.SQL_ADD_NEW_USER,
                      Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, user.getUsername());
@@ -216,7 +214,7 @@ public class UserDao implements Dao<User> {
 
     public boolean isUserExistsByLoginAndPassword(String login, String password) {
         try (Connection con = getConnection();
-             PreparedStatement pstmt = con.prepareStatement(GET_USER_BY_LOGIN_AND_PASSWORD,
+             PreparedStatement pstmt = con.prepareStatement(SQLConstants.GET_USER_BY_LOGIN_AND_PASSWORD,
                      Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, login);

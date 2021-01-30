@@ -1,4 +1,4 @@
-package com.epam.jt.name.servlets.filter;
+package com.library.servlets.filter;
 
 import javax.servlet.*;
 import java.io.IOException;
@@ -11,6 +11,7 @@ public class EncodingFilter implements Filter {
                          ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         request.setCharacterEncoding(encoding);
         response.setCharacterEncoding(encoding);
+        System.out.println("ENCODING WORKS");
         filterChain.doFilter(request, response);
     }
 

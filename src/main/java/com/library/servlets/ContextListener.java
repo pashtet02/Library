@@ -1,6 +1,6 @@
-package com.epam.jt.name.servlets;
+package com.library.servlets;
 
-import com.epam.jt.name.dao.UserDao;
+import com.library.dao.UserDao;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;

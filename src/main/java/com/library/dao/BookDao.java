@@ -1,14 +1,12 @@
-package com.epam.jt.name.dao;
+package com.library.dao;
 
-import com.epam.jt.name.domain.Book;
+import com.library.domain.Book;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static com.epam.jt.name.dao.SQLConstants.*;
 
 
 public class BookDao implements Dao<Book> {
@@ -35,7 +33,7 @@ public class BookDao implements Dao<Book> {
             statement.setLong(1, id);
             rs = statement.executeQuery();
             while (rs.next()) {
-                book.setId(rs.getLong(ID));
+                book.setId(rs.getLong(SQLConstants.ID));
                 book.setTitle(rs.getString("title"));
                 book.setAuthor(rs.getString("author"));
                 book.setISBN(rs.getLong("ISBN"));
@@ -54,15 +52,15 @@ public class BookDao implements Dao<Book> {
 
     public List<Book> getAllSortedBy(String columb) throws SQLException {
         Connection con = getConnection();
-        List<Book> books = new ArrayList<>();
+        List<Book> books;
         books = getAllBooks(con, "SELECT * FROM books ORDER BY " + columb);
         return books;
     }
 
-    public List<Book> getSomeBooks(int start, int total) throws SQLException {
+    public List<Book> getSomeBooks(int start, int numberOfBooks) throws SQLException {
         Connection con = getConnection();
         List<Book> books;
-        books = getAllBooks(con, "select * from books limit " + (start - 1) + "," + total);
+        books = getAllBooks(con, "select * from books limit " + (start - 1 ) * numberOfBooks + "," + numberOfBooks);
         return books;
     }
 
@@ -88,7 +86,7 @@ public class BookDao implements Dao<Book> {
         List<Book> books;
 
         Connection con = getConnection();
-        books = getAllBooks(con, SELECT_ALL_BOOKS);
+        books = getAllBooks(con, SQLConstants.SELECT_ALL_BOOKS);
         return books;
     }
 
@@ -97,7 +95,7 @@ public class BookDao implements Dao<Book> {
         ResultSet rs = null;
 
         try (Connection con = getConnection();
-             PreparedStatement pstmt = con.prepareStatement(SQL_ADD_NEW_BOOK,
+             PreparedStatement pstmt = con.prepareStatement(SQLConstants.SQL_ADD_NEW_BOOK,
                      Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, book.getTitle());
@@ -122,7 +120,7 @@ public class BookDao implements Dao<Book> {
     @Override
     public void update(Book book) {
         try (Connection con = getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(UPDATE_BOOK)) {
+             PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.UPDATE_BOOK)) {
             preparedStatement.setString(1, book.getTitle());
             preparedStatement.setString(2, book.getAuthor());
             preparedStatement.setLong(3, book.getISBN());
@@ -172,7 +170,7 @@ public class BookDao implements Dao<Book> {
         Book book = new Book();
 
         try (Connection con = getConnection();
-             PreparedStatement statement = con.prepareStatement(GET_BOOK_BY_TITLE)) {
+             PreparedStatement statement = con.prepareStatement(SQLConstants.GET_BOOK_BY_TITLE)) {
             statement.setString(1, title);
             rs = statement.executeQuery();
             while (rs.next()) {

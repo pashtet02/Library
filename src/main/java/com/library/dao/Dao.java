@@ -1,4 +1,4 @@
-package com.epam.jt.name.dao;
+package com.library.dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;

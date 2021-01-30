@@ -44,7 +44,7 @@
         <form method="get" action="/library/catalog" class="form-inline">
             <label for="sort">Sort by</label>
             <select id="sort" name="sort">
-                <option value="title" selected>Title</option>
+                <option value="title"selected>Title</option>
                 <option value="author">Author</option>
                 <option value="publisher">Publisher</option>
             </select>
@@ -71,7 +71,7 @@
                 </div>
             </c:forEach>
         </c:when>
-        <c:when test="${requestScope.book != null}">
+        <c:when test="${requestScope.book.title != null}">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title"><c:out value="${requestScope.book.getTitle()}"/></h5>
@@ -93,8 +93,10 @@
 
 
 <div class="pagination">
-    <a href="<c:url value="/catalog?page=${sessionScope.page - 1}"/>">&laquo;</a>
-    <a href="<c:url value="/catalog?page=${sessionScope.page}"/>">1</a>
+    <c:if test="${sessionScope.page > 1}">
+        <a href="<c:url value="/catalog?page=${sessionScope.page - 1}"/>">&laquo;</a>
+    </c:if>
+    <a href="/library/catalog?page=1">1</a>
     <a href="/library/catalog?page=2">2</a>
     <a href="/library/catalog?page=3">3</a>
     <a href="#">4</a>

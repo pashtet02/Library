@@ -1,7 +1,7 @@
-package com.epam.jt.name.servlets.servlet;
+package com.library.servlets.servlet;
 
-import com.epam.jt.name.dao.BookDao;
-import com.epam.jt.name.domain.Book;
+import com.library.dao.BookDao;
+import com.library.domain.Book;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

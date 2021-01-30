@@ -11,22 +11,24 @@
 
     <!-- Session Configuration -->
     <session-config>
-        <session-timeout>5</session-timeout>
+        <session-timeout>2</session-timeout>
     </session-config>
 
     <filter>
         <filter-name>AuthFilter</filter-name>
-        <filter-class>com.epam.jt.name.servlets.filter.AuthFilter</filter-class>
+        <filter-class>com.library.servlets.filter.AuthFilter</filter-class>
     </filter>
 
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
         <url-pattern>/first</url-pattern>
+        <url-pattern>/usermenu</url-pattern>
+        <url-pattern>/menu</url-pattern>
     </filter-mapping>
 
     <filter>
         <filter-name>EncodingFilter</filter-name>
-        <filter-class>com.epam.jt.name.servlets.filter.EncodingFilter</filter-class>
+        <filter-class>com.library.servlets.filter.EncodingFilter</filter-class>
 
         <init-param>
             <param-name>encoding</param-name>
@@ -44,7 +46,7 @@
 
     <servlet>
         <servlet-name>FirstServlet</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.FirstServlet</servlet-class>
+        <servlet-class>com.library.servlets.FirstServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FirstServlet</servlet-name>
@@ -52,7 +54,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ViewServlet</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.servlet.ViewServlet</servlet-class>
+        <servlet-class>com.library.servlets.servlet.ViewServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ViewServlet</servlet-name>
@@ -60,7 +62,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.servlet.LogoutServlet</servlet-class>
+        <servlet-class>com.library.servlets.servlet.LogoutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
@@ -69,7 +71,7 @@
 
     <servlet>
         <servlet-name>UserServlet</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.servlet.UserServlet</servlet-class>
+        <servlet-class>com.library.servlets.servlet.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
@@ -78,7 +80,7 @@
 
     <servlet>
         <servlet-name>AdminServlet</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.servlet.LibrarianServlet</servlet-class>
+        <servlet-class>com.library.servlets.servlet.LibrarianServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
@@ -87,7 +89,7 @@
 
     <servlet>
         <servlet-name>Catalog</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.servlet.CatalogServlet</servlet-class>
+        <servlet-class>com.library.servlets.servlet.CatalogServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Catalog</servlet-name>
