@@ -4,7 +4,6 @@
 
 <div class="container mt-5">
     <fmt:setBundle basename="global" var="glo"/>
-    <fmt:setLocale value="RU"/>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/library">Library</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +13,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/library/catalog?page=1">Catalog</a>
+                    <a class="nav-link" href="/library/catalog?page=1"><fmt:message key="global.booklist" bundle="${glo}"/><br/>  </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/usermenu"/>">My books</a>
@@ -28,14 +27,21 @@
             <div class="navbar-text mr-3">
                 <label for="languageSelect">Choose a language</label>
                 <select class="nav-control" id="languageSelect">
-                    <option>English <fmt:setLocale value="en-EN"/></option>
-                    <option>Українська <fmt:setLocale value="ru-RU"/></option>
+                    <option>Українська</option>
+                    <option>English</option>
                 </select>
             </div>
 
-            <div class="navbar-text mr-3">
-                <a class="nav-link" href="/library/logout">${login}</a>
-            </div>
+    <div class="navbar-text mr-3">
+        <c:choose>
+            <c:when test="${login != null}">
+              <a class="nav-link" href="/library/logout">${login}</a>
+            </c:when>
+            <c:otherwise>
+            <a class="nav-link" href="/library/first">Sign in</a>
+            </c:otherwise>
+        </c:choose>
+                </div>
         </div>
     </nav>
 </div>

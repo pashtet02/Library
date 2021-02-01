@@ -18,22 +18,16 @@ public interface Dao<T> {
 
     default Connection getConnection() throws SQLException {
         Connection con = null;
-        Context context = null;
+        Context context;
         try {
             context = (Context) new InitialContext().lookup("java:/comp/env");
             DataSource dataSource = (DataSource) context.lookup("jdbc/mysql");
+            con = dataSource.getConnection();
+            
         } catch (NamingException e) {
             e.printStackTrace();
         }
-
-        Properties properties = new Properties();
-        try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/app.properties")) {
-            properties.load(fileInputStream);
-        } catch (IOException e) {
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, e.getMessage(), e);
-        }
-        return DriverManager.getConnection(properties.getProperty("connection.url"));
+        return con;
     }
 
     T get(long id);

@@ -1,1 +1,1 @@
-<%  response.sendRedirect("first"); %>
+<%  response.sendRedirect("catalog"); %>

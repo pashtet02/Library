@@ -64,7 +64,8 @@
                         <h6 class="card-subtitle mb-2 text-muted"><c:out value="${book.getAuthor()}"/></h6>
                         <p class="card-text">ISBN: <c:out value="${book.getISBN()}"/><br>
                             Publisher: <c:out value="${book.getPublisher()}"/><br>
-                            Number: <c:out value="${book.getNumber()}"/></p>
+                            Number: <c:out value="${book.getNumber()}"/><br>
+                            Language: <c:out value="${book.getLanguage()}"/></p>
                         <a href="#" class="card-link">Замовити</a>
                         <a href="<c:url value="/catalog?bookid=${book.getId()}"/>" class="card-link">Детальніше</a>
                     </div>
@@ -78,7 +79,8 @@
                     <h6 class="card-subtitle mb-2 text-muted"><c:out value="${requestScope.book.getAuthor()}"/></h6>
                     <p class="card-text">ISBN: <c:out value="${requestScope.book.getISBN()}"/><br>
                         Publisher: <c:out value="${requestScope.book.getPublisher()}"/><br>
-                        Number: <c:out value="${requestScope.book.getNumber()}"/></p>
+                        Number: <c:out value="${requestScope.book.getNumber()}"/><br>
+                        Language: <c:out value="${requestScope.book.getLanguage()}"/></p>
                     <a href="#" class="card-link">Замовити</a>
                     <a href="#" class="card-link">Детальніше</a>
                 </div>
@@ -99,10 +101,9 @@
     <a href="/library/catalog?page=1">1</a>
     <a href="/library/catalog?page=2">2</a>
     <a href="/library/catalog?page=3">3</a>
-    <a href="#">4</a>
-    <a href="#">5</a>
-    <a href="#">6</a>
-    <a href="<c:url value="/catalog?page=${sessionScope.page + 1}"/>">&raquo;</a>
+    <c:if test="${listPagedBooks.size() == 6}">
+        <a href="<c:url value="/catalog?page=${sessionScope.page + 1}"/>">&raquo;</a>
+    </c:if>
 </div>
 </body>
 </html>

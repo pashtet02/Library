@@ -7,6 +7,7 @@ com\epam\jt\name\servlets\servlet\ViewServlet.class
 com\epam\jt\name\domain\User.class
 com\epam\jt\name\dao\SQLConstants.class
 com\epam\jt\name\dao\Dao.class
+com\epam\jt\name\servlets\filter\LocalizationFilter.class
 com\epam\jt\name\servlets\servlet\CatalogServlet.class
 com\epam\jt\name\servlets\servlet\UserServlet.class
 com\epam\jt\name\servlets\filter\EncodingFilter.class

@@ -23,9 +23,9 @@ public class CatalogServlet extends HttpServlet {
         Book book = null;
         List<Book> books;
 
-        if (request.getParameter("bookid") != null && !request.getParameter("bookid").isEmpty()){
+        if (request.getParameter("bookid") != null && !request.getParameter("bookid").isEmpty()) {
             int id = Integer.parseInt(request.getParameter("bookid"));
-            System.out.println(request.getParameter(request.getParameter("bookid"))+ " BOOKID PARAM ");
+            System.out.println(request.getParameter(request.getParameter("bookid")) + " BOOKID PARAM ");
             book = bookDao.get(id);
             request.setAttribute("book", book);
             request.getRequestDispatcher("/aboutBook.jsp").forward(request, response);
@@ -37,11 +37,11 @@ public class CatalogServlet extends HttpServlet {
                 }
                 int numOfRecordsOnPage = 6;
                 books = bookDao.getSomeBooks(pageid, numOfRecordsOnPage);
-                System.out.println(books.size() + "page   " + pageid);
+                System.out.println(books + "BOOKS");
                 request.setAttribute("listPagedBooks", books);
                 session.setAttribute("page", pageid);
                 System.out.println(session.getAttribute("page"));
-                books = bookDao.getAll();
+                //books = bookDao.getAll();
                 //FILTER ATTENTION it doesnt work with cyrilic letters
 
                 if (request.getParameter("filter") != null && !request.getParameter("filter").isEmpty()) {
@@ -51,22 +51,25 @@ public class CatalogServlet extends HttpServlet {
                     System.out.println("SINGLE BOOK " + book);
                 }
 
-            /*if (request.getParameter("sort") != null && !request.getParameter("sort").isEmpty()){
-                System.out.println(request.getParameter(request.getParameter("sort"))+ " SORT PARAM ");
-                books = bookDao.getAllSortedBy(request.getParameter("sort"));
-            }*/
+                if (request.getParameter("sort") != null && !request.getParameter("sort").isEmpty()) {
+                    System.out.println(request.getParameter("sort") + " SORT PARAM ");
+
+                    books = bookDao.getAllSortedBy(request.getParameter("sort"));
+                    System.out.println("SORTED BOOKS"+ books);
+                    request.setAttribute("listPagedBooks", books);
+                }
 
                 session.setAttribute("bookList", books);
                 request.setAttribute("book", book);
 
                 request.getRequestDispatcher("/catalog.jsp").forward(request, response);
-                //response.sendRedirect("/catalog");
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }
-
-
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
 }

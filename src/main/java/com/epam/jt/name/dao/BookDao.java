@@ -98,11 +98,8 @@ public class BookDao implements Dao<Book> {
              PreparedStatement pstmt = con.prepareStatement(SQLConstants.SQL_ADD_NEW_BOOK,
                      Statement.RETURN_GENERATED_KEYS)) {
 
-            pstmt.setString(1, book.getTitle());
-            pstmt.setString(2, book.getAuthor());
-            pstmt.setLong(3, book.getISBN());
-            pstmt.setString(4, book.getPublisher());
-            pstmt.setInt(5, book.getNumber());
+            setBookToPrepStmt(book, pstmt);
+
 
             if (pstmt.executeUpdate() > 0) {
                 rs = pstmt.getGeneratedKeys();
@@ -121,17 +118,21 @@ public class BookDao implements Dao<Book> {
     public void update(Book book) {
         try (Connection con = getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.UPDATE_BOOK)) {
-            preparedStatement.setString(1, book.getTitle());
-            preparedStatement.setString(2, book.getAuthor());
-            preparedStatement.setLong(3, book.getISBN());
-            preparedStatement.setString(4, book.getPublisher());
-            preparedStatement.setInt(5, book.getNumber());
-            preparedStatement.setString(6, book.getLanguage());
+            setBookToPrepStmt(book, preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException throwable) {
             Logger logger = Logger.getAnonymousLogger();
             logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
         }
+    }
+
+    private void setBookToPrepStmt(Book book, PreparedStatement preparedStatement) throws SQLException {
+        preparedStatement.setString(1, book.getTitle());
+        preparedStatement.setString(2, book.getAuthor());
+        preparedStatement.setLong(3, book.getISBN());
+        preparedStatement.setString(4, book.getPublisher());
+        preparedStatement.setInt(5, book.getNumber());
+        preparedStatement.setString(6, book.getLanguage());
     }
 
     @Override
@@ -149,6 +150,7 @@ public class BookDao implements Dao<Book> {
             book.setISBN(rs.getLong("ISBN"));
             book.setNumber(rs.getInt("number"));
             book.setPublishingDate(rs.getDate("publishingDate"));
+            book.setLanguage(rs.getString("language"));
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }

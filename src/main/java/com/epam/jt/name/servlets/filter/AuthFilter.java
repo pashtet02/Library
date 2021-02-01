@@ -16,6 +16,9 @@ import static java.util.Objects.nonNull;
 
 @WebFilter
 public class AuthFilter implements Filter {
+    private static String url;
+    private static String params;
+
     private void moveToMenu(final HttpServletRequest req,
                             final HttpServletResponse res,
                             final String role)
@@ -65,8 +68,8 @@ public class AuthFilter implements Filter {
 
             final String role = (String) session.getAttribute("role");
 
-            //String url = ((HttpServletRequest)servletRequest).getRequestURL().toString();
-            //String queryString = ((HttpServletRequest)servletRequest).getQueryString();
+            url = ((HttpServletRequest)servletRequest).getRequestURL().toString();
+            params = ((HttpServletRequest)servletRequest).getQueryString();
 
             moveToMenu(req, res, role.toUpperCase(Locale.ROOT));
 

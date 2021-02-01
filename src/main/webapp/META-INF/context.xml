@@ -38,12 +38,12 @@ Data source and connection pool configuration
     <!-- MySQL -->
     <Resource name="jdbc/mysql"
               auth="Container"
-              type="javax.sql.DataSource"
+              type="javax.sql.DataSource" maxActive="100"
+
               maxTotal="8" maxIdle="30" maxWait="10000"
               username="root" password="root"
               driverClassName="com.mysql.cj.jdbc.Driver"
               defaultAutoCommit="true"
               defaultTransactionIsolation="READ_COMMITTED"
               url="jdbc:mysql://localhost:3306/library?user=root&amp;password=root?sslMode=DISABLED&amp;serverTimezone=UTC"/>
-
 </Context>
