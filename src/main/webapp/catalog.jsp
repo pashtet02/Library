@@ -33,7 +33,7 @@
 
 <div class="form-row">
     <div class="form-group col md-6">
-        <form method="get" action="/library/catalog" class="form-inline">
+        <form method="get" action="/library/catalog" class="form-inline" accept-charset="UTF-8">
             <input type="text" class="form-control" name="filter" id="filter" placeholder="Search by title">
             <button type="submit" class="btn btn-primary ml-2">Search</button>
         </form>
@@ -41,7 +41,7 @@
 
     </div>
     <div class="form-row">
-        <form method="get" action="/library/catalog" class="form-inline">
+        <form method="get" action="/library/catalog" class="form-inline" accept-charset="UTF-8">
             <label for="sort">Sort by</label>
             <select id="sort" name="sort">
                 <option value="title"selected>Title</option>
@@ -66,7 +66,7 @@
                             Publisher: <c:out value="${book.getPublisher()}"/><br>
                             Number: <c:out value="${book.getNumber()}"/></p>
                         <a href="#" class="card-link">Замовити</a>
-                        <a href="#" class="card-link">Детальніше</a>
+                        <a href="<c:url value="/catalog?bookid=${book.getId()}"/>" class="card-link">Детальніше</a>
                     </div>
                 </div>
             </c:forEach>

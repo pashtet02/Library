@@ -160,6 +160,7 @@ public class UserDao implements Dao<User> {
                     user.setFine(rs.getDouble(SQLConstants.USER_FINE));
                     user.setMail(rs.getString(SQLConstants.USER_MAIL));
                     user.setRole(rs.getString(SQLConstants.USER_ROLE));
+                    user.setBanned(String.valueOf(rs.getInt("isBanned")).equals("0"));
                 }
             }
         } catch (SQLException throwable) {
@@ -272,7 +273,7 @@ public class UserDao implements Dao<User> {
             preparedStatement.setString(3, user.getMail());
             preparedStatement.setString(4, user.getRole());
             preparedStatement.setDouble(5, user.getFine());
-            preparedStatement.setBoolean(6, user.isBanned());
+            preparedStatement.setInt(6, user.isBanned() ? 1 : 0);
             preparedStatement.setLong(7, user.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException throwable) {
@@ -291,7 +292,7 @@ public class UserDao implements Dao<User> {
             user.setMail(rs.getString("mail"));
             user.setFine(rs.getInt("fine"));
             user.setRole(rs.getString("role"));
-            user.setBanned(rs.getBoolean("isBanned"));
+            user.setBanned(String.valueOf(rs.getInt("isBanned")).equals("0"));
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }

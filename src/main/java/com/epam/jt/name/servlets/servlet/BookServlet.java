@@ -19,6 +19,8 @@ public class BookServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        req.setCharacterEncoding("utd-8");
+        resp.setCharacterEncoding("utf-8");
         Book book = new Book();
         book.setTitle(req.getParameter("title"));
         book.setAuthor(req.getParameter("author"));

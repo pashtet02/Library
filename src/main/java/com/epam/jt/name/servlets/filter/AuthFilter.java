@@ -60,16 +60,20 @@ public class AuthFilter implements Filter {
         //Logged user.
         if (nonNull(session) &&
                 nonNull(session.getAttribute("login")) &&
-                nonNull(session.getAttribute("password")) &&
-                session.getAttribute("isBanned") != "true") {
+                nonNull(session.getAttribute("password"))){
+                //session.getAttribute("isBanned") == "false") {
 
             final String role = (String) session.getAttribute("role");
+
+            //String url = ((HttpServletRequest)servletRequest).getRequestURL().toString();
+            //String queryString = ((HttpServletRequest)servletRequest).getQueryString();
 
             moveToMenu(req, res, role.toUpperCase(Locale.ROOT));
 
         } else if (userDao.getUserByLoginAndPassword(login, password).getUsername() != null) {
             User user = userDao.getUserByLoginAndPassword(login, password);
             String role = user.getRole().toUpperCase();
+            System.out.println("auth user:" + user);
             boolean isBanned = user.isBanned();
 
             req.getSession().setAttribute("password", password);
