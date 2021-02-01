@@ -33,7 +33,7 @@ public interface Dao<T> {
             Logger logger = Logger.getAnonymousLogger();
             logger.log(Level.SEVERE, e.getMessage(), e);
         }
-        return con = DriverManager.getConnection(properties.getProperty("connection.url"));
+        return DriverManager.getConnection(properties.getProperty("connection.url"));
     }
 
     T get(long id);
