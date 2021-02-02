@@ -20,6 +20,7 @@ public class CatalogServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
         Book book = null;
         List<Book> books;
 

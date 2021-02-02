@@ -41,7 +41,7 @@
 </table>
 
 <c:if test="${role == 'ADMIN'}">
-    <a href="addBook.jsp">add book</a>
+    <a href="/library/addBook.jsp">add book</a>
 </c:if>
 </body>
 </html>

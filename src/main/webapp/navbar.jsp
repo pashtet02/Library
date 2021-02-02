@@ -16,11 +16,11 @@
                     <a class="nav-link" href="/library/catalog?page=1"><fmt:message key="global.booklist" bundle="${glo}"/><br/>  </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/usermenu"/>">My books</a>
+                    <a class="nav-link" href="<c:url value="/first/usermenu"/>">My books</a>
                 </li>
                 <c:if test="${sessionScope.role == 'ADMIN'}">
                     <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/menu"/>">Users list</a>
+                        <a class="nav-link" href="<c:url value="/first/menu"/>">Users list</a>
                     </li>
                 </c:if>
             </ul>

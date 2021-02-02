@@ -44,7 +44,11 @@ public class LibrarianServlet extends HttpServlet {
 
 
         bookDao = BookDao.getInstance();
-        bookDao.save(book);
+        try {
+            bookDao.save(book);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         System.out.println("ADD BOOK " + book);
         resp.sendRedirect("/library/catalog");
     }

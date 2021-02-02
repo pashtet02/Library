@@ -14,6 +14,13 @@
           <element id="module-output" name="DemoWebMavenProject" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.4.2" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.2.11.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.2.11.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.2.11.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.2.11.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.2.11.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.2.11.RELEASE" />
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.16" />

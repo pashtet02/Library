@@ -60,14 +60,7 @@
         <servlet-name>FirstServlet</servlet-name>
         <url-pattern>/first</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>ViewServlet</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.servlet.ViewServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ViewServlet</servlet-name>
-        <url-pattern>/view</url-pattern>
-    </servlet-mapping>
+
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>com.epam.jt.name.servlets.servlet.LogoutServlet</servlet-class>
@@ -83,7 +76,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
-        <url-pattern>/adminmenu</url-pattern>
+        <url-pattern>/first/adminmenu</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -92,7 +85,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
-        <url-pattern>/usermenu</url-pattern>
+        <url-pattern>/first/usermenu</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -101,7 +94,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>LibrarianServlet</servlet-name>
-        <url-pattern>/menu</url-pattern>
+        <url-pattern>/first/menu</url-pattern>
     </servlet-mapping>
 
     <servlet>

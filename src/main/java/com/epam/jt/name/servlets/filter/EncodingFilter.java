@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class EncodingFilter implements Filter {
 
-    private String encoding = "utf-8";
+    private String encoding = "UTF-8";
 
     public void doFilter(ServletRequest request,
                          ServletResponse response, FilterChain filterChain) throws IOException, ServletException {

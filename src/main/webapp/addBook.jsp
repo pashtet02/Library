@@ -8,7 +8,7 @@
     <link href="static/custom.css" rel="stylesheet"/>
 </head>
 <body>
-<form method="post" action="/library/menu">
+<form method="post" action="/library/first/menu">
     <div class="container">
         <h1>Add a book</h1>
         <p>Please fill in this form to add a book to catalog</p>

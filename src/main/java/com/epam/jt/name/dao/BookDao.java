@@ -5,12 +5,13 @@ import com.epam.jt.name.domain.Book;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 
 public class BookDao implements Dao<Book> {
     private static BookDao bookDao;
+    private static final Logger logger = Logger.getLogger(BookDao.class);
 
     public static synchronized BookDao getInstance() {
         if (bookDao == null) {
@@ -42,11 +43,11 @@ public class BookDao implements Dao<Book> {
                 book.setLanguage(rs.getString("language"));
             }
         } catch (SQLException throwable) {
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, "Hello");
+            logger.error("get book method exception: " + throwable.getSQLState());
         } finally {
             close(rs);
         }
+        logger.info("get() book get successfully book id: " + book.getId());
         return book;
     }
 
@@ -73,9 +74,11 @@ public class BookDao implements Dao<Book> {
             while (rs.next()) {
                 books.add(mapBook(rs));
             }
+            if (books.size() > 0) {
+                logger.info("getAllBooks() get successfully number of books: " + books.size());
+            }
         } catch (SQLException ex) {
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, "MESSAGE");
+            logger.error("getSomeBooks method exception: " + ex.getSQLState(), ex);
             throw ex;
         }
         return books;
@@ -91,7 +94,7 @@ public class BookDao implements Dao<Book> {
     }
 
     @Override
-    public void save(Book book) {
+    public void save(Book book) throws SQLException {
         ResultSet rs = null;
 
         try (Connection con = getConnection();
@@ -107,8 +110,10 @@ public class BookDao implements Dao<Book> {
                     book.setId(rs.getLong(1));
                 }
             }
+            logger.info("book saved successfully book id: "+ book.getId());
         } catch (SQLException throwable) {
-            throwable.printStackTrace();
+            logger.error("Book save() error: " + throwable.getSQLState(), throwable);
+            throw throwable;
         } finally {
             close(rs);
         }
@@ -121,8 +126,7 @@ public class BookDao implements Dao<Book> {
             setBookToPrepStmt(book, preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException throwable) {
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+            logger.error("update book method exception: " + throwable.getSQLState(), throwable);
         }
     }
 
@@ -152,7 +156,7 @@ public class BookDao implements Dao<Book> {
             book.setPublishingDate(rs.getDate("publishingDate"));
             book.setLanguage(rs.getString("language"));
         } catch (SQLException throwable) {
-            throwable.printStackTrace();
+            logger.error("update book method exception: " + throwable.getSQLState(), throwable);
         }
         return book;
     }
@@ -180,8 +184,8 @@ public class BookDao implements Dao<Book> {
             }
 
         } catch (SQLException throwable) {
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, "Hello");
+            logger.error("getByTitle book method exception: " + throwable.getSQLState(), throwable);
+            throwable.printStackTrace();
         } finally {
             close(rs);
         }

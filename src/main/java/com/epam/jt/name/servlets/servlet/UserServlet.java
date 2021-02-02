@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserServlet extends HttpServlet {
@@ -40,12 +41,19 @@ public class UserServlet extends HttpServlet {
         user.setRole("USER");
         user.setBanned(false);
 
-        userDao.save(user);
+        try {
+            userDao.save(user);
+            req.getSession().setAttribute(LOGIN, req.getParameter(LOGIN));
+            req.getSession().setAttribute(PASSWORD, req.getParameter(PASSWORD));
+            req.getSession().setAttribute("role", user.getRole());
+            req.getSession().setAttribute("user", user);
+            req.getRequestDispatcher("/main.jsp").forward(req, resp);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            //переробити під request with params
+            resp.sendRedirect("/library/registration.jsp");
+        }
 
-        req.getSession().setAttribute(LOGIN, req.getParameter(LOGIN));
-        req.getSession().setAttribute(PASSWORD, req.getParameter(PASSWORD));
-        req.getSession().setAttribute("role", user.getRole());
-        req.getSession().setAttribute("user", user);
-        req.getRequestDispatcher("/main.jsp").forward(req, resp);
+
     }
 }

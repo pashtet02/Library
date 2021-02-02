@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class BookServlet extends HttpServlet {
     private final BookDao bookDao = BookDao.getInstance();
@@ -28,7 +29,11 @@ public class BookServlet extends HttpServlet {
         book.setPublisher(req.getParameter("publisher"));
         book.setNumber(Integer.parseInt(req.getParameter("number")));
         System.out.println(book);
-        bookDao.save(book);
+        try {
+            bookDao.save(book);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         resp.sendRedirect("/library/first");
     }

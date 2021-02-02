@@ -12,6 +12,6 @@
 
 <a href="<c:url value="/logout"/>">Logout</a>
 <br/>
-<a href="<c:url value="/usermenu"/>">usermenu</a>
+<a href="<c:url value="/first/usermenu"/>">usermenu</a>
 </body>
 </html>

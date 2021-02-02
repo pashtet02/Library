@@ -20,6 +20,7 @@ public class AdminServlet extends HttpServlet {
         User user = userDao.get(Long.parseLong(usrId));
         req.setAttribute("usr", user);
         req.setAttribute("id", usrId);
+
         req.getRequestDispatcher("/edit_user.jsp").forward(req, resp);
     }
 
@@ -40,6 +41,6 @@ public class AdminServlet extends HttpServlet {
         System.out.println("USER ID: " + usrId);
         userDao.update(user);
         System.out.println("UPDATE USER: " + user);
-        resp.sendRedirect("/library/menu");
+        resp.sendRedirect("/library/first/menu");
     }
 }

@@ -7,15 +7,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import static com.epam.jt.name.dao.SQLConstants.UPDATE_USER_BY_ID;
+import org.apache.log4j.Logger;
 
 public class UserDao implements Dao<User> {
 
     private static UserDao userDao;
     private static BookDao bookDao;
+    private static final Logger logger = Logger.getLogger(UserDao.class);
 
     public static UserDao getInstance() {
         if (userDao == null) {
@@ -45,9 +44,9 @@ public class UserDao implements Dao<User> {
                 user.setFine(rs.getDouble(SQLConstants.USER_FINE));
                 user.setRole(rs.getString(SQLConstants.USER_ROLE));
             }
+            logger.info("userDao get() user: " + user.getId());
         } catch (SQLException throwable) {
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, "Hello");
+            logger.error("get() userDao exception: " + throwable.getSQLState(), throwable);
         } finally {
             close(rs);
         }
@@ -72,8 +71,7 @@ public class UserDao implements Dao<User> {
             }
 
         } catch (SQLException throwable) {
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, "Hello");
+            logger.error("getUserByLogin() userDao exception: " + throwable.getSQLState(), throwable);
         } finally {
             close(rs);
         }
@@ -93,8 +91,7 @@ public class UserDao implements Dao<User> {
                 }
             }
         } catch (SQLException throwable) {
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+            logger.error("getUserBooks() userDao exception: " + throwable.getSQLState(), throwable);
         }
         return books;
     }
@@ -125,11 +122,9 @@ public class UserDao implements Dao<User> {
                     con.rollback();
                 }
             } catch (SQLException e) {
-                Logger logger = Logger.getAnonymousLogger();
-                logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+                //FIX THIS METHOD OR DELETE IT
             } finally {
-                Logger logger = Logger.getAnonymousLogger();
-                logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+
             }
         } finally {
             if (preparedStatement != null){
@@ -164,6 +159,8 @@ public class UserDao implements Dao<User> {
                 }
             }
         } catch (SQLException throwable) {
+            logger.error("getUserByLoginAndPassword() userDao exception login: {}"
+                    + login + throwable.getSQLState(), throwable);
             throwable.printStackTrace();
         }
         return user;
@@ -181,15 +178,14 @@ public class UserDao implements Dao<User> {
                 users.add(mapUser(rs));
             }
         } catch (SQLException ex) {
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, "MESSAGE");
+            logger.error("getAllUsers() userDao exception: " + ex.getSQLState(), ex);
             throw ex;
         }
         return users;
     }
 
     @Override
-    public void save(User user) {
+    public void save(User user) throws SQLException {
         ResultSet rs = null;
 
         try (Connection con = getConnection();
@@ -209,8 +205,10 @@ public class UserDao implements Dao<User> {
                     user.setId(rs.getLong(1));
                 }
             }
+            logger.info("user saved succesfully login: " + user.getUsername());
         } catch (SQLException throwable) {
-            throwable.printStackTrace();
+            logger.error("save() userDao exception: " + throwable.getSQLState(), throwable);
+            throw throwable;
         } finally {
             close(rs);
         }
@@ -231,6 +229,8 @@ public class UserDao implements Dao<User> {
             try {
                 throw throwable;
             } catch (SQLException throwables) {
+                logger.error("isUserExistsByLoginAndPassword() userDao exception: "
+                        + throwable.getSQLState(), throwable);
                 throwables.printStackTrace();
             }
         }
@@ -243,9 +243,10 @@ public class UserDao implements Dao<User> {
             preparedStatement.setInt(1, value);
             preparedStatement.setLong(2, user.getId());
             preparedStatement.executeUpdate();
+            logger.info("block or unblock user: " + user + " value: " + value);
         } catch (SQLException throwable) {
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+            logger.error("blockOrUnblockUser() userDao exception: "
+                    + throwable.getSQLState(), throwable);
         }
     }
     public void updateRoleById(User user, long id){
@@ -257,9 +258,10 @@ public class UserDao implements Dao<User> {
             preparedStatement.setBoolean(3, user.isBanned());
             preparedStatement.setLong(4, user.getId());
             preparedStatement.executeUpdate();
+            logger.debug("role updated userid: {} {}" + user.getId() + "role: " + user.getRole());
         } catch (SQLException throwable) {
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+            logger.error("updateRoleById() userDao exception: "
+                    + throwable.getSQLState(), throwable);
         }
     }
 
@@ -276,9 +278,10 @@ public class UserDao implements Dao<User> {
             preparedStatement.setInt(6, user.isBanned() ? 1 : 0);
             preparedStatement.setLong(7, user.getId());
             preparedStatement.executeUpdate();
+            logger.debug("updated userid: " + user.getId());
         } catch (SQLException throwable) {
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+            logger.error("update() userDao exception: "
+                    + throwable.getSQLState(), throwable);
         }
     }
 
@@ -293,8 +296,10 @@ public class UserDao implements Dao<User> {
             user.setFine(rs.getInt("fine"));
             user.setRole(rs.getString("role"));
             user.setBanned(String.valueOf(rs.getInt("isBanned")).equals("0"));
+            logger.debug("mapUser userid: " + user.getId());
         } catch (SQLException throwable) {
-            throwable.printStackTrace();
+            logger.error("mapUser() userDao exception: "
+                    + throwable.getSQLState(), throwable);
         }
         return user;
     }
@@ -306,8 +311,8 @@ public class UserDao implements Dao<User> {
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.executeUpdate();
         } catch (SQLException throwable) {
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, throwable.getSQLState(), throwable);
+            logger.error("delete() userDao exception: "
+                    + throwable.getSQLState(), throwable);
         }
     }
 

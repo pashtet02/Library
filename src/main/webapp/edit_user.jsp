@@ -11,7 +11,7 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp"/>
-<form method="post" action="/library/adminmenu?id=${requestScope.id}">
+<form method="post" action="/library/first/adminmenu?id=${requestScope.id}">
     <p><c:out value="${requestScope.id}"/></p>
     <div class="container">
         <h2>Edit user: <c:out value="${requestScope.get(u)}"/></h2>
@@ -32,7 +32,7 @@
         <button type="submit" class="registerbtn">Done</button>
     </div>
     <div class="container signin">
-        <p>Back to users list <a href="/library/menu">go!</a>.</p>
+        <p>Back to users list <a href="/library/first/menu">go!</a>.</p>
     </div>
 </form>
 </body>

@@ -32,13 +32,13 @@
             <td><c:out value="${user.getFine()}" />
             </td>
             <td>
-                <a href="/library/adminmenu?id=${user.id}">edit</a>
+                <a href="/library/first/adminmenu?id=${user.id}">edit</a>
             </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
 
-<a href="books.jsp">show all books</a>
+<a href="/first/usermenu">show your books</a>
 </body>
 </html>

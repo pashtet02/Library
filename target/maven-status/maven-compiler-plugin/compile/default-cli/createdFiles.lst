@@ -3,7 +3,6 @@ com\epam\jt\name\servlets\servlet\LibrarianServlet.class
 com\epam\jt\name\servlets\ContextListener.class
 com\epam\jt\name\servlets\servlet\AdminServlet.class
 com\epam\jt\name\servlets\filter\AuthFilter.class
-com\epam\jt\name\servlets\servlet\ViewServlet.class
 com\epam\jt\name\domain\User.class
 com\epam\jt\name\dao\SQLConstants.class
 com\epam\jt\name\dao\Dao.class

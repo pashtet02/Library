@@ -15,6 +15,6 @@
 <h1>Hello Librarian!</h1>
 <a href="<c:url value='/logout' />">Logout</a>
 <br/>
-<a href="<c:url value="/menu"/>">menu</a>
+<a href="<c:url value="/first/menu"/>">menu</a>
 </body>
 </html>
