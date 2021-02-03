@@ -1,6 +1,6 @@
 package com.epam.jt.name.dao;
 
-import com.epam.jt.name.domain.Book;
+import com.epam.jt.name.entity.Book;
 
 import java.sql.*;
 import java.util.ArrayList;

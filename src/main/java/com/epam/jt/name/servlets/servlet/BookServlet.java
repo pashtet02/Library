@@ -1,7 +1,7 @@
 package com.epam.jt.name.servlets.servlet;
 
 import com.epam.jt.name.dao.BookDao;
-import com.epam.jt.name.domain.Book;
+import com.epam.jt.name.entity.Book;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +20,7 @@ public class BookServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        req.setCharacterEncoding("utd-8");
+        req.setCharacterEncoding("utf-8");
         resp.setCharacterEncoding("utf-8");
         Book book = new Book();
         book.setTitle(req.getParameter("title"));

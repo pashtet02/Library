@@ -1,6 +1,6 @@
-package com.epam.jt.name.domain;
+package com.epam.jt.name.entity;
 
-public class User {
+public class User extends Entity{
     private String username;
     private String mail;
     private long id;
@@ -34,7 +34,7 @@ public class User {
         this.mail = mail;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

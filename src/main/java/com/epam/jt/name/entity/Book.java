@@ -1,9 +1,8 @@
-package com.epam.jt.name.domain;
+package com.epam.jt.name.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Book implements Serializable {
+public class Book extends Entity {
     private long id;
     private String title;
     private String author;
@@ -21,7 +20,7 @@ public class Book implements Serializable {
         this.language = language;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

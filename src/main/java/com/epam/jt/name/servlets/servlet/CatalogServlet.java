@@ -1,7 +1,8 @@
 package com.epam.jt.name.servlets.servlet;
 
 import com.epam.jt.name.dao.BookDao;
-import com.epam.jt.name.domain.Book;
+import com.epam.jt.name.entity.Book;
+import com.epam.jt.name.entity.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -62,7 +63,10 @@ public class CatalogServlet extends HttpServlet {
 
                 session.setAttribute("bookList", books);
                 request.setAttribute("book", book);
-
+                if (session.getAttribute("user") != null){
+                    User user = (User) session.getAttribute("user");
+                    session.setAttribute("userId", user.getId());
+                }
                 request.getRequestDispatcher("/catalog.jsp").forward(request, response);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

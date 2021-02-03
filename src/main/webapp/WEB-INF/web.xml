@@ -71,6 +71,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>BookOrderServlet</servlet-name>
+        <servlet-class>com.epam.jt.name.servlets.BookOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BookOrderServlet</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>AdminServlet</servlet-name>
         <servlet-class>com.epam.jt.name.servlets.servlet.AdminServlet</servlet-class>
     </servlet>

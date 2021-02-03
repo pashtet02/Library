@@ -68,7 +68,9 @@
                             Publisher: <c:out value="${book.getPublisher()}"/><br>
                             Number: <c:out value="${book.getNumber()}"/><br>
                             Language: <c:out value="${book.getLanguage()}"/></p>
-                        <a href="#" class="card-link">Замовити</a>
+                        <c:if test="${sessionScope.userId > 0 && sessionScope.userId != null}">
+                            <a href="<c:url value="/order?userId=${sessionScope.userId}&bookId=${book.getId()}"/>" class="card-link">Замовити</a>
+                        </c:if>
                         <a href="<c:url value="/catalog?bookid=${book.getId()}"/>" class="card-link">Детальніше</a>
                     </div>
                 </div>
@@ -83,7 +85,9 @@
                         Publisher: <c:out value="${requestScope.book.getPublisher()}"/><br>
                         Number: <c:out value="${requestScope.book.getNumber()}"/><br>
                         Language: <c:out value="${requestScope.book.getLanguage()}"/></p>
-                    <a href="#" class="card-link">Замовити</a>
+                    <c:if test="${sessionScope.userId > 0  && sessionScope.userId != null}">
+                        <a href="<c:url value="/order?userId=${sessionScope.userId}&bookId=${requestScope.book.getId()}"/>" class="card-link">Замовити</a>
+                    </c:if>
                     <a href="<c:url value="/catalog?bookid=${requestScope.book.getId()}"/>" class="card-link">Детальніше</a>
                 </div>
             </div>

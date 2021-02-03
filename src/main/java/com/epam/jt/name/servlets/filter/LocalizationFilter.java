@@ -1,7 +1,5 @@
 package com.epam.jt.name.servlets.filter;
 
-import com.epam.jt.name.dao.UserDao;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

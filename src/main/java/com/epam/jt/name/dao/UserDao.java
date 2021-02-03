@@ -1,13 +1,13 @@
 package com.epam.jt.name.dao;
 
-import com.epam.jt.name.domain.Book;
-import com.epam.jt.name.domain.User;
+import com.epam.jt.name.entity.Book;
+import com.epam.jt.name.entity.User;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import static com.epam.jt.name.dao.SQLConstants.UPDATE_USER_BY_ID;
+
 import org.apache.log4j.Logger;
 
 public class UserDao implements Dao<User> {
@@ -68,8 +68,9 @@ public class UserDao implements Dao<User> {
                 user.setMail(rs.getString(SQLConstants.USER_MAIL));
                 user.setFine(rs.getDouble(SQLConstants.USER_FINE));
                 user.setRole(rs.getString(SQLConstants.USER_ROLE));
+                user.setBanned(rs.getInt("isBanned") == 1);
             }
-
+            logger.info("getUserByLogin: " + user.getId() + " " + user.getUsername());
         } catch (SQLException throwable) {
             logger.error("getUserByLogin() userDao exception: " + throwable.getSQLState(), throwable);
         } finally {
@@ -269,7 +270,7 @@ public class UserDao implements Dao<User> {
     @Override
     public void update(User user) {
         try (Connection con = getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(UPDATE_USER_BY_ID)) {
+             PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.UPDATE_USER_BY_ID)) {
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getMail());
