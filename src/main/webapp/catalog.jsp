@@ -75,7 +75,7 @@
                         <c:if test="${sessionScope.userId > 0 && sessionScope.userId != null}">
                             <a href="<c:url value="/order?userId=${sessionScope.userId}&bookId=${book.getId()}"/>" class="card-link">Замовити</a>
                         </c:if>
-                        <a href="<c:url value="/catalog?bookid=${book.getId()}"/>" class="card-link">Детальніше</a>
+                        <a href="<c:url value="/controller?command=catalog&bookid=${book.getId()}"/>" class="card-link">Детальніше</a>
                     </div>
                 </div>
             </c:forEach>
@@ -92,7 +92,7 @@
                     <c:if test="${sessionScope.userId > 0  && sessionScope.userId != null}">
                         <a href="<c:url value="/order?userId=${sessionScope.userId}&bookId=${requestScope.book.getId()}"/>" class="card-link">Замовити</a>
                     </c:if>
-                    <a href="<c:url value="/catalog?bookid=${requestScope.book.getId()}"/>" class="card-link">Детальніше</a>
+                    <a href="<c:url value="/controller?command=catalog&bookid=${requestScope.book.getId()}"/>" class="card-link">Детальніше</a>
                 </div>
             </div>
         </c:when>

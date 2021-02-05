@@ -39,7 +39,7 @@ public class BookOrderServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        resp.sendRedirect("/library/catalog");
+        resp.sendRedirect("/library/controller?command=catalog");
     }
 
 }

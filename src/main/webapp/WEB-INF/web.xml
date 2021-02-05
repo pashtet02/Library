@@ -43,16 +43,6 @@
     </filter-mapping>
 
     <filter>
-        <filter-name>AuthFilter</filter-name>
-        <filter-class>com.epam.jt.name.servlets.filter.AuthFilter</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>AuthFilter</filter-name>
-        <url-pattern>/first</url-pattern>
-    </filter-mapping>
-
-    <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>com.epam.jt.name.web.filter.EncodingFilter</filter-class>
         <init-param>
@@ -66,38 +56,6 @@
         <servlet-name>Controller</servlet-name>
     </filter-mapping>
 
-    <filter>
-        <filter-name>LocalizationFilter</filter-name>
-        <filter-class>com.epam.jt.name.servlets.filter.LocalizationFilter</filter-class>
-
-        <init-param>
-            <param-name>locale</param-name>
-            <param-value>EN</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>LocalizationFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <servlet>
-        <servlet-name>FirstServlet</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.FirstServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>FirstServlet</servlet-name>
-        <url-pattern>/first</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.servlet.LogoutServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-
     <servlet>
         <servlet-name>BookOrderServlet</servlet-name>
         <servlet-class>com.epam.jt.name.servlets.BookOrderServlet</servlet-class>
@@ -106,33 +64,6 @@
         <servlet-name>BookOrderServlet</servlet-name>
         <url-pattern>/order</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AdminServlet</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.servlet.AdminServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminServlet</servlet-name>
-        <url-pattern>/first/adminmenu</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>UserServlet</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.servlet.UserServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserServlet</servlet-name>
-        <url-pattern>/first/usermenu</url-pattern>
-    </servlet-mapping>
-
-    <!--<servlet>
-        <servlet-name>Catalog</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.servlet.CatalogServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Catalog</servlet-name>
-        <url-pattern>/catalog</url-pattern>
-    </servlet-mapping>-->
 
     <servlet>
         <servlet-name>Controller</servlet-name>
@@ -154,4 +85,65 @@
         <resource-env-ref-name>jdbc/mysql</resource-env-ref-name>
         <resource-env-ref-type>javax.sql.DataSource</resource-env-ref-type>
     </resource-env-ref>
+
+<!--    <filter>
+        <filter-name>LocalizationFilter</filter-name>
+        <filter-class>com.epam.jt.name.servlets.filter.LocalizationFilter</filter-class>
+
+        <init-param>
+            <param-name>locale</param-name>
+            <param-value>EN</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>LocalizationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
+<!--
+    <servlet>
+        <servlet-name>FirstServlet</servlet-name>
+        <servlet-class>com.epam.jt.name.servlets.FirstServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FirstServlet</servlet-name>
+        <url-pattern>/first</url-pattern>
+    </servlet-mapping>-->
+
+    <!--<servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.epam.jt.name.servlets.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>-->
+
+
+
+<!--    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>com.epam.jt.name.servlets.servlet.AdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/first/adminmenu</url-pattern>
+    </servlet-mapping>-->
+
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>com.epam.jt.name.servlets.servlet.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/first/usermenu</url-pattern>
+    </servlet-mapping>
+
+    <!--<servlet>
+        <servlet-name>Catalog</servlet-name>
+        <servlet-class>com.epam.jt.name.servlets.servlet.CatalogServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Catalog</servlet-name>
+        <url-pattern>/catalog</url-pattern>
+    </servlet-mapping>-->
 </web-app>

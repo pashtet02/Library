@@ -1,3 +1,4 @@
+/*
 package com.epam.jt.name.servlets.filter;
 
 import javax.servlet.*;
@@ -30,4 +31,4 @@ public class EncodingFilter implements Filter {
     public void destroy() {
         //hello
     }
-}
+}*/

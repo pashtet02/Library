@@ -1,3 +1,4 @@
+/*
 package com.epam.jt.name.servlets;
 
 import javax.servlet.ServletException;
@@ -14,4 +15,4 @@ public class FirstServlet extends HttpServlet {
         System.out.println("first servlet");
         request.getRequestDispatcher("/books.jsp").forward(request, response);
     }
-}
+}*/

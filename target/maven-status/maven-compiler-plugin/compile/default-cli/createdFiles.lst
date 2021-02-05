@@ -10,13 +10,12 @@ com\epam\jt\name\web\command\ListOrdersCommand.class
 com\epam\jt\name\web\command\NoCommand.class
 com\epam\jt\name\web\command\UsersListCommand.class
 com\epam\jt\name\web\command\EditUserCommand.class
-com\epam\jt\name\servlets\ContextListener.class
 com\epam\jt\name\web\command\Command.class
-com\epam\jt\name\servlets\servlet\AdminServlet.class
 com\epam\jt\name\entity\Entity.class
 com\epam\jt\name\Path.class
 com\epam\jt\name\web\filter\EncodingFilter.class
 com\epam\jt\name\servlets\filter\AuthFilter.class
+com\epam\jt\name\web\command\LogoutCommand.class
 com\epam\jt\name\web\command\CommandContainer.class
 com\epam\jt\name\web\command\LoginCommand.class
 com\epam\jt\name\dao\SQLConstants.class
@@ -27,7 +26,6 @@ com\epam\jt\name\web\listener\ContextListener.class
 com\epam\jt\name\servlets\filter\LocalizationFilter.class
 com\epam\jt\name\servlets\servlet\UserServlet.class
 com\epam\jt\name\entity\Order.class
-com\epam\jt\name\servlets\filter\EncodingFilter.class
 com\epam\jt\name\dao\OrderDao.class
 com\epam\jt\name\entity\Status.class
 com\epam\jt\name\servlets\BookOrderServlet.class

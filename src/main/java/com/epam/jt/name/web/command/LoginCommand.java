@@ -9,12 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.jstl.core.Config;
 import java.io.IOException;
 
 public class LoginCommand extends Command {
-
-    private static final long serialVersionUID = -3071536593627692473L;
 
     private static final Logger log = Logger.getLogger(LoginCommand.class);
 
@@ -45,6 +42,7 @@ public class LoginCommand extends Command {
         UserDao userDao = UserDao.getInstance();
         User user = userDao.getUserByLogin(login);
         log.trace("Found in DB: user --> " + user);
+        System.out.println("LOGIN COMAND USER: " + user);
 
         if (user == null || !password.equals(user.getPassword())) {
             errorMessage = "Cannot find user with such login/password";
@@ -55,13 +53,13 @@ public class LoginCommand extends Command {
             log.trace("userRole --> " + user.getRole());
 
             if (user.getRole().equals("ADMIN"))
-                forward = Path.COMMAND__ADMIN_MENU;
+                forward = "admin_menu.jsp";
 
             if (user.getRole().equals("LIBRARIAN"))
-                forward = Path.COMMAND__ADMIN_MENU;
+                forward = "admin_menu.jsp";
 
             if (user.getRole().equals("USER"))
-                forward = Path.COMMAND__USER_MENU;
+                forward = "user_menu.jsp";
 
             session.setAttribute("user", user);
             log.trace("Set the session attribute: user --> " + user);
@@ -70,9 +68,14 @@ public class LoginCommand extends Command {
             log.trace("Set the session attribute: userRole --> " + user.getRole());
 
             log.info("User " + user + " logged as " + user.getRole().toLowerCase());
-
+            request.getSession().setAttribute("password", password);
+            request.getSession().setAttribute("login", login);
+            request.getSession().setAttribute("role", user.getRole());
+            request.getSession().setAttribute("user", user);
+            System.out.println("IS BANNED " + user.isBanned());
+            request.getSession().setAttribute("isBanned", Boolean.toString(user.isBanned()));
             // work with i18n
-            String userLocaleName = user.getUserLocale();
+            /*String userLocaleName = user.getUserLocale();
 
             log.trace("userLocalName --> " + userLocaleName);
 
@@ -83,7 +86,7 @@ public class LoginCommand extends Command {
                 log.trace("Set the session attribute: defaultLocaleName --> " + userLocaleName);
 
                 log.info("Locale for user: defaultLocale --> " + userLocaleName);
-            }
+            }*/
         }
 
         log.debug("Command finished");

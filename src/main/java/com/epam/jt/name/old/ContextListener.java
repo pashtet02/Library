@@ -1,3 +1,4 @@
+/*
 package com.epam.jt.name.servlets;
 
 import com.epam.jt.name.dao.UserDao;
@@ -27,3 +28,4 @@ public class ContextListener implements ServletContextListener {
 
     }
 }
+*/

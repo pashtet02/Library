@@ -17,6 +17,7 @@ public class CommandContainer {
         commands.put("noCommand", new NoCommand());
         commands.put("listOrders", new ListOrdersCommand());
         commands.put("catalog", new CatalogCommand());
+        commands.put("logout", new LogoutCommand());
         //User commands
 
         //Librarian commands

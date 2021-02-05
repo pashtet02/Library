@@ -38,10 +38,10 @@
     <div class="navbar-text mr-3">
         <c:choose>
             <c:when test="${login != null}">
-              <a class="nav-link" href="/library/logout">${login}</a>
+              <a class="nav-link" href="<c:url value="/controller?command=logout"/>">${login}</a>
             </c:when>
             <c:otherwise>
-            <a class="nav-link" href="/library/first">Sign in</a>
+            <a class="nav-link" href="<c:url value="/login.jsp"/>">Sign in</a>
             </c:otherwise>
         </c:choose>
                 </div>

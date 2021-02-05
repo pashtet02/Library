@@ -1,3 +1,4 @@
+/*
 package com.epam.jt.name.servlets.servlet;
 
 import javax.servlet.http.HttpServlet;
@@ -19,4 +20,4 @@ public class LogoutServlet extends HttpServlet {
         resp.sendRedirect(super.getServletContext().getContextPath());
     }
 
-}
+}*/

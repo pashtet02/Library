@@ -1,3 +1,4 @@
+/*
 package com.epam.jt.name.servlets;
 
 import java.io.IOException;
@@ -48,3 +49,4 @@ public class TestServlet extends HttpServlet {
         out.close();
     }
 }
+*/

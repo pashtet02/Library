@@ -43,7 +43,7 @@ public class CatalogCommand extends Command {
         }
 
 
-        String bookId = request.getParameter("bookId");
+        String bookId = request.getParameter("bookid");
         if (bookId != null && !bookId.isEmpty()) {
             int id = Integer.parseInt(bookId);
             System.out.println(bookId + " bookId PARAM ");

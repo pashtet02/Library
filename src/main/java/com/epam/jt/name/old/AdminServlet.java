@@ -1,3 +1,4 @@
+/*
 package com.epam.jt.name.servlets.servlet;
 
 import com.epam.jt.name.dao.UserDao;
@@ -15,18 +16,21 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /*userDao = UserDao.getInstance();
+        */
+/*userDao = UserDao.getInstance();
         usrId = req.getParameter("id");
         User user = userDao.get(Long.parseLong(usrId));
         req.setAttribute("usr", user);
         req.setAttribute("id", usrId);
 
-        req.getRequestDispatcher("/edit_user.jsp").forward(req, resp);*/
+        req.getRequestDispatcher("/edit_user.jsp").forward(req, resp);*//*
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        /*userDao = UserDao.getInstance();
+        */
+/*userDao = UserDao.getInstance();
         User user = userDao.get(Long.parseLong(usrId));
 
         System.out.println("FINE " + req.getParameter("fine"));
@@ -41,6 +45,8 @@ public class AdminServlet extends HttpServlet {
         System.out.println("USER ID: " + usrId);
         userDao.update(user);
         System.out.println("UPDATE USER: " + user);
-        resp.sendRedirect("/library/first/menu");*/
+        resp.sendRedirect("/library/first/menu");*//*
+
     }
 }
+*/
