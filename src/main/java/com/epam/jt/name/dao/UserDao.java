@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
 
 import org.apache.log4j.Logger;
 
@@ -277,9 +278,11 @@ public class UserDao implements Dao<User> {
             preparedStatement.setString(4, user.getRole());
             preparedStatement.setDouble(5, user.getFine());
             preparedStatement.setInt(6, user.isBanned() ? 1 : 0);
-            preparedStatement.setLong(7, user.getId());
+            preparedStatement.setString(7, "UA");
+            preparedStatement.setLong(8, user.getId());
             preparedStatement.executeUpdate();
             logger.debug("updated userid: " + user.getId());
+            System.out.println("UPDATED USER !!!!" + user);
         } catch (SQLException throwable) {
             logger.error("update() userDao exception: "
                     + throwable.getSQLState(), throwable);

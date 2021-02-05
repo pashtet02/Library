@@ -83,7 +83,7 @@ public class OrderDao implements Dao<Order> {
             if (pstmt.executeUpdate() > 0) {
                 rs = pstmt.getGeneratedKeys();
                 if (rs.next()) {
-                    order.setUserId(rs.getLong(1));
+                    order.setId(rs.getLong(1));
                 }
             }
             logger.info("order saved successfully order user_id: "+ order.getUserId() + "book_id " + order.getBookId());
@@ -107,6 +107,7 @@ public class OrderDao implements Dao<Order> {
     }
 
     private void setOrderToPrepStmt(Order order, PreparedStatement preparedStatement) throws SQLException {
+
         preparedStatement.setLong(1, order.getUserId());
         preparedStatement.setLong(2, order.getBookId());
         preparedStatement.setDate(3, order.getStartDate());
@@ -122,6 +123,7 @@ public class OrderDao implements Dao<Order> {
     private static Order mapOrder(ResultSet rs) {
         Order order = new Order();
         try {
+            order.setId(rs.getLong("id"));
             order.setUserId(rs.getLong("user_id"));
             order.setBookId(rs.getLong("book_id"));
             order.setStartDate(rs.getDate("startDate"));

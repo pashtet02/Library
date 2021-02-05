@@ -8,40 +8,43 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp"/>
-<h2>My library books list</h2>
+<h2>List of my books</h2>
 <table border="1">
     <thead>
     <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>ISBN</th>
-        <th>Publisher</th>
-        <th>Number</th>
+        <td>Order id</td>
+        <td>Title</td>
+        <td>Author</td>
+        <c:if test="${ordersList.get(0).startDate != null}">
+            <td>Start date</td>
+        </c:if>
+        <td>Return date</td>
+        <td>Status</td>
     </tr>
     </thead>
-    <tbody>
-    <c:forEach var="book" items="${userBookList}">
-    <tr>
-        <td><c:out value="${book.getId()}" />
-        </td>
-        <td><c:out value="${book.getTitle()}" />
-        </td>
-        <td><c:out value="${book.getAuthor()}" />
-        </td>
-        <td><c:out value="${book.getISBN()}" />
-        </td>
-        <td><c:out value="${book.getPublisher()}" />
-        </td>
-        <td><c:out value="${book.getNumber()}" />
-        </td>
-    </tr>
+    <c:forEach var="bean" items="${ordersList}">
+
+        <% int i = 0;%>
+        <tr>
+            <td>${bean.id}</td>
+            <td>${booksOrderList.get(i).title}</td>
+            <td>${booksOrderList.get(i).author}</td>
+            <c:if test="${bean.startDate != null}">
+                <td>${bean.startDate}</td>
+            </c:if>
+            <td>${bean.returnDate}</td>
+            <td>${bean.status}</td>
+        </tr>
+        <%i++;%>
     </c:forEach>
-    </tbody>
 </table>
 
+<c:if test="${user.fine > 0}">
+    <h5>Your fine: ${user.fine} UAH</h5>
+</c:if>
+
 <c:if test="${role == 'ADMIN'}">
-    <a href="/library/addBook.jsp">add book</a>
+    <a href="/library/controller?command=addBook">add book</a>
 </c:if>
 </body>
 </html>

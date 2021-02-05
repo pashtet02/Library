@@ -5,7 +5,7 @@
 <div class="container mt-5">
     <fmt:setBundle basename="global" var="glo"/>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/library">Library</a>
+        <a class="navbar-brand" href="<c:url value="/controller?command=catalog&page=1"/>">Library</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -13,14 +13,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/library/catalog?page=1"><fmt:message key="global.booklist" bundle="${glo}"/><br/>  </a>
+                    <a class="nav-link" href="<c:url value="/controller?command=catalog&page=1"/>"><fmt:message key="global.booklist" bundle="${glo}"/><br/>  </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/first/usermenu"/>">My books</a>
-                </li>
+                <c:if test="${sessionScope.role != null}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/controller?command=listOrders"/>">My books</a>
+                    </li>
+                </c:if>
+
                 <c:if test="${sessionScope.role == 'ADMIN'}">
                     <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/first/menu"/>">Users list</a>
+                        <a class="nav-link" href="<c:url value="/controller?command=usersList"/>">Users list</a>
                     </li>
                 </c:if>
             </ul>

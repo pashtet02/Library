@@ -1,3 +1,4 @@
+/*
 package com.epam.jt.name.servlets.servlet;
 
 import com.epam.jt.name.dao.BookDao;
@@ -15,11 +16,12 @@ public class BookServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/library/books.jsp").forward(req, resp);
+       // req.getRequestDispatcher("/library/books.jsp").forward(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {*/
+/*
         req.setCharacterEncoding("utf-8");
         resp.setCharacterEncoding("utf-8");
         Book book = new Book();
@@ -35,6 +37,8 @@ public class BookServlet extends HttpServlet {
             throwables.printStackTrace();
         }
 
-        resp.sendRedirect("/library/first");
+        resp.sendRedirect("/library/first");*//*
+
     }
 }
+*/

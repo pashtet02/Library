@@ -14,6 +14,35 @@
     </session-config>
 
     <filter>
+        <filter-name>CommandAccessFilter</filter-name>
+        <filter-class>com.epam.jt.name.web.filter.CommandAccessFilter</filter-class>
+        <init-param>
+            <param-name>admin</param-name>
+            <param-value>addBook editUser usersList</param-value>
+        </init-param>
+        <init-param>
+            <param-name>librarian</param-name>
+            <param-value>addBook</param-value>
+        </init-param>
+        <init-param>
+            <param-name>client</param-name>
+            <param-value>list Orders</param-value>
+        </init-param>
+        <init-param>
+            <param-name>common</param-name>
+            <param-value>logout noCommand viewSettings updateSettings listOrders</param-value>
+        </init-param>
+        <init-param>
+            <param-name>out-of-control</param-name>
+            <param-value>login catalog</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CommandAccessFilter</filter-name>
+        <servlet-name>Controller</servlet-name>
+    </filter-mapping>
+
+    <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>com.epam.jt.name.servlets.filter.AuthFilter</filter-class>
     </filter>
@@ -25,17 +54,16 @@
 
     <filter>
         <filter-name>EncodingFilter</filter-name>
-        <filter-class>com.epam.jt.name.servlets.filter.EncodingFilter</filter-class>
-
+        <filter-class>com.epam.jt.name.web.filter.EncodingFilter</filter-class>
         <init-param>
             <param-name>encoding</param-name>
-            <param-value>utf-8</param-value>
+            <param-value>UTF-8</param-value>
         </init-param>
     </filter>
-
     <filter-mapping>
         <filter-name>EncodingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/webapp/*</url-pattern>
+        <servlet-name>Controller</servlet-name>
     </filter-mapping>
 
     <filter>
@@ -97,23 +125,14 @@
         <url-pattern>/first/usermenu</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>LibrarianServlet</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.servlet.LibrarianServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LibrarianServlet</servlet-name>
-        <url-pattern>/first/menu</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
+    <!--<servlet>
         <servlet-name>Catalog</servlet-name>
         <servlet-class>com.epam.jt.name.servlets.servlet.CatalogServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Catalog</servlet-name>
         <url-pattern>/catalog</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <servlet>
         <servlet-name>Controller</servlet-name>

@@ -1,3 +1,4 @@
+/*
 package com.epam.jt.name.servlets.servlet;
 
 import com.epam.jt.name.dao.BookDao;
@@ -19,7 +20,8 @@ public class LibrarianServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDao userDao = UserDao.getInstance();
+        */
+/*UserDao userDao = UserDao.getInstance();
         try {
             List<User> users = userDao.getAll();
 
@@ -28,10 +30,12 @@ public class LibrarianServlet extends HttpServlet {
             request.getRequestDispatcher("/users.jsp").forward(request, response);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }
+        }*//*
+
     }
 
-    @Override
+    */
+/*@Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Book book = new Book();
         System.out.println(req.getParameter("title"));
@@ -51,6 +55,7 @@ public class LibrarianServlet extends HttpServlet {
         }
         System.out.println("ADD BOOK " + book);
         resp.sendRedirect("/library/catalog");
-    }
+    }*//*
 
-}
+
+}*/

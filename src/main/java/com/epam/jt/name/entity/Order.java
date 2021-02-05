@@ -6,6 +6,16 @@ public class Order {
     private Long userId;
     private Long bookId;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    private Long id;
+
     private Date startDate;
     private Date returnDate;
     private String status;

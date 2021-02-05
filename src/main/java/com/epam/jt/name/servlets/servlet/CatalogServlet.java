@@ -1,3 +1,4 @@
+/*
 package com.epam.jt.name.servlets.servlet;
 
 import com.epam.jt.name.dao.BookDao;
@@ -78,3 +79,4 @@ public class CatalogServlet extends HttpServlet {
 
     }
 }
+*/

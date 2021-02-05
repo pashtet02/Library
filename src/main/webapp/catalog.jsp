@@ -32,23 +32,27 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp"/>
+<c:set var="command" value="catalog" scope="request"/>
 
 <div class="form-row">
     <div class="form-group col md-6">
-        <form method="get" action="/library/catalog" class="form-inline" accept-charset="UTF-8">
-            <input type="text" class="form-control" name="filter" id="filter" placeholder="Search by title">
+        <form method="get" action="<c:url value="/controller"/>" class="form-inline" accept-charset="UTF-8">
+            <input type="hidden" name="command" value="catalog" />
+            <input type="text" name="filter" id="filter" placeholder="Search by title">
             <button type="submit" class="btn btn-primary ml-2">Search</button>
         </form>
 
 
     </div>
     <div class="form-row">
-        <form method="get" action="/library/catalog" class="form-inline" accept-charset="UTF-8">
+        <form method="get" action="<c:url value="/controller"/>" class="form-inline" accept-charset="UTF-8">
+            <input type="hidden" name="command" value="catalog" />
             <label for="sort">Sort by</label>
             <select id="sort" name="sort">
                 <option value="title"selected>Title</option>
                 <option value="author">Author</option>
                 <option value="publisher">Publisher</option>
+                <option value="publishingDate">Publishing date</option>
             </select>
             <input type="submit" value="Send">
         </form>
@@ -102,13 +106,13 @@
 
 <div class="pagination">
     <c:if test="${sessionScope.page > 1}">
-        <a href="<c:url value="/catalog?page=${sessionScope.page - 1}"/>">&laquo;</a>
+        <a href="<c:url value="/controller?command=catalog&page=${sessionScope.page - 1}"/>">&laquo;</a>
     </c:if>
-    <a href="/library/catalog?page=1">1</a>
-    <a href="/library/catalog?page=2">2</a>
-    <a href="/library/catalog?page=3">3</a>
+    <a href="<c:url value="/controller?command=catalog&page=1"/>">1</a>
+    <a href="<c:url value="/controller?command=catalog&page=2"/>">2</a>
+    <a href="<c:url value="/controller?command=catalog&page=3"/>">3</a>
     <c:if test="${listPagedBooks.size() == 6}">
-        <a href="<c:url value="/catalog?page=${sessionScope.page + 1}"/>">&raquo;</a>
+        <a href="<c:url value="/controller?command=catalog&page=${sessionScope.page + 1}"/>">&raquo;</a>
     </c:if>
 </div>
 </body>

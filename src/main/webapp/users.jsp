@@ -32,7 +32,7 @@
             <td><c:out value="${user.getFine()}" />
             </td>
             <td>
-                <a href="/library/first/adminmenu?id=${user.id}">edit</a>
+                <a href="<c:url value="/controller?command=editUser&userId=${user.id}"/>">edit</a>
             </td>
         </tr>
     </c:forEach>
