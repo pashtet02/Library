@@ -115,6 +115,16 @@
         <url-pattern>/catalog</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>com.epam.jt.name.web.Controller</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/controller</url-pattern>
+    </servlet-mapping>
+
     <context-param>
         <param-name>DataSource</param-name>
         <param-value>jdbc/mysql</param-value>

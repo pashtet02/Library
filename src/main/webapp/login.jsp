@@ -1,23 +1,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Login</title>
 
-</head>
-<body>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="static/login.css" rel="stylesheet">
+<!------ Include the above in your HEAD tag ---------->
 
-<div class="form">
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
 
-    <h1>Вход в систему</h1><br>
-    <form method="post" action="">
-        <input type="text" required placeholder="login" name="login"><br>
-        <input type="password" required placeholder="password" name="password"><br><br>
-        <input class="button" type="submit" value="Войти">
-    </form>
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="https://cdn0.iconfinder.com/data/icons/cosmo-culture/40/books_1-512.png" id="icon" alt="User Icon" />
+        </div>
+        <form method="post" action="">
+            <input type="text" required placeholder="login" class="fadeIn second" name="login" id="login"><br>
+            <input type="password" required placeholder="password" class="fadeIn third" name="password" id="password"><br><br>
+            <input class="fadeIn fourth" type="submit" value="Войти">
+        </form>
+        <!-- GO To registration page -->
+        <div id="formFooter">
+            <a class="underlineHover" href="registration.jsp">I don`t have an account :(</a>
+        </div>
+    </div>
 </div>
-<br>
-<a href="registration.jsp">I don`t have an account :( </a>
-</body>
-</html>

@@ -7,6 +7,15 @@ public class User extends Entity{
     private String password;
     private String role;
     private double fine;
+    private String userLocale;
+
+    public String getUserLocale() {
+        return userLocale;
+    }
+
+    public void setUserLocale(String userLocale) {
+        this.userLocale = userLocale;
+    }
 
     public boolean isBanned() {
         return isBanned;

@@ -33,7 +33,7 @@ public class LoginCommand extends Command {
         String password = request.getParameter("password");
 
         // error handler
-        String errorMessage = null;
+        String errorMessage;
         String forward = Path.PAGE__ERROR_PAGE;
 
         if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
@@ -54,11 +54,14 @@ public class LoginCommand extends Command {
         } else {
             log.trace("userRole --> " + user.getRole());
 
-            if (user.getRole() == "ADMIN")
-                forward = Path.COMMAND__LIST_ORDERS;
+            if (user.getRole().equals("ADMIN"))
+                forward = Path.COMMAND__ADMIN_MENU;
 
-            if (user.getRole() == "USER")
-                forward = Path.COMMAND__LIST_MENU;
+            if (user.getRole().equals("LIBRARIAN"))
+                forward = Path.COMMAND__ADMIN_MENU;
+
+            if (user.getRole().equals("USER"))
+                forward = Path.COMMAND__USER_MENU;
 
             session.setAttribute("user", user);
             log.trace("Set the session attribute: user --> " + user);
@@ -69,7 +72,8 @@ public class LoginCommand extends Command {
             log.info("User " + user + " logged as " + user.getRole().toLowerCase());
 
             // work with i18n
-            /*String userLocaleName = user.getLocaleName();
+            String userLocaleName = user.getUserLocale();
+
             log.trace("userLocalName --> " + userLocaleName);
 
             if (userLocaleName != null && !userLocaleName.isEmpty()) {
@@ -79,7 +83,7 @@ public class LoginCommand extends Command {
                 log.trace("Set the session attribute: defaultLocaleName --> " + userLocaleName);
 
                 log.info("Locale for user: defaultLocale --> " + userLocaleName);
-            }*/
+            }
         }
 
         log.debug("Command finished");

@@ -28,7 +28,6 @@ public class UserServlet extends HttpServlet {
         session.setAttribute("userBookList", books);
 
         request.getRequestDispatcher("/books.jsp").forward(request, response);
-
     }
 
     @Override
@@ -53,7 +52,5 @@ public class UserServlet extends HttpServlet {
             //переробити під request with params
             resp.sendRedirect("/library/registration.jsp");
         }
-
-
     }
 }

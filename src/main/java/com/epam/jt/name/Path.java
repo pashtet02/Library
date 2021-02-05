@@ -16,7 +16,10 @@ public final class Path {
     public static final String PAGE__SETTINGS = "/WEB-INF/jsp/settings.jsp";
 
     // commands
-    public static final String COMMAND__LIST_ORDERS = "/controller?command=listOrders";
-    public static final String COMMAND__LIST_MENU = "/controller?command=listMenu";
+
+    public static final String COMMAND__ADMIN_MENU = "src/main/webapp/admin_menu.jsp";
+    public static final String COMMAND__USER_MENU = "src/main/webapp/user_menu.jsp";
+    //public static final String COMMAND__LIST_ORDERS = "/controller?command=listOrders";
+    //public static final String COMMAND__LIST_MENU = "/controller?command=listMenu";
 
 }

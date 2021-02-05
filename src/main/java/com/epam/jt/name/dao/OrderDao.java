@@ -157,8 +157,6 @@ public class OrderDao implements Dao<Order> {
     }
     public List<Order> getByUserId(Long userId) {
         List<Order> orders = null;
-
-
         try {
             Connection con = getConnection();
             orders = getAllOrders(con, "select * from orders where user_id = " + userId);

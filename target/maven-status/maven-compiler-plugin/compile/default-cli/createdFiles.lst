@@ -1,3 +1,5 @@
+com\epam\jt\name\web\filter\CommandAccessFilter.class
+com\epam\jt\name\web\Controller.class
 com\epam\jt\name\entity\Role.class
 com\epam\jt\name\entity\Book.class
 com\epam\jt\name\dao\UserDao.class
@@ -8,10 +10,12 @@ com\epam\jt\name\servlets\servlet\AdminServlet.class
 com\epam\jt\name\entity\Entity.class
 com\epam\jt\name\Path.class
 com\epam\jt\name\servlets\filter\AuthFilter.class
+com\epam\jt\name\web\command\CommandContainer.class
 com\epam\jt\name\web\command\LoginCommand.class
 com\epam\jt\name\dao\SQLConstants.class
 com\epam\jt\name\dao\Dao.class
 com\epam\jt\name\entity\User.class
+com\epam\jt\name\web\listener\ContextListener.class
 com\epam\jt\name\servlets\filter\LocalizationFilter.class
 com\epam\jt\name\servlets\servlet\CatalogServlet.class
 com\epam\jt\name\servlets\servlet\UserServlet.class

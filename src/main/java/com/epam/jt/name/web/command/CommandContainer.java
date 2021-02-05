@@ -1,4 +1,3 @@
-/*
 package com.epam.jt.name.web.command;
 
 import org.apache.log4j.Logger;
@@ -15,29 +14,18 @@ public class CommandContainer {
     static {
         // common commands
         commands.put("login", new LoginCommand());
-        commands.put("logout", new LogoutCommand());
-        commands.put("noCommand", new NoCommand());
-        commands.put("viewSettings", new ViewSettingsCommand());
-        commands.put("updateSettings", new UpdateSettingsCommand());
-
-        // client commands
-        commands.put("listMenu", new ListMenuCommand());
-
-        // admin commands
-        commands.put("listOrders", new ListOrdersCommand());
 
         log.debug("Command container was successfully initialized");
         log.trace("Number of commands --> " + commands.size());
     }
 
-    */
 /**
      * Returns command object with the given name.
      *
      * @param commandName
      *            Name of the command.
      * @return Command object.
-     *//*
+     */
 
     public static Command get(String commandName) {
         if (commandName == null || !commands.containsKey(commandName)) {
@@ -48,4 +36,4 @@ public class CommandContainer {
         return commands.get(commandName);
     }
 
-}*/
+}
