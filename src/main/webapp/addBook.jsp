@@ -1,19 +1,22 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/jspf/directive/page.jspf" %>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Add book</title>
     <link href="static/custom.css" rel="stylesheet"/>
 </head>
 <body>
-<form method="post" action="/library/first/menu">
+<form method="post" action="<c:url value="/controller"/>">
     <div class="container">
         <h1>Add a book</h1>
         <p>Please fill in this form to add a book to catalog</p>
         <hr>
-
+        <input type="hidden" name="command" value="addBook" />
         <label for="title"><b>Title</b></label>
         <input type="text" placeholder="Enter title" name="title" id="title" required>
 

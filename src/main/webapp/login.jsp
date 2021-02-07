@@ -15,11 +15,6 @@
         <div class="fadeIn first">
             <img src="https://cdn0.iconfinder.com/data/icons/cosmo-culture/40/books_1-512.png" id="icon" alt="User Icon" />
         </div>
-<%--        <form method="get" action="<c:url value="/controller"/>" class="form-inline" accept-charset="UTF-8">
-            <input type="hidden" name="command" value="catalog" />
-            <input type="text" name="filter" id="filter" placeholder="Search by title">
-            <button type="submit" class="btn btn-primary ml-2">Search</button>
-        </form>--%>
         <form method="post" action="<c:url value="/controller"/>">
             <input type="hidden" name="command" value="login" />
             <input type="text" required placeholder="login" class="fadeIn second" name="login" id="login"><br>

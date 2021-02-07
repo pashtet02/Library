@@ -5,7 +5,7 @@
 <div class="container mt-5">
     <fmt:setBundle basename="global" var="glo"/>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="<c:url value="/controller?command=catalog&page=1"/>">Library</a>
+        <a class="navbar-brand" href="<c:url value="/controller?command=catalog&page=1"/>"><fmt:message key="global.siteName" bundle="${glo}"/></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -17,23 +17,23 @@
                 </li>
                 <c:if test="${sessionScope.role != null}">
                     <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/controller?command=listOrders"/>">My books</a>
+                        <a class="nav-link" href="<c:url value="/controller?command=listOrders"/>"><fmt:message key="global.myBooksLabel" bundle="${glo}"/></a>
                     </li>
                 </c:if>
 
                 <c:if test="${sessionScope.role == 'ADMIN'}">
                     <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/controller?command=usersList"/>">Users list</a>
+                        <a class="nav-link" href="<c:url value="/controller?command=usersList"/>"><fmt:message key="global.usersList" bundle="${glo}"/></a>
                     </li>
                 </c:if>
-            </ul>
+            </ul><%--
             <div class="navbar-text mr-3">
-                <label for="languageSelect">Choose a language</label>
+                <label for="languageSelect"><fmt:message key="global.chooseLanguage" bundle="${glo}"/></label>
                 <select class="nav-control" id="languageSelect">
                     <option>Українська</option>
                     <option>English</option>
                 </select>
-            </div>
+            </div>--%>
 
     <div class="navbar-text mr-3">
         <c:choose>
@@ -41,7 +41,7 @@
               <a class="nav-link" href="<c:url value="/controller?command=logout"/>">${login}</a>
             </c:when>
             <c:otherwise>
-            <a class="nav-link" href="<c:url value="/login.jsp"/>">Sign in</a>
+            <a class="nav-link" href="<c:url value="/login.jsp"/>"><fmt:message key="global.signIn" bundle="${glo}"/></a>
             </c:otherwise>
         </c:choose>
                 </div>

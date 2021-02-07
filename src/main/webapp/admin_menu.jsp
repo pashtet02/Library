@@ -12,9 +12,9 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp"/>
-<h1>Hello ADMIN!</h1>
+<h1>Hello Librarian, + ${sessionScope.user.firstName}!</h1>
 <a href="<c:url value='/logout' />">Logout</a>
 <br/>
-<a href="<c:url value="/first/menu"/>">menu</a>
+<a href="<c:url value="/controller?command=librarianMenu"/>">orders list</a>
 </body>
 </html>

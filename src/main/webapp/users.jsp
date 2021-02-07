@@ -39,6 +39,6 @@
     </tbody>
 </table>
 
-<a href="/first/usermenu">show your books</a>
+<a href="<c:url value="/controller?command=listOrders"/>">show your orders</a>
 </body>
 </html>

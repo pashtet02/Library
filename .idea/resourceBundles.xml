@@ -3,21 +3,9 @@
   <component name="ResourceBundleManager">
     <file url="file://$PROJECT_DIR$/src/main/resources/global.properties" />
     <file url="file://$PROJECT_DIR$/src/main/resources/global_en.properties" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/global_ru.properties" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/global.properties" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/global_en.properties" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/global_ru.properties" />
-    <custom-resource-bundle>
-      <file value="file://$PROJECT_DIR$/src/main/webapp/global.properties" />
-      <file value="file://$PROJECT_DIR$/src/main/webapp/global_en.properties" />
-      <file value="file://$PROJECT_DIR$/src/main/webapp/global_ru.properties" />
-      <file value="file://$PROJECT_DIR$/src/main/webapp/global_ua.properties" />
-      <base-name>global</base-name>
-    </custom-resource-bundle>
     <custom-resource-bundle>
       <file value="file://$PROJECT_DIR$/src/main/resources/global.properties" />
       <file value="file://$PROJECT_DIR$/src/main/resources/global_en.properties" />
-      <file value="file://$PROJECT_DIR$/src/main/resources/global_ru.properties" />
       <file value="file://$PROJECT_DIR$/src/main/resources/global_ua.properties" />
       <base-name>global</base-name>
     </custom-resource-bundle>

@@ -12,7 +12,7 @@
 <body>
 <jsp:include page="navbar.jsp"/>
 
-<form method="post" action="/library/controller?command=editUser&id=${param.userId}">
+<form method="post" action="<c:url value="/controller?command=editUser&id=${param.userId}"/>">
     <p><c:out value="${requestScope.id}"/></p>
     <div class="container">
         <h2>Edit user: <c:out value="${requestScope.get(u)}"/></h2>
@@ -33,7 +33,7 @@
         <button type="submit" class="registerbtn">Done</button>
     </div>
     <div class="container signin">
-        <p>Back to users list <a href="/library/controller?command=usersList">go!</a>.</p>
+        <p>Back to users list <a href="<c:url value="/controller?command=usersList"/>">go!</a>.</p>
     </div>
 </form>
 </body>

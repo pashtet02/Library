@@ -13,8 +13,8 @@
 <body>
 <jsp:include page="navbar.jsp"/>
 <h1>Hello Librarian!</h1>
-<a href="<c:url value='/logout' />">Logout</a>
+<a href="<c:url value='/controller?command=logout' />">Logout</a>
 <br/>
-<a href="<c:url value="/first/menu"/>">menu</a>
+<a href="<c:url value="/controller?command=listOrders"/>">menu</a>
 </body>
 </html>

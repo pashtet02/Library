@@ -10,31 +10,31 @@
 
     <!-- Session Configuration -->
     <session-config>
-        <session-timeout>2</session-timeout>
+        <session-timeout>10</session-timeout>
     </session-config>
 
     <filter>
         <filter-name>CommandAccessFilter</filter-name>
-        <filter-class>com.epam.jt.name.web.filter.CommandAccessFilter</filter-class>
+        <filter-class>com.library.name.web.filter.CommandAccessFilter</filter-class>
         <init-param>
             <param-name>admin</param-name>
             <param-value>addBook editUser usersList</param-value>
         </init-param>
         <init-param>
             <param-name>librarian</param-name>
-            <param-value>addBook</param-value>
+            <param-value>addBook librarianMenu</param-value>
         </init-param>
         <init-param>
             <param-name>client</param-name>
-            <param-value>list Orders</param-value>
+            <param-value>listOrders</param-value>
         </init-param>
         <init-param>
             <param-name>common</param-name>
-            <param-value>logout noCommand viewSettings updateSettings listOrders</param-value>
+            <param-value>logout noCommand viewSettings updateSettings listOrders orderBook</param-value>
         </init-param>
         <init-param>
             <param-name>out-of-control</param-name>
-            <param-value>login catalog</param-value>
+            <param-value>login catalog changeLocale registration</param-value>
         </init-param>
     </filter>
     <filter-mapping>
@@ -44,7 +44,7 @@
 
     <filter>
         <filter-name>EncodingFilter</filter-name>
-        <filter-class>com.epam.jt.name.web.filter.EncodingFilter</filter-class>
+        <filter-class>com.library.name.web.filter.EncodingFilter</filter-class>
         <init-param>
             <param-name>encoding</param-name>
             <param-value>UTF-8</param-value>
@@ -52,13 +52,13 @@
     </filter>
     <filter-mapping>
         <filter-name>EncodingFilter</filter-name>
-        <url-pattern>/webapp/*</url-pattern>
+        <url-pattern>/*</url-pattern>
         <servlet-name>Controller</servlet-name>
     </filter-mapping>
 
     <servlet>
         <servlet-name>BookOrderServlet</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.BookOrderServlet</servlet-class>
+        <servlet-class>com.library.name.servlets.BookOrderServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BookOrderServlet</servlet-name>
@@ -67,7 +67,7 @@
 
     <servlet>
         <servlet-name>Controller</servlet-name>
-        <servlet-class>com.epam.jt.name.web.Controller</servlet-class>
+        <servlet-class>com.library.name.web.Controller</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -88,7 +88,7 @@
 
 <!--    <filter>
         <filter-name>LocalizationFilter</filter-name>
-        <filter-class>com.epam.jt.name.servlets.filter.LocalizationFilter</filter-class>
+        <filter-class>LocalizationFilter</filter-class>
 
         <init-param>
             <param-name>locale</param-name>
@@ -131,7 +131,7 @@
 
     <servlet>
         <servlet-name>UserServlet</servlet-name>
-        <servlet-class>com.epam.jt.name.servlets.servlet.UserServlet</servlet-class>
+        <servlet-class>com.library.name.servlets.servlet.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
