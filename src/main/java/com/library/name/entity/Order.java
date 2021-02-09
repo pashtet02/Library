@@ -9,15 +9,25 @@ public class Order {
     private String username;
     private  String userMail;
 
-    public String getComment() {
-        return comment;
+    public String getUserComment() {
+        return userComment;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setUserComment(String comment) {
+        this.userComment = comment;
     }
 
-    private String comment;
+    private String userComment;
+
+    public String getLibrarianComment() {
+        return librarianComment;
+    }
+
+    public void setLibrarianComment(String librarianComment) {
+        this.librarianComment = librarianComment;
+    }
+
+    private String librarianComment;
     public int getBooksNumber() {
         return booksNumber;
     }
@@ -155,6 +165,17 @@ public class Order {
         return "Order{" +
                 "userId=" + userId +
                 ", bookId=" + bookId +
+                ", username='" + username + '\'' +
+                ", userMail='" + userMail + '\'' +
+                ", userComment='" + userComment + '\'' +
+                ", librarianComment='" + librarianComment + '\'' +
+                ", booksNumber=" + booksNumber +
+                ", userFirstName='" + userFirstName + '\'' +
+                ", userSecondName='" + userSecondName + '\'' +
+                ", userFine=" + userFine +
+                ", id=" + id +
+                ", bookTitle='" + bookTitle + '\'' +
+                ", bookAuthor='" + bookAuthor + '\'' +
                 ", startDate=" + startDate +
                 ", returnDate=" + returnDate +
                 ", status='" + status + '\'' +

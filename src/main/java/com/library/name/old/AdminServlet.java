@@ -23,7 +23,7 @@ public class AdminServlet extends HttpServlet {
         req.setAttribute("usr", user);
         req.setAttribute("id", usrId);
 
-        req.getRequestDispatcher("/edit_user.jsp").forward(req, resp);*//*
+        req.getRequestDispatcher("/editUser.jsp").forward(req, resp);*//*
 
     }
 

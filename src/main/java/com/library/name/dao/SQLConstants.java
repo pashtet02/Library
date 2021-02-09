@@ -15,16 +15,17 @@ public class SQLConstants {
     public static final String SQL_FIND_BOOK_BY_TITLE = "SELECT * FROM books WHERE title= ?;";
 
 
-
     public static String UPDATE_USER_BY_ID = "update users\n" +
             "    set username = ?, password = ?,mail = ?, role = ?,  fine = ?, isBanned = ?, userLocale = ? where id = ?;";
     public static String SELECT_ALL_USERS = "select * from users";
+    public static String SELECT_ONLY_USERS = "select * from users where role = 'USER'";
+
     public static String SELECT_ALL_BOOKS = "SELECT * FROM books";
     public static String SELECT_ALL_ORDERS = "SELECT * FROM orders";
     public static String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE username = ? AND password = ?;";
-    public static String SQL_ADD_NEW_USER = "insert into users (username, password, mail, fine, role, isBanned) values (?, ?, ?, ?, ?, ?);";
+    public static String SQL_ADD_NEW_USER = "insert into users (username, password, firstName, secondName, mail, fine, role, isBanned, userLocale) values (?,?,?, ?, ?, ?, ?, ?,?);";
     public static String SQL_ADD_NEW_BOOK = "insert into books (title, author, ISBN, publisher, number, language) values (?, ?, ?, ?, ?, ?);";
-    public static String SQL_ADD_NEW_ORDER = "insert into orders (user_id, book_id, startDate, returnDate, status) values(?, ?,?, ?,?);";
+    public static String SQL_ADD_NEW_ORDER = "insert into orders (user_id, book_id, startDate, returnDate, status, userComment, librarianComment) values(?, ?,?, ?,?,?,?);";
     public static String GET_BOOK_BY_TITLE = "SELECT * FROM books WHERE title = ?;";
     public static String UPDATE_BOOK = "UPDATE books SET title = ?, author= ?, ISBN= ?, publisher= ?," +
             ", number= ?, language= ?;";

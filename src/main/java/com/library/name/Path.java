@@ -3,7 +3,6 @@ package com.library.name;
 /**
  * Path holder (jsp pages, controller commands).
  *
- * @author D.Kolesnikov
  *
  */
 public final class Path {

@@ -43,8 +43,17 @@
                 <input type="hidden" name="command" value="catalog"/>
                 <input type="text" name="filter" id="filter"
                        placeholder="<fmt:message key="global.searchByAuthorPlaceholder" bundle="${glo}"/>">
-                <button type="submit" class="btn btn-primary ml-2"><fmt:message key="global.searchButton"
-                                                                                bundle="${glo}"/></button>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary"><fmt:message key="global.searchButton"
+                                                                               bundle="${glo}"/></button>
+                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Title</a>
+                        <a class="dropdown-item" href="#">Author</a>
+                    </div>
+                </div>
             </form>
 
 

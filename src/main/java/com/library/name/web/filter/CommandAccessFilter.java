@@ -2,6 +2,7 @@ package com.library.name.web.filter;
 
 import com.library.name.Path;
 import com.library.name.entity.User;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -14,7 +15,6 @@ import java.util.*;
  * Security filter. Disabled by default. Uncomment Security filter
  * section in web.xml to enable.
  *
- * @author D.Kolesnikov
  */
 public class CommandAccessFilter implements Filter {
 
@@ -50,6 +50,10 @@ public class CommandAccessFilter implements Filter {
 
     private boolean accessAllowed(ServletRequest request) {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
+
+        if(ServletFileUpload.isMultipartContent(httpRequest)){
+            return true;
+        }
 
         String commandName = request.getParameter("command");
         if (commandName == null || commandName.isEmpty())

@@ -15,19 +15,21 @@
 <form method="post" action="<c:url value="/controller?command=editUser&id=${param.userId}"/>">
     <p><c:out value="${requestScope.id}"/></p>
     <div class="container">
-        <h2>Edit user: <c:out value="${requestScope.get(u)}"/></h2>
+        <h2>Edit user:</h2>
         <p>Please fill in this form to edit a user account</p>
         <hr>
 
-        <label for="fine"><b>Fine</b></label>
-        <input type="number" placeholder="Enter fine" name="fine" id="fine">
+        <%--<label for="fine"><b>Fine</b></label>
+        <input type="number" placeholder="Enter fine" name="fine" id="fine">--%>
 
         <label for="role"><b>Role</b></label>
         <input type="text" placeholder="Enter role" name="role" id="role" pattern="^(USER)$|^(ADMIN)$|^(LIBRARIAN)$">
         <br>
 
         <label for="isBanned"><b>Ban a user?</b></label>
-        <input type="checkbox" placeholder="yes" name="isBanned" id="isBanned" >
+
+        <input type="checkbox" placeholder="yes" name="isBanned" id="isBanned">
+
         <hr>
 
         <button type="submit" class="registerbtn">Done</button>

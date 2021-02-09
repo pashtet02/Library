@@ -17,6 +17,7 @@
         <p>Please fill in this form to add a book to catalog</p>
         <hr>
         <input type="hidden" name="command" value="addBook" />
+
         <label for="title"><b>Title</b></label>
         <input type="text" placeholder="Enter title" name="title" id="title" required>
 

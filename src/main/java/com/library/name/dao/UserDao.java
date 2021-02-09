@@ -37,12 +37,7 @@ public class UserDao implements Dao<User> {
             statement.setLong(1, id);
             rs = statement.executeQuery();
             while (rs.next()) {
-                user.setId(rs.getLong(SQLConstants.ID));
-                user.setUsername(rs.getString(SQLConstants.USERNAME));
-                user.setPassword(rs.getString(SQLConstants.USER_PASSWORD));
-                user.setMail(rs.getString(SQLConstants.USER_MAIL));
-                user.setFine(rs.getDouble(SQLConstants.USER_FINE));
-                user.setRole(rs.getString(SQLConstants.USER_ROLE));
+                setUserFromResSet(rs, user);
             }
             logger.info("userDao get() user: " + user.getId());
         } catch (SQLException throwable) {
@@ -51,6 +46,19 @@ public class UserDao implements Dao<User> {
             close(rs);
         }
         return user;
+    }
+
+    private void setUserFromResSet(ResultSet rs, User user) throws SQLException {
+        user.setId(rs.getLong(SQLConstants.ID));
+        user.setUsername(rs.getString(SQLConstants.USERNAME));
+        user.setPassword(rs.getString(SQLConstants.USER_PASSWORD));
+        user.setFirstName(rs.getString("firstName"));
+        user.setSecondName(rs.getString("secondName"));
+        user.setMail(rs.getString(SQLConstants.USER_MAIL));
+        user.setFine(rs.getDouble(SQLConstants.USER_FINE));
+        user.setRole(rs.getString(SQLConstants.USER_ROLE));
+        user.setBanned(rs.getInt("isBanned") == 1);
+        user.setUserLocale(rs.getString("userLocale"));
     }
 
     public User getUserByLogin(String login) {
@@ -62,14 +70,7 @@ public class UserDao implements Dao<User> {
             statement.setString(1, login);
             rs = statement.executeQuery();
             while (rs.next()) {
-                user.setId(rs.getLong(SQLConstants.ID));
-                user.setUsername(rs.getString(SQLConstants.USERNAME));
-                user.setPassword(rs.getString(SQLConstants.USER_PASSWORD));
-                user.setMail(rs.getString(SQLConstants.USER_MAIL));
-                user.setFine(rs.getDouble(SQLConstants.USER_FINE));
-                user.setRole(rs.getString(SQLConstants.USER_ROLE));
-                user.setBanned(rs.getInt("isBanned") == 1);
-                user.setUserLocale(rs.getString("userLocale"));
+                setUserFromResSet(rs, user);
             }
             logger.info("getUserByLogin: " + user.getId() + " " + user.getUsername());
         } catch (SQLException throwable) {
@@ -129,7 +130,7 @@ public class UserDao implements Dao<User> {
 
             }
         } finally {
-            if (preparedStatement != null){
+            if (preparedStatement != null) {
                 close(preparedStatement);
             }
             if (con != null) {
@@ -151,13 +152,7 @@ public class UserDao implements Dao<User> {
             preparedStatement.setString(2, password);
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
-                    user.setId(rs.getLong(SQLConstants.ID));
-                    user.setUsername(rs.getString(SQLConstants.USERNAME));
-                    user.setPassword(rs.getString(SQLConstants.USER_PASSWORD));
-                    user.setFine(rs.getDouble(SQLConstants.USER_FINE));
-                    user.setMail(rs.getString(SQLConstants.USER_MAIL));
-                    user.setRole(rs.getString(SQLConstants.USER_ROLE));
-                    user.setBanned(String.valueOf(rs.getInt("isBanned")).equals("0"));
+                    setUserFromResSet(rs, user);
                 }
             }
         } catch (SQLException throwable) {
@@ -166,6 +161,23 @@ public class UserDao implements Dao<User> {
             throwable.printStackTrace();
         }
         return user;
+    }
+
+    public List<User> getAllUsers() throws SQLException {
+        List<User> users = new ArrayList<>();
+
+        try (Connection con = getConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(SQLConstants.SELECT_ONLY_USERS)) {
+
+            while (rs.next()) {
+                users.add(mapUser(rs));
+            }
+        } catch (SQLException ex) {
+            logger.error("getONLYUsers() userDao exception: " + ex.getSQLState(), ex);
+            throw ex;
+        }
+        return users;
     }
 
     @Override
@@ -193,13 +205,17 @@ public class UserDao implements Dao<User> {
         try (Connection con = getConnection();
              PreparedStatement pstmt = con.prepareStatement(SQLConstants.SQL_ADD_NEW_USER,
                      Statement.RETURN_GENERATED_KEYS)) {
+            int k = 1;
+            pstmt.setString(k++, user.getUsername());
+            pstmt.setString(k++, user.getPassword());
+            pstmt.setString(k++, user.getFirstName());
+            pstmt.setString(k++, user.getSecondName());
 
-            pstmt.setString(1, user.getUsername());
-            pstmt.setString(2, user.getPassword());
-            pstmt.setString(3, user.getMail());
-            pstmt.setDouble(4, user.getFine());
-            pstmt.setString(5, user.getRole().toUpperCase(Locale.ROOT));
-            pstmt.setBoolean(6, user.isBanned());
+            pstmt.setString(k++, user.getMail());
+            pstmt.setDouble(k++, user.getFine());
+            pstmt.setString(k++, user.getRole().toUpperCase(Locale.ROOT));
+            pstmt.setBoolean(k++, user.isBanned());
+            pstmt.setString(k++, user.getUserLocale());
 
             if (pstmt.executeUpdate() > 0) {
                 rs = pstmt.getGeneratedKeys();
@@ -239,7 +255,7 @@ public class UserDao implements Dao<User> {
         return false;
     }
 
-    public void blockOrUnblockUser(User user, int value){
+    public void blockOrUnblockUser(User user, int value) {
         try (Connection con = getConnection();
              PreparedStatement preparedStatement = con.prepareStatement("UPDATE users SET isBanned= ? where id=?")) {
             preparedStatement.setInt(1, value);
@@ -251,7 +267,8 @@ public class UserDao implements Dao<User> {
                     + throwable.getSQLState(), throwable);
         }
     }
-    public void updateRoleById(User user, long id){
+
+    public void updateRoleById(User user, long id) {
         try (Connection con = getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(
                      "update users set fine = ?, role = ?, isBanned = ? where id =?")) {
@@ -278,7 +295,7 @@ public class UserDao implements Dao<User> {
             preparedStatement.setString(4, user.getRole());
             preparedStatement.setDouble(5, user.getFine());
             preparedStatement.setInt(6, user.isBanned() ? 1 : 0);
-            preparedStatement.setString(7, "en");
+            preparedStatement.setString(7, user.getUserLocale());
             preparedStatement.setLong(8, user.getId());
             preparedStatement.executeUpdate();
             logger.debug("updated userid: " + user.getId());
@@ -293,13 +310,7 @@ public class UserDao implements Dao<User> {
     private User mapUser(ResultSet rs) {
         User user = new User();
         try {
-            user.setId(rs.getLong("id"));
-            user.setUsername(rs.getString("username"));
-            user.setPassword(rs.getString("password"));
-            user.setMail(rs.getString("mail"));
-            user.setFine(rs.getInt("fine"));
-            user.setRole(rs.getString("role"));
-            user.setBanned(String.valueOf(rs.getInt("isBanned")).equals("0"));
+            setUserFromResSet(rs, user);
             logger.debug("mapUser userid: " + user.getId());
         } catch (SQLException throwable) {
             logger.error("mapUser() userDao exception: "

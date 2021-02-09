@@ -43,13 +43,23 @@ public class RegistrationCommand extends Command{
         //To hash passwords
         //String computed_hash = hashPassword(req.getParameter("password"));
         //user.setPassword(computed_hash);
+        String pass1 = req.getParameter("password");
+        String pass2 = req.getParameter("password-repeat");
+
+        if (!pass1.equals(pass2)){
+            String errMessage = "your passwords doesnt match!!!";
+            req.setAttribute("errMessage", errMessage);
+            return "registration.jsp";
+        }
+
         user.setPassword(req.getParameter("password"));
         user.setFirstName(req.getParameter("firstName"));
         user.setSecondName(req.getParameter("secondName"));
-        user.setMail(req.getParameter("mail"));
+        user.setMail(req.getParameter("email"));
         user.setFine(0.0);
         user.setRole("USER");
         user.setBanned(false);
+
 
         try {
             userDao.save(user);

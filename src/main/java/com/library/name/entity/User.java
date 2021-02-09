@@ -94,14 +94,6 @@ public class User extends Entity{
         this.fine = fine;
     }
 
-    public User(String username, String mail, long id, String password, String role, double fine) {
-        this.username = username;
-        this.mail = mail;
-        this.id = id;
-        this.password = password;
-        this.role = role;
-        this.fine = fine;
-    }
     public User(){
         //hello
     }
@@ -114,6 +106,9 @@ public class User extends Entity{
                 ", id=" + id +
                 ", role='" + role + '\'' +
                 ", fine=" + fine +
+                ", userLocale='" + userLocale + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
                 ", isBanned=" + isBanned +
                 '}';
     }

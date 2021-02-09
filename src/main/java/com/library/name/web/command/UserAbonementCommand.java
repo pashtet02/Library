@@ -2,7 +2,6 @@ package com.library.name.web.command;
 
 import com.library.name.dao.BookDao;
 import com.library.name.dao.OrderDao;
-import com.library.name.dao.UserDao;
 import com.library.name.entity.Book;
 import com.library.name.entity.Order;
 import com.library.name.entity.User;
@@ -13,25 +12,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class ListOrdersCommand extends Command {
-
-    private static final Logger log = Logger.getLogger(ListOrdersCommand.class);
+public class UserAbonementCommand extends Command{
+    private static final Logger log = Logger.getLogger(UserAbonementCommand.class);
     private static final OrderDao orderDao = OrderDao.getInstance();
     private static final BookDao bookDao = BookDao.getInstance();
     /**
-     * Serializable comparator used with TreeMap container. When the servlet
-     * container tries to serialize the session it may fail because the session
-     * can contain TreeMap object with not serializable comparator.
+     * Execution method for command.
      *
-     *
+     * @param request
+     * @param response
+     * @return Address to go once the command is executed.
+     * Повинен відповідати за кабінет користувача
+     * -Список книг на абонементі, бажано зробития якесь розмежування типу В мене, очікують розгляду, історія, прострочені
      */
-
     @Override
-    public String execute(HttpServletRequest request,
-                          HttpServletResponse response) throws IOException, ServletException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         log.debug("Commands starts");
         List<Order> ordersList;
 
@@ -57,5 +54,4 @@ public class ListOrdersCommand extends Command {
         log.debug("Commands finished");
         return "books.jsp";
     }
-
 }

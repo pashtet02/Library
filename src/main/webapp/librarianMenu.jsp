@@ -15,22 +15,29 @@
 <div class="container pt-4">
     <h2>List of active orders</h2>
     <c:forEach var="bean" items="${requestScope.ordersList}">
-        <div class="card">
-            <h5 class="card-header">Order #${bean.id} from ${bean.username} ${bean.userSecondName}</h5>
-            <div class="card-body">
-                <h5 class="card-title">Book: ${bean.bookTitle}, available: ${bean.booksNumber}</h5>
-                <p class="card-text">Order time: ${bean.startDate}</p>
-                <c:if test="${bean.comment != null}">
-                    <p class="card-text">${bean.username}`s comment:
-                            ${bean.comment}</p>
-                </c:if>
-                <label for="returnDate">Return to:</label>
-                <input type="date" placeholder="Enter date" name="returnDate" id="returnDate"><br>
-                <a href="<c:url value="/controller?command=librarianMenu&action=APPROVED&orderId=${bean.id}"/>" class="btn btn-primary">Accept</a>
-                <a href="<c:url value="/controller?command=librarianMenu&action=REFUSED&orderId=${bean.id}"/>" class="btn btn-primary">Refuse</a>
-                <a href="<c:url value="/controller?command=librarianMenu&action=READING_HALL&orderId=${bean.id}"/>" class="btn btn-primary">Allow in reading hall</a>
+        <form method="post" action="<c:url value="/controller?command=librarianMenu"/>">
+            <div class="card">
+                <h5 class="card-header">Order #${bean.id} from ${bean.username} ${bean.userFirstName} ${bean.userSecondName}</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Book: ${bean.bookTitle}, available: ${bean.booksNumber}</h5>
+                    <p class="card-text">Order time: ${bean.startDate}</p>
+                    <c:if test="${bean.userComment != null}">
+                        <p class="card-text">${bean.username}`s comment:
+                                ${bean.userComment}</p>
+                    </c:if>
+
+                    <label for="librarianComment">Your comment:</label>
+                    <input type="text" name="librarianComment" placeholder="Enter your comment here" id="librarianComment"/><br>
+                    <label for="returnDate">Return to:</label>
+                    <input type="date" placeholder="Enter date" name="returnDate" id="returnDate"><br>
+                    <input type="hidden" name="orderId" value="${bean.id}"/>
+
+                    <button type="submit" class="btn btn-success" value="APPROVED" name="action">Accept</button>
+                    <button type="submit" class="btn btn-danger" value="REFUSED" name="action">Refuse</button>
+                    <button type="submit" class="btn btn-primary" value="READING_HALL" name="action">Allow in reading hall</button>
+                </div>
             </div>
-        </div>
+        </form>
     </c:forEach>
 </div>
 </body>

@@ -15,20 +15,12 @@
 <body>
 <h1>Success!!!</h1>
 
-<c:if test="${not empty message}">
+<c:if test="${requestScope.message != null}">
     <h3>${message}</h3>
 </c:if>
-
-<%-- this way we print exception stack trace --%>
-<%--<c:if test="${not empty exception}">
-    <hr/>
-    <h3>Stack trace:</h3>
-    <c:forEach var="stackTraceElement" items="${exception.stackTrace}">
-        ${stackTraceElement}
-    </c:forEach>
-</c:if>--%>
-
-
+<c:if test="${requestScope.fileMessage != null}">
+    <h3>${fileMassage}</h3>
+</c:if>
 <a class="navbar-brand" href="<c:url value="/"/>">Go to the main page</a>
 </body>
 </html>

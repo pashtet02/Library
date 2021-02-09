@@ -17,7 +17,14 @@
                 </li>
                 <c:if test="${sessionScope.role != null}">
                     <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/controller?command=listOrders"/>"><fmt:message key="global.myBooksLabel" bundle="${glo}"/></a>
+                        <c:choose>
+                            <c:when test="${sessionScope.role == 'LIBRARIAN'}">
+                                <a class="nav-link" href="<c:url value="/controller?command=librarianMenu"/>"><fmt:message key="global.myBooksLabel" bundle="${glo}"/></a>
+                            </c:when>
+                            <c:when test="${sessionScope.role == 'USER' || sessionScope.role == 'ADMIN'}">
+                                <a class="nav-link" href="<c:url value="/controller?command=listOrders"/>"><fmt:message key="global.myBooksLabel" bundle="${glo}"/></a>
+                            </c:when>
+                        </c:choose>
                     </li>
                 </c:if>
 
@@ -34,7 +41,16 @@
                     <option>English</option>
                 </select>
             </div>--%>
-
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink3" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="true">
+                    <i class="united kingdom flag m-0">Language:</i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Ukrainian</a>
+                    <a class="dropdown-item" href="#">English</a>
+                </div>
+            </div>
     <div class="navbar-text mr-3">
         <c:choose>
             <c:when test="${login != null}">

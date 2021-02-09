@@ -58,10 +58,10 @@ public class BookDao implements Dao<Book> {
         return books;
     }
 
-    public List<Book> getSomeBooks(int start, int numberOfBooks) throws SQLException {
+    public List<Book> getSomeBooks(int start, int numberOfBooks, String orderParam) throws SQLException {
         Connection con = getConnection();
         List<Book> books;
-        books = getAllBooks(con, "select * from books limit " + (start - 1 ) * numberOfBooks + "," + numberOfBooks);
+        books = getAllBooks(con, "select * from books order by + " + orderParam +" limit " + (start - 1 ) * numberOfBooks + "," + numberOfBooks);
         return books;
     }
 
@@ -90,6 +90,20 @@ public class BookDao implements Dao<Book> {
 
         Connection con = getConnection();
         books = getAllBooks(con, SQLConstants.SELECT_ALL_BOOKS);
+        return books;
+    }
+
+    public List<Book> getAllByAuthor(String author) {
+        List<Book> books = null;
+
+        Connection con = null;
+        try {
+            con = getConnection();
+            books = getAllBooks(con, "select * from books where author = " + author);
+        } catch (SQLException throwables) {
+            log.error("Get all by author: " + throwables.getMessage() + throwables.getSQLState() );
+            throwables.printStackTrace();
+        }
         return books;
     }
 

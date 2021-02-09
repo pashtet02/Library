@@ -40,7 +40,8 @@ public class OrderBookCommand extends Command {
             order.setUserMail(req.getParameter("email"));
             order.setUserSecondName(req.getParameter("secondName"));
             if (req.getParameter("comment") != null && !req.getParameter("comment").isEmpty()){
-                order.setComment(req.getParameter("comment"));
+                System.out.println("COMMENT: " + req.getParameter("comment"));
+                order.setUserComment(req.getParameter("comment"));
             }
             order.setStatus("RESERVED");
             try {

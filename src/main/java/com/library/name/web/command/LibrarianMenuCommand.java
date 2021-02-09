@@ -12,7 +12,6 @@ import org.apache.log4j.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -42,8 +41,17 @@ public class LibrarianMenuCommand extends Command {
         if (status != null && !status.isEmpty()){
             long id = Long.parseLong(orderId);
             orderDao.setOrderStatus(id, status);
-            System.out.println("RETURN DATE:"+request.getParameter("returnDate"));
-            //orderDao.setReturnDate(id, Date.valueOf("saf");
+            String date = request.getParameter("returnDate");
+            if (date != null && !date.isEmpty()){
+                System.out.println("RETURN DATE:");
+                orderDao.setReturnDate(id, Date.valueOf(date));
+            }
+
+            String librarianComment = request.getParameter("librarianComment");
+            if (librarianComment != null && !librarianComment.isEmpty()){
+                System.out.println("LIBRARIAN COMMENT: " + librarianComment);
+                orderDao.setLibrarianComment(id, librarianComment);
+            }
         }
 
         try {
@@ -62,9 +70,8 @@ public class LibrarianMenuCommand extends Command {
             order.setUserMail(user.getMail());
             order.setUsername(user.getUsername());
             order.setUserFirstName(user.getFirstName());
+            order.setUserSecondName(user.getSecondName());
             order.setBooksNumber(book.getNumber());
-            order.setComment("ДАйте мені будь ласка цю книжку! \n" +
-                    "Я поверну через тиждень, мамой клянусь)))");
         }
 
         log.trace("Found in DB: ordersList --> " + ordersList);

@@ -45,7 +45,7 @@ public class LoginCommand extends Command {
         UserDao userDao = UserDao.getInstance();
         User user = userDao.getUserByLogin(login);
         log.trace("Found in DB: user --> " + user);
-        System.out.println("LOGIN COMAND USER: " + user);
+        System.out.println("LOGIN COMMAND USER: " + user);
 
         //boolean bool = checkPassword(password, user.getPassword()); tam !bool
         if (user.getUsername() == null || !password.equals(user.getPassword())) {
@@ -54,45 +54,52 @@ public class LoginCommand extends Command {
             request.setAttribute("errorMessage", errorMessage);
             log.error("errorMessage --> " + errorMessage);
             return forward;
-        } else {
-            log.trace("userRole --> " + user.getRole());
-
-            if (user.getRole().equals("ADMIN"))
-                forward = "admin_menu.jsp";
-
-            if (user.getRole().equals("LIBRARIAN"))
-                forward = "admin_menu.jsp";
-
-            if (user.getRole().equals("USER"))
-                forward = "user_menu.jsp";
-
-            session.setAttribute("user", user);
-            log.trace("Set the session attribute: user --> " + user);
-
-            session.setAttribute("userRole", user.getRole());
-            log.trace("Set the session attribute: userRole --> " + user.getRole());
-
-            log.info("User " + user + " logged as " + user.getRole().toLowerCase());
-            request.getSession().setAttribute("password", password);
-            request.getSession().setAttribute("login", login);
-            request.getSession().setAttribute("role", user.getRole());
-            request.getSession().setAttribute("user", user);
-            System.out.println("IS BANNED " + user.isBanned());
-            request.getSession().setAttribute("isBanned", Boolean.toString(user.isBanned()));
-
-            // work with i18n
-            String userLocaleName = user.getUserLocale();
-            log.trace("userLocalName --> " + userLocaleName);
-
-            if (userLocaleName != null && !userLocaleName.isEmpty()) {
-                Config.set(session, "javax.servlet.jsp.jstl.fmt.locale", userLocaleName);
-
-                session.setAttribute("defaultLocale", userLocaleName);
-                log.trace("Set the session attribute: defaultLocaleName --> " + userLocaleName);
-                System.out.println("LOCALE LOGIN COMMAND: " + userLocaleName);
-                log.info("Locale for user: defaultLocale --> " + userLocaleName);
-            }
         }
+
+        if (user.isBanned()){
+            errorMessage = "Sorry you were banned on this website :(";
+            request.setAttribute("errorMessage", errorMessage);
+            log.error("errorMessage --> " + errorMessage);
+            return forward;
+        }
+        log.trace("userRole --> " + user.getRole());
+
+        if (user.getRole().equals("ADMIN"))
+            forward = "admin_menu.jsp";
+
+        if (user.getRole().equals("LIBRARIAN"))
+            forward = "admin_menu.jsp";
+
+        if (user.getRole().equals("USER"))
+            forward = "user_menu.jsp";
+
+        session.setAttribute("user", user);
+        log.trace("Set the session attribute: user --> " + user);
+
+        session.setAttribute("userRole", user.getRole());
+        log.trace("Set the session attribute: userRole --> " + user.getRole());
+
+        log.info("User " + user + " logged as " + user.getRole().toLowerCase());
+        request.getSession().setAttribute("password", password);
+        request.getSession().setAttribute("login", login);
+        request.getSession().setAttribute("role", user.getRole());
+        request.getSession().setAttribute("user", user);
+        System.out.println("IS BANNED " + user.isBanned());
+        request.getSession().setAttribute("isBanned", Boolean.toString(user.isBanned()));
+
+        // work with i18n
+        String userLocaleName = user.getUserLocale();
+        log.trace("userLocalName --> " + userLocaleName);
+
+        if (userLocaleName != null && !userLocaleName.isEmpty()) {
+            Config.set(session, "javax.servlet.jsp.jstl.fmt.locale", userLocaleName);
+
+            session.setAttribute("defaultLocale", userLocaleName);
+            log.trace("Set the session attribute: defaultLocaleName --> " + userLocaleName);
+            System.out.println("LOCALE LOGIN COMMAND: " + userLocaleName);
+            log.info("Locale for user: defaultLocale --> " + userLocaleName);
+        }
+
 
         log.debug("Command finished");
         return forward;

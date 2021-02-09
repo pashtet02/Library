@@ -13,7 +13,7 @@
     <title>Error</title>
 </head>
 <body>
-<h1>No such URL</h1>
+<h1>Oops...</h1>
 
 <c:if test="${not empty errorMessage and empty exception and empty code}">
     <h3>Error message: ${errorMessage}</h3>

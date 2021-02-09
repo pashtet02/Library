@@ -13,28 +13,38 @@
 <table border="1">
     <thead>
     <tr>
-        <td>Order id</td>
         <td>Title</td>
         <td>Author</td>
-        <%--<c:if test="${requestScope.ordersList.get(0).startDate != null}">
-            <td>Start date</td>
-        </c:if>--%>
-        <td>Return date</td>
         <td>Status</td>
+        <td>Start date</td>
+        <td>Return date</td>
+        <c:if test="${user.fine != 0}">
+            <td>Fine</td>
+        </c:if>
+        <td>Librarian`s comment</td>
     </tr>
     </thead>
     <c:forEach var="bean" items="${requestScope.ordersList}">
 
         <tr>
-            <td>${bean.id}</td>
-
             <td>${bean.bookTitle}</td>
             <td>${bean.bookAuthor}</td>
-            <%--<c:if test="${bean.startDate != null}">
+            <c:choose>
+                <c:when test="${bean.status == 'APPROVED'}">
+                    <td style="color: green">${bean.status}</td>
+                </c:when>
+                <c:when test="${bean.status == 'READING_HALL'}">
+                    <td style="color: blue">${bean.status}</td>
+                </c:when>
+                <c:when test="${bean.status == 'REFUSED'}">
+                    <td style="color: red"> ${bean.status}</td>
+                </c:when>
+            </c:choose>
+            <c:if test="${bean.startDate != null}">
                 <td>${bean.startDate}</td>
-            </c:if>--%>
+            </c:if>
             <td>${bean.returnDate}</td>
-            <td>${bean.status}</td>
+            <td>${bean.librarianComment}</td>
         </tr>
     </c:forEach>
 </table>

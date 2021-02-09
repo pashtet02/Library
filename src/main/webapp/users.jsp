@@ -13,9 +13,12 @@
     <tr>
         <th scope="col">Id</th>
         <th scope="col">username</th>
+        <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">ROLE</th>
         <th scope="col">Fine</th>
+        <th scope="col">Blocked</th>
+        <th scope="col">UserLocale</th>
         <th scope="col">Edit</th>
     </tr>
     </thead>
@@ -25,15 +28,31 @@
             <th scope="row">${user.getId()}</th>
             <td><c:out value="${user.getUsername()}" />
             </td>
+            <td><c:out value="${user.getFirstName()} ${user.getSecondName()}" />
+            </td>
             <td><c:out value="${user.getMail()}" />
             </td>
             <td><c:out value="${user.getRole()}" />
             </td>
             <td><c:out value="${user.getFine()}" />
             </td>
-            <td>
-                <a href="<c:url value="/controller?command=editUser&userId=${user.id}"/>">edit</a>
+            <td><c:out value="${user.isBanned()}" />
             </td>
+            <td><c:out value="${user.getUserLocale()}" />
+            </td>
+            <c:choose>
+                <c:when test="${sessionScope.role == 'ADMIN'}">
+                    <td>
+                        <a href="<c:url value="/controller?command=editUser&userId=${user.id}"/>">edit</a>
+                    </td>
+                </c:when>
+                <c:when test="${sessionScope.role == 'LIBRARIAN'}">
+                    <td>
+                        <a href="<c:url value="/controller?command=editUser&userId=${user.id}"/>">abonement</a>
+                    </td>
+                </c:when>
+            </c:choose>
+
         </tr>
     </c:forEach>
     </tbody>

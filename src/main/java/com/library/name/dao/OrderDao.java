@@ -60,6 +60,20 @@ public class OrderDao implements Dao<Order> {
         }
     }
 
+    public void setLibrarianComment(long id, String comment) {
+        if (comment.length() > 250)
+            throw new IllegalArgumentException("Comment is too long (max length 250 characters)");
+        try (Connection con = getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(
+                     "UPDATE orders SET librarianComment=? WHERE id = ?;")) {
+            preparedStatement.setString(1, comment);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwable) {
+            logger.error(throwable.getSQLState(), throwable);
+        }
+    }
+
     public List<Order> getSomeOrders(int start, int numberOfOrders) throws SQLException {
         Connection con = getConnection();
         List<Order> orders;
@@ -136,6 +150,8 @@ public class OrderDao implements Dao<Order> {
         preparedStatement.setTimestamp(3, order.getStartDate());
         preparedStatement.setDate(4, order.getReturnDate());
         preparedStatement.setString(5, order.getStatus());
+        preparedStatement.setString(6, order.getUserComment());
+        preparedStatement.setString(7, order.getLibrarianComment());
     }
 
     @Override
@@ -152,6 +168,8 @@ public class OrderDao implements Dao<Order> {
             order.setStartDate(rs.getTimestamp("startDate"));
             order.setReturnDate(rs.getDate("returnDate"));
             order.setStatus(rs.getString("status").toUpperCase(Locale.ROOT));
+            order.setUserComment(rs.getString("userComment"));
+            order.setLibrarianComment(rs.getString("librarianComment"));
         } catch (SQLException throwable) {
             logger.error("update order method exception: " + throwable.getSQLState(), throwable);
         }

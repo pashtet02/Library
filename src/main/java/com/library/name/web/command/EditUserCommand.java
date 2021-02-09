@@ -1,5 +1,6 @@
 package com.library.name.web.command;
 
+import com.library.name.Path;
 import com.library.name.dao.UserDao;
 import com.library.name.entity.User;
 import org.apache.log4j.Logger;
@@ -23,28 +24,19 @@ public class EditUserCommand extends Command {
         log.debug("Command starts");
 
         // UPDATE USER ////////////////////////////////////////////////////////
-        if (request.getParameter("userId") != null){
-            System.out.println("IF WORKS ");
-            return "edit_user.jsp";
+        if (request.getParameter("userId") != null && !request.getParameter("userId").isEmpty()){
+            System.out.println("IF WORKS userId:" + request.getParameter("userId"));
+            return "editUser.jsp";
         }
 
         boolean updateUser = false;
         User user = new User();
-
         String userId = request.getParameter("id");
         if (userId != null && !userId.isEmpty()) {
             long userID = Long.parseLong(userId);
             user = userDao.get(userID);
         }
 
-        // update first name
-        String fine = request.getParameter("fine");
-        if (fine != null && !fine.isEmpty()) {
-            user.setFine(Double.parseDouble(fine));
-            updateUser = true;
-        }
-
-        // update last name
         String role = request.getParameter("role");
         if (role != null && !role.isEmpty()) {
             user.setRole(role.toUpperCase(Locale.ROOT));
@@ -58,10 +50,13 @@ public class EditUserCommand extends Command {
             updateUser = true;
         }
 
-        if (updateUser)
+        if (updateUser){
             userDao.update(user);
+        }
 
         log.debug("Command finished");
-        return "/library/catalog";
+        String message = "User: " + user.getUsername() + " changed succesfully";
+        request.setAttribute("message", message);
+        return Path.PAGE__SUCCESS_PAGE;
     }
 }

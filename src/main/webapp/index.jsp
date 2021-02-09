@@ -1,1 +1,1 @@
-<%  response.sendRedirect("controller?command=catalog&page=1"); %>
+<% response.sendRedirect("/library/controller?command=catalog");%>

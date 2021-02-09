@@ -22,8 +22,7 @@
                        pattern="[A-Za-z0-9]{4,32}"><br>
 
                 <label for="firstName"><b>First name: </b></label>
-                <input type="text" required placeholder="login" class="fadeIn second" name="firstName"
-                       id="firstName"><br>
+                <input type="text" required placeholder="login" class="fadeIn second" name="firstName" id="firstName"><br>
 
                 <label for="secondName"><b>Second name: </b></label>
                 <input type="text" required placeholder="login" class="fadeIn second" name="secondName" id="secondName"><br>
@@ -40,10 +39,14 @@
                 <input type="password" required placeholder="Repeat password" class="fadeIn third"
                        name="password-repeat" id="password-repeat" pattern="[A-Za-z0-9]{4,32}"><br>
                 <hr>
-
+                <!-- Example single danger button -->
                 <input class="fadeIn fourth" type="submit" value="Register">
             </div>
         </form>
+
+        <c:if test="${requestScope.errMessage != null}">
+            <label for="password-repeat"><b>Passwords doesn`t match</b></label>
+        </c:if>
 
         <!-- GO To registration page -->
         <div id="formFooter">
