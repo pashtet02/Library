@@ -289,14 +289,17 @@ public class UserDao implements Dao<User> {
     public void update(User user) {
         try (Connection con = getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.UPDATE_USER_BY_ID)) {
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getMail());
-            preparedStatement.setString(4, user.getRole());
-            preparedStatement.setDouble(5, user.getFine());
-            preparedStatement.setInt(6, user.isBanned() ? 1 : 0);
-            preparedStatement.setString(7, user.getUserLocale());
-            preparedStatement.setLong(8, user.getId());
+            int k = 1;
+            preparedStatement.setString(k++, user.getUsername());
+            preparedStatement.setString(k++, user.getPassword());
+            preparedStatement.setString(k++, user.getMail());
+            preparedStatement.setString(k++, user.getFirstName());
+            preparedStatement.setString(k++, user.getSecondName());
+            preparedStatement.setString(k++, user.getRole());
+            preparedStatement.setDouble(k++, user.getFine());
+            preparedStatement.setInt(k++, user.isBanned() ? 1 : 0);
+            preparedStatement.setString(k++, user.getUserLocale());
+            preparedStatement.setLong(k++, user.getId());
             preparedStatement.executeUpdate();
             logger.debug("updated userid: " + user.getId());
             System.out.println("UPDATED USER !!!!" + user);

@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ListOrdersCommand extends Command {
@@ -44,6 +47,17 @@ public class ListOrdersCommand extends Command {
 
         for (Order order : ordersList) {
             Book book = bookDao.get(order.getBookId());
+
+            String date_s = order.getStartDate().toString();
+            SimpleDateFormat dt = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+            Date date = null;
+            try {
+                date = dt.parse(date_s);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            SimpleDateFormat dt1 = new SimpleDateFormat("dd-M-yyyy");
+            System.out.println(dt1.format(date));
             order.setBookTitle(book.getTitle());
             order.setBookAuthor(book.getAuthor());
         }

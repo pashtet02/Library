@@ -16,7 +16,7 @@ public class SQLConstants {
 
 
     public static String UPDATE_USER_BY_ID = "update users\n" +
-            "    set username = ?, password = ?,mail = ?, role = ?,  fine = ?, isBanned = ?, userLocale = ? where id = ?;";
+            "    set username = ?, password = ?,mail = ?, firstName=?,secondName=?, role = ?,  fine = ?, isBanned = ?, userLocale = ? where id = ?;";
     public static String SELECT_ALL_USERS = "select * from users";
     public static String SELECT_ONLY_USERS = "select * from users where role = 'USER'";
 

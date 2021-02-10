@@ -14,7 +14,7 @@ public final class Path {
     public static final String PAGE__LIBRARIAN_MENU_PAGE = "/librarianMenu.jsp";
     public static final String PAGE__LIST_MENU = "/WEB-INF/jsp/client/list_menu.jsp";
     public static final String PAGE__LIST_ORDERS = "/WEB-INF/jsp/admin/list_orders.jsp";
-    public static final String PAGE__SETTINGS = "/WEB-INF/jsp/settings.jsp";
+    public static final String PAGE__SETTINGS = "settings.jsp";
 
     // commands
 

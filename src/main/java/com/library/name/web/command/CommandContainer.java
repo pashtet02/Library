@@ -18,9 +18,10 @@ public class CommandContainer {
         commands.put("listOrders", new ListOrdersCommand());
         commands.put("catalog", new CatalogCommand());
         commands.put("logout", new LogoutCommand());
-        commands.put("changeLocale", new SettingsCommand());
         commands.put("registration", new RegistrationCommand());
         commands.put("orderBook", new OrderBookCommand());
+        commands.put("viewSettings", new ViewSettingsCommand());
+        commands.put("updateSettings", new UpdateSettingsCommand());
 
         //User commands
 
