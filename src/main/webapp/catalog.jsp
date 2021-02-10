@@ -63,7 +63,7 @@
                 <input type="hidden" name="command" value="catalog"/>
                 <label for="sort"><fmt:message key="global.sortByLabel" bundle="${glo}"/></label>
                 <select id="sort" name="sort">
-                    <option value="title" selected><fmt:message key="global.sortParamTitle"
+                    <option value="title"><fmt:message key="global.sortParamTitle"
                                                                 bundle="${glo}"/></option>
                     <option value="author"><fmt:message key="global.sortParamAuthor" bundle="${glo}"/></option>
                     <option value="publisher"><fmt:message key="global.sortParamPublisher"

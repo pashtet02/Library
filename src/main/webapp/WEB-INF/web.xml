@@ -42,7 +42,7 @@
         </init-param>
         <init-param>
             <param-name>librarian</param-name>
-            <param-value>addBook librarianMenu</param-value>
+            <param-value>addBook librarianMenu usersList userAbonement</param-value>
         </init-param>
         <init-param>
             <param-name>client</param-name>

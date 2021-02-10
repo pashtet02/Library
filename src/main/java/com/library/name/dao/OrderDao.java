@@ -26,8 +26,24 @@ public class OrderDao implements Dao<Order> {
     }
 
     @Override
-    public Order get(long userID) {
-        return null;
+    public Order get(long id) {
+        ResultSet rs = null;
+        Order order = null;
+
+        try (Connection con = getConnection();
+             PreparedStatement statement = con.prepareStatement("select * from orders where id= ?")) {
+            statement.setLong(1, id);
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                order = mapOrder(rs);
+            }
+
+        } catch (SQLException throwable) {
+            log.error("get()" + throwable.getSQLState() + throwable.getMessage());
+        } finally {
+            close(rs);
+        }
+        return order;
     }
 
     public List<Order> getAllReserved() throws SQLException {
@@ -50,8 +66,8 @@ public class OrderDao implements Dao<Order> {
 
     public void setReturnDate(long id, Date date) {
         try (Connection con = getConnection();
-                PreparedStatement preparedStatement = con.prepareStatement(
-                "UPDATE orders SET returnDate=? WHERE id = ?;")) {
+             PreparedStatement preparedStatement = con.prepareStatement(
+                     "UPDATE orders SET returnDate=? WHERE id = ?;")) {
             preparedStatement.setDate(1, date);
             preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
@@ -77,7 +93,7 @@ public class OrderDao implements Dao<Order> {
     public List<Order> getSomeOrders(int start, int numberOfOrders) throws SQLException {
         Connection con = getConnection();
         List<Order> orders;
-        orders = getAllOrders(con, "select * from orders limit " + (start - 1 ) * numberOfOrders + "," + numberOfOrders);
+        orders = getAllOrders(con, "select * from orders limit " + (start - 1) * numberOfOrders + "," + numberOfOrders);
         logger.debug("getSome Orders: " + orders.size());
         return orders;
     }
@@ -123,7 +139,7 @@ public class OrderDao implements Dao<Order> {
                     order.setId(rs.getLong(1));
                 }
             }
-            logger.info("order saved successfully order user_id: "+ order.getUserId() + "book_id " + order.getBookId());
+            logger.info("order saved successfully order user_id: " + order.getUserId() + "book_id " + order.getBookId());
         } catch (SQLException throwable) {
             logger.error("Book save() error: " + throwable.getSQLState(), throwable);
             throw throwable;
@@ -134,13 +150,13 @@ public class OrderDao implements Dao<Order> {
 
     @Override
     public void update(Order order) {
-       /** try (Connection con = getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.UPDATE_BOOK)) {
-            setBookToPrepStmt(order, preparedStatement);
-            preparedStatement.executeUpdate();
-        } catch (SQLException throwable) {
-            logger.error("update book method exception: " + throwable.getSQLState(), throwable);
-        }*/
+        /** try (Connection con = getConnection();
+         PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.UPDATE_BOOK)) {
+         setBookToPrepStmt(order, preparedStatement);
+         preparedStatement.executeUpdate();
+         } catch (SQLException throwable) {
+         logger.error("update book method exception: " + throwable.getSQLState(), throwable);
+         }*/
     }
 
     private void setOrderToPrepStmt(Order order, PreparedStatement preparedStatement) throws SQLException {
@@ -198,11 +214,23 @@ public class OrderDao implements Dao<Order> {
         }
         return orders;
     }
+
     public List<Order> getByUserId(Long userId) {
         List<Order> orders = null;
         try {
             Connection con = getConnection();
             orders = getAllOrders(con, "select * from orders where user_id = " + userId);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return orders;
+    }
+
+    public List<Order> getNotReturnedByUserId(Long userId) {
+        List<Order> orders = null;
+        try {
+            Connection con = getConnection();
+            orders = getAllOrders(con, "select * from orders where user_id = " + userId + " AND status != 'RETURNED'");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

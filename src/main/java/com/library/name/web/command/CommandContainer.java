@@ -27,6 +27,7 @@ public class CommandContainer {
 
         //Librarian commands
         commands.put("librarianMenu", new LibrarianMenuCommand());
+        commands.put("userAbonement", new UserAbonementCommand());
         //Admin commands
         commands.put("addBook", new AddBookCommand());
         commands.put("editUser", new EditUserCommand());

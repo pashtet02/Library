@@ -5,6 +5,7 @@ import com.library.name.entity.Book;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.apache.log4j.Logger;
 
@@ -106,6 +107,19 @@ public class BookDao implements Dao<Book> {
         }
         return books;
     }
+    public void incrementNumberBook(long id){
+        Book book = get(id);
+        System.out.println("INC BOOK NUM" + book);
+        int i = book.getNumber() + 1;
+        book.setNumber(i);
+        update(book);
+    }
+
+    public void decrementNumberBook(long id){
+        Book book = get(id);
+        book.setNumber(book.getNumber() - 1);
+        update(book);
+    }
 
     @Override
     public void save(Book book) throws SQLException {
@@ -137,8 +151,16 @@ public class BookDao implements Dao<Book> {
     public void update(Book book) {
         try (Connection con = getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.UPDATE_BOOK)) {
-            setBookToPrepStmt(book, preparedStatement);
+            log.debug("updateBook: NUMBER" + book.getNumber());
+            preparedStatement.setString(1, book.getTitle());
+            preparedStatement.setString(2, book.getAuthor());
+            preparedStatement.setLong(3, book.getISBN());
+            preparedStatement.setString(4, book.getPublisher());
+            preparedStatement.setInt(5, book.getNumber());
+            preparedStatement.setString(6, book.getLanguage());
+            preparedStatement.setLong(7, book.getId());
             preparedStatement.executeUpdate();
+            log.debug("updateBook: NUMBER" + book.getNumber());
         } catch (SQLException throwable) {
             logger.error("update book method exception: " + throwable.getSQLState(), throwable);
         }

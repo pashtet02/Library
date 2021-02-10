@@ -18,7 +18,7 @@
                     <li class="nav-item">
                         <c:choose>
                             <c:when test="${sessionScope.role == 'LIBRARIAN'}">
-                                <a class="nav-link" href="<c:url value="/controller?command=librarianMenu"/>"><fmt:message key="global.myBooksLabel"/></a>
+                                <a class="nav-link" href="<c:url value="/controller?command=librarianMenu"/>"><fmt:message key="global.librarianActiveOrders"/></a>
                             </c:when>
                             <c:when test="${sessionScope.role == 'USER' || sessionScope.role == 'ADMIN'}">
                                 <a class="nav-link" href="<c:url value="/controller?command=listOrders"/>"><fmt:message key="global.myBooksLabel"/></a>
@@ -32,7 +32,14 @@
                         <a class="nav-link" href="<c:url value="/controller?command=usersList"/>"><fmt:message key="global.usersList" /></a>
                     </li>
                 </c:if>
-            </ul><%--
+                <c:if test="${sessionScope.role == 'LIBRARIAN'}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/controller?command=usersList"/>"><fmt:message key="global.usersList" /></a>
+                    </li>
+                </c:if>
+            </ul>
+            <%--
+
             <div class="navbar-text mr-3">
                 <label for="languageSelect"><fmt:message key="global.chooseLanguage" bundle="${glo}"/></label>
                 <select class="nav-control" id="languageSelect">

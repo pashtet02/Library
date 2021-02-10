@@ -19,8 +19,6 @@ import java.io.IOException;
  */
 public class UpdateSettingsCommand extends Command {
 
-	private static final long serialVersionUID = 7732286214029478505L;
-
 	private static final Logger log = Logger.getLogger(UpdateSettingsCommand.class);
 	private static UserDao userDao = UserDao.getInstance();
 

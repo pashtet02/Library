@@ -46,11 +46,6 @@
                         <a href="<c:url value="/controller?command=editUser&userId=${user.id}"/>">edit</a>
                     </td>
                 </c:when>
-                <c:when test="${sessionScope.role == 'LIBRARIAN'}">
-                    <td>
-                        <a href="<c:url value="/controller?command=editUser&userId=${user.id}"/>">abonement</a>
-                    </td>
-                </c:when>
             </c:choose>
 
         </tr>

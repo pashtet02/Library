@@ -9,7 +9,6 @@ import com.library.name.entity.Entity;
  * |order.id|user.firstName|user.lastName|order.bill|status.name|
  * </pre>
  *
- * @author D.Kolesnikov
  *
  */
 public class UserOrderBean extends Entity {

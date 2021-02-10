@@ -26,8 +26,10 @@ public class UsersListCommand extends Command{
             }
             if (role != null && role.equals("LIBRARIAN")){
                 users = userDao.getAllUsers();
+                request.setAttribute("readersList", users);
+                return Path.PAGE__READERS;
             }
-            session.setAttribute("usersList", users);
+            request.setAttribute("usersList", users);
 
             return "users.jsp";
         } catch (SQLException throwables) {

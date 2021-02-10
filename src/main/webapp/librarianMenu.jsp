@@ -29,7 +29,7 @@
                     <label for="librarianComment">Your comment:</label>
                     <input type="text" name="librarianComment" placeholder="Enter your comment here" id="librarianComment"/><br>
                     <label for="returnDate">Return to:</label>
-                    <input type="date" placeholder="Enter date" name="returnDate" id="returnDate"><br>
+                    <input type="date" placeholder="Enter date" name="returnDate" id="returnDate" required><br>
                     <input type="hidden" name="orderId" value="${bean.id}"/>
 
                     <button type="submit" class="btn btn-success" value="APPROVED" name="action">Accept</button>

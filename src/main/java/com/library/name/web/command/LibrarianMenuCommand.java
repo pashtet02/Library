@@ -41,6 +41,13 @@ public class LibrarianMenuCommand extends Command {
         if (status != null && !status.isEmpty()){
             long id = Long.parseLong(orderId);
             orderDao.setOrderStatus(id, status);
+
+            //Only if we approve order book.number--
+            if (status.equals("APPROVED")){
+                Order order = orderDao.get(id);
+                bookDao.decrementNumberBook(order.getBookId());
+            }
+
             String date = request.getParameter("returnDate");
             if (date != null && !date.isEmpty()){
                 System.out.println("RETURN DATE:");
