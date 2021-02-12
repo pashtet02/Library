@@ -4,14 +4,14 @@
 <html>
 <head>
     <c:set var="title" value="Settings" scope="page" />
-    <%@ include file="header.jsp" %>
+    <%@ include file="../../../header.jsp" %>
 </head>
 
 
 <body>
 <table id="main-container">
 
-    <%@ include file="navbar.jsp" %>
+    <%@ include file="../../../navbar.jsp" %>
     <tr>
         <td class="content">
             <%-- CONTENT --%>
@@ -43,14 +43,14 @@
                     <p>
                         <fmt:message key="settings_jsp.label.first_name"/>
                     </p>
-                    <input name="firstName">
+                    <input name="firstName" placeholder="${sessionScope.user.firstName}">
                 </div>
 
                 <div>
                     <p>
                         <fmt:message key="settings_jsp.label.last_name"/>
                     </p>
-                    <input name="lastName">
+                    <input name="lastName" placeholder="${sessionScope.user.secondName}">
                 </div>
 
                 <input type="submit" value='<fmt:message key="settings_jsp.button.update"/>'><br/>

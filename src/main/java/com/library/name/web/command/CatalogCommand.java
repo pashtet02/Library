@@ -3,22 +3,23 @@ package com.library.name.web.command;
 import com.library.name.dao.BookDao;
 import com.library.name.entity.Book;
 import com.library.name.entity.User;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.Serializable;
 import java.sql.SQLException;
-import java.util.Comparator;
 import java.util.List;
 
 public class CatalogCommand extends Command {
-    private HttpSession session;
+
     private final BookDao bookDao = BookDao.getInstance();
     private static final int RECORDS_ON_PAGE = 6;
-    private static String sortParam = "title";
+    private String sortParam = "title";
+    private static final Logger log = Logger.getLogger(CatalogCommand.class);
+
 
     /**
      * Execution method for command.
@@ -29,8 +30,7 @@ public class CatalogCommand extends Command {
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-        session = request.getSession();
+        HttpSession session = request.getSession();
         session.setAttribute("sortParameter", sortParam);
         Book book;
         List<Book> books;
@@ -87,53 +87,4 @@ public class CatalogCommand extends Command {
 
         return "catalog.jsp";
     }
-
-    /*private static void sortByParam(String sortParam, HttpSession session, List<Book> books) {
-        switch (sortParam) {
-            case "title":
-                CompareByTitle compareByTitle = new CompareByTitle();
-                session.setAttribute("sortParameter", sortParam);
-                books.sort(compareByTitle);
-                System.out.println("SORTED BY compareByTitle: " + books);
-                break;
-            case "author":
-                CompareByAuthor compareByAuthor = new CompareByAuthor();
-                books.sort(compareByAuthor);
-                session.setAttribute("sortParameter", sortParam);
-                System.out.println("SORTED BY AUTHOR: " + books);
-                break;
-        }
-    }
-
-    private static class CompareByAuthor implements Comparator<Book>, Serializable {
-        public int compare(Book o1, Book o2) {
-            if (o1.getAuthor().compareTo(o2.getAuthor()) > 0)
-                return 1;
-            if (o1.getAuthor().compareTo(o2.getAuthor()) < 0)
-                return -1;
-            if (o1.getAuthor().compareTo(o2.getAuthor()) == 0) {
-                if (o1.getNumber() - o2.getNumber() < 0)
-                    return 1;
-                if (o1.getNumber() - o2.getNumber() > 0)
-                    return -1;
-            }
-            return 0;
-        }
-    }
-
-    private static class CompareByTitle implements Comparator<Book>, Serializable {
-        public int compare(Book o1, Book o2) {
-            if (o1.getTitle().compareTo(o2.getTitle()) > 0)
-                return 1;
-            if (o1.getTitle().compareTo(o2.getTitle()) < 0)
-                return -1;
-            if (o1.getTitle().compareTo(o2.getTitle()) == 0) {
-                if (o1.getNumber() - o2.getNumber() < 0)
-                    return 1;
-                if (o1.getNumber() - o2.getNumber() > 0)
-                    return -1;
-            }
-            return 0;
-        }
-    }*/
 }

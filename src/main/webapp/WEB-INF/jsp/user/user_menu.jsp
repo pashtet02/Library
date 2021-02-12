@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="../../../header.jsp"/>
 </head>
 
 <body>
-<jsp:include page="navbar.jsp"/>
+<jsp:include page="../../../navbar.jsp"/>
 <h1>Hello USER!</h1>
 
 <a href="<c:url value="/controller?command=logout"/>">Logout</a>

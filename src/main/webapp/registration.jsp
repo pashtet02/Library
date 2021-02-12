@@ -22,18 +22,21 @@
                        pattern="[A-Za-z0-9]{4,32}"><br>
 
                 <label for="firstName"><b>First name: </b></label>
-                <input type="text" required placeholder="login" class="fadeIn second" name="firstName" id="firstName"><br>
+                <input type="text" required placeholder="first name" class="fadeIn second" name="firstName" id="firstName"><br>
 
                 <label for="secondName"><b>Second name: </b></label>
-                <input type="text" required placeholder="login" class="fadeIn second" name="secondName" id="secondName"><br>
+                <input type="text" required placeholder="second name" class="fadeIn second" name="secondName" id="secondName"><br>
 
                 <label for="email"><b>Email</b></label><br>
-                <input type="email" placeholder="Enter email" name="email" id="email" required>
+                <input type="email" required placeholder="Enter email" class="fadeIn second" name="email" id="email">
                 <br>
 
                 <label for="password"><b>Password</b></label>
                 <input type="password" required placeholder="password" class="fadeIn third" name="password"
                        id="password" pattern="[A-Za-z0-9]{4,32}"><br>
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                    Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                </small>
 
                 <label for="password-repeat"><b>Repeat Password</b></label>
                 <input type="password" required placeholder="Repeat password" class="fadeIn third"
@@ -41,6 +44,7 @@
                 <hr>
                 <!-- Example single danger button -->
                 <input class="fadeIn fourth" type="submit" value="Register">
+
             </div>
         </form>
 

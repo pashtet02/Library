@@ -9,7 +9,7 @@ public class CommandContainer {
 
     private static final Logger log = Logger.getLogger(CommandContainer.class);
 
-    private static Map<String, Command> commands = new TreeMap<String, Command>();
+    private static Map<String, Command> commands = new TreeMap<>();
 
     static {
         //Common commands
@@ -28,8 +28,10 @@ public class CommandContainer {
         //Librarian commands
         commands.put("librarianMenu", new LibrarianMenuCommand());
         commands.put("userAbonement", new UserAbonementCommand());
+
         //Admin commands
         commands.put("addBook", new AddBookCommand());
+        commands.put("addImage", new AddFileCommand());
         commands.put("editUser", new EditUserCommand());
         commands.put("usersList", new UsersListCommand());
 

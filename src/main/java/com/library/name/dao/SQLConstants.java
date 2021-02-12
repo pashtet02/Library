@@ -24,11 +24,11 @@ public class SQLConstants {
     public static String SELECT_ALL_ORDERS = "SELECT * FROM orders";
     public static String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE username = ? AND password = ?;";
     public static String SQL_ADD_NEW_USER = "insert into users (username, password, firstName, secondName, mail, fine, role, isBanned, userLocale) values (?,?,?, ?, ?, ?, ?, ?,?);";
-    public static String SQL_ADD_NEW_BOOK = "insert into books (title, author, ISBN, publisher, number, language) values (?, ?, ?, ?, ?, ?);";
+    public static String SQL_ADD_NEW_BOOK = "insert into books (title, author, ISBN, publisher,publishingDate, number, language, image) values (?, ?, ?, ?,?, ?, ?,?);";
     public static String SQL_ADD_NEW_ORDER = "insert into orders (user_id, book_id, startDate, returnDate, status, userComment, librarianComment) values(?, ?,?, ?,?,?,?);";
     public static String GET_BOOK_BY_TITLE = "SELECT * FROM books WHERE title = ?;";
     public static String UPDATE_BOOK = "UPDATE books SET title = ?, author= ?, ISBN= ?, publisher= ?," +
-            " number= ?, language= ? WHERE id = ?;";
+            " number= ?, language= ?, image=? WHERE id = ?;";
     public static final String SET_BOOK = "INSERT INTO users_books (user_id, book_id) VALUES (?,?);";
     public static final String SELECT_ALL_USER_BOOKS = "SELECT book_id FROM users_books where user_id= ?;";
 

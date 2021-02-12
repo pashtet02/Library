@@ -45,10 +45,10 @@ public class LoginCommand extends Command {
         UserDao userDao = UserDao.getInstance();
         User user = userDao.getUserByLogin(login);
         log.trace("Found in DB: user --> " + user);
-        System.out.println("LOGIN COMMAND USER: " + user);
+        System.out.println("LOGIN COMMAND USER: " + user.getUsername());
 
-        //boolean bool = checkPassword(password, user.getPassword()); tam !bool
-        if (user.getUsername() == null || !password.equals(user.getPassword())) {
+        boolean bool = checkPassword(password, user.getPassword());
+        if (user.getUsername() == null || !bool) {
             errorMessage = "Cannot find user with such login/password";
             //System.out.println("LOGIN COMMAND BOOL: " + bool);
             request.setAttribute("errorMessage", errorMessage);
@@ -65,13 +65,13 @@ public class LoginCommand extends Command {
         log.trace("userRole --> " + user.getRole());
 
         if (user.getRole().equals("ADMIN"))
-            forward = "admin_menu.jsp";
+            forward = Path.PAGE__ADMIN_PAGE;
 
         if (user.getRole().equals("LIBRARIAN"))
-            forward = "admin_menu.jsp";
+            forward = Path.PAGE__ADMIN_PAGE;
 
         if (user.getRole().equals("USER"))
-            forward = "user_menu.jsp";
+            forward = Path.PAGE__USER_MENU;
 
         session.setAttribute("user", user);
         log.trace("Set the session attribute: user --> " + user);
@@ -100,9 +100,7 @@ public class LoginCommand extends Command {
             log.info("Locale for user: defaultLocale --> " + userLocaleName);
         }
 
-
         log.debug("Command finished");
         return forward;
     }
-
 }

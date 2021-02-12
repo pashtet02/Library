@@ -1,17 +1,0 @@
-
-s
-java:S1450"VRemove the "bookDao" field and declare it as a local variable in the relevant methods.(Í£Ç…8†ë­ô.
-w
-java:S1989("ZHandle the following exception that could be thrown by "parseLong": NumberFormatException.(’ú¦˜8Ú”‹­ô.
-U	java:S1060"9Replace this use of System.out or System.err by a logger.(˜Šë€8å‡­ô.
-u
-java:S19891"SHandle the following exception that could be thrown by "sendRedirect": IOException.(Œ¿Ê£øÿÿÿÿ8òá´­ô.
-U	java:S106%"9Replace this use of System.out or System.err by a logger.(‘Ê´É8¸Ìú¬ô.
-o
-java:S2441"MMake "List" and its parameters serializable or don't store it in the session.(ıŞÀùÿÿÿÿ8ûÍÚ¤ô.
-ƒ
-java:S1989"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ÏÍ£‰şÿÿÿÿ8ÓìÆ²ò.
-{
-java:S1989*"YHandle the following exception that could be thrown by "parseInt": NumberFormatException.(¼à×úşÿÿÿÿ8ª‰­ô.
-X
-java:S2696."6Make the enclosing method "static" or remove this set.(ïÒ½Åşÿÿÿÿ8†ë­ô.

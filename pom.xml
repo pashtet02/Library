@@ -6,12 +6,12 @@
 
 	<groupId>com.library</groupId>
 	<!-- FIXME change it to the project name -->
-	<artifactId>DemoWebMavenProject</artifactId>
+	<artifactId>MyProject</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<!-- FIXME change it to the project name -->
-	<name>Simple Maven Webapp</name>
+	<name>MyProject</name>
 	<!-- FIXME change it to the project's website -->
 	<url>http://www.example.com</url>
 
@@ -121,10 +121,8 @@
 					<version>2.2</version>
 					<configuration>
 						<url>http://localhost:8080/manager/text</url>
-						<!-- FIXME change it to the tomcat login and password -->
 						<username>tomcat</username>
 						<password>tomcat</password>
-						<!-- FIXME change it to the project context path -->
 						<path>/library</path>
 					</configuration>
 				</plugin>

@@ -26,7 +26,7 @@ public class EditUserCommand extends Command {
         // UPDATE USER ////////////////////////////////////////////////////////
         if (request.getParameter("userId") != null && !request.getParameter("userId").isEmpty()){
             System.out.println("IF WORKS userId:" + request.getParameter("userId"));
-            return "editUser.jsp";
+            return Path.PAGE__EDIT_USER;
         }
 
         boolean updateUser = false;
@@ -45,7 +45,8 @@ public class EditUserCommand extends Command {
 
         String isBanned = request.getParameter("isBanned");
         if (isBanned != null && !isBanned.isEmpty()) {
-            user.setBanned(isBanned.equals("on"));
+            System.out.println("SET USER BANNED: " + isBanned.equals("true"));
+            user.setBanned(isBanned.equals("true"));
             System.out.println("USER: banned " + user.isBanned());
             updateUser = true;
         }

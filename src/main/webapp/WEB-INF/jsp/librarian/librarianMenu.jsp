@@ -7,11 +7,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="../../../header.jsp"/>
     <title>Books</title>
 </head>
 <body>
-<jsp:include page="navbar.jsp"/>
+<jsp:include page="../../../navbar.jsp"/>
 <div class="container pt-4">
     <h2>List of active orders</h2>
     <c:forEach var="bean" items="${requestScope.ordersList}">
@@ -26,10 +26,10 @@
                                 ${bean.userComment}</p>
                     </c:if>
 
-                    <label for="librarianComment">Your comment:</label>
-                    <input type="text" name="librarianComment" placeholder="Enter your comment here" id="librarianComment"/><br>
+                    <label for="librarianComment">Librarian comment:</label>
+                    <textarea class="form-control" placeholder="Enter your comment here" name="librarianComment" id="librarianComment" rows="2" maxlength="250"></textarea><br>
                     <label for="returnDate">Return to:</label>
-                    <input type="date" placeholder="Enter date" name="returnDate" id="returnDate" required><br>
+                    <input class="form-control" type="date" placeholder="Enter date" name="returnDate" id="returnDate" required><br>
                     <input type="hidden" name="orderId" value="${bean.id}"/>
 
                     <button type="submit" class="btn btn-success" value="APPROVED" name="action">Accept</button>

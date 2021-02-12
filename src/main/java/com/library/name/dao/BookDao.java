@@ -5,7 +5,6 @@ import com.library.name.entity.Book;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 import org.apache.log4j.Logger;
 
@@ -97,7 +96,7 @@ public class BookDao implements Dao<Book> {
     public List<Book> getAllByAuthor(String author) {
         List<Book> books = null;
 
-        Connection con = null;
+        Connection con;
         try {
             con = getConnection();
             books = getAllBooks(con, "select * from books where author = " + author);
@@ -109,7 +108,6 @@ public class BookDao implements Dao<Book> {
     }
     public void incrementNumberBook(long id){
         Book book = get(id);
-        System.out.println("INC BOOK NUM" + book);
         int i = book.getNumber() + 1;
         book.setNumber(i);
         update(book);
@@ -117,8 +115,11 @@ public class BookDao implements Dao<Book> {
 
     public void decrementNumberBook(long id){
         Book book = get(id);
-        book.setNumber(book.getNumber() - 1);
-        update(book);
+        int i = book.getNumber() - 1;
+        if (i > 0){
+            book.setNumber(book.getNumber() - 1);
+            update(book);
+        }
     }
 
     @Override
@@ -130,7 +131,6 @@ public class BookDao implements Dao<Book> {
                      Statement.RETURN_GENERATED_KEYS)) {
 
             setBookToPrepStmt(book, pstmt);
-
 
             if (pstmt.executeUpdate() > 0) {
                 rs = pstmt.getGeneratedKeys();
@@ -158,7 +158,8 @@ public class BookDao implements Dao<Book> {
             preparedStatement.setString(4, book.getPublisher());
             preparedStatement.setInt(5, book.getNumber());
             preparedStatement.setString(6, book.getLanguage());
-            preparedStatement.setLong(7, book.getId());
+            preparedStatement.setString(7, book.getImage());
+            preparedStatement.setLong(8, book.getId());
             preparedStatement.executeUpdate();
             log.debug("updateBook: NUMBER" + book.getNumber());
         } catch (SQLException throwable) {
@@ -167,12 +168,16 @@ public class BookDao implements Dao<Book> {
     }
 
     private void setBookToPrepStmt(Book book, PreparedStatement preparedStatement) throws SQLException {
-        preparedStatement.setString(1, book.getTitle());
-        preparedStatement.setString(2, book.getAuthor());
-        preparedStatement.setLong(3, book.getISBN());
-        preparedStatement.setString(4, book.getPublisher());
-        preparedStatement.setInt(5, book.getNumber());
-        preparedStatement.setString(6, book.getLanguage());
+        int k = 1;
+        preparedStatement.setString(k++, book.getTitle());
+        preparedStatement.setString(k++, book.getAuthor());
+        preparedStatement.setLong(k++, book.getISBN());
+        preparedStatement.setString(k++, book.getPublisher());
+        preparedStatement.setDate(k++, book.getPublishingDate());
+        preparedStatement.setInt(k++, book.getNumber());
+        preparedStatement.setString(k++, book.getLanguage());
+        preparedStatement.setString(k, book.getImage());
+
     }
 
     @Override

@@ -52,6 +52,7 @@ public class UserAbonementCommand extends Command {
             bookDao.incrementNumberBook(bookId);
             orderDao.setOrderStatus(ordId, "RETURNED");
             request.setAttribute("message", "Book returned succesfully");
+            request.setAttribute("commandName", "usersList");
             return Path.PAGE__SUCCESS_PAGE;
         }
 

@@ -23,15 +23,14 @@ public class UsersListCommand extends Command{
         try {
             if (role != null && role.equals("ADMIN")){
                 users = userDao.getAll();
+                request.setAttribute("usersList", users);
+                return Path.PAGE__USERS_LIST;
             }
             if (role != null && role.equals("LIBRARIAN")){
                 users = userDao.getAllUsers();
                 request.setAttribute("readersList", users);
                 return Path.PAGE__READERS;
             }
-            request.setAttribute("usersList", users);
-
-            return "users.jsp";
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

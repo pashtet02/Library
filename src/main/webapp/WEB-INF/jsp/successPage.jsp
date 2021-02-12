@@ -21,6 +21,6 @@
 <c:if test="${requestScope.fileMessage != null}">
     <h3>${fileMassage}</h3>
 </c:if>
-<a class="navbar-brand" href="<c:url value="/"/>">Go to the main page</a>
+<a class="navbar-brand" href="<c:url value="/controller?command=${requestScope.commandName}"/>">Go to previous page</a>
 </body>
 </html>

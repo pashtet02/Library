@@ -3,10 +3,11 @@
 
 <html>
 <head>
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="../../../header.jsp"/>
 </head>
 <body>
-<jsp:include page="navbar.jsp"/>
+<jsp:include page="../../../navbar.jsp"/>
+<div class="container">
 <h2>My library users</h2>
 <table class="table table-striped">
     <thead>
@@ -52,7 +53,7 @@
     </c:forEach>
     </tbody>
 </table>
-
+</div>
 <a href="<c:url value="/controller?command=listOrders"/>">show your orders</a>
 </body>
 </html>

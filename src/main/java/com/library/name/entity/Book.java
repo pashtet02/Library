@@ -1,6 +1,6 @@
 package com.library.name.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Book extends Entity {
     private long id;
@@ -8,10 +8,29 @@ public class Book extends Entity {
     private String author;
     private long ISBN;
     private String publisher;
-    private Date publishingDate;
+    private java.sql.Date publishingDate;
     private int number;
     private String language;
     private String image;
+
+    public String getDescriptionUa() {
+        return descriptionUa;
+    }
+
+    public void setDescriptionUa(String descriptionUa) {
+        this.descriptionUa = descriptionUa;
+    }
+
+    public String getDescriptionEn() {
+        return descriptionEn;
+    }
+
+    public void setDescriptionEn(String descriptionEn) {
+        this.descriptionEn = descriptionEn;
+    }
+
+    private String descriptionUa;
+    private String descriptionEn;
 
     public String getImage() {
         return image;
@@ -69,11 +88,11 @@ public class Book extends Entity {
         this.publisher = publisher;
     }
 
-    public Date getPublishingDate() {
+    public java.sql.Date getPublishingDate() {
         return publishingDate;
     }
 
-    public void setPublishingDate(Date publishingDate) {
+    public void setPublishingDate(java.sql.Date publishingDate) {
         this.publishingDate = publishingDate;
     }
 
@@ -96,6 +115,7 @@ public class Book extends Entity {
                 ", publishingDate=" + publishingDate +
                 ", number=" + number +
                 ", language=" + language +
+                ", image=" + image +
                 '}';
     }
 

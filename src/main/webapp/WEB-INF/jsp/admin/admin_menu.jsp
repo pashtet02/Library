@@ -7,14 +7,15 @@
 
 <html>
 <head>
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="../../../header.jsp"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<jsp:include page="navbar.jsp"/>
-<h1>Hello Librarian, + ${sessionScope.user.firstName}!</h1>
+<jsp:include page="../../../navbar.jsp"/>
+<h1>Hello Librarian, ${sessionScope.user.username}!</h1>
 <a href="<c:url value='/logout' />">Logout</a>
 <br/>
 <a href="<c:url value="/controller?command=librarianMenu"/>">orders list</a>
+<a href="<c:url value="/controller?command=addBook"/>">add book</a>
 </body>
 </html>

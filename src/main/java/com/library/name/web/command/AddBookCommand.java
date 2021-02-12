@@ -3,19 +3,15 @@ package com.library.name.web.command;
 import com.library.name.Path;
 import com.library.name.dao.BookDao;
 import com.library.name.entity.Book;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.UUID;
 
 public class AddBookCommand extends Command {
 
@@ -30,7 +26,7 @@ public class AddBookCommand extends Command {
         log.debug("Command starts");
 
         if (req.getParameter("title") == null) {
-            return "addBook.jsp";
+            return Path.PAGE__ADD_BOOK;
         }
 
         System.out.println("ADD BOOK COMMAND ");
@@ -41,8 +37,12 @@ public class AddBookCommand extends Command {
         book.setAuthor(req.getParameter("author"));
         book.setISBN(Long.parseLong(req.getParameter("ISBN")));
         book.setPublisher(req.getParameter("publisher"));
+
+        Date date = Date.valueOf(req.getParameter("publishingDate"));
+        book.setPublishingDate(date);
+
+        book.setLanguage(req.getParameter("language"));
         book.setNumber(Integer.parseInt(req.getParameter("number")));
-        System.out.println("Command Add book: " + book);
 
         try {
             bookDao.save(book);
@@ -56,7 +56,8 @@ public class AddBookCommand extends Command {
         log.debug("Command finished");
         String message = "Book " + book.getTitle() + "added!!!";
         req.setAttribute("massage", message);
-        return Path.PAGE__SUCCESS_PAGE;
-
+        HttpSession session = req.getSession();
+        session.setAttribute("bookTitle", book.getTitle());
+        return Path.PAGE__ADD_IMAGE;
     }
 }

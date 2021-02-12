@@ -38,15 +38,7 @@
                     </li>
                 </c:if>
             </ul>
-            <%--
 
-            <div class="navbar-text mr-3">
-                <label for="languageSelect"><fmt:message key="global.chooseLanguage" bundle="${glo}"/></label>
-                <select class="nav-control" id="languageSelect">
-                    <option>Українська</option>
-                    <option>English</option>
-                </select>
-            </div>--%>
     <div class="navbar-text mr-3">
         <c:choose>
             <c:when test="${sessionScope.login != null}">

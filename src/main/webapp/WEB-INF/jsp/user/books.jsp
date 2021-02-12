@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="../../../header.jsp"/>
     <title>Books</title>
 </head>
 <body>
-<jsp:include page="navbar.jsp"/>
+<jsp:include page="../../../navbar.jsp"/>
 <h2>List of my books</h2>
 <table border="1">
     <thead>

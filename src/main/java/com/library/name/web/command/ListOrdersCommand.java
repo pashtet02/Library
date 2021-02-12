@@ -1,8 +1,8 @@
 package com.library.name.web.command;
 
+import com.library.name.Path;
 import com.library.name.dao.BookDao;
 import com.library.name.dao.OrderDao;
-import com.library.name.dao.UserDao;
 import com.library.name.entity.Book;
 import com.library.name.entity.Order;
 import com.library.name.entity.User;
@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -48,11 +47,11 @@ public class ListOrdersCommand extends Command {
         for (Order order : ordersList) {
             Book book = bookDao.get(order.getBookId());
 
-            String date_s = order.getStartDate().toString();
+            String dateS = order.getStartDate().toString();
             SimpleDateFormat dt = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
             Date date = null;
             try {
-                date = dt.parse(date_s);
+                date = dt.parse(dateS);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -69,7 +68,7 @@ public class ListOrdersCommand extends Command {
         log.trace("Set the request attribute: ordersList --> " + ordersList);
 
         log.debug("Commands finished");
-        return "books.jsp";
+        return Path.PAGE__USER_BOOKS;
     }
 
 }
