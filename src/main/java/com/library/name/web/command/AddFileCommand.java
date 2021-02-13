@@ -14,16 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 public class AddFileCommand extends Command {
     private static String uploadPath = "src/main/webapp/view";
-    private static Map<String, String> map = new HashMap<String, String>();
     private static String fileName;
     private static final Logger log = Logger.getLogger(AddFileCommand.class);
+    private String fileMessage = "fileMessage";
 
     /**
      * Execution method for command.
@@ -32,6 +29,7 @@ public class AddFileCommand extends Command {
      * @param response
      * @return Address to go once the command is executed.
      */
+    @SuppressWarnings("unchecked")
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         //process only if its multipart content
@@ -50,13 +48,13 @@ public class AddFileCommand extends Command {
                 }
 
                 //File uploaded successfully
-                request.setAttribute("fileMessage", "File Uploaded Successfully");
+                request.setAttribute(fileMessage, "File Uploaded Successfully");
             } catch (Exception ex) {
-                request.setAttribute("fileMessage", "File Upload Failed due to " + ex);
+                request.setAttribute(fileMessage, "File Upload Failed due to " + ex);
             }
 
         } else {
-            request.setAttribute("fileMessage",
+            request.setAttribute(fileMessage,
                     "Sorry this Servlet only handles file upload request");
         }
         BookDao bookDao = BookDao.getInstance();
@@ -64,17 +62,20 @@ public class AddFileCommand extends Command {
         System.out.println("BOOK TITLE" + request.getParameter("bookTitle"));
         Book book = bookDao.getByTitle((String) session.getAttribute("bookTitle"));
         System.out.println("Book: " + book);
-        book.setImage(fileName);
+        String message;
+        if (fileName != null && !fileName.isEmpty()){
+            book.setImage(fileName);
+        }
         System.out.println("IMAGE: " + book.getImage());
 
-            bookDao.update(book);
+        bookDao.update(book);
 
         log.debug("Command finished");
-        String message = "Book " + book.getTitle() + "added!!!";
+        message = "Book " + book.getTitle() + "added!!!";
         request.setAttribute("massage", message);
 
         request.setAttribute("commandName", "catalog");
-        return Path.PAGE__SUCCESS_PAGE;
+        return Path.PAGE_SUCCESS_PAGE;
     }
 }
 

@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="../../../header.jsp"/>
+    <jsp:include page="../../jspf/directive/header.jsp"/>
     <title>Library</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="../../../static/custom.css" rel="stylesheet"/>
 </head>
 <body>
-<jsp:include page="../../../navbar.jsp"/>
+<jsp:include page="../../jspf/directive/navbar.jsp"/>
 
 <form method="post" action="<c:url value="/controller?command=editUser&id=${param.userId}"/>">
     <p><c:out value="${requestScope.id}"/></p>

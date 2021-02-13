@@ -7,11 +7,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <jsp:include page="../../../header.jsp"/>
+    <jsp:include page="../../jspf/directive/header.jsp"/>
     <title>Abonement</title>
 </head>
 <body>
-<jsp:include page="../../../navbar.jsp"/>
+<jsp:include page="../../jspf/directive/navbar.jsp"/>
 <h2>${requestScope.usr.username} abonement</h2>
 <p>
     User details:
@@ -22,7 +22,7 @@
 </p>
 <c:choose>
     <c:when test="${requestScope.ordersList.size() > 0}">
-        <table border="1">
+        <table>
             <thead>
             <tr>
                 <td>Title</td>

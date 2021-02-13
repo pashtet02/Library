@@ -53,7 +53,7 @@ public class UserAbonementCommand extends Command {
             orderDao.setOrderStatus(ordId, "RETURNED");
             request.setAttribute("message", "Book returned succesfully");
             request.setAttribute("commandName", "usersList");
-            return Path.PAGE__SUCCESS_PAGE;
+            return Path.PAGE_SUCCESS_PAGE;
         }
 
         String userId = request.getParameter("userId");
@@ -82,6 +82,6 @@ public class UserAbonementCommand extends Command {
         log.trace("Set the request attribute: ordersList --> " + ordersList);
 
         log.debug("Commands finished");
-        return Path.PAGE__USER_ABONEMENT;
+        return Path.PAGE_USER_ABONEMENT;
     }
 }

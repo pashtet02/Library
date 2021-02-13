@@ -17,6 +17,7 @@ import static com.library.name.service.Password.checkPassword;
 public class LoginCommand extends Command {
 
     private static final Logger log = Logger.getLogger(LoginCommand.class);
+    private String errMessage = "errorMessage";
 
     @Override
     public String execute(HttpServletRequest request,
@@ -34,25 +35,24 @@ public class LoginCommand extends Command {
 
         // error handler
         String errorMessage;
-        String forward = Path.PAGE__ERROR_PAGE;
+        String forward = Path.PAGE_ERROR_PAGE;
 
         if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
             errorMessage = "Login/password cannot be empty";
-            request.setAttribute("errorMessage", errorMessage);
-            log.error("errorMessage --> " + errorMessage);
+            request.setAttribute(errMessage, errorMessage);
+            log.error(errMessage + errorMessage);
             return forward;
         }
         UserDao userDao = UserDao.getInstance();
         User user = userDao.getUserByLogin(login);
         log.trace("Found in DB: user --> " + user);
-        System.out.println("LOGIN COMMAND USER: " + user.getUsername());
+        log.debug("LOGIN COMMAND USER: " + user.getUsername());
 
         boolean bool = checkPassword(password, user.getPassword());
         if (user.getUsername() == null || !bool) {
             errorMessage = "Cannot find user with such login/password";
-            //System.out.println("LOGIN COMMAND BOOL: " + bool);
             request.setAttribute("errorMessage", errorMessage);
-            log.error("errorMessage --> " + errorMessage);
+            log.error(errMessage + errorMessage);
             return forward;
         }
 
@@ -65,13 +65,13 @@ public class LoginCommand extends Command {
         log.trace("userRole --> " + user.getRole());
 
         if (user.getRole().equals("ADMIN"))
-            forward = Path.PAGE__ADMIN_PAGE;
+            forward = Path.PAGE_ADMIN_PAGE;
 
         if (user.getRole().equals("LIBRARIAN"))
-            forward = Path.PAGE__ADMIN_PAGE;
+            forward = Path.PAGE_ADMIN_PAGE;
 
         if (user.getRole().equals("USER"))
-            forward = Path.PAGE__USER_MENU;
+            forward = Path.PAGE_USER_MENU;
 
         session.setAttribute("user", user);
         log.trace("Set the session attribute: user --> " + user);
@@ -84,7 +84,7 @@ public class LoginCommand extends Command {
         request.getSession().setAttribute("login", login);
         request.getSession().setAttribute("role", user.getRole());
         request.getSession().setAttribute("user", user);
-        System.out.println("IS BANNED " + user.isBanned());
+        log.debug("IS BANNED " + user.isBanned());
         request.getSession().setAttribute("isBanned", Boolean.toString(user.isBanned()));
 
         // work with i18n
@@ -96,7 +96,7 @@ public class LoginCommand extends Command {
 
             session.setAttribute("defaultLocale", userLocaleName);
             log.trace("Set the session attribute: defaultLocaleName --> " + userLocaleName);
-            System.out.println("LOCALE LOGIN COMMAND: " + userLocaleName);
+            log.debug("LOCALE LOGIN COMMAND: " + userLocaleName);
             log.info("Locale for user: defaultLocale --> " + userLocaleName);
         }
 

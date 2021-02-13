@@ -27,27 +27,21 @@ public class BookDao implements Dao<Book> {
     @Override
     public Book get(long id) {
         ResultSet rs = null;
-        Book book = new Book();
+        Book book = null;
 
         try (Connection con = getConnection();
              PreparedStatement statement = con.prepareStatement("SELECT * FROM books where id=?")) {
             statement.setLong(1, id);
             rs = statement.executeQuery();
             while (rs.next()) {
-                book.setId(rs.getLong("id"));
-                book.setTitle(rs.getString("title"));
-                book.setAuthor(rs.getString("author"));
-                book.setISBN(rs.getLong("ISBN"));
-                book.setNumber(rs.getInt("number"));
-                book.setPublisher(rs.getString("publisher"));
-                book.setLanguage(rs.getString("language"));
+               book = mapBook(rs);
             }
         } catch (SQLException throwable) {
             logger.error("get book method exception: " + throwable.getSQLState());
         } finally {
             close(rs);
         }
-        logger.info("get() book get successfully book id: " + book.getId());
+        logger.info("get() book get successfully book description: " + book.getDescriptionUa());
         return book;
     }
 
@@ -61,7 +55,7 @@ public class BookDao implements Dao<Book> {
     public List<Book> getSomeBooks(int start, int numberOfBooks, String orderParam) throws SQLException {
         Connection con = getConnection();
         List<Book> books;
-        books = getAllBooks(con, "select * from books order by + " + orderParam +" limit " + (start - 1 ) * numberOfBooks + "," + numberOfBooks);
+        books = getAllBooks(con, "select * from books where number > 0 order by + " + orderParam +" limit " + (start - 1 ) * numberOfBooks + "," + numberOfBooks);
         return books;
     }
 
@@ -74,7 +68,7 @@ public class BookDao implements Dao<Book> {
             while (rs.next()) {
                 books.add(mapBook(rs));
             }
-            if (books.size() > 0) {
+            if (!books.isEmpty()) {
                 logger.info("getAllBooks() get successfully number of books: " + books.size());
             }
         } catch (SQLException ex) {
@@ -150,18 +144,27 @@ public class BookDao implements Dao<Book> {
     @Override
     public void update(Book book) {
         try (Connection con = getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.UPDATE_BOOK)) {
-            log.debug("updateBook: NUMBER" + book.getNumber());
-            preparedStatement.setString(1, book.getTitle());
-            preparedStatement.setString(2, book.getAuthor());
-            preparedStatement.setLong(3, book.getISBN());
-            preparedStatement.setString(4, book.getPublisher());
-            preparedStatement.setInt(5, book.getNumber());
-            preparedStatement.setString(6, book.getLanguage());
-            preparedStatement.setString(7, book.getImage());
-            preparedStatement.setLong(8, book.getId());
+             PreparedStatement preparedStatement = con.prepareStatement(
+                     "UPDATE books SET title = ?, author= ?, ISBN= ?, publisher= ?, publishingDate=?,"+
+                     " number= ?, language= ?, image=?, description_ua=?, description_en=? WHERE id = ?;")) {
+            log.debug("updateBook: IMAGE" + book.getImage());
+            int k = 1;
+            preparedStatement.setString(k++, book.getTitle());
+            preparedStatement.setString(k++, book.getAuthor());
+            preparedStatement.setLong(k++, book.getISBN());
+            preparedStatement.setString(k++, book.getPublisher());
+            preparedStatement.setDate(k++, book.getPublishingDate());
+            preparedStatement.setInt(k++, book.getNumber());
+            preparedStatement.setString(k++, book.getLanguage());
+            preparedStatement.setString(k++, book.getImage());
+            preparedStatement.setString(k++, book.getDescriptionUa());
+            preparedStatement.setString(k++, book.getDescriptionEn());
+
+            preparedStatement.setLong(k, book.getId());
+
             preparedStatement.executeUpdate();
-            log.debug("updateBook: NUMBER" + book.getNumber());
+            log.debug("updateBook: IMAGE" + book.getImage());
+            log.debug("updateBook: DESCRIPTIONS" + book.getDescriptionUa() + "  " + book.getDescriptionEn());
         } catch (SQLException throwable) {
             logger.error("update book method exception: " + throwable.getSQLState(), throwable);
         }
@@ -176,7 +179,9 @@ public class BookDao implements Dao<Book> {
         preparedStatement.setDate(k++, book.getPublishingDate());
         preparedStatement.setInt(k++, book.getNumber());
         preparedStatement.setString(k++, book.getLanguage());
-        preparedStatement.setString(k, book.getImage());
+        preparedStatement.setString(k++, book.getImage());
+        preparedStatement.setString(k++, book.getDescriptionUa());
+        preparedStatement.setString(k, book.getDescriptionEn());
 
     }
 
@@ -197,6 +202,8 @@ public class BookDao implements Dao<Book> {
             book.setPublishingDate(rs.getDate("publishingDate"));
             book.setLanguage(rs.getString("language"));
             book.setImage(rs.getString("image"));
+            book.setDescriptionUa(rs.getString("description_ua"));
+            book.setDescriptionEn(rs.getString("description_en"));
         } catch (SQLException throwable) {
             logger.error("update book method exception: " + throwable.getSQLState(), throwable);
         }

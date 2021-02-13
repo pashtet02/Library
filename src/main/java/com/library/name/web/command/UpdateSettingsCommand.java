@@ -61,7 +61,7 @@ public class UpdateSettingsCommand extends Command {
 
 		
 		log.debug("Command finished");
-		return Path.PAGE__SETTINGS;
+		return Path.PAGE_SETTINGS;
 	}
 
 }

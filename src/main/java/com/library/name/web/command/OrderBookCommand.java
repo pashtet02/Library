@@ -65,13 +65,13 @@ public class OrderBookCommand extends Command {
                 throwables.printStackTrace();
                 String errorMessage = throwables.getMessage();
                 req.setAttribute("errorMessage", errorMessage);
-                return Path.PAGE__ERROR_PAGE;
+                return Path.PAGE_ERROR_PAGE;
             }
             req.setAttribute("commandName", "catalog");
-            return Path.PAGE__SUCCESS_PAGE;
+            return Path.PAGE_SUCCESS_PAGE;
         }
 
-        return Path.PAGE__ORDER_BOOK;
+        return Path.PAGE_ORDER_BOOK;
     }
 }
 

@@ -13,7 +13,6 @@ import org.apache.log4j.Logger;
 public class UserDao implements Dao<User> {
 
     private static UserDao userDao;
-    private static BookDao bookDao;
     private static final Logger logger = Logger.getLogger(UserDao.class);
 
     public static UserDao getInstance() {
@@ -82,6 +81,7 @@ public class UserDao implements Dao<User> {
     }
 
     public List<Book> getUserBooks(User user) {
+        BookDao bookDao;
         List<Book> books = new ArrayList<>();
         try (Connection con = getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.SELECT_ALL_USER_BOOKS)
@@ -97,50 +97,6 @@ public class UserDao implements Dao<User> {
             logger.error("getUserBooks() userDao exception: " + throwable.getSQLState(), throwable);
         }
         return books;
-    }
-
-    public void setBookForUser(User user, Book book) {
-        Connection con = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            con = getConnection();
-            con.setAutoCommit(false);
-            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
-
-            //set users_books value
-            preparedStatement = con.prepareStatement(SQLConstants.SET_BOOK);
-            preparedStatement.setLong(1, user.getId());
-            preparedStatement.setLong(2, book.getId());
-            preparedStatement.executeUpdate();
-
-            //decrement book.number;
-            book.setNumber(book.getNumber() - 1);
-            bookDao = BookDao.getInstance();
-            bookDao.save(book);
-
-            con.commit();
-        } catch (SQLException throwable) {
-            try {
-                if (con != null) {
-                    con.rollback();
-                }
-            } catch (SQLException e) {
-                //FIX THIS METHOD OR DELETE IT
-            } finally {
-
-            }
-        } finally {
-            if (preparedStatement != null) {
-                close(preparedStatement);
-            }
-            if (con != null) {
-                close(con);
-            }
-        }
-    }
-
-    public static void setBookForUser(Connection con, User user, Book book) {
-
     }
 
     public User getUserByLoginAndPassword(String login, String password) {
@@ -215,7 +171,7 @@ public class UserDao implements Dao<User> {
             pstmt.setDouble(k++, user.getFine());
             pstmt.setString(k++, user.getRole().toUpperCase(Locale.ROOT));
             pstmt.setBoolean(k++, user.isBanned());
-            pstmt.setString(k++, user.getUserLocale());
+            pstmt.setString(k, user.getUserLocale());
 
             if (pstmt.executeUpdate() > 0) {
                 rs = pstmt.getGeneratedKeys();
@@ -268,7 +224,7 @@ public class UserDao implements Dao<User> {
         }
     }
 
-    public void updateRoleById(User user, long id) {
+    public void updateRoleById(User user) {
         try (Connection con = getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(
                      "update users set fine = ?, role = ?, isBanned = ? where id =?")) {
@@ -299,10 +255,10 @@ public class UserDao implements Dao<User> {
             preparedStatement.setDouble(k++, user.getFine());
             preparedStatement.setInt(k++, user.isBanned() ? 1 : 0);
             preparedStatement.setString(k++, user.getUserLocale());
-            preparedStatement.setLong(k++, user.getId());
+            preparedStatement.setLong(k, user.getId());
             preparedStatement.executeUpdate();
             logger.debug("updated userid: " + user.getId());
-            System.out.println("UPDATED USER !!!!" + user);
+           log.error("UPDATED USER !!!!" + user);
         } catch (SQLException throwable) {
             logger.error("update() userDao exception: "
                     + throwable.getSQLState(), throwable);

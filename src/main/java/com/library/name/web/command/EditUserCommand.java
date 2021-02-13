@@ -24,17 +24,18 @@ public class EditUserCommand extends Command {
         log.debug("Command starts");
 
         // UPDATE USER ////////////////////////////////////////////////////////
-        if (request.getParameter("userId") != null && !request.getParameter("userId").isEmpty()){
-            System.out.println("IF WORKS userId:" + request.getParameter("userId"));
-            return Path.PAGE__EDIT_USER;
+        String userId = request.getParameter("userId");
+        if ( userId != null && !userId.isEmpty()){
+            log.debug("IF WORKS userId:" + userId);
+            return Path.PAGE_EDIT_USER;
         }
 
         boolean updateUser = false;
         User user = new User();
-        String userId = request.getParameter("id");
-        if (userId != null && !userId.isEmpty()) {
-            long userID = Long.parseLong(userId);
-            user = userDao.get(userID);
+        String userID = request.getParameter("id");
+        if (userID != null && !userID.isEmpty()) {
+            long id = Long.parseLong(userID);
+            user = userDao.get(id);
         }
 
         String role = request.getParameter("role");
@@ -45,9 +46,9 @@ public class EditUserCommand extends Command {
 
         String isBanned = request.getParameter("isBanned");
         if (isBanned != null && !isBanned.isEmpty()) {
-            System.out.println("SET USER BANNED: " + isBanned.equals("true"));
+           log.debug("SET USER BANNED: " + isBanned.equals("true"));
             user.setBanned(isBanned.equals("true"));
-            System.out.println("USER: banned " + user.isBanned());
+            log.debug("USER: banned " + user.isBanned());
             updateUser = true;
         }
 
@@ -58,6 +59,6 @@ public class EditUserCommand extends Command {
         log.debug("Command finished");
         String message = "User: " + user.getUsername() + " changed succesfully";
         request.setAttribute("message", message);
-        return Path.PAGE__SUCCESS_PAGE;
+        return Path.PAGE_SUCCESS_PAGE;
     }
 }

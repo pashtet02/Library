@@ -4,14 +4,14 @@
 <html>
 <head>
     <c:set var="title" value="Settings" scope="page" />
-    <%@ include file="../../../header.jsp" %>
+    <%@ include file="../../jspf/directive/header.jsp" %>
 </head>
 
 
 <body>
 <table id="main-container">
 
-    <%@ include file="../../../navbar.jsp" %>
+    <%@ include file="../../jspf/directive/navbar.jsp" %>
     <tr>
         <td class="content">
             <%-- CONTENT --%>

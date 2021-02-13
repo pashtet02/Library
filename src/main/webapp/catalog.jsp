@@ -5,24 +5,24 @@
 <html>
 <head>
     <title>Book Catalog</title>
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="WEB-INF/jspf/directive/header.jsp"/>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="static/catalog.css" rel="stylesheet">
 </head>
 <div class="container">
-    <jsp:include page="navbar.jsp"/>
-    <fmt:setBundle basename="global" var="glo"/>
+    <jsp:include page="WEB-INF/jspf/directive/navbar.jsp"/>
+
     <c:set var="command" value="catalog" scope="request"/>
     <div class="form-row">
         <div class="form-group col md-6">
+            <div class="container">
             <form method="post" action="<c:url value="/controller"/>" class="form-inline" accept-charset="UTF-8">
                 <input type="hidden" name="command" value="catalog"/>
                 <input type="text" name="filter" id="filter"
-                       placeholder="<fmt:message key="global.searchByAuthorPlaceholder" bundle="${glo}"/>">
+                       placeholder="<fmt:message key="global.searchByAuthorPlaceholder"/>">
                 <div class="btn-group">
-                    <button type="submit" class="btn btn-primary"><fmt:message key="global.searchButton"
-                                                                               bundle="${glo}"/></button>
+                    <button type="submit" class="btn btn-primary"><fmt:message key="global.searchButton"/></button>
                     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
@@ -33,22 +33,21 @@
                     </div>
                 </div>
             </form>
-
-
+        </div>
         </div>
         <div class="form-row">
             <form method="get" action="<c:url value="/controller"/>" class="form-inline" accept-charset="UTF-8">
                 <input type="hidden" name="command" value="catalog"/>
-                <label for="sort"><fmt:message key="global.sortByLabel" bundle="${glo}"/></label>
+                <label for="sort"><fmt:message key="global.sortByLabel"/></label>
                 <select id="sort" name="sort">
                     <option value="title"><fmt:message key="global.sortParamTitle"
-                                                       bundle="${glo}"/></option>
-                    <option value="author"><fmt:message key="global.sortParamAuthor" bundle="${glo}"/></option>
+                    /></option>
+                    <option value="author"><fmt:message key="global.sortParamAuthor"/></option>
                     <option value="publisher"><fmt:message key="global.sortParamPublisher"
-                                                           bundle="${glo}"/></option>
+                    /></option>
                     <option value="publishingDate">Publishing date</option>
                 </select>
-                <input type="submit" value="<fmt:message key="global.sortButton" bundle="${glo}"/>">
+                <input type="submit" value="<fmt:message key="global.sortButton"  />">
             </form>
         </div>
 
@@ -66,19 +65,24 @@
                                     <h5 class="card-title"><c:out value="${book.getTitle()}"/></h5>
                                     <h6 class="card-subtitle mb-2 text-muted"><c:out value="${book.getAuthor()}"/></h6>
                                     <p class="card-text">ISBN: <c:out value="${book.getISBN()}"/><br>
-                                        <fmt:message key="global.bookPublisher" bundle="${glo}"/> <c:out
+                                        <fmt:message key="global.bookPublisher"/> <c:out
                                                 value="${book.getPublisher()}"/><br>
-                                        <fmt:message key="global.booksNumber" bundle="${glo}"/> <c:out
+                                        <fmt:message key="global.booksNumber"/> <c:out
                                                 value="${book.getNumber()}"/><br>
-                                        <fmt:message key="global.bookLanguage" bundle="${glo}"/> <c:out
+                                        <fmt:message key="global.bookLanguage"/> <c:out
                                                 value="${book.getLanguage()}"/></p>
-                                    <c:if test="${sessionScope.userId > 0 && sessionScope.userId != null}">
-                                        <a href="<c:url value="/controller?command=orderBook&userId=${sessionScope.userId}&bookId=${book.getId()}"/>"
-                                           class="card-link"><fmt:message key="global.orderBookButton"
-                                                                          bundle="${glo}"/></a>
-                                    </c:if>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.user.role == 'USER'}">
+                                            <a href="<c:url value="/controller?command=orderBook&userId=${sessionScope.userId}&bookId=${book.getId()}"/>"
+                                               class="card-link"><fmt:message key="global.orderBookButton"/></a>
+                                        </c:when>
+                                        <c:when test="${sessionScope.user.role == 'ADMIN'}">
+                                            <a href="<c:url value="/controller?command=editBook&bookId=${book.getId()}"/>"
+                                               class="card-link">edit</a>
+                                        </c:when>
+                                    </c:choose>
                                     <a href="<c:url value="/controller?command=catalog&bookid=${book.getId()}"/>"
-                                       class="card-link"><fmt:message key="global.bookDetails" bundle="${glo}"/></a>
+                                       class="card-link"><fmt:message key="global.bookDetails"/></a>
                                 </div>
                             </div>
                         </div>
@@ -96,25 +100,31 @@
                                 <h6 class="card-subtitle mb-2 text-muted"><c:out
                                         value="${requestScope.book.getAuthor()}"/></h6>
                                 <p class="card-text">ISBN: <c:out value="${requestScope.book.getISBN()}"/><br>
-                                    <fmt:message key="global.bookPublisher" bundle="${glo}"/> <c:out
+                                    <fmt:message key="global.bookPublisher"/> <c:out
                                             value="${requestScope.book.getPublisher()}"/><br>
-                                    <fmt:message key="global.booksNumber" bundle="${glo}"/> <c:out
+                                    <fmt:message key="global.booksNumber"/> <c:out
                                             value="${requestScope.book.getNumber()}"/><br>
-                                    <fmt:message key="global.bookLanguage" bundle="${glo}"/> <c:out
+                                    <fmt:message key="global.bookLanguage"/> <c:out
                                             value="${requestScope.book.getLanguage()}"/></p>
-                                <c:if test="${sessionScope.userId > 0  && sessionScope.userId != null}">
-                                    <a href="<c:url value="/controller?command=orderBook&userId=${sessionScope.userId}&bookId=${requestScope.book.getId()}"/>"
-                                       class="card-link"><fmt:message key="global.orderBookButton" bundle="${glo}"/></a>
-                                </c:if>
+                                <c:choose>
+                                    <c:when test="${sessionScope.user.role == 'USER'}">
+                                        <a href="<c:url value="/controller?command=orderBook&userId=${sessionScope.userId}&bookId=${book.getId()}"/>"
+                                           class="card-link"><fmt:message key="global.orderBookButton"/></a>
+                                    </c:when>
+                                    <c:when test="${sessionScope.user.role == 'ADMIN'}">
+                                        <a href="<c:url value="/controller?command=editBook&userId=${sessionScope.userId}&bookId=${book.getId()}"/>"
+                                           class="card-link">edit</a>
+                                    </c:when>
+                                </c:choose>
                                 <a href="<c:url value="/controller?command=catalog&bookid=${requestScope.book.getId()}"/>"
-                                   class="card-link"><fmt:message key="global.bookDetails" bundle="${glo}"/></a>
+                                   class="card-link"><fmt:message key="global.bookDetails"/></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </c:when>
             <c:otherwise>
-                <p><fmt:message key="global.noBookFound" bundle="${glo}"/></p>
+                <p><fmt:message key="global.noBookFound"/></p>
             </c:otherwise>
         </c:choose>
     </div>

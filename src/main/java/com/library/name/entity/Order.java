@@ -116,7 +116,7 @@ public class Order {
         this.startDate = startDate;
     }
 
-    private Timestamp startDate = new Timestamp(System.currentTimeMillis());
+    private Timestamp startDate;
     private Date returnDate;
     private String status;
 

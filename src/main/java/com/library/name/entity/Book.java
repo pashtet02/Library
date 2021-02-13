@@ -1,7 +1,5 @@
 package com.library.name.entity;
 
-import java.sql.Date;
-
 public class Book extends Entity {
     private long id;
     private String title;
@@ -48,6 +46,7 @@ public class Book extends Entity {
         this.language = language;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
@@ -114,21 +113,13 @@ public class Book extends Entity {
                 ", publisher='" + publisher + '\'' +
                 ", publishingDate=" + publishingDate +
                 ", number=" + number +
-                ", language=" + language +
-                ", image=" + image +
+                ", language='" + language + '\'' +
+                ", image='" + image + '\'' +
+                ", descriptionUa='" + descriptionUa + '\'' + "\n" +
+                ", descriptionEn='" + descriptionEn + '\'' + "\n" +
                 '}';
     }
 
-    public Book(long id, String title, String author, long ISBN, String publisher, Date publishingDate, int number, String language) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.ISBN = ISBN;
-        this.publisher = publisher;
-        this.publishingDate = publishingDate;
-        this.number = number;
-        this.language = language;
-    }
     public Book(){
         //hello
     }

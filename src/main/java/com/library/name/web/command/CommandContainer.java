@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class CommandContainer {
+    private CommandContainer(){
+        //hello
+    }
 
     private static final Logger log = Logger.getLogger(CommandContainer.class);
 
@@ -15,15 +18,17 @@ public class CommandContainer {
         //Common commands
         commands.put("login", new LoginCommand());
         commands.put("noCommand", new NoCommand());
-        commands.put("listOrders", new ListOrdersCommand());
         commands.put("catalog", new CatalogCommand());
         commands.put("logout", new LogoutCommand());
         commands.put("registration", new RegistrationCommand());
+
+
+
+        //User commands
         commands.put("orderBook", new OrderBookCommand());
         commands.put("viewSettings", new ViewSettingsCommand());
         commands.put("updateSettings", new UpdateSettingsCommand());
-
-        //User commands
+        commands.put("listOrders", new ListOrdersCommand());
 
         //Librarian commands
         commands.put("librarianMenu", new LibrarianMenuCommand());
@@ -31,6 +36,7 @@ public class CommandContainer {
 
         //Admin commands
         commands.put("addBook", new AddBookCommand());
+        commands.put("editBook", new EditBookCommand());
         commands.put("addImage", new AddFileCommand());
         commands.put("editUser", new EditUserCommand());
         commands.put("usersList", new UsersListCommand());

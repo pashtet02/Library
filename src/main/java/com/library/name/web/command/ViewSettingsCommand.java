@@ -22,7 +22,7 @@ public class ViewSettingsCommand extends Command {
 		log.debug("Command starts");
 		
 		log.debug("Command finished");
-		return Path.PAGE__SETTINGS;
+		return Path.PAGE_SETTINGS;
 	}
 
 }

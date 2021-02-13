@@ -1,5 +1,6 @@
 package com.library.name.web.command;
 
+import com.library.name.Path;
 import com.library.name.dao.BookDao;
 import com.library.name.entity.Book;
 import com.library.name.entity.User;
@@ -38,21 +39,22 @@ public class CatalogCommand extends Command {
         //search
         String filter = request.getParameter("filter");
         if (filter != null && !filter.isEmpty()) {
-            System.out.println("request filter : " + filter);
+            log.debug("request filter : " + filter);
             book = bookDao.getByTitle(filter);
-            System.out.println("CATALOG FILTER COMMAND BOOK " + book);
+            //log.debug("CATALOG FILTER COMMAND BOOK " + book);
             request.setAttribute("book", book);
-            return "catalog.jsp";
+            return Path.PAGE_CATALOG;
         }
 
 
         String bookId = request.getParameter("bookid");
         if (bookId != null && !bookId.isEmpty()) {
             int id = Integer.parseInt(bookId);
-            System.out.println(bookId + " bookId PARAM ");
+            log.debug(bookId + " bookId PARAM ");
             book = bookDao.get(id);
+            log.debug("BOOK CATALOG DETAILS: " + book);
             request.setAttribute("book", book);
-            return "aboutBook.jsp";
+            return Path.PAGE_ABOUT_BOOK;
         }
 
         //search
@@ -70,21 +72,21 @@ public class CatalogCommand extends Command {
             }
 
             books = bookDao.getSomeBooks(pageid, RECORDS_ON_PAGE, sortParam);
+
             request.setAttribute("listPagedBooks", books);
 
-            System.out.println(books + "BOOKS");
+            //log.debug(books + "BOOKS");
             session.setAttribute("page", pageid);
-            System.out.println(session.getAttribute("page"));
 
             if (session.getAttribute("user") != null) {
                 User user = (User) session.getAttribute("user");
                 session.setAttribute("userId", user.getId());
             }
-            return "/catalog.jsp";
+            return Path.PAGE_CATALOG;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return "catalog.jsp";
+        return Path.PAGE_CATALOG;
     }
 }

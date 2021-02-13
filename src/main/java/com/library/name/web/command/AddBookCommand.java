@@ -16,8 +16,6 @@ import java.sql.SQLException;
 public class AddBookCommand extends Command {
 
     private static final Logger log = Logger.getLogger(AddBookCommand.class);
-    private String uploadPath = "E:\\upload";
-
 
     @Override
     public String execute(HttpServletRequest req,
@@ -26,10 +24,10 @@ public class AddBookCommand extends Command {
         log.debug("Command starts");
 
         if (req.getParameter("title") == null) {
-            return Path.PAGE__ADD_BOOK;
+            return Path.PAGE_ADD_BOOK;
         }
 
-        System.out.println("ADD BOOK COMMAND ");
+        log.debug("ADD BOOK COMMAND ");
         BookDao bookDao = BookDao.getInstance();
 
         Book book = new Book();
@@ -41,8 +39,15 @@ public class AddBookCommand extends Command {
         Date date = Date.valueOf(req.getParameter("publishingDate"));
         book.setPublishingDate(date);
 
-        book.setLanguage(req.getParameter("language"));
+        String language = req.getParameter("language");
+        System.out.println("Language: " + language);
+        book.setLanguage(language);
         book.setNumber(Integer.parseInt(req.getParameter("number")));
+
+        System.out.println("DESCRIPTION: " + req.getParameter("description"));
+        if (language == "ukrainian"){
+            book.setDescriptionUa(req.getParameter("description"));
+        } else book.setDescriptionEn(req.getParameter("description"));
 
         try {
             bookDao.save(book);
@@ -50,7 +55,7 @@ public class AddBookCommand extends Command {
             String errorMessage = throwables.getMessage();
             req.setAttribute("errorMessage", errorMessage);
             log.error("Set the request attribute: errorMessage --> " + errorMessage);
-            return Path.PAGE__ERROR_PAGE;
+            return Path.PAGE_ERROR_PAGE;
         }
 
         log.debug("Command finished");
@@ -58,6 +63,6 @@ public class AddBookCommand extends Command {
         req.setAttribute("massage", message);
         HttpSession session = req.getSession();
         session.setAttribute("bookTitle", book.getTitle());
-        return Path.PAGE__ADD_IMAGE;
+        return Path.PAGE_ADD_IMAGE;
     }
 }

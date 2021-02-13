@@ -7,7 +7,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Level;
 
 
 public class OrderDao implements Dao<Order> {
@@ -107,7 +106,7 @@ public class OrderDao implements Dao<Order> {
             while (rs.next()) {
                 orders.add(mapOrder(rs));
             }
-            if (orders.size() > 0) {
+            if (!orders.isEmpty()) {
                 logger.info("getAllOrders() get successfully number of orders: " + orders.size());
             }
         } catch (SQLException ex) {
@@ -150,13 +149,7 @@ public class OrderDao implements Dao<Order> {
 
     @Override
     public void update(Order order) {
-        /** try (Connection con = getConnection();
-         PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.UPDATE_BOOK)) {
-         setBookToPrepStmt(order, preparedStatement);
-         preparedStatement.executeUpdate();
-         } catch (SQLException throwable) {
-         logger.error("update book method exception: " + throwable.getSQLState(), throwable);
-         }*/
+        throw new IllegalArgumentException("pishov naher!");
     }
 
     private void setOrderToPrepStmt(Order order, PreparedStatement preparedStatement) throws SQLException {

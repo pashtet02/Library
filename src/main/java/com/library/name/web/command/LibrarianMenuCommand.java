@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibrarianMenuCommand extends Command {
@@ -34,7 +35,7 @@ public class LibrarianMenuCommand extends Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         log.debug("Commands starts");
-        List<Order> ordersList = null;
+        List<Order> ordersList = new ArrayList<>();
 
         String status = request.getParameter("action");
         String orderId = request.getParameter("orderId");
@@ -50,13 +51,12 @@ public class LibrarianMenuCommand extends Command {
 
             String date = request.getParameter("returnDate");
             if (date != null && !date.isEmpty()){
-                System.out.println("RETURN DATE:");
                 orderDao.setReturnDate(id, Date.valueOf(date));
             }
 
             String librarianComment = request.getParameter("librarianComment");
             if (librarianComment != null && !librarianComment.isEmpty()){
-                System.out.println("LIBRARIAN COMMENT: " + librarianComment);
+                log.debug("LIBRARIAN COMMENT: " + librarianComment);
                 orderDao.setLibrarianComment(id, librarianComment);
             }
         }
@@ -66,7 +66,7 @@ public class LibrarianMenuCommand extends Command {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        System.out.println("ORDERS LIST:" + ordersList);
+        log.debug("ORDERS LIST:" + ordersList);
 
         for (Order order : ordersList) {
             Book book = bookDao.get(order.getBookId());
@@ -88,6 +88,6 @@ public class LibrarianMenuCommand extends Command {
         log.trace("Set the request attribute: ordersList --> " + ordersList);
 
         log.debug("Commands finished");
-        return Path.PAGE__LIBRARIAN_MENU_PAGE;
+        return Path.PAGE_LIBRARIAN_MENU_PAGE;
     }
 }

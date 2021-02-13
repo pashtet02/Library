@@ -9,10 +9,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Add book</title>
     <link href="/webapp/static/catalog.css" rel="stylesheet"/>
-    <jsp:include page="../../../header.jsp"/>
+    <jsp:include page="../../jspf/directive/header.jsp"/>
 </head>
 <body>
-<jsp:include page="../../../navbar.jsp"/>
+<jsp:include page="../../jspf/directive/navbar.jsp"/>
 <div class="container">
 
     <form action="<c:url value="/controller?command=addBook"/>" method="post">
@@ -37,10 +37,10 @@
         <input class="form-control" type="date" placeholder="Enter publishing date" name="publishingDate" id="publishingDate" required><br>
 
         <label for="exampleFormControlTextarea1">Add description</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea><br>
+        <textarea class="form-control" id="exampleFormControlTextarea1" maxlength="512" name="description" rows="3" required></textarea><br>
 
         <label for="exampleFormControlSelect1">Book language</label>
-        <select class="form-control" id="exampleFormControlSelect1">
+        <select name="language" class="form-control" id="exampleFormControlSelect1">
             <option value="ukrainian">Ukrainian</option>
             <option value="english">English</option>
         </select>

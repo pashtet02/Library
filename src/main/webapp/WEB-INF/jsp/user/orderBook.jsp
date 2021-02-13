@@ -7,10 +7,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Add book</title>
     <link href="../../../static/custom.css" rel="stylesheet"/>
-    <jsp:include page="../../../header.jsp"/>
+    <jsp:include page="../../jspf/directive/header.jsp"/>
 </head>
 <body>
-<jsp:include page="../../../navbar.jsp"/>
+<jsp:include page="../../jspf/directive/navbar.jsp"/>
 <div class="container">
 <form method="post" action="<c:url value="/controller"/>">
     <div class="container">

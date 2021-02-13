@@ -1,5 +1,7 @@
 package com.library.name.web.command;
 
+import com.library.name.Path;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +24,6 @@ public class LogoutCommand extends Command{
         if (session != null)
             session.invalidate();
 
-        return "login.jsp";
+        return Path.PAGE_LOGIN;
     }
 }

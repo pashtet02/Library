@@ -62,6 +62,7 @@ public class User extends Entity{
         this.mail = mail;
     }
 
+    @Override
     public Long getId() {
         return id;
     }

@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static com.library.name.service.Password.checkPassword;
 import static com.library.name.service.Password.hashPassword;
 
-public class RegistrationCommand extends Command{
+public class RegistrationCommand extends Command {
     private final UserDao userDao = UserDao.getInstance();
-    private static final Logger log = Logger.getLogger(ListOrdersCommand.class);
+    private static final Logger log = Logger.getLogger(RegistrationCommand.class);
+    private static String LOGIN = "login";
+    private static String password = "password";
+
     /**
      * Execution method for command.
      *
@@ -26,11 +28,11 @@ public class RegistrationCommand extends Command{
      */
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
-        String login = req.getParameter("login");
+        String login = req.getParameter(LOGIN);
         User userTest = userDao.getUserByLogin(login);
         // error handler
         String errorMessage;
-        String forward = Path.PAGE__ERROR_PAGE;
+        String forward = Path.PAGE_ERROR_PAGE;
         if (userTest.getUsername() != null) {
             errorMessage = "Such user already exists";
             req.setAttribute("errorMessage", errorMessage);
@@ -39,20 +41,20 @@ public class RegistrationCommand extends Command{
         }
 
         User user = new User();
-        user.setUsername(req.getParameter("login"));
-        //To hash passwords
+        user.setUsername(req.getParameter(LOGIN));
 
-        String pass1 = req.getParameter("password");
+        //To hash passwords
+        String pass1 = req.getParameter(password);
         String pass2 = req.getParameter("password-repeat");
 
-        if (!pass1.equals(pass2)){
+        if (!pass1.equals(pass2)) {
             String errMessage = "your passwords doesn`t match!!!";
             req.setAttribute("errMessage", errMessage);
-            return "registration.jsp";
+            return Path.PAGE_REGISTRATION;
         }
 
         String computedHash = hashPassword(pass1);
-        System.out.println();
+
         log.debug("COMPUTED HASH: " + computedHash);
         user.setPassword(computedHash);
 
@@ -66,14 +68,14 @@ public class RegistrationCommand extends Command{
 
         try {
             userDao.save(user);
-            req.getSession().setAttribute("login", req.getParameter("login"));
-            req.getSession().setAttribute("password", req.getParameter("password"));
+            req.getSession().setAttribute("login", req.getParameter(LOGIN));
+            req.getSession().setAttribute("password", req.getParameter(password));
             req.getSession().setAttribute("role", user.getRole());
             req.getSession().setAttribute("user", user);
             return "/controller?command=catalog&page=1";
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            log.error("REGISTRATION COMMAND: " + throwables.getMessage() + throwables.getSQLState()) ;
+            log.error("REGISTRATION COMMAND: " + throwables.getMessage() + throwables.getSQLState());
             return forward;
         }
     }

@@ -41,8 +41,8 @@ public class ListOrdersCommand extends Command {
 
         User user = (User) session.getAttribute("user");
         ordersList = orderDao.getByUserId(user.getId());
-        System.out.println("USER: in list orders" + user);
-        System.out.println("ORDERS LIST:" + ordersList);
+        log.debug("USER: in list orders" + user);
+        log.debug("ORDERS LIST:" + ordersList);
 
         for (Order order : ordersList) {
             Book book = bookDao.get(order.getBookId());
@@ -56,7 +56,7 @@ public class ListOrdersCommand extends Command {
                 e.printStackTrace();
             }
             SimpleDateFormat dt1 = new SimpleDateFormat("dd-M-yyyy");
-            System.out.println(dt1.format(date));
+           log.debug(dt1.format(date));
             order.setBookTitle(book.getTitle());
             order.setBookAuthor(book.getAuthor());
         }
@@ -68,7 +68,7 @@ public class ListOrdersCommand extends Command {
         log.trace("Set the request attribute: ordersList --> " + ordersList);
 
         log.debug("Commands finished");
-        return Path.PAGE__USER_BOOKS;
+        return Path.PAGE_USER_BOOKS;
     }
 
 }
