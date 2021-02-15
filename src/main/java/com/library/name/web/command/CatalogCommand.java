@@ -39,15 +39,34 @@ public class CatalogCommand extends Command {
         Book book;
         List<Book> books;
 
-        //search
+        //search by parameter
+        String filterParam = request.getParameter("filterParam");
         String filter = request.getParameter("filter");
+
+        if (filterParam != null && !filterParam.isEmpty()) {
+            log.debug("request filterParam : " + filterParam);
+            if (filterParam.equals("author")){
+                System.out.println("FILTER: " + filterParam + filter);
+                books = bookDao.getAllByAuthor(filter);
+                request.setAttribute("listPagedBooks", books);
+                session.setAttribute("filterParam", filterParam);
+            }
+            else {
+                book = bookDao.getByTitle(filter);
+                session.setAttribute("filterParam", filterParam);
+                request.setAttribute("book", book);
+            }
+            return Path.PAGE_CATALOG;
+        }
+
+       /* //search
         if (filter != null && !filter.isEmpty()) {
             log.debug("request filter : " + filter);
             book = bookDao.getByTitle(filter);
             request.setAttribute("book", book);
             return Path.PAGE_CATALOG;
         }
-
+*/
         //About book page
         String bookId = request.getParameter("bookid");
         if (bookId != null && !bookId.isEmpty()) {

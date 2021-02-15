@@ -20,7 +20,7 @@
                             <c:when test="${sessionScope.role == 'LIBRARIAN'}">
                                 <a class="nav-link" href="<c:url value="/controller?command=librarianMenu"/>"><fmt:message key="global.librarianActiveOrders"/></a>
                             </c:when>
-                            <c:when test="${sessionScope.role == 'USER' || sessionScope.role == 'ADMIN'}">
+                            <c:when test="${sessionScope.role == 'USER'}">
                                 <a class="nav-link" href="<c:url value="/controller?command=listOrders"/>"><fmt:message key="global.myBooksLabel"/></a>
                             </c:when>
                         </c:choose>

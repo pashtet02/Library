@@ -1,12 +1,11 @@
 package com.library.name.dao;
 
 import com.library.name.entity.Book;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.log4j.Logger;
 
 
 public class BookDao implements Dao<Book> {
@@ -34,7 +33,7 @@ public class BookDao implements Dao<Book> {
             statement.setLong(1, id);
             rs = statement.executeQuery();
             while (rs.next()) {
-               book = mapBook(rs);
+                book = mapBook(rs);
             }
         } catch (SQLException throwable) {
             logger.error("get book method exception: " + throwable.getSQLState());
@@ -45,17 +44,10 @@ public class BookDao implements Dao<Book> {
         return book;
     }
 
-    public List<Book> getAllSortedBy(String columb) throws SQLException {
-        Connection con = getConnection();
-        List<Book> books;
-        books = getAllBooks(con, "SELECT * FROM books ORDER BY " + columb);
-        return books;
-    }
-
     public List<Book> getSomeBooks(int start, int numberOfBooks, String orderParam) throws SQLException {
         Connection con = getConnection();
         List<Book> books;
-        books = getAllBooks(con, "select * from books where number > 0 order by + " + orderParam +" limit " + (start - 1 ) * numberOfBooks + "," + numberOfBooks);
+        books = getAllBooks(con, "select * from books where number > 0 order by + " + orderParam + " limit " + (start - 1) * numberOfBooks + "," + numberOfBooks);
         return books;
     }
 
@@ -88,29 +80,36 @@ public class BookDao implements Dao<Book> {
     }
 
     public List<Book> getAllByAuthor(String author) {
-        List<Book> books = null;
+        List<Book> books = new ArrayList<>();
 
-        Connection con;
-        try {
-            con = getConnection();
-            books = getAllBooks(con, "select * from books where author = " + author);
+        try (Connection con = getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement("select * from books where author = ?")
+        ) {
+            preparedStatement.setString(1, author);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    books.add(mapBook(resultSet));
+                    log.debug(books);
+                }
+            }
         } catch (SQLException throwables) {
-            log.error("Get all by author: " + throwables.getMessage() + throwables.getSQLState() );
+            log.error("Get all by author: " + throwables.getMessage() + throwables.getSQLState());
             throwables.printStackTrace();
         }
         return books;
     }
-    public void incrementNumberBook(long id){
+
+    public void incrementNumberBook(long id) {
         Book book = get(id);
         int i = book.getNumber() + 1;
         book.setNumber(i);
         update(book);
     }
 
-    public void decrementNumberBook(long id){
+    public void decrementNumberBook(long id) {
         Book book = get(id);
         int i = book.getNumber() - 1;
-        if (i > 0){
+        if (i > 0) {
             book.setNumber(book.getNumber() - 1);
             update(book);
         }
@@ -132,7 +131,7 @@ public class BookDao implements Dao<Book> {
                     book.setId(rs.getLong(1));
                 }
             }
-            logger.info("book saved successfully book id: "+ book.getId());
+            logger.info("book saved successfully book id: " + book.getId());
         } catch (SQLException throwable) {
             logger.error("Book save() error: " + throwable.getSQLState(), throwable);
             throw throwable;
@@ -145,8 +144,8 @@ public class BookDao implements Dao<Book> {
     public void update(Book book) {
         try (Connection con = getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(
-                     "UPDATE books SET title = ?, author= ?, ISBN= ?, publisher= ?, publishingDate=?,"+
-                     " number= ?, language= ?, image=?, description_ua=?, description_en=? WHERE id = ?;")) {
+                     "UPDATE books SET title = ?, author= ?, ISBN= ?, publisher= ?, publishingDate=?," +
+                             " number= ?, language= ?, image=?, description_ua=?, description_en=? WHERE id = ?;")) {
             log.debug("updateBook: IMAGE" + book.getImage());
             int k = setBookToPrepStmt(book, preparedStatement);
 

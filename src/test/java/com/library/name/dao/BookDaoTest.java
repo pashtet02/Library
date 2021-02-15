@@ -1,55 +1,81 @@
 package com.library.name.dao;
 
 import com.library.name.entity.Book;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+
+import javax.xml.crypto.Data;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class BookDaoTest {
+    BookDao bookDao = BookDao.getInstance();
+    Book book = new Book();
 
     @Test
     public void getInstance() {
+        Assert.assertTrue(bookDao instanceof BookDao);
     }
 
     @Test
     public void get() {
+        Book book = null;
+        book = bookDao.get(1);
+        Assert.assertNotNull(book);
     }
 
     @Test
-    public void getAllSortedBy() {
+    public void getSomeBooks() throws SQLException {
+        List<Book> list = new ArrayList<>();
+        list = bookDao.getSomeBooks(1, 10, "id");
+        Assert.assertEquals(10, list.size() );
     }
 
     @Test
-    public void getSomeBooks() {
+    public void getAll() throws SQLException {
+        List<Book> books = new ArrayList<>();
+        books = bookDao.getAll();
+        Assert.assertTrue(books.size() > 0);
     }
 
     @Test
-    public void getAll() {
+    public void getAllByAuthor() throws SQLException {
+        List<Book> books = new ArrayList<>();
+        books = bookDao.getAllByAuthor("J. Rouling");
+        Assert.assertTrue(books.size() > 0);
     }
 
     @Test
-    public void getAllByAuthor() {
+    public void save() throws SQLException{
+        book.setNumber(5);
+        book.setISBN(1235765874125L);
+        book.setAuthor("TEST12");
+        book.setTitle("TEST12");
+        book.setLanguage("ua");
+        book.setPublisher("asfasfas");
+        book.setPublishingDate(Date.valueOf("1922-12-12"));
+        book.setDescriptionEn("heheheh");
+        book.setId(-5);
+        bookDao.save(book);
+
+        book = bookDao.getByTitle("TEST1");
+        Assert.assertTrue(book.getId()>0);
     }
 
     @Test
-    public void incrementNumberBook() {
-        Book book = new Book();
-        book.setTitle("fdnfklsnflsf");
-        book.setAuthor("fdnfklsnflsf");
-        book.setISBN(1254789658213L);
-        book.setNumber(10);
-    }
+    public void update() throws SQLException {
+        book = bookDao.getByTitle("TEST1");
 
-    @Test
-    public void decrementNumberBook() {
-    }
+        book.setNumber(5000);
+        bookDao.update(book);
 
-    @Test
-    public void save() {
-    }
-
-    @Test
-    public void update() {
+        Assert.assertEquals(5000, book.getNumber());
     }
 
     @Test
@@ -58,5 +84,8 @@ public class BookDaoTest {
 
     @Test
     public void getByTitle() {
+        Book book = null;
+        book = bookDao.getByTitle("test book");
+        Assert.assertNotNull(book);
     }
 }

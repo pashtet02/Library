@@ -86,6 +86,7 @@ public class LoginCommand extends Command {
         request.getSession().setAttribute("login", login);
         request.getSession().setAttribute("role", user.getRole());
         request.getSession().setAttribute("user", user);
+        request.getSession().setAttribute("filterParam", "title");
         log.debug("IS BANNED " + user.isBanned());
         request.getSession().setAttribute("isBanned", Boolean.toString(user.isBanned()));
 

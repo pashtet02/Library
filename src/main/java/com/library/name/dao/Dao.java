@@ -6,9 +6,14 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Properties;
+import java.util.logging.Level;
 
 public interface Dao<T> {
     Logger log = Logger.getLogger(Dao.class);
@@ -27,6 +32,14 @@ public interface Dao<T> {
             e.printStackTrace();
         }
         return con;
+        /*Properties properties = new Properties();
+        try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/app.properties")) {
+            properties.load(fileInputStream);
+        } catch (IOException e) {
+            java.util.logging.Logger logger = java.util.logging.Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, e.getMessage(), e);
+        }
+        return DriverManager.getConnection(properties.getProperty("connection.url"));*/
     }
 
     T get(long id);

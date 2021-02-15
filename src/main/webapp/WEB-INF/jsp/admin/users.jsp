@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,14 +14,14 @@
     <thead>
     <tr>
         <th scope="col">Id</th>
-        <th scope="col">username</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">ROLE</th>
-        <th scope="col">Fine</th>
-        <th scope="col">Blocked</th>
-        <th scope="col">UserLocale</th>
-        <th scope="col">Edit</th>
+        <th scope="col"><fmt:message key="users.login"/></th>
+        <th scope="col"><fmt:message key="users.name"/></th>
+        <th scope="col"><fmt:message key="users.email"/></th>
+        <th scope="col"><fmt:message key="users.role"/></th>
+        <th scope="col"><fmt:message key="users.fine"/></th>
+        <th scope="col"><fmt:message key="users.blocked"/></th>
+        <th scope="col"><fmt:message key="users.userLocale"/></th>
+        <th scope="col"><fmt:message key="users.Edit"/></th>
     </tr>
     </thead>
     <tbody>
@@ -44,7 +45,7 @@
             <c:choose>
                 <c:when test="${sessionScope.role == 'ADMIN'}">
                     <td>
-                        <a href="<c:url value="/controller?command=editUser&userId=${user.id}"/>">edit</a>
+                        <a href="<c:url value="/controller?command=editUser&userId=${user.id}"/>"><fmt:message key="users.Edit"/></a>
                     </td>
                 </c:when>
             </c:choose>
@@ -54,6 +55,5 @@
     </tbody>
 </table>
 </div>
-<a href="<c:url value="/controller?command=listOrders"/>">show your orders</a>
 </body>
 </html>

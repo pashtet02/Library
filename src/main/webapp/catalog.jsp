@@ -19,17 +19,16 @@
             <div class="container">
             <form method="post" action="<c:url value="/controller"/>" class="form-inline" accept-charset="UTF-8">
                 <input type="hidden" name="command" value="catalog"/>
-                <input type="text" name="filter" id="filter"
-                       placeholder="<fmt:message key="global.searchByAuthorPlaceholder"/>">
+                <input required type="text" name="filter" id="filter">
                 <div class="btn-group">
-                    <button type="submit" class="btn btn-primary"><fmt:message key="global.searchButton"/></button>
+                    <button type="submit" name="filterParam" value="${sessionScope.filterParam}" class="btn btn-primary"><fmt:message key="global.searchButton"/> by ${sessionScope.filterParam}</button>
                     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Title</a>
-                        <a class="dropdown-item" href="#">Author</a>
+                        <button class="dropdown-item" type="submit" name="filterParam" value="title">Title</button>
+                        <button class="dropdown-item" type="submit" name="filterParam" value="author">Author</button>
                     </div>
                 </div>
             </form>
@@ -89,6 +88,9 @@
                     </div>
 
                 </c:forEach>
+                <c:if test="${requestScope.listPagedBooks.size() == 0}">
+                    <p><fmt:message key="global.noBookFound"/></p>
+                </c:if>
             </c:when>
 
             <c:when test="${requestScope.book.title != null}">
