@@ -2,7 +2,9 @@ package com.library.name.web.command;
 
 import com.library.name.Path;
 import com.library.name.dao.Dao;
+import com.library.name.dao.ReviewDao;
 import com.library.name.dao.UserDao;
+import com.library.name.entity.Review;
 import com.library.name.entity.User;
 import org.apache.log4j.Logger;
 
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Update settings items.
@@ -60,6 +63,10 @@ public class UpdateSettingsCommand extends Command {
 		if (updateUser)
 			userDao.update(user);
 
+
+		ReviewDao reviewDao = ReviewDao.getInstance();
+		List<Review> userReviews = reviewDao.getAllByUserId(user.getId());
+		request.setAttribute("userReviews", userReviews);
 		
 		log.debug("Command finished");
 		return Path.PAGE_SETTINGS;

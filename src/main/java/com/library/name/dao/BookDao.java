@@ -148,17 +148,7 @@ public class BookDao implements Dao<Book> {
                      "UPDATE books SET title = ?, author= ?, ISBN= ?, publisher= ?, publishingDate=?,"+
                      " number= ?, language= ?, image=?, description_ua=?, description_en=? WHERE id = ?;")) {
             log.debug("updateBook: IMAGE" + book.getImage());
-            int k = 1;
-            preparedStatement.setString(k++, book.getTitle());
-            preparedStatement.setString(k++, book.getAuthor());
-            preparedStatement.setLong(k++, book.getISBN());
-            preparedStatement.setString(k++, book.getPublisher());
-            preparedStatement.setDate(k++, book.getPublishingDate());
-            preparedStatement.setInt(k++, book.getNumber());
-            preparedStatement.setString(k++, book.getLanguage());
-            preparedStatement.setString(k++, book.getImage());
-            preparedStatement.setString(k++, book.getDescriptionUa());
-            preparedStatement.setString(k++, book.getDescriptionEn());
+            int k = setBookToPrepStmt(book, preparedStatement);
 
             preparedStatement.setLong(k, book.getId());
 
@@ -170,7 +160,7 @@ public class BookDao implements Dao<Book> {
         }
     }
 
-    private void setBookToPrepStmt(Book book, PreparedStatement preparedStatement) throws SQLException {
+    private int setBookToPrepStmt(Book book, PreparedStatement preparedStatement) throws SQLException {
         int k = 1;
         preparedStatement.setString(k++, book.getTitle());
         preparedStatement.setString(k++, book.getAuthor());
@@ -181,8 +171,8 @@ public class BookDao implements Dao<Book> {
         preparedStatement.setString(k++, book.getLanguage());
         preparedStatement.setString(k++, book.getImage());
         preparedStatement.setString(k++, book.getDescriptionUa());
-        preparedStatement.setString(k, book.getDescriptionEn());
-
+        preparedStatement.setString(k++, book.getDescriptionEn());
+        return k;
     }
 
     @Override

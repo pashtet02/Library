@@ -105,6 +105,27 @@
             </div>
         </form>
     </div>
+    <c:choose>
+        <c:when test="${requestScope.userReviews.size() > 0}">
+            <c:forEach var="bean" items="${requestScope.userReviews}">
+                <div class="card">
+                    <h5 class="card-header">Book mark: ${bean.mark}</h5>
+                    <div class="card-body">
+                        <p class="card-text">${bean.userComment}</p>
+                    </div>
+                    <div>
+                        <form action="<c:url value="/controller?command=editBook&id=${bean.id}"/>" method="post">
+                            <button type="submit" class="btn btn-primary" value="update" name="action">Edit</button>
+                        </form>
+                    </div>
+                </div>
+                <br>
+            </c:forEach>
+        </c:when>
+        <c:when test="${requestScope.userReviews.size() == 0}">
+            <p>You dint have any reviews</p>
+        </c:when>
+    </c:choose>
 </div>
 </body>
 </html>
