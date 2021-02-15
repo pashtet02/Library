@@ -20,19 +20,19 @@
         <p>Please fill in this form to edit this book</p>
         <hr>
         <input type="hidden" name="id" value="${requestScope.book.id}">
-        <label for="title"><strong>Title</strong></label>
+        <label for="title"><strong><fmt:message key="aboutBook.title"/></strong></label>
         <input class="form-control" type="text" placeholder="${requestScope.book.title}" name="title" id="title">
 
-        <label for="author"><strong>Author</strong></label>
+        <label for="author"><strong><fmt:message key="aboutBook.author"/></strong></label>
         <input class="form-control" type="text" placeholder="${requestScope.book.author}" name="author" id="author">
 
-        <label for="ISBN"><strong>ISBN</strong></label>
+        <label for="ISBN"><strong><fmt:message key="addBook.ISBN"/></strong></label>
         <input class="form-control" type="number" placeholder="${requestScope.book.ISBN}" name="ISBN" id="ISBN" >
         <br>
-        <label for="publisher"><strong>Publisher</strong></label>
+        <label for="publisher"><strong><fmt:message key="aboutBook.publisher"/></strong></label>
         <input class="form-control" type="text" placeholder="${requestScope.book.publisher}" name="publisher" id="publisher" >
 
-        <label for="publishingDate">Publishing Date: </label>
+        <label for="publishingDate"><fmt:message key="aboutBook.publishingDate"/>: </label>
         <input class="form-control" type="date" placeholder="${requestScope.book.publishingDate}" name="publishingDate" id="publishingDate" ><br>
 
         <label for="exampleFormControlTextarea1">Add description in english</label>
@@ -41,14 +41,14 @@
         <label for="exampleFormControlTextarea2">Add description in ukrainian</label>
         <textarea class="form-control" id="exampleFormControlTextarea2" maxlength="512" placeholder="${requestScope.book.descriptionUa}" name="descriptionUa" rows="3" ></textarea><br>
 
-        <label for="exampleFormControlSelect1">Book language</label>
+        <label for="exampleFormControlSelect1"><fmt:message key="aboutBook.language"/></label>
         <select name="language" class="form-control" id="exampleFormControlSelect1">
             <option selected value="${requestScope.book.language.toLowerCase()}">${requestScope.book.language}</option>
-            <option value="ukrainian">Ukrainian</option>
-            <option value="english">English</option>
+            <option value="ukrainian"><fmt:message key="addbook.ukrainian"/></option>
+            <option value="english"><fmt:message key="addbook.english"/></option>
         </select>
 
-        <label for="number"><strong>Number</strong></label>
+        <label for="number"><strong><fmt:message key="addbook.number"/></strong></label>
         <input class="form-control" type="number" placeholder="${requestScope.book.number}" name="number" id="number" >
         <hr>
 

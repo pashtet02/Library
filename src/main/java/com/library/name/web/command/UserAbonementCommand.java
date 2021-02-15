@@ -65,7 +65,7 @@ public class UserAbonementCommand extends Command {
             id = user.getId();
         }
 
-        ordersList = orderDao.getNotReturnedByUserId(id);
+        ordersList = orderDao.getByUserId(id);
         log.debug("ABONEMENT order list of user" + ordersList);
 
         for (Order order : ordersList) {

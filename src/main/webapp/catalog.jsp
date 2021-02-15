@@ -17,22 +17,25 @@
     <div class="form-row">
         <div class="form-group col md-6">
             <div class="container">
-            <form method="post" action="<c:url value="/controller"/>" class="form-inline" accept-charset="UTF-8">
-                <input type="hidden" name="command" value="catalog"/>
-                <input required type="text" name="filter" id="filter">
-                <div class="btn-group">
-                    <button type="submit" name="filterParam" value="${sessionScope.filterParam}" class="btn btn-primary"><fmt:message key="global.searchButton"/> by ${sessionScope.filterParam}</button>
-                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <button class="dropdown-item" type="submit" name="filterParam" value="title">Title</button>
-                        <button class="dropdown-item" type="submit" name="filterParam" value="author">Author</button>
+                <form method="post" action="<c:url value="/controller"/>" class="form-inline" accept-charset="UTF-8">
+                    <input type="hidden" name="command" value="catalog"/>
+                    <input required type="text" name="filter" id="filter">
+                    <div class="btn-group">
+                        <button type="submit" name="filterParam" value="${sessionScope.filterParam}"
+                                class="btn btn-primary"><fmt:message key="global.searchButton"/>
+                            by ${sessionScope.filterParam}</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <button class="dropdown-item" type="submit" name="filterParam" value="title">Title</button>
+                            <button class="dropdown-item" type="submit" name="filterParam" value="author">Author
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
         </div>
         <div class="form-row">
             <form method="get" action="<c:url value="/controller"/>" class="form-inline" accept-charset="UTF-8">
@@ -42,9 +45,8 @@
                     <option value="title"><fmt:message key="global.sortParamTitle"
                     /></option>
                     <option value="author"><fmt:message key="global.sortParamAuthor"/></option>
-                    <option value="publisher"><fmt:message key="global.sortParamPublisher"
-                    /></option>
-                    <option value="publishingDate">Publishing date</option>
+                    <option value="publisher"><fmt:message key="global.sortParamPublisher"/></option>
+                    <option value="publishingDate">Publishing date<hr></option>
                 </select>
                 <input type="submit" value="<fmt:message key="global.sortButton"  />">
             </form>
@@ -131,18 +133,24 @@
             </c:otherwise>
         </c:choose>
     </div>
-
-    <div class="pagination">
-        <c:if test="${sessionScope.page > 1}">
-            <a href="<c:url value="/controller?command=catalog&page=${sessionScope.page - 1}"/>">&laquo;</a>
-        </c:if>
-        <a href="<c:url value="/controller?command=catalog&page=1"/>">1</a>
-        <a href="<c:url value="/controller?command=catalog&page=2"/>">2</a>
-        <a href="<c:url value="/controller?command=catalog&page=3"/>">3</a>
-        <c:if test="${listPagedBooks.size() == 6}">
-            <a href="<c:url value="/controller?command=catalog&page=${sessionScope.page + 1}"/>">&raquo;</a>
-        </c:if>
+    <div style="text-align: center">
+        <nav aria-label="hello">
+            <ul class="pagination">
+                <c:if test="${sessionScope.page > 1}">
+                    <a class="page-link"
+                       href="<c:url value="/controller?command=catalog&page=${sessionScope.page - 1}"/>">Previous</a>
+                </c:if>
+                <a class="page-link" href="<c:url value="/controller?command=catalog&page=1"/>">1</a>
+                <a class="page-link" href="<c:url value="/controller?command=catalog&page=2"/>">2</a>
+                <a class="page-link" href="<c:url value="/controller?command=catalog&page=3"/>">3</a>
+                <c:if test="${requestScope.listPagedBooks.size() == 6}">
+                    <a class="page-link"
+                       href="<c:url value="/controller?command=catalog&page=${sessionScope.page + 1}"/>">Next</a>
+                </c:if>
+            </ul>
+        </nav>
     </div>
 </div>
+
 </body>
 </html>

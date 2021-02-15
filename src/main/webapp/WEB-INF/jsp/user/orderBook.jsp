@@ -16,19 +16,21 @@
     <div class="container">
         <h1>Order a book</h1>
         <p>Please fill in this form to order a book</p>
+        <p>You can change your name in <a href="<c:url value="/controller?command=viewSettings"/>">your profile</a> </p>
         <hr>
         <input type="hidden" name="command" value="orderBook" />
         <input type="hidden" name="userId" value="${param.userId}" />
         <input type="hidden" name="bookId" value="${param.bookId}" />
-        <label for="firstName"><strong>First name</strong></label>
-        <input class="form-control" type="text" placeholder="${sessionScope.user.firstName}" name="firstName" id="firstName">
+        <p><strong>First name: ${sessionScope.user.firstName}</strong></p>
+        <hr>
+        <%--<input class="form-control" type="text" placeholder="${sessionScope.user.firstName}" name="firstName" id="firstName">--%>
 
-        <label for="secondName"><strong>Second name</strong></label>
-        <input class="form-control" type="text" placeholder="${sessionScope.user.secondName}" name="secondName" id="secondName">
+        <p><strong>Second name: ${sessionScope.user.secondName}</strong></p>
+        <hr>
+        <%--<input autocomplete="false" class="form-control" type="text" placeholder="${sessionScope.user.secondName}" name="secondName" id="secondName">--%>
 
-        <label for="email"><strong>Email</strong></label>
-        <input  class="form-control" type="email" placeholder="${sessionScope.user.mail}" name="email" id="email">
-        <br>
+        <p><strong>Email: ${sessionScope.user.mail}</strong></p>
+        <hr>
         <label for="comment"><strong>Comment: </strong></label>
         <textarea class="form-control" placeholder="My comment" name="comment" id="comment" maxlength="250" rows="3" required></textarea><br>
 

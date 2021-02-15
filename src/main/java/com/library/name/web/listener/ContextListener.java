@@ -41,7 +41,7 @@ public class ContextListener implements ServletContextListener {
         if (localesValue == null || localesValue.isEmpty()) {
             log.warn("'locales' init parameter is empty, the default encoding will be used");
         } else {
-            List<String> locales = new ArrayList<String>();
+            List<String> locales = new ArrayList<>();
             StringTokenizer st = new StringTokenizer(localesValue);
             while (st.hasMoreTokens()) {
                 String localeName = st.nextToken();
@@ -58,7 +58,6 @@ public class ContextListener implements ServletContextListener {
     /**
      * Initializes log4j framework.
      *
-     * @param servletContext
      */
     private void initLog4J(ServletContext servletContext) {
         log("Log4J initialization started");
@@ -74,7 +73,6 @@ public class ContextListener implements ServletContextListener {
     /**
      * Initializes CommandContainer.
      *
-     * @param
      */
     private void initCommandContainer() {
         log.debug("Command container initialization started");

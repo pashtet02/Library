@@ -243,11 +243,11 @@ public class OrderDao implements Dao<Order> {
         return orders;
     }
 
-    public List<Order> getNotReturnedByUserId(Long userId) {
+    public List<Order> getUserId(Long userId) {
         List<Order> orders = null;
         try {
             Connection con = getConnection();
-            orders = getAllOrders(con, "select * from orders where user_id = " + userId + " AND status != 'RETURNED'");
+            orders = getAllOrders(con, "select * from orders where user_id = " + userId);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

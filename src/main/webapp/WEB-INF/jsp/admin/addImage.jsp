@@ -20,11 +20,11 @@
 <div class="container">
     <h3>File Upload:</h3>
     Select a file to upload: <br />
-    <form action = "<c:url value="/controller?command=addImage"/>" method = "post"
+    <form action = "<c:url value="/controller?command=addImage"/>" method="post"
           enctype = "multipart/form-data">
         <input type = "file" name = "file" size = "50" pattern="[A-Za-z0-9]"/>
         <br />
-        <input type = "submit" value = "Upload File" />
+        <input class="btn btn-primary" type = "submit" value = "Upload File" />
     </form>
 </div>
 </body>

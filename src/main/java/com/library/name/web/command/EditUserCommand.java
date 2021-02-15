@@ -12,9 +12,6 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class EditUserCommand extends Command {
-
-    private static final long serialVersionUID = 7732286214029478505L;
-
     private static final Logger log = Logger.getLogger(EditUserCommand.class);
 
     @Override

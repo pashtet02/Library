@@ -84,8 +84,6 @@ P
  src/main/webapp/registration.jsp,d\d\dd51f7041d5a8d7bb17c79a85099a350e198ae09
 Q
 !src/main/webapp/static/custom.css,5\2\52d8025bf096968b17a1e86b0150064ab5670863
-P
- src/main/webapp/static/style.css,2\2\22b82bf3c22099a38852495063101540b452fab2
 K
 src/main/webapp/catalog.jsp,3\1\31f1107307ac6cc200e7489f94a75fe043cd4a84
 d
@@ -162,18 +160,12 @@ Z
 .src/main/webapp/WEB-INF/jsp/user/user_menu.jsp,3\7\37ad3c069592c02af4675c86c41c1a4b94e4812f
 [
 +src/main/webapp/WEB-INF/jsp/admin/users.jsp,4\3\43e8a1655f6cd7cd3b9fa7fa6b65db0d1ea5e631
-P
- src/main/webapp/vadymCatalog.jsp,d\9\d91a971a402342ba2118c3e31b2b5c63a34e24a7
 R
 "src/main/webapp/static/catalog.css,2\3\23b64e31dea18332c3ce60694dd0fb7ab746a537
-f
-6src/main/java/com/library/name/bean/UserOrderBean.java,6\f\6f6c240a628a7a6d7ae9f44d90d8fb9829b4976d
 `
 0src/main/java/com/library/name/entity/Order.java,0\e\0e5b1ba5de5ecc48104ff4b3e11011fdd4461824
 _
 /src/main/java/com/library/name/entity/User.java,f\9\f95eb2d41ff17b9a8078cc505ed0e11b3a65aefe
-h
-8src/main/java/com/library/name/old/BookOrderServlet.java,0\7\0742142794426a4c18e2fb67ce18dd4f91b34369
 ^
 .src/main/java/com/library/name/dao/Fields.java,b\9\b9394247b50921b24c3af1850ae687f96b7c38d6
 ]
@@ -206,3 +198,21 @@ o
 ?src/main/java/com/library/name/web/command/EditBookCommand.java,b\b\bbb0a80e86b413a2fcb9210145ec1d2497616225
 ^
 .src/main/webapp/WEB-INF/jsp/admin/editBook.jsp,d\6\d680838d412ca0b40337196f58902fbe31be669d
+d
+4src/test/java/com/library/name/dao/OrderDaoTest.java,c\c\ccbe463644975ce35033cd53023a31442c243de1
+b
+2src/main/webapp/WEB-INF/jsp/user/addUserReview.jsp,e\1\e12dce53947baefde52de9b96200bd817540c6d7
+a
+1src/main/java/com/library/name/dao/ReviewDao.java,8\4\846b9efeda6f496c2285a6152241b9ad81faead0
+p
+@src/main/java/com/library/name/web/command/AddReviewCommand.java,9\6\96a61b7e7b8ed5bdbe3a81a876cd6b3bdecabf19
+c
+3src/test/java/com/library/name/dao/BookDaoTest.java,c\6\c61949988da6bc6bdd73f193d83af908d8f552d3
+T
+$src/main/resources/global.properties,2\c\2c1141b7d23c71faec175e3d274c2c0df322d96c
+a
+1src/main/java/com/library/name/entity/Review.java,c\d\cd640714e9001267a189c454121e9d9b4ecd8e53
+p
+@src/main/java/com/library/name/web/listener/ContextListener.java,b\c\bc224466eafa0465a8a87b53d9743a08265c986d
+q
+Asrc/main/java/com/library/name/web/command/EditReviewCommand.java,a\f\af427f3df661a78cb688da7989b2dd798ab81aae

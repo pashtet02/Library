@@ -1,11 +1,8 @@
-/*
 package com.library.name.web.command;
 
 import com.library.name.Path;
 import com.library.name.dao.ReviewDao;
-import com.library.name.dao.UserDao;
 import com.library.name.entity.Review;
-import com.library.name.entity.User;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -22,44 +19,44 @@ public class EditReviewCommand extends Command {
                           HttpServletResponse response) throws IOException, ServletException {
         ReviewDao reviewDao = ReviewDao.getInstance();
         log.debug("Command starts");
+        Review review = new Review();
+
 
         // UPDATE review ////////////////////////////////////////////////////////
-        String revId = request.getParameter("id");
+        String revId = request.getParameter("reviewId");
         if ( revId != null && !revId.isEmpty()){
+            long revIdLong = Long.parseLong(revId);
+            review = reviewDao.get(revIdLong);
+            request.setAttribute("review", review);
             log.debug("IF WORKS userId:" + revId);
             return Path.PAGE_EDIT_REVIEW;
         }
 
         boolean updateReview = false;
-        Review review = new Review();
-        String userID = request.getParameter("id");
-        if (userID != null && !userID.isEmpty()) {
-            long id = Long.parseLong(userID);
-            user = userDao.get(id);
+        String reviewID = request.getParameter("id");
+        if (reviewID != null && !reviewID.isEmpty()) {
+            long id = Long.parseLong(reviewID);
+            review = reviewDao.get(id);
         }
 
-        String role = request.getParameter("role");
-        if (role != null && !role.isEmpty()) {
-            user.setRole(role.toUpperCase(Locale.ROOT));
-            updateUser = true;
+        String userComment = request.getParameter("userComment");
+        if (userComment != null && !userComment.isEmpty()) {
+            review.setUserComment(userComment);
+            updateReview = true;
         }
 
-        String isBanned = request.getParameter("isBanned");
-        if (isBanned != null && !isBanned.isEmpty()) {
-            log.debug("SET USER BANNED: " + isBanned.equals("true"));
-            user.setBanned(isBanned.equals("true"));
-            log.debug("USER: banned " + user.isBanned());
-            updateUser = true;
+        String mark = request.getParameter("mark");
+        if (mark != null && !mark.isEmpty()) {
+            review.setMark(Integer.parseInt(mark));
+            log.debug("Review: mark " + review.getMark());
+            updateReview = true;
         }
 
-        if (updateUser){
-            userDao.update(user);
+        if (updateReview){
+            reviewDao.update(review);
         }
 
         log.debug("Command finished");
-        String message = "User: " + user.getUsername() + " changed succesfully";
-        request.setAttribute("message", message);
-        return Path.PAGE_SUCCESS_PAGE;
+        return "/controller?command=viewSettings";
     }
 }
-*/

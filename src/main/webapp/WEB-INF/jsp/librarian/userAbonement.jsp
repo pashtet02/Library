@@ -47,6 +47,9 @@
                         <c:when test="${bean.status == 'APPROVED'}">
                             <td style="color: green">${bean.status}</td>
                         </c:when>
+                        <c:when test="${bean.status == 'RETURNED'}">
+                            <td style="color: #002f80">${bean.status}</td>
+                        </c:when>
                         <c:when test="${bean.status == 'READING_HALL'}">
                             <td style="color: blue">${bean.status}</td>
                         </c:when>

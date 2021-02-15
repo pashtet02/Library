@@ -75,7 +75,7 @@ public class AddFileCommand extends Command {
         request.setAttribute("massage", message);
 
         request.setAttribute("commandName", "catalog");
-        return Path.PAGE_SUCCESS_PAGE;
+        return "/controller?command=catalog&bookid=" + book.getId();
     }
 }
 

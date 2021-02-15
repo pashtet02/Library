@@ -18,7 +18,7 @@ import static com.library.name.service.Password.checkPassword;
 public class LoginCommand extends Command {
 
     private static final Logger log = Logger.getLogger(LoginCommand.class);
-    private String errMessage = "errorMessage";
+    private static final String errMessage = "errorMessage";
 
     @Override
     public String execute(HttpServletRequest request,
@@ -67,13 +67,13 @@ public class LoginCommand extends Command {
         log.trace("userRole --> " + user.getRole());
 
         if (user.getRole().equals("ADMIN"))
-            forward = Path.PAGE_ADMIN_PAGE;
+            forward = "/controller?command=usersList";
 
         if (user.getRole().equals("LIBRARIAN"))
-            forward = Path.PAGE_ADMIN_PAGE;
+            forward = "/controller?command=librarianMenu";
 
         if (user.getRole().equals("USER"))
-            forward = Path.PAGE_USER_MENU;
+            forward = "/controller?command=listOrders";
 
         session.setAttribute("user", user);
         log.trace("Set the session attribute: user --> " + user);

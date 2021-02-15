@@ -25,14 +25,22 @@
                                 <p class="text-secondary mb-1">${requestScope.book.author}</p>
                                 <c:choose>
                                     <c:when test="${sessionScope.user.role == 'USER'}">
-                                        <button class="btn btn-primary">Order</button>
-                                        <form method="post" action="<c:url value="/controller?command=addReview"/>">
-                                            <input name="bookId" type="hidden" value="${requestScope.book.id}">
-                                            <button type="submit" class="btn btn-primary">Add a review</button>
-                                        </form>
+                                        <div class="row">
+                                            <form method="post" action="<c:url value="/controller?command=orderBook&userId=${sessionScope.userId}&bookId=${requestScope.book.id}"/>">
+                                                <input name="bookId" type="hidden" value="${requestScope.book.id}">
+                                                <button type="submit" class="btn btn-primary">Order</button>
+                                            </form>
+                                            <form method="post" action="<c:url value="/controller?command=addReview"/>">
+                                                <input name="bookId" type="hidden" value="${requestScope.book.id}">
+                                                <button type="submit" class="btn btn-primary">Add a review</button>
+                                            </form>
+                                        </div>
                                     </c:when>
                                     <c:when test="${sessionScope.user.role == 'ADMIN'}">
                                         <a href="<c:url value="/controller?command=editBook&bookId=${requestScope.book.id}"/>">Edit</a>
+                                    </c:when>
+                                    <c:when test="${sessionScope.user.role == 'LIBRARIAN'}">
+                                        <p>Librarian can`t edit or order a book</p>
                                     </c:when>
                                     <c:otherwise>
                                         <p><fmt:message key="aboutBook.SignInLabel"/><br></p>

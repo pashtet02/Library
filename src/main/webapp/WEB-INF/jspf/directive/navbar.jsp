@@ -31,6 +31,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/controller?command=usersList"/>"><fmt:message key="global.usersList" /></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/controller?command=addBook"/>">Add book</a>
+                    </li>
                 </c:if>
                 <c:if test="${sessionScope.role == 'LIBRARIAN'}">
                     <li class="nav-item">
