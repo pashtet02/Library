@@ -26,13 +26,18 @@
                                 <c:choose>
                                     <c:when test="${sessionScope.user.role == 'USER'}">
                                         <button class="btn btn-primary">Order</button>
+                                        <form method="post" action="<c:url value="/controller?command=addReview"/>">
+                                            <input name="bookId" type="hidden" value="${requestScope.book.id}">
+                                            <button type="submit" class="btn btn-primary">Add a review</button>
+                                        </form>
                                     </c:when>
                                     <c:when test="${sessionScope.user.role == 'ADMIN'}">
                                         <a href="<c:url value="/controller?command=editBook&bookId=${requestScope.book.id}"/>">Edit</a>
                                     </c:when>
                                     <c:otherwise>
                                         <p><fmt:message key="aboutBook.SignInLabel"/><br></p>
-                                        <button class="btn btn-outline-primary"><fmt:message key="global.signIn"/></button>
+                                        <button class="btn btn-outline-primary"><fmt:message
+                                                key="global.signIn"/></button>
                                     </c:otherwise>
                                 </c:choose>
                             </div>
@@ -108,6 +113,31 @@
             </div>
         </div>
     </div>
+    <c:choose>
+        <c:when test="${requestScope.bookReviews.size() > 0}">
+            <c:forEach var="bean" items="${requestScope.bookReviews}">
+                <div class="card">
+                    <h5 class="card-header">Book mark: ${bean.mark}</h5>
+                    <div class="card-body">
+                        <p class="card-text">${bean.userComment}</p>
+                    </div>
+                    <c:if test="${sessionScope.user.role == 'ADMIN'}">
+                        <div>
+                            <form action="<c:url value="/controller?command=editBook&id=${bean.id}"/>" method="post">
+                                <button type="submit" class="btn btn-danger" value="delete" name="action">Delete
+                                </button>
+                            </form>
+                        </div>
+                    </c:if>
+                </div>
+                <br>
+            </c:forEach>
+        </c:when>
+        <c:when test="${requestScope.bookReviews.size() == 0}">
+            <p>There is no reviews for this book, but you can add one <a href="
+<c:url value="/controller?command=addReview&bookId=${requestScope.book.id}"/>">write a review</a></p>
+        </c:when>
+    </c:choose>
 </div>
 </body>
 </html>

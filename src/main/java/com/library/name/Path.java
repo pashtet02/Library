@@ -28,6 +28,8 @@ public final class Path {
     public static final String PAGE_ORDER_BOOK = "/WEB-INF/jsp/user/orderBook.jsp";
     public static final String PAGE_USER_MENU = "/WEB-INF/jsp/user/user_menu.jsp";
     public static final String PAGE_USER_BOOKS = "/WEB-INF/jsp/user/books.jsp";
+    public static final String PAGE_ADD_REVIEW = "/WEB-INF/jsp/user/addUserReview.jsp";
+
 
     //Admin
     public static final String PAGE_ADMIN_PAGE = "/WEB-INF/jsp/admin/admin_menu.jsp";

@@ -2,7 +2,9 @@ package com.library.name.web.command;
 
 import com.library.name.Path;
 import com.library.name.dao.BookDao;
+import com.library.name.dao.ReviewDao;
 import com.library.name.entity.Book;
+import com.library.name.entity.Review;
 import com.library.name.entity.User;
 import org.apache.log4j.Logger;
 
@@ -17,6 +19,7 @@ import java.util.List;
 public class CatalogCommand extends Command {
 
     private final BookDao bookDao = BookDao.getInstance();
+    private final ReviewDao reviewDao = ReviewDao.getInstance();
     private static final int RECORDS_ON_PAGE = 6;
     private String sortParam = "title";
     private static final Logger log = Logger.getLogger(CatalogCommand.class);
@@ -45,13 +48,15 @@ public class CatalogCommand extends Command {
             return Path.PAGE_CATALOG;
         }
 
-
+        //About book page
         String bookId = request.getParameter("bookid");
         if (bookId != null && !bookId.isEmpty()) {
             int id = Integer.parseInt(bookId);
             log.debug(bookId + " bookId PARAM ");
             book = bookDao.get(id);
+            List<Review> bookReviews = reviewDao.getAllByBookId(book.getId());
             log.debug("BOOK CATALOG DETAILS: " + book);
+            request.setAttribute("bookReviews", bookReviews);
             request.setAttribute("book", book);
             return Path.PAGE_ABOUT_BOOK;
         }

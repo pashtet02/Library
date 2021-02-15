@@ -46,11 +46,11 @@
         </init-param>
         <init-param>
             <param-name>client</param-name>
-            <param-value>listOrders</param-value>
+            <param-value>listOrders addReview orderBook</param-value>
         </init-param>
         <init-param>
             <param-name>common</param-name>
-            <param-value>logout noCommand viewSettings updateSettings listOrders orderBook</param-value>
+            <param-value>logout noCommand viewSettings updateSettings</param-value>
         </init-param>
         <init-param>
             <param-name>out-of-control</param-name>

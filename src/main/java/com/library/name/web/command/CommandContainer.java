@@ -29,6 +29,8 @@ public class CommandContainer {
         commands.put("viewSettings", new ViewSettingsCommand());
         commands.put("updateSettings", new UpdateSettingsCommand());
         commands.put("listOrders", new ListOrdersCommand());
+        commands.put("addReview", new AddReviewCommand());
+
 
         //Librarian commands
         commands.put("librarianMenu", new LibrarianMenuCommand());

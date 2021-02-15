@@ -68,4 +68,5 @@ public interface Dao<T> {
             ex.printStackTrace();
         }
     }
+
 }
