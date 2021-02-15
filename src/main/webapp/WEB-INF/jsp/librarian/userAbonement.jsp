@@ -12,6 +12,9 @@
 </head>
 <body>
 <jsp:include page="../../jspf/directive/navbar.jsp"/>
+
+<div class="container">
+
 <h2>${requestScope.usr.username} abonement</h2>
 <p>
     User details:
@@ -22,7 +25,7 @@
 </p>
 <c:choose>
     <c:when test="${requestScope.ordersList.size() > 0}">
-        <table>
+        <table border="1">
             <thead>
             <tr>
                 <td>Title</td>
@@ -68,9 +71,11 @@
                     <td>${bean.librarianComment}</td>
 
                     <td>
-                        <form method="post" action="<c:url value="/controller?command=userAbonement&action=return&orderId=${bean.id}"/>">
-                            <button type="submit" class="btn btn-success">Return</button>
-                        </form>
+                        <c:if test="${bean.status == 'APPROVED' || bean.status == 'READING_HALL'}">
+                            <form method="post" action="<c:url value="/controller?command=userAbonement&action=return&orderId=${bean.id}"/>">
+                                <button type="submit" class="btn btn-success">Return</button>
+                            </form>
+                        </c:if>
                     </td>
                 </tr>
             </c:forEach>
@@ -80,6 +85,6 @@
         <p>No records found</p>
     </c:otherwise>
 </c:choose>
-
+</div>
 </body>
 </html>

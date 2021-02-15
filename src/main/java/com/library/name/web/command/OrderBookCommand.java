@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 
 public class OrderBookCommand extends Command {
@@ -21,56 +20,68 @@ public class OrderBookCommand extends Command {
      *
      * @param req
      * @param response
-     * @return Address to go once the command is executed.
      */
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-        Long userId = Long.parseLong(req.getParameter("userId"));
+        long userId = Long.parseLong(req.getParameter("userId"));
+
+        if (user.getFine() > 0){
+            String err = "You have to pay fine before order a new book";
+            req.setAttribute("errorMessage", err);
+            return Path.PAGE_ERROR_PAGE;
+        }
 
         String comment = req.getParameter("comment");
         if (comment != null && !comment.isEmpty()) {
-            Order order = new Order();
-            order.setUserId(userId);
-            order.setBookId(Long.parseLong(req.getParameter("bookId")));
+            long bookId = Long.parseLong(req.getParameter("bookId"));
+            if (!orderDao.isOrderExists(userId, bookId)) {
 
-            String firstName = req.getParameter("firstName");
-            if (firstName == null || firstName.isEmpty()) {
-                firstName = user.getFirstName();
-            }
-            order.setUserFirstName(firstName);
+                Order order = new Order();
+                order.setUserId(userId);
+                order.setBookId(bookId);
 
-            String secondName = req.getParameter("secondName");
-            if (secondName == null || secondName.isEmpty()) {
-                secondName = user.getSecondName();
-            }
-            order.setUserSecondName(secondName);
+                String firstName = req.getParameter("firstName");
+                if (firstName == null || firstName.isEmpty()) {
+                    firstName = user.getFirstName();
+                }
+                order.setUserFirstName(firstName);
 
-            String email = req.getParameter("email");
-            if (email == null || email.isEmpty()) {
-                email = user.getMail();
-            }
-            order.setUserMail(email);
+                String secondName = req.getParameter("secondName");
+                if (secondName == null || secondName.isEmpty()) {
+                    secondName = user.getSecondName();
+                }
+                order.setUserSecondName(secondName);
 
-            System.out.println("COMMENT: " + req.getParameter("comment"));
-            order.setUserComment(req.getParameter("comment"));
+                String email = req.getParameter("email");
+                if (email == null || email.isEmpty()) {
+                    email = user.getMail();
+                }
+                order.setUserMail(email);
 
-            order.setStatus("RESERVED");
-            try {
-                System.out.println(order);
-                orderDao.save(order);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-                String errorMessage = throwables.getMessage();
-                req.setAttribute("errorMessage", errorMessage);
+                System.out.println("COMMENT: " + req.getParameter("comment"));
+                order.setUserComment(req.getParameter("comment"));
+
+                order.setStatus("RESERVED");
+                try {
+                    System.out.println(order);
+                    orderDao.save(order);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                    String errorMessage = throwables.getMessage();
+                    req.setAttribute("errorMessage", errorMessage);
+                    return Path.PAGE_ERROR_PAGE;
+                }
+                req.setAttribute("commandName", "catalog");
+                return Path.PAGE_SUCCESS_PAGE;
+            } else {
+                String err = "You have ordered this book already";
+                req.setAttribute("errorMessage", err);
                 return Path.PAGE_ERROR_PAGE;
             }
-            req.setAttribute("commandName", "catalog");
-            return Path.PAGE_SUCCESS_PAGE;
         }
-
         return Path.PAGE_ORDER_BOOK;
     }
 }

@@ -1,6 +1,7 @@
 package com.library.name.web.command;
 
 import com.library.name.Path;
+import com.library.name.dao.Dao;
 import com.library.name.dao.UserDao;
 import com.library.name.entity.User;
 import org.apache.log4j.Logger;
@@ -20,7 +21,7 @@ import java.io.IOException;
 public class UpdateSettingsCommand extends Command {
 
 	private static final Logger log = Logger.getLogger(UpdateSettingsCommand.class);
-	private static UserDao userDao = UserDao.getInstance();
+	private static final Dao<User> userDao = UserDao.getInstance();
 
 	@Override
 	public String execute(HttpServletRequest request,

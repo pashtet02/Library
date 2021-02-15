@@ -41,7 +41,6 @@ public class CatalogCommand extends Command {
         if (filter != null && !filter.isEmpty()) {
             log.debug("request filter : " + filter);
             book = bookDao.getByTitle(filter);
-            //log.debug("CATALOG FILTER COMMAND BOOK " + book);
             request.setAttribute("book", book);
             return Path.PAGE_CATALOG;
         }

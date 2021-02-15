@@ -32,6 +32,7 @@ com\library\name\dao\Dao.class
 com\library\name\dao\Fields.class
 com\library\name\web\command\LibrarianMenuCommand.class
 com\library\name\web\command\UserAbonementCommand.class
+com\library\name\service\Utils.class
 com\library\name\web\listener\ContextListener.class
 com\library\name\web\command\Command.class
 com\library\name\web\Controller.class

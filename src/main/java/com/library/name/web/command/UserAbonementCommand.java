@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 public class UserAbonementCommand extends Command {
@@ -73,6 +74,8 @@ public class UserAbonementCommand extends Command {
             order.setBookAuthor(book.getAuthor());
         }
 
+        Comparator<Order> comparator = Comparator.comparing(Order::getStatus);
+        ordersList.sort(comparator);
         log.trace("Found in DB: ordersList --> " + ordersList);
 
         // put user order beans list to request

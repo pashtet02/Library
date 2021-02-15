@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +18,7 @@
         <p>Please fill in this form to edit a user account</p>
         <hr>
 
-        <label for="role"><b>Role</b></label>
+        <label for="role"><strong>Role</strong></label>
         <input type="text" placeholder="Enter role" name="role" id="role" pattern="^(USER)$|^(ADMIN)$|^(LIBRARIAN)$">
         <br>
 

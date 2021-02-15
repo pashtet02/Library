@@ -200,3 +200,15 @@ a
 1src/main/webapp/WEB-INF/jspf/directive/header.jsp,0\2\027ff1507f2b8a05fc4bfe5b3a1fb04f9aa3d82b
 i
 9src/main/java/com/library/name/web/command/NoCommand.java,1\6\16348b8826c7cedb2f0fc8290f714b634c8bcc05
+b
+2src/main/java/com/library/name/web/Controller.java,5\4\548e670a744bb37c157ad660e2a62a721ec5c72e
+o
+?src/main/java/com/library/name/web/command/EditBookCommand.java,b\b\bbb0a80e86b413a2fcb9210145ec1d2497616225
+T
+$src/main/resources/global.properties,2\c\2c1141b7d23c71faec175e3d274c2c0df322d96c
+W
+'src/main/resources/global_en.properties,f\d\fd38786146269bfc9430a5e809f3bef9c0ac347b
+W
+'src/main/resources/global_ua.properties,c\b\cb6be30c04e006af552e586b1744896d2aba8867
+^
+.src/main/webapp/WEB-INF/jsp/admin/editBook.jsp,d\6\d680838d412ca0b40337196f58902fbe31be669d

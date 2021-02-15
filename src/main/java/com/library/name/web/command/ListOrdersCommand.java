@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -60,7 +62,8 @@ public class ListOrdersCommand extends Command {
             order.setBookTitle(book.getTitle());
             order.setBookAuthor(book.getAuthor());
         }
-
+        Comparator<Order> comparator = Comparator.comparing(Order::getStatus);
+        ordersList.sort(comparator);
         log.trace("Found in DB: ordersList --> " + ordersList);
 
         // put user order beans list to request

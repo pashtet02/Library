@@ -1,6 +1,7 @@
 package com.library.name.dao;
 
 import com.library.name.entity.Order;
+import com.library.name.entity.User;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -116,6 +117,29 @@ public class OrderDao implements Dao<Order> {
         return orders;
     }
 
+    public boolean isOrderExists(long userId, long bookId) {
+        ResultSet rs = null;
+        Order order = null;
+
+        try (Connection con = getConnection();
+             PreparedStatement statement = con.prepareStatement(
+                     "select * from orders where user_id= ? AND book_id=?")) {
+            statement.setLong(1, userId);
+            statement.setLong(2, bookId);
+
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                order = mapOrder(rs);
+            }
+            log.info("Order exists: " + (order != null));
+        } catch (SQLException throwable) {
+            log.error("isOrderExists()" + throwable.getSQLState() + throwable.getMessage());
+        } finally {
+            close(rs);
+        }
+        return order != null;
+    }
+
     @Override
     public List<Order> getAll() throws SQLException {
         List<Order> orders;
@@ -228,5 +252,62 @@ public class OrderDao implements Dao<Order> {
             throwables.printStackTrace();
         }
         return orders;
+    }
+
+    public double countUserFineByUserId(long userId) {
+        ResultSet rs = null;
+        List<Order> unterminatedOrders = new ArrayList<>();
+        int totalDays = 0;
+        Double fine = 0.0;
+        try (Connection con = getConnection();
+             PreparedStatement statement = con.prepareStatement(
+                     "select * from orders where user_id = ? " +
+                             "AND DATEDIFF(curdate(), returnDate) > 0 and status = 'APPROVED' or 'UNTERMINATED';")) {
+            statement.setLong(1, userId);
+
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                unterminatedOrders.add(mapOrder(rs));
+            }
+            logger.info("unterminaded list: " + unterminatedOrders);
+
+            for (Order order: unterminatedOrders) {
+                totalDays += countUnterminatedDays(order.getId());
+            }
+
+            //Calculating fine
+            fine = totalDays * 3 - 0.5;
+
+            logger.info("FINE: " + fine);
+        } catch (SQLException throwable) {
+            logger.error("userFINE()" + throwable.getSQLState() + throwable.getMessage());
+        } finally {
+            close(rs);
+        }
+        return fine;
+    }
+
+    private int countUnterminatedDays(long orderId){
+        ResultSet rs = null;
+        int result = 0;
+        try (Connection con = getConnection();
+             PreparedStatement statement = con.prepareStatement(
+                     "SELECT SUM(DATEDIFF(CURDATE(), returnDate)) FROM orders where id = ?")) {
+            statement.setLong(1, orderId);
+
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                boolean bool = Integer.parseInt(rs.getString(1)) > 0;
+                if (bool) {
+                    result += Integer.parseInt(rs.getString(1));
+                }
+            }
+            logger.info("countUnterminatedDays " + result);
+        } catch (SQLException throwable) {
+            logger.error("countUnterminatedDays()" + throwable.getSQLState() + throwable.getMessage());
+        } finally {
+            close(rs);
+        }
+        return result;
     }
 }

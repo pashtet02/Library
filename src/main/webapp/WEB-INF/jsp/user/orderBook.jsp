@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html xml:lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,16 +20,16 @@
         <input type="hidden" name="command" value="orderBook" />
         <input type="hidden" name="userId" value="${param.userId}" />
         <input type="hidden" name="bookId" value="${param.bookId}" />
-        <label for="firstName"><b>First name</b></label>
+        <label for="firstName"><strong>First name</strong></label>
         <input class="form-control" type="text" placeholder="${sessionScope.user.firstName}" name="firstName" id="firstName">
 
-        <label for="secondName"><b>Second name</b></label>
+        <label for="secondName"><strong>Second name</strong></label>
         <input class="form-control" type="text" placeholder="${sessionScope.user.secondName}" name="secondName" id="secondName">
 
-        <label for="email"><b>Email</b></label>
+        <label for="email"><strong>Email</strong></label>
         <input  class="form-control" type="email" placeholder="${sessionScope.user.mail}" name="email" id="email">
         <br>
-        <label for="comment"><b>Comment: </b></label>
+        <label for="comment"><strong>Comment: </strong></label>
         <textarea class="form-control" placeholder="My comment" name="comment" id="comment" maxlength="250" rows="3" required></textarea><br>
 
         <br>

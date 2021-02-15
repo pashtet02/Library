@@ -1,6 +1,7 @@
 package com.library.name.web.command;
 
 import com.library.name.Path;
+import com.library.name.dao.OrderDao;
 import com.library.name.dao.UserDao;
 import com.library.name.entity.User;
 import org.apache.log4j.Logger;
@@ -45,6 +46,7 @@ public class LoginCommand extends Command {
         }
         UserDao userDao = UserDao.getInstance();
         User user = userDao.getUserByLogin(login);
+
         log.trace("Found in DB: user --> " + user);
         log.debug("LOGIN COMMAND USER: " + user.getUsername());
 
@@ -99,6 +101,12 @@ public class LoginCommand extends Command {
             log.debug("LOCALE LOGIN COMMAND: " + userLocaleName);
             log.info("Locale for user: defaultLocale --> " + userLocaleName);
         }
+
+        log.info("user old fine = " + user.getFine());
+        OrderDao orderDao = OrderDao.getInstance();
+        user.setFine(orderDao.countUserFineByUserId(user.getId()));
+        userDao.update(user);
+        log.info("user new fine = " + user.getFine());
 
         log.debug("Command finished");
         return forward;
