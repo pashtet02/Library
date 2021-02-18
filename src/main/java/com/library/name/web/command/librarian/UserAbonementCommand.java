@@ -27,8 +27,8 @@ public class UserAbonementCommand extends Command {
     /**
      * Execution method for command.
      *
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @return Address to go once the command is executed.
      * Повинен відповідати за кабінет користувача
      * -Список книг на абонементі, бажано зробития якесь розмежування типу В мене, очікують розгляду, історія, прострочені

@@ -9,8 +9,6 @@
         <session-timeout>10</session-timeout>
     </session-config>
 
-
-
     <!--============================================================
     i18n support
 =============================================================-->
@@ -75,17 +73,6 @@
         <url-pattern>/*</url-pattern>
         <servlet-name>Controller</servlet-name>
     </filter-mapping>
-
-    <!--&lt;!&ndash; Set UTF-8 before request.getParameter() is called &ndash;&gt;
-    <filter>
-        <filter-name>UTF8Filter</filter-name>
-        <filter-class>com.library.name.web.filter.UTF8Filter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>UTF8Filter</filter-name>
-        <url-pattern>/*</url-pattern>
-        <servlet-name>Controller</servlet-name>
-    </filter-mapping>-->
 
     <servlet>
         <servlet-name>Controller</servlet-name>

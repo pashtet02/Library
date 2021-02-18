@@ -1,12 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/jspf/directive/page.jspf" %>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
 <html>
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="static/login.css" rel="stylesheet">
-    <!------ Include the above in your HEAD tag ---------->
+    <jsp:include page="WEB-INF/jspf/directive/header.jsp"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" charset="utf-8">
+    <title>Library</title>
 </head>
 <body>
 <div class="wrapper fadeInDown">
@@ -19,7 +23,7 @@
                 <input type="hidden" name="command" value="registration"/>
                 <label for="login"><b>Login</b></label><br>
                 <input type="text" required placeholder="login" class="fadeIn second" name="login" id="login"
-                       pattern="[A-Za-z0-9]{4,32}"><br>
+                       pattern="[A-Za-z0-9]{4,20}"><br>
 
                 <label for="firstName"><b>First name: </b></label>
                 <input type="text" required placeholder="first name" class="fadeIn second" name="firstName" id="firstName"><br>

@@ -28,8 +28,8 @@ public class LibrarianMenuCommand extends Command {
     /**
      * Execution method for command.
      *
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @return Address to go once the command is executed.
      * Повинен вернути список всіх ордерів зі статусом RESERVED і повинні бути 3 кнопки "Видати до", "Відхилити", "Читальний зал"
      */

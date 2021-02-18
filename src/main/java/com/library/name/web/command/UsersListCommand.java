@@ -19,7 +19,7 @@ public class UsersListCommand extends Command{
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String role = user.getRole();
-        List<User> users = null;
+        List<User> users;
         try {
             if (role != null && role.equals("ADMIN")){
                 users = userDao.getAll();

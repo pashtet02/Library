@@ -12,8 +12,8 @@ public class LogoutCommand extends Command{
     /**
      * Execution method for command.
      *
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @return Address to go once the command is executed.
      */
     @Override

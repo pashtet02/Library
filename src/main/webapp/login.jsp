@@ -17,8 +17,8 @@
         </div>
         <form method="post" action="<c:url value="/controller"/>">
             <input type="hidden" name="command" value="login" />
-            <input type="text" required placeholder="login" class="fadeIn second" name="login" id="login"><br>
-            <input type="password" required placeholder="password" class="fadeIn third" name="password" id="password"><br><br>
+            <input type="text" required placeholder="login" class="fadeIn second" name="login" id="login" pattern="[a-zA-Z0-9]{4,20}"><br>
+            <input type="password" required placeholder="password" class="fadeIn third" name="password" id="password" pattern="[a-zA-Z0-9]{4,32}"><br><br>
             <input class="fadeIn fourth" type="submit" value="Войти">
         </form>
         <!-- GO To registration page -->

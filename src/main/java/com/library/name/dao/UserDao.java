@@ -1,14 +1,12 @@
 package com.library.name.dao;
 
-import com.library.name.entity.Book;
 import com.library.name.entity.User;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import org.apache.log4j.Logger;
 
 public class UserDao implements Dao<User> {
 
@@ -76,45 +74,6 @@ public class UserDao implements Dao<User> {
             logger.error("getUserByLogin() userDao exception: " + throwable.getSQLState(), throwable);
         } finally {
             close(rs);
-        }
-        return user;
-    }
-
-    public List<Book> getUserBooks(User user) {
-        BookDao bookDao;
-        List<Book> books = new ArrayList<>();
-        try (Connection con = getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.SELECT_ALL_USER_BOOKS)
-        ) {
-            preparedStatement.setLong(1, user.getId());
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    bookDao = BookDao.getInstance();
-                    books.add(bookDao.get(resultSet.getInt(1)));
-                }
-            }
-        } catch (SQLException throwable) {
-            logger.error("getUserBooks() userDao exception: " + throwable.getSQLState(), throwable);
-        }
-        return books;
-    }
-
-    public User getUserByLoginAndPassword(String login, String password) {
-        User user = new User();
-        try (Connection con = getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLConstants.GET_USER_BY_LOGIN_AND_PASSWORD)
-        ) {
-            preparedStatement.setString(1, login);
-            preparedStatement.setString(2, password);
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                if (rs.next()) {
-                    setUserFromResSet(rs, user);
-                }
-            }
-        } catch (SQLException throwable) {
-            logger.error("getUserByLoginAndPassword() userDao exception login: {}"
-                    + login + throwable.getSQLState(), throwable);
-            throwable.printStackTrace();
         }
         return user;
     }
@@ -188,59 +147,6 @@ public class UserDao implements Dao<User> {
         }
     }
 
-    public boolean isUserExistsByLoginAndPassword(String login, String password) {
-        try (Connection con = getConnection();
-             PreparedStatement pstmt = con.prepareStatement(SQLConstants.GET_USER_BY_LOGIN_AND_PASSWORD,
-                     Statement.RETURN_GENERATED_KEYS)) {
-
-            pstmt.setString(1, login);
-            pstmt.setString(2, password);
-            if (pstmt.execute()) {
-                return true;
-            }
-        } catch (SQLException throwable) {
-            throwable.printStackTrace();
-            try {
-                throw throwable;
-            } catch (SQLException throwables) {
-                logger.error("isUserExistsByLoginAndPassword() userDao exception: "
-                        + throwable.getSQLState(), throwable);
-                throwables.printStackTrace();
-            }
-        }
-        return false;
-    }
-
-    public void blockOrUnblockUser(User user, int value) {
-        try (Connection con = getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement("UPDATE users SET isBanned= ? where id=?")) {
-            preparedStatement.setInt(1, value);
-            preparedStatement.setLong(2, user.getId());
-            preparedStatement.executeUpdate();
-            logger.info("block or unblock user: " + user + " value: " + value);
-        } catch (SQLException throwable) {
-            logger.error("blockOrUnblockUser() userDao exception: "
-                    + throwable.getSQLState(), throwable);
-        }
-    }
-
-    public void updateRoleById(User user) {
-        try (Connection con = getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(
-                     "update users set fine = ?, role = ?, isBanned = ? where id =?")) {
-            preparedStatement.setDouble(1, user.getFine());
-            preparedStatement.setString(2, user.getRole());
-            preparedStatement.setBoolean(3, user.isBanned());
-            preparedStatement.setLong(4, user.getId());
-            preparedStatement.executeUpdate();
-            logger.debug("role updated userid: {} {}" + user.getId() + "role: " + user.getRole());
-        } catch (SQLException throwable) {
-            logger.error("updateRoleById() userDao exception: "
-                    + throwable.getSQLState(), throwable);
-        }
-    }
-
-    //updates by username
     @Override
     public void update(User user) {
         try (Connection con = getConnection();

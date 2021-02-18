@@ -9,7 +9,6 @@ import java.io.IOException;
 /**
  * Encoding filter.
  *
- * @author D.Kolesnikov
  *
  */
 public class EncodingFilter implements Filter {
@@ -42,7 +41,7 @@ public class EncodingFilter implements Filter {
         chain.doFilter(request, response);
     }
 
-    public void init(FilterConfig fConfig) throws ServletException {
+    public void init(FilterConfig fConfig) {
         log.debug("Filter initialization starts");
         encoding = fConfig.getInitParameter("encoding");
         log.trace("Encoding from web.xml --> " + encoding);

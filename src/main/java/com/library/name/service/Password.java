@@ -4,7 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class Password {
     // Define the BCrypt workload to use when generating password hashes. 10-31 is a valid value.
-    private static int workload = 12;
+    private static final int workload = 12;
 
     /**
      * This method can be used to generate a string representing an account password
@@ -19,9 +19,8 @@ public class Password {
      */
     public static String hashPassword(String password_plaintext) {
         String salt = BCrypt.gensalt(workload);
-        String hashed_password = BCrypt.hashpw(password_plaintext, salt);
 
-        return(hashed_password);
+        return BCrypt.hashpw(password_plaintext, salt);
     }
 
     /**
@@ -33,7 +32,7 @@ public class Password {
      * @return boolean - true if the password matches the password of the stored hash, false otherwise
      */
     public static boolean checkPassword(String password_plaintext, String stored_hash) {
-        boolean password_verified = false;
+        boolean password_verified;
 
         if(null == stored_hash || !stored_hash.startsWith("$2a$"))
             throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");

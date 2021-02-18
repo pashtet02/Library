@@ -1,6 +1,5 @@
 package com.library.name.web.command;
 
-import com.library.name.Path;
 import com.library.name.dao.Dao;
 import com.library.name.dao.ReviewDao;
 import com.library.name.dao.UserDao;
@@ -18,8 +17,6 @@ import java.util.List;
 
 /**
  * Update settings items.
- * 
- *
  */
 public class UpdateSettingsCommand extends Command {
 

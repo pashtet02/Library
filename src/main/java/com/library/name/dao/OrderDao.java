@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 
 public class OrderDao implements Dao<Order> {
@@ -43,21 +42,14 @@ public class OrderDao implements Dao<Order> {
             BookDao bookDao = BookDao.getInstance();
             bookDao.decrementNumberBook(order.getBookId());
 
-            //Set return date to today
-            long millis=System.currentTimeMillis();
-            Date date=new Date(millis);
-            order.setReturnDate(date);
-            update(order);
-
             con.commit();
             result = true;
-            log.info("Book returned successfully + " + result);
+            logger.info("Book returned successfully");
         } catch (SQLException e) {
             if (con != null) {
                 rollbackAndClose(con);
-
             }
-            log.error(e.getMessage()  + e.getSQLState());
+            logger.error(e.getMessage()  + e.getSQLState());
         } finally {
             close(preparedStatement);
             close(con);
@@ -128,14 +120,6 @@ public class OrderDao implements Dao<Order> {
         } catch (SQLException throwable) {
             logger.error(throwable.getSQLState(), throwable);
         }
-    }
-
-    public List<Order> getSomeOrders(int start, int numberOfOrders) throws SQLException {
-        Connection con = getConnection();
-        List<Order> orders;
-        orders = getAllOrders(con, "select * from orders limit " + (start - 1) * numberOfOrders + "," + numberOfOrders);
-        logger.debug("getSome Orders: " + orders.size());
-        return orders;
     }
 
     private static List<Order> getAllOrders(Connection con, String query) throws SQLException {
@@ -210,14 +194,32 @@ public class OrderDao implements Dao<Order> {
             close(rs);
         }
     }
-
     @Override
     public void update(Order order) {
-        throw new IllegalArgumentException("pishov naher!");
+        try (Connection con = getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(
+                     "update orders set  status = ?, startDate =?," +
+                             " returnDate = ?, userComment =?, librarianComment=? where id = ?")) {
+            int k = 1;
+            preparedStatement.setString(k++, order.getStatus());
+
+            preparedStatement.setTimestamp(k++, order.getStartDate());
+            preparedStatement.setDate(k++, order.getReturnDate());
+            preparedStatement.setString(k++, order.getUserComment());
+            preparedStatement.setString(k++, order.getLibrarianComment());
+
+            preparedStatement.setLong(k, order.getId());
+            preparedStatement.executeUpdate();
+            logger.debug("updated orderId: " + order.getId());
+            log.error("UPDATED ORDER !!!!" + order);
+        } catch (SQLException throwable) {
+            logger.error("update() userDao exception: "
+                    + throwable.getSQLState(), throwable);
+        }
     }
 
-    private void setOrderToPrepStmt(Order order, PreparedStatement preparedStatement) throws SQLException {
 
+    private void setOrderToPrepStmt(Order order, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setLong(1, order.getUserId());
         preparedStatement.setLong(2, order.getBookId());
         preparedStatement.setTimestamp(3, order.getStartDate());
@@ -257,18 +259,6 @@ public class OrderDao implements Dao<Order> {
                 throw new IllegalStateException("Cannot close " + ac);
             }
         }
-    }
-
-    public List<Order> getByBookId(Long bookId) {
-        List<Order> orders = null;
-
-        try {
-            Connection con = getConnection();
-            orders = getAllOrders(con, "select * from orders where book_id = " + bookId);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return orders;
     }
 
     public List<Order> getByUserId(Long userId) {

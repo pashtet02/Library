@@ -22,8 +22,8 @@ public class RegistrationCommand extends Command {
     /**
      * Execution method for command.
      *
-     * @param req
-     * @param response
+     * @param req HttpServletRequest
+     * @param response HttpServletResponse
      * @return Address to go once the command is executed.
      */
     @Override

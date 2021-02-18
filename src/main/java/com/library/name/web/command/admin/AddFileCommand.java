@@ -23,8 +23,8 @@ public class AddFileCommand extends Command {
     /**
      * Execution method for command.
      *
-     * @param request h
-     * @param response h
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @return Address to go once the command is executed.
      */
     @SuppressWarnings("unchecked")
@@ -64,7 +64,9 @@ public class AddFileCommand extends Command {
         if (fileName != null && !fileName.isEmpty()){
             book.setImage(fileName);
         }
-        else book.setImage("testicon.png");
+        else if (book.getImage() == null || !book.getImage().isEmpty()){
+            book.setImage("testicon.png");
+        }
         log.debug("IMAGE: " + book.getImage());
 
         bookDao.update(book);

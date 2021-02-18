@@ -45,5 +45,5 @@ Data source and connection pool configuration
               driverClassName="com.mysql.cj.jdbc.Driver"
               defaultAutoCommit="true"
               defaultTransactionIsolation="READ_COMMITTED"
-              url="jdbc:mysql://localhost:3306/library?user=root&amp;password=root?sslMode=DISABLED&amp;serverTimezone=UTC"/>
+              url="jdbc:mysql://localhost:3306/library3?user=root&amp;password=root?sslMode=DISABLED&amp;serverTimezone=UTC"/>
 </Context>

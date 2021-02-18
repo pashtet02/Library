@@ -26,14 +26,12 @@ public final class Path {
     //User
     public static final String PAGE_SETTINGS = "/WEB-INF/jsp/user/settings.jsp";
     public static final String PAGE_ORDER_BOOK = "/WEB-INF/jsp/user/orderBook.jsp";
-    public static final String PAGE_USER_MENU = "/WEB-INF/jsp/user/user_menu.jsp";
     public static final String PAGE_USER_BOOKS = "/WEB-INF/jsp/user/books.jsp";
     public static final String PAGE_ADD_REVIEW = "/WEB-INF/jsp/user/addUserReview.jsp";
     public static final String PAGE_EDIT_REVIEW = "/WEB-INF/jsp/user/editUserReview.jsp";
 
 
     //Admin
-    public static final String PAGE_ADMIN_PAGE = "/WEB-INF/jsp/admin/admin_menu.jsp";
     public static final String PAGE_USERS_LIST = "/WEB-INF/jsp/admin/users.jsp";
     public static final String PAGE_ADD_BOOK = "/WEB-INF/jsp/admin/addBook.jsp";
     public static final String PAGE_EDIT_BOOK = "/WEB-INF/jsp/admin/editBook.jsp";

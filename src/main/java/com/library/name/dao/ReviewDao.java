@@ -43,7 +43,7 @@ public class ReviewDao implements Dao<Review> {
     }
 
     @Override
-    public List<Review> getAll() throws SQLException {
+    public List<Review> getAll() {
         List<Review> reviews = null;
 
         Connection con;

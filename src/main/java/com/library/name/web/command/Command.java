@@ -10,6 +10,8 @@ public abstract class Command implements Serializable {
     private static final long serialVersionUID = 8879403039606311780L;
 
     /**
+     * @param request HttpServletRequest
+     *   @param response HttpServletResponse
      * Execution method for command.
      * @return Address to go once the command is executed.
      */
