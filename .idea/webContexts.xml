@@ -4,6 +4,8 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/addBook.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/addBook.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/librarian/readers.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/librarian" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/librarianMenu.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/books.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/settings.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />

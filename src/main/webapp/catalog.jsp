@@ -67,8 +67,10 @@
                                     <p class="card-text">ISBN: <c:out value="${book.getISBN()}"/><br>
                                         <fmt:message key="global.bookPublisher"/> <c:out
                                                 value="${book.getPublisher()}"/><br>
+                                        <c:if test="${sessionScope.user.role == 'ADMIN'}">
                                         <fmt:message key="global.booksNumber"/> <c:out
                                                 value="${book.getNumber()}"/><br>
+                                        </c:if>
                                         <fmt:message key="global.bookLanguage"/> <c:out
                                                 value="${book.getLanguage()}"/></p>
                                     <c:choose>
@@ -106,8 +108,10 @@
                                 <p class="card-text">ISBN: <c:out value="${requestScope.book.getISBN()}"/><br>
                                     <fmt:message key="global.bookPublisher"/> <c:out
                                             value="${requestScope.book.getPublisher()}"/><br>
+                                    <c:if test="${sessionScope.user.role == 'ADMIN'}">
                                     <fmt:message key="global.booksNumber"/> <c:out
                                             value="${requestScope.book.getNumber()}"/><br>
+                                    </c:if>
                                     <fmt:message key="global.bookLanguage"/> <c:out
                                             value="${requestScope.book.getLanguage()}"/></p>
                                 <c:choose>

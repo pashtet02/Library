@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/jspf/directive/page.jspf" %>
 <%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +18,8 @@
 
     <form action="<c:url value="/controller?command=editBook"/>" method="post">
 
-        <h1>Edit a book: "${requestScope.book.title}"</h1>
-        <p>Please fill in this form to edit this book</p>
+        <h1><fmt:message key="editBook.mainLabel"/> "${requestScope.book.title}"</h1>
+        <p><fmt:message key="editBook.description"/></p>
         <hr>
         <input type="hidden" name="id" value="${requestScope.book.id}">
         <label for="title"><strong><fmt:message key="aboutBook.title"/></strong></label>
@@ -35,10 +37,10 @@
         <label for="publishingDate"><fmt:message key="aboutBook.publishingDate"/>: </label>
         <input class="form-control" type="date" placeholder="${requestScope.book.publishingDate}" name="publishingDate" id="publishingDate" ><br>
 
-        <label for="exampleFormControlTextarea1">Add description in english</label>
+        <label for="exampleFormControlTextarea1"><fmt:message key="editBook.descriptionEN"/></label>
         <textarea class="form-control" id="exampleFormControlTextarea1" maxlength="512" placeholder="${requestScope.book.descriptionEn}" name="descriptionEn" rows="3" ></textarea><br>
 
-        <label for="exampleFormControlTextarea2">Add description in ukrainian</label>
+        <label for="exampleFormControlTextarea2"><fmt:message key="editBook.descriptionUA"/></label>
         <textarea class="form-control" id="exampleFormControlTextarea2" maxlength="512" placeholder="${requestScope.book.descriptionUa}" name="descriptionUa" rows="3" ></textarea><br>
 
         <label for="exampleFormControlSelect1"><fmt:message key="aboutBook.language"/></label>
@@ -52,7 +54,7 @@
         <input class="form-control" type="number" placeholder="${requestScope.book.number}" name="number" id="number" >
         <hr>
 
-        <button type="submit" class="btn btn-primary">Next</button>
+        <button type="submit" class="btn btn-primary"><fmt:message key="editBook.nextBook"/></button>
     </form>
 </div>
 </body>

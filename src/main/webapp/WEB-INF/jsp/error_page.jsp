@@ -3,31 +3,31 @@
 
 <html>
 <head>
+    <jsp:include page="../jspf/directive/header.jsp"/>
     <title>Error</title>
 </head>
 <body>
-<h1>Oops...</h1>
+<h1></h1>
+<main class="flex-shrink-0">
+    <div class="container">
+        <jsp:include page="../jspf/directive/navbar.jsp"/>
 
-<c:if test="${not empty requestScope.errorMessage and empty exception and empty code}">
-    <h3>Error message: ${errorMessage}</h3>
-</c:if>
+        <h1 class="mt-5">Oops...</h1>
+        <p class="lead">An unexpected error occured:</p>
+        <p><c:if test="${not empty requestScope.errorMessage and empty exception and empty code}">
+        <h3>Error message: ${errorMessage}</h3>
+        </c:if>
+        </p>
 
-<%-- this way we print exception stack trace --%>
-<c:if test="${not empty exception}">
-    <hr/>
-    <h3>Stack trace:</h3>
-    <c:forEach var="stackTraceElement" items="${exception.stackTrace}">
-        ${stackTraceElement}
-    </c:forEach>
-</c:if>
-
-<c:choose>
-    <c:when test="${sessionScope.user.username == null}">
-        <a class="navbar-brand" href="<c:url value="/login.jsp"/>">login please</a>
-    </c:when>
-    <c:otherwise>
-        <a class="navbar-brand" href="<c:url value="/"/>">Go to the main page</a>
-    </c:otherwise>
-</c:choose>
+        <c:choose>
+            <c:when test="${sessionScope.user.username == null}">
+                <a class="navbar-brand" href="<c:url value="/login.jsp"/>">login please</a>
+            </c:when>
+            <c:otherwise>
+                <a class="navbar-brand" href="<c:url value="/"/>">Go to the main page</a>
+            </c:otherwise>
+        </c:choose>
+    </div>
+</main>
 </body>
 </html>

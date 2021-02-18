@@ -5,6 +5,7 @@
 
 <html>
 <head>
+    <title>Library</title>
     <jsp:include page="../../jspf/directive/header.jsp"/>
 </head>
 <body>

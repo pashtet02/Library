@@ -1,15 +1,18 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html>
 <head>
+    <title>library</title>
     <jsp:include page="../../jspf/directive/header.jsp"/>
 </head>
 <body>
-<jsp:include page="../../jspf/directive/navbar.jsp"/>
 <div class="container">
-<h2>My library users</h2>
+<jsp:include page="../../jspf/directive/navbar.jsp"/>
+
+<h2><fmt:message key="users.mainLabel"/></h2>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -25,22 +28,22 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="user" items="${usersList}">
+    <c:forEach var="user" items="${requestScope.usersList}">
         <tr>
-            <th scope="row">${user.getId()}</th>
-            <td><c:out value="${user.getUsername()}" />
+            <th scope="row">${user.id}</th>
+            <td><c:out value="${user.username}" />
             </td>
-            <td><c:out value="${user.getFirstName()} ${user.getSecondName()}" />
+            <td><c:out value="${user.firstName} ${user.secondName}" />
             </td>
-            <td><c:out value="${user.getMail()}" />
+            <td><c:out value="${user.mail}" />
             </td>
-            <td><c:out value="${user.getRole()}" />
+            <td><c:out value="${user.role}" />
             </td>
-            <td><c:out value="${user.getFine()}" />
+            <td><c:out value="${user.fine}" />
             </td>
-            <td><c:out value="${user.isBanned()}" />
+            <td><c:out value="${user.banned}" />
             </td>
-            <td><c:out value="${user.getUserLocale()}" />
+            <td><c:out value="${user.userLocale}" />
             </td>
             <c:choose>
                 <c:when test="${sessionScope.role == 'ADMIN'}">

@@ -44,6 +44,7 @@ public class LoginCommand extends Command {
             log.error(errMessage + errorMessage);
             return forward;
         }
+
         UserDao userDao = UserDao.getInstance();
         User user = userDao.getUserByLogin(login);
 

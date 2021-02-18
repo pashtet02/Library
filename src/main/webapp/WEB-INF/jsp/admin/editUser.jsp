@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="/WEB-INF/jspf/directive/page.jspf" %>
 <%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,24 +18,24 @@
 <form method="post" action="<c:url value="/controller?command=editUser&id=${param.userId}"/>">
     <p><c:out value="${requestScope.id}"/></p>
     <div class="container">
-        <h2>Edit user:</h2>
-        <p>Please fill in this form to edit a user account</p>
+        <h2><fmt:message key="editUser.mainLabel"/></h2>
+        <p><fmt:message key="editUser.description"/></p>
         <hr>
 
-        <label for="role"><strong>Role</strong></label>
+        <label for="role"><strong><fmt:message key="editUser.role"/></strong></label>
         <input type="text" placeholder="Enter role" name="role" id="role" pattern="^(USER)$|^(ADMIN)$|^(LIBRARIAN)$">
         <br>
 
-        <label for="exampleFormControlSelect1">Ban a user?</label>
+        <label for="exampleFormControlSelect1"><fmt:message key="editUser.banAUser"/></label>
         <select class="form-control" id="exampleFormControlSelect1" name="isBanned">
-            <option value="false">no</option>
-            <option value="true">yes</option>
+            <option value="false"><fmt:message key="editUser.no"/></option>
+            <option value="true"><fmt:message key="editUser.yes"/></option>
         </select>
 
         <hr>
         <!-- Button trigger modal -->
         <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" type="button">
-            Done
+            <fmt:message key="editBook.nextBook"/>
         </button>
 
         <!-- Modal -->
@@ -41,17 +43,17 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><fmt:message key="editUser.changeUser"/></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">A
-                        Are you sure?
+                    <div class="modal-body">
+                        <fmt:message key="editUser.AreYouSure"/>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><fmt:message key="editUser.close"/></button>
+                        <button type="submit" class="btn btn-primary"><fmt:message key="editUser.saveChangesButton"/></button>
                     </div>
                 </div>
             </div>
@@ -59,7 +61,7 @@
     </div>
 
     <div class="container signin">
-        <p>Back to users list <a href="<c:url value="/controller?command=usersList"/>">go!</a>.</p>
+        <p><fmt:message key="editUser.backToUsers"/><a href="<c:url value="/controller?command=usersList"/>"><fmt:message key="editUser.labelDesc"/></a></p>
     </div>
 </form>
 </body>
