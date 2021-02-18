@@ -1,5 +1,14 @@
 package com.library.name.web.command;
 
+import com.library.name.web.command.admin.AddBookCommand;
+import com.library.name.web.command.admin.AddFileCommand;
+import com.library.name.web.command.admin.EditBookCommand;
+import com.library.name.web.command.admin.EditUserCommand;
+import com.library.name.web.command.librarian.LibrarianMenuCommand;
+import com.library.name.web.command.librarian.UserAbonementCommand;
+import com.library.name.web.command.user.AddReviewCommand;
+import com.library.name.web.command.user.ListOrdersCommand;
+import com.library.name.web.command.user.OrderBookCommand;
 import org.apache.log4j.Logger;
 
 import java.util.Map;

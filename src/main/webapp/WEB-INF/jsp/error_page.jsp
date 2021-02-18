@@ -8,7 +8,7 @@
 <body>
 <h1>Oops...</h1>
 
-<c:if test="${not empty errorMessage and empty exception and empty code}">
+<c:if test="${not empty requestScope.errorMessage and empty exception and empty code}">
     <h3>Error message: ${errorMessage}</h3>
 </c:if>
 
@@ -21,7 +21,13 @@
     </c:forEach>
 </c:if>
 
-
-<a class="navbar-brand" href="/library">Go to the main page</a>
+<c:choose>
+    <c:when test="${sessionScope.user.username == null}">
+        <a class="navbar-brand" href="<c:url value="/login.jsp"/>">login please</a>
+    </c:when>
+    <c:otherwise>
+        <a class="navbar-brand" href="<c:url value="/"/>">Go to the main page</a>
+    </c:otherwise>
+</c:choose>
 </body>
 </html>

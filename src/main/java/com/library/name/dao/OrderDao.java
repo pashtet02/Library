@@ -43,8 +43,15 @@ public class OrderDao implements Dao<Order> {
             BookDao bookDao = BookDao.getInstance();
             bookDao.decrementNumberBook(order.getBookId());
 
+            //Set return date to today
+            long millis=System.currentTimeMillis();
+            Date date=new Date(millis);
+            order.setReturnDate(date);
+            update(order);
+
             con.commit();
             result = true;
+            log.info("Book returned successfully + " + result);
         } catch (SQLException e) {
             if (con != null) {
                 rollbackAndClose(con);

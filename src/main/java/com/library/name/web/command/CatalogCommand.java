@@ -28,8 +28,8 @@ public class CatalogCommand extends Command {
     /**
      * Execution method for command.
      *
-     * @param request
-     * @param response
+     * @param request HttpServletRequest request
+     * @param response HttpServletResponse response
      * @return Address to go once the command is executed.
      */
     @Override

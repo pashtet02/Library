@@ -113,17 +113,17 @@
                     <div class="card-body">
                         <p class="card-text">${bean.userComment}</p>
                     </div>
-                    <div>
+                    <%--<div>
                         <form action="<c:url value="/controller?command=editBook&id=${bean.id}"/>" method="post">
                             <button type="submit" class="btn btn-primary" value="update" name="action">Edit</button>
                         </form>
-                    </div>
+                    </div>--%>
                 </div>
                 <br>
             </c:forEach>
         </c:when>
         <c:when test="${requestScope.userReviews.size() == 0}">
-            <p>You dint have any reviews</p>
+            <p>You dont have any reviews</p>
         </c:when>
     </c:choose>
 </div>

@@ -40,7 +40,7 @@
                                         <a href="<c:url value="/controller?command=editBook&bookId=${requestScope.book.id}"/>">Edit</a>
                                     </c:when>
                                     <c:when test="${sessionScope.user.role == 'LIBRARIAN'}">
-                                        <p>Librarian can`t edit or order a book</p>
+                                        <p><fmt:message key="aboutBook.librarianAllert"/></p>
                                     </c:when>
                                     <c:otherwise>
                                         <p><fmt:message key="aboutBook.SignInLabel"/><br></p>
@@ -136,8 +136,8 @@
             </c:forEach>
         </c:when>
         <c:when test="${requestScope.bookReviews.size() == 0}">
-            <p>There is no reviews for this book, but you can add one <a href="
-<c:url value="/controller?command=addReview&bookId=${requestScope.book.id}"/>">write a review</a></p>
+            <p><fmt:message key="aboutBook.noReviewsYet"/> <a href="
+<c:url value="/controller?command=addReview&bookId=${requestScope.book.id}"/>"><fmt:message key="aboutBook.writeAReview"/></a></p>
         </c:when>
     </c:choose>
 </div>

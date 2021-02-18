@@ -43,7 +43,7 @@
             </c:forEach>
         </c:when>
         <c:when test="${requestScope.ordersList.size() == 0}">
-            <p>There is no active orders here, no work... Freedom... You can go home, Dobby is free</p>
+            <p><fmt:message key="librarianMenu.noOrders"/></p>
         </c:when>
     </c:choose>
 </div>

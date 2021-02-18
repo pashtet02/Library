@@ -1,4 +1,4 @@
-package com.library.name.web.command;
+package com.library.name.web.command.user;
 
 import com.library.name.Path;
 import com.library.name.dao.BookDao;
@@ -6,6 +6,7 @@ import com.library.name.dao.OrderDao;
 import com.library.name.entity.Book;
 import com.library.name.entity.Order;
 import com.library.name.entity.User;
+import com.library.name.web.command.Command;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -15,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;

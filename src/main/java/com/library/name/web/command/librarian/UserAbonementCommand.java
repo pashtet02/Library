@@ -1,4 +1,4 @@
-package com.library.name.web.command;
+package com.library.name.web.command.librarian;
 
 import com.library.name.Path;
 import com.library.name.dao.BookDao;
@@ -7,6 +7,7 @@ import com.library.name.dao.UserDao;
 import com.library.name.entity.Book;
 import com.library.name.entity.Order;
 import com.library.name.entity.User;
+import com.library.name.web.command.Command;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -54,7 +55,8 @@ public class UserAbonementCommand extends Command {
             orderDao.setOrderStatus(ordId, "RETURNED");
             request.setAttribute("message", "Book returned succesfully");
             request.setAttribute("commandName", "usersList");
-            return "/controller?command=librarianMenu";
+            response.sendRedirect("/library/controller?command=usersList");
+            return null;
         }
 
         String userId = request.getParameter("userId");

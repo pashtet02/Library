@@ -1,22 +1,22 @@
-package com.library.name.web.command;
+package com.library.name.web.command.user;
 
 import com.library.name.Path;
 import com.library.name.dao.OrderDao;
 import com.library.name.entity.Order;
 import com.library.name.entity.User;
+import com.library.name.web.command.Command;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class OrderBookCommand extends Command {
     private final OrderDao orderDao = OrderDao.getInstance();
+    private static final Logger log = Logger.getLogger(OrderBookCommand.class);
 
     /**
      * Execution method for command.
@@ -64,7 +64,7 @@ public class OrderBookCommand extends Command {
                 }
                 order.setUserMail(email);
 
-                System.out.println("COMMENT: " + req.getParameter("comment"));
+                log.debug("COMMENT: " + req.getParameter("comment"));
                 order.setUserComment(req.getParameter("comment"));
 
                 order.setStatus("RESERVED");
@@ -77,8 +77,9 @@ public class OrderBookCommand extends Command {
                     req.setAttribute("errorMessage", errorMessage);
                     return Path.PAGE_ERROR_PAGE;
                 }
-                req.setAttribute("commandName", "catalog");
-                return "/controller?command=listOrders";
+
+                response.sendRedirect("/library/controller?command=listOrders");
+                return null;
             } else {
                 String err = "You have ordered this book already";
                 req.setAttribute("errorMessage", err);

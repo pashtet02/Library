@@ -7,7 +7,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Add book</title>
+    <title><fmt:message key="userReview.mainLabel"/></title>
     <link href="/webapp/static/catalog.css" rel="stylesheet"/>
     <jsp:include page="../../jspf/directive/header.jsp"/>
 </head>
@@ -17,12 +17,12 @@
 
     <form action="<c:url value="/controller?command=addReview"/>" method="post">
 
-        <h1>Add a review to a book ${requestScope.book.title}</h1>
-        <p>Please fill in this form to add a review to catalog</p>
+        <h1><fmt:message key="userReview.mainLabel"/> ${requestScope.book.title}</h1>
+        <p><fmt:message key="userReview.description"/></p>
         <hr>
         <input type="hidden" name="bookId" value="${requestScope.book.id}">
         <div class="form-group">
-            <label for="exampleFormControlSelect2">Choose your mark</label>
+            <label for="exampleFormControlSelect2"><fmt:message key="userReview.chooseMark"/></label>
             <select class="form-control" id="exampleFormControlSelect2" name="mark" required>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -32,10 +32,10 @@
             </select>
         </div>
 
-        <label for="userComment"><strong>Comment: </strong></label>
+        <label for="userComment"><strong><fmt:message key="books.yourComment"/> </strong></label>
         <textarea class="form-control" placeholder="My comment" name="userComment" id="userComment" maxlength="512" rows="5" required></textarea><br>
         <hr>
-        <button type="submit" class="btn btn-primary">Add a review</button>
+        <button type="submit" class="btn btn-primary"><fmt:message key="userReview.button.label"/></button>
 
     </form>
 </div>

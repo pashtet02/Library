@@ -45,19 +45,19 @@
                     <td>${bean.bookAuthor}</td>
                     <c:choose>
                         <c:when test="${bean.status == 'APPROVED'}">
-                            <td style="color: green">${bean.status}</td>
-                        </c:when>
-                        <c:when test="${bean.status == 'RETURNED'}">
-                            <td style="color: #002f80">${bean.status}</td>
+                            <td style="color: green"><fmt:message key="books.statusApproved"/></td>
                         </c:when>
                         <c:when test="${bean.status == 'READING_HALL'}">
-                            <td style="color: blue">${bean.status}</td>
+                            <td style="color: blue"><fmt:message key="books.statusReadingHall"/></td>
                         </c:when>
                         <c:when test="${bean.status == 'REFUSED'}">
-                            <td style="color: red"> ${bean.status}</td>
+                            <td style="color: red"><fmt:message key="books.statusRefused"/></td>
                         </c:when>
                         <c:when test="${bean.status == 'RESERVED'}">
-                            <td style="color: yellow"> ${bean.status}</td>
+                            <td style="color: #8800ff"><fmt:message key="books.statusReserved"/></td>
+                        </c:when>
+                        <c:when test="${bean.status == 'RETURNED'}">
+                            <td style="color: #002aff"><fmt:message key="books.statusReturned"/></td>
                         </c:when>
                     </c:choose>
                     <c:if test="${bean.startDate != null}">

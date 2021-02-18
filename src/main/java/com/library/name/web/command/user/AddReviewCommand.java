@@ -1,4 +1,4 @@
-package com.library.name.web.command;
+package com.library.name.web.command.user;
 
 import com.library.name.Path;
 import com.library.name.dao.BookDao;
@@ -6,6 +6,7 @@ import com.library.name.dao.ReviewDao;
 import com.library.name.entity.Book;
 import com.library.name.entity.Review;
 import com.library.name.entity.User;
+import com.library.name.web.command.Command;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -16,7 +17,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class AddReviewCommand extends Command {
-
     private static final Logger log = Logger.getLogger(AddReviewCommand.class);
 
     @Override
@@ -58,6 +58,7 @@ public class AddReviewCommand extends Command {
         req.setAttribute("commandName", "catalog");
         log.debug("Command finished");
 
-        return "/controller?command=catalog&bookid=" + review.getBookId();
+        resp.sendRedirect("/library/controller?command=catalog&bookid=" + review.getBookId());
+        return null;
     }
 }

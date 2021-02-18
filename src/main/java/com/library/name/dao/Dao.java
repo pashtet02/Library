@@ -6,14 +6,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Properties;
-import java.util.logging.Level;
 
 public interface Dao<T> {
     Logger log = Logger.getLogger(Dao.class);
@@ -51,18 +46,6 @@ public interface Dao<T> {
     void update(T t);
 
     void delete(T t);
-
-
-    default void commitAndClose(Connection con) {
-        try {
-            if (con != null){
-                con.commit();
-                con.close();
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
 
     /**
      * Rollbacks and close the given connection.

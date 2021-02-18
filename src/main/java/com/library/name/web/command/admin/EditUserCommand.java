@@ -1,8 +1,9 @@
-package com.library.name.web.command;
+package com.library.name.web.command.admin;
 
 import com.library.name.Path;
 import com.library.name.dao.UserDao;
 import com.library.name.entity.User;
+import com.library.name.web.command.Command;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;

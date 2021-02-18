@@ -1,15 +1,15 @@
-package com.library.name.web.command;
+package com.library.name.web.command.user;
 
 import com.library.name.Path;
 import com.library.name.dao.ReviewDao;
 import com.library.name.entity.Review;
+import com.library.name.web.command.Command;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Locale;
 
 public class EditReviewCommand extends Command {
     private static final Logger log = Logger.getLogger(EditReviewCommand.class);

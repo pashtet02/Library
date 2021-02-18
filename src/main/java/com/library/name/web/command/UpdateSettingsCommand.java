@@ -69,7 +69,8 @@ public class UpdateSettingsCommand extends Command {
 		request.setAttribute("userReviews", userReviews);
 		
 		log.debug("Command finished");
-		return Path.PAGE_SETTINGS;
+		response.sendRedirect("/library/controller?command=viewSettings");
+		return null;
 	}
 
 }
