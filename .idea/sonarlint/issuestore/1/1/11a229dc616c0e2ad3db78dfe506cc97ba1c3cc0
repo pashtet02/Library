@@ -1,0 +1,67 @@
+
+T
+java:S1444"7Make this "public static SELECT_ALL_ORDERS" field final(¬ùŸÿ8ØÔÀÖù.
+S
+java:S1444"6Make this "public static SQL_ADD_NEW_USER" field final(£ðñÿ8ØÔÀÖù.
+z
+java:S1104"]Make GET_BOOK_BY_TITLE a static final constant or non-public and provide accessors if needed.(£çŠ¼8ØÔÀÖù.
+z
+java:S1104"]Make UPDATE_USER_BY_ID a static final constant or non-public and provide accessors if needed.(ÄÐú 8ØÔÀÖù.
+
+java:S1104"]Make SELECT_ONLY_USERS a static final constant or non-public and provide accessors if needed.(óæ€Ûýÿÿÿÿ8ØÔÀÖù.
+z
+java:S1104"]Make SELECT_ALL_ORDERS a static final constant or non-public and provide accessors if needed.(¬ùŸÿ8ØÔÀÖù.
+a
+java:S1444"DMake this "public static GET_USER_BY_LOGIN_AND_PASSWORD" field final(þƒž›8ØÔÀÖù.
+~
+java:S3008"\Rename this field "SELECT_ONLY_USERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óæ€Ûýÿÿÿÿ8ØÔÀÖù.
+N
+java:S1444"1Make this "public static UPDATE_BOOK" field final(« ¸¤8ØÔÀÖù.
+X
+java:S1444"6Make this "public static SELECT_ALL_USERS" field final(ˆë¨Øýÿÿÿÿ8ØÔÀÖù.
+s
+java:S3008"VRename this field "UPDATE_BOOK" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(« ¸¤8ØÔÀÖù.
+~
+java:S1104"\Make SELECT_ALL_USERS a static final constant or non-public and provide accessors if needed.(ˆë¨Øýÿÿÿÿ8ØÔÀÖù.
+y
+java:S1104"\Make SQL_ADD_NEW_USER a static final constant or non-public and provide accessors if needed.(£ðñÿ8ØÔÀÖù.
+x
+java:S3008"[Rename this field "SQL_ADD_NEW_BOOK" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªùÿˆ8ØÔÀÖù.
+T
+java:S1444"7Make this "public static GET_BOOK_BY_TITLE" field final(£çŠ¼8ØÔÀÖù.
+Y
+java:S1444"7Make this "public static SQL_ADD_NEW_ORDER" field final(º°Õæüÿÿÿÿ8ØÔÀÖù.
+T
+java:S1444"7Make this "public static UPDATE_USER_BY_ID" field final(ÄÐú 8ØÔÀÖù.
+‡
+java:S1104"jMake GET_USER_BY_LOGIN_AND_PASSWORD a static final constant or non-public and provide accessors if needed.(þƒž›8ØÔÀÖù.
+Y
+java:S1444"7Make this "public static SELECT_ONLY_USERS" field final(óæ€Ûýÿÿÿÿ8ØÔÀÖù.
+y
+java:S3008"\Rename this field "UPDATE_USER_BY_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄÐú 8ØÔÀÖù.
+x
+java:S3008"[Rename this field "SELECT_ALL_BOOKS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±ð³ê8ØÔÀÖù.
+x
+java:S3008"[Rename this field "SQL_ADD_NEW_USER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£ðñÿ8ØÔÀÖù.
+
+java:S1104"]Make SQL_ADD_NEW_ORDER a static final constant or non-public and provide accessors if needed.(º°Õæüÿÿÿÿ8ØÔÀÖù.
+S
+java:S1444"6Make this "public static SELECT_ALL_BOOKS" field final(±ð³ê8ØÔÀÖù.
+y
+java:S3008"\Rename this field "GET_BOOK_BY_TITLE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£çŠ¼8ØÔÀÖù.
+t
+java:S1104"WMake UPDATE_BOOK a static final constant or non-public and provide accessors if needed.(« ¸¤8ØÔÀÖù.
+y
+java:S3008"\Rename this field "SELECT_ALL_ORDERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬ùŸÿ8ØÔÀÖù.
+S
+java:S1444"6Make this "public static SQL_ADD_NEW_BOOK" field final(ªùÿˆ8ØÔÀÖù.
+y
+java:S1104"\Make SELECT_ALL_BOOKS a static final constant or non-public and provide accessors if needed.(±ð³ê8ØÔÀÖù.
+}
+java:S3008"[Rename this field "SELECT_ALL_USERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆë¨Øýÿÿÿÿ8ØÔÀÖù.
+†
+java:S3008"iRename this field "GET_USER_BY_LOGIN_AND_PASSWORD" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(þƒž›8ØÔÀÖù.
+~
+java:S3008"\Rename this field "SQL_ADD_NEW_ORDER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(º°Õæüÿÿÿÿ8ØÔÀÖù.
+y
+java:S1104"\Make SQL_ADD_NEW_BOOK a static final constant or non-public and provide accessors if needed.(ªùÿˆ8ØÔÀÖù.

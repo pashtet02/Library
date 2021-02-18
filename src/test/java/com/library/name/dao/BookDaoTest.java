@@ -19,11 +19,6 @@ public class BookDaoTest {
     Book book = new Book();
 
     @Test
-    public void getInstance() {
-        Assert.assertTrue(bookDao instanceof BookDao);
-    }
-
-    @Test
     public void get() {
         Book book = null;
         book = bookDao.get(1);
@@ -35,6 +30,7 @@ public class BookDaoTest {
         List<Book> list = new ArrayList<>();
         list = bookDao.getSomeBooks(1, 10, "id");
         Assert.assertEquals(10, list.size() );
+        Assert.assertTrue(list.get(0).getId() < list.get(1).getId());
     }
 
     @Test
@@ -45,8 +41,8 @@ public class BookDaoTest {
     }
 
     @Test
-    public void getAllByAuthor() throws SQLException {
-        List<Book> books = new ArrayList<>();
+    public void getAllByAuthor() {
+        List<Book> books;
         books = bookDao.getAllByAuthor("J. Rouling");
         Assert.assertTrue(books.size() > 0);
     }
@@ -69,7 +65,7 @@ public class BookDaoTest {
     }
 
     @Test
-    public void update() throws SQLException {
+    public void update() {
         book = bookDao.getByTitle("TEST1");
 
         book.setNumber(5000);
@@ -84,7 +80,7 @@ public class BookDaoTest {
 
     @Test
     public void getByTitle() {
-        Book book = null;
+        Book book;
         book = bookDao.getByTitle("test book");
         Assert.assertNotNull(book);
     }

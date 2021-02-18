@@ -45,7 +45,7 @@ public class AddBookCommand extends Command {
         book.setNumber(Integer.parseInt(req.getParameter("number")));
 
         System.out.println("DESCRIPTION: " + req.getParameter("description"));
-        if (language == "ukrainian"){
+        if (language.equals("ukrainian")){
             book.setDescriptionUa(req.getParameter("description"));
         } else book.setDescriptionEn(req.getParameter("description"));
 

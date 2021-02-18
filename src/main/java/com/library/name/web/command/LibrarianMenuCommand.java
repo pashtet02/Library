@@ -45,8 +45,11 @@ public class LibrarianMenuCommand extends Command {
 
             //Only if we approve order book.number--
             if (status.equals("APPROVED")){
-                Order order = orderDao.get(id);
-                bookDao.decrementNumberBook(order.getBookId());
+               boolean res = orderDao.approveOrder(id);
+               if (!res){
+                   request.setAttribute("err", "Something going wrong with approveOrder()");
+                   return Path.PAGE_ERROR_PAGE;
+               }
             }
 
             String date = request.getParameter("returnDate");

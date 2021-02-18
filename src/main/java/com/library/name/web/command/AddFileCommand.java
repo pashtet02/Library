@@ -1,6 +1,5 @@
 package com.library.name.web.command;
 
-import com.library.name.Path;
 import com.library.name.dao.BookDao;
 import com.library.name.entity.Book;
 import org.apache.commons.fileupload.FileItem;
@@ -17,16 +16,14 @@ import java.io.IOException;
 import java.util.List;
 
 public class AddFileCommand extends Command {
-    private static String uploadPath = "src/main/webapp/view";
     private static String fileName;
     private static final Logger log = Logger.getLogger(AddFileCommand.class);
-    private String fileMessage = "fileMessage";
 
     /**
      * Execution method for command.
      *
-     * @param request
-     * @param response
+     * @param request h
+     * @param response h
      * @return Address to go once the command is executed.
      */
     @SuppressWarnings("unchecked")
@@ -43,30 +40,31 @@ public class AddFileCommand extends Command {
                         fileName = new File(item.getName()).getName();
                         log.info("FILENAME: " + fileName);
 
-                        item.write(new File(uploadPath + File.separator + fileName));
+                        item.write(new File("src/main/webapp/view" + File.separator + fileName));
                     }
                 }
 
                 //File uploaded successfully
-                request.setAttribute(fileMessage, "File Uploaded Successfully");
+                request.setAttribute("fileMessage", "File Uploaded Successfully");
             } catch (Exception ex) {
-                request.setAttribute(fileMessage, "File Upload Failed due to " + ex);
+                request.setAttribute("fileMessage", "File Upload Failed due to " + ex);
             }
 
         } else {
-            request.setAttribute(fileMessage,
+            request.setAttribute("fileMessage",
                     "Sorry this Servlet only handles file upload request");
         }
         BookDao bookDao = BookDao.getInstance();
         HttpSession session = request.getSession();
-        System.out.println("BOOK TITLE" + request.getParameter("bookTitle"));
+        log.debug("BOOK TITLE" + request.getParameter("bookTitle"));
         Book book = bookDao.getByTitle((String) session.getAttribute("bookTitle"));
-        System.out.println("Book: " + book);
+        log.debug("Book: " + book);
         String message;
         if (fileName != null && !fileName.isEmpty()){
             book.setImage(fileName);
         }
-        System.out.println("IMAGE: " + book.getImage());
+        else book.setImage("testicon.png");
+        log.debug("IMAGE: " + book.getImage());
 
         bookDao.update(book);
 
@@ -74,8 +72,9 @@ public class AddFileCommand extends Command {
         message = "Book " + book.getTitle() + "added!!!";
         request.setAttribute("massage", message);
 
-        request.setAttribute("commandName", "catalog");
-        return "/controller?command=catalog&bookid=" + book.getId();
+        String path = "/library/controller?command=catalog&bookid=" + book.getId();
+        response.sendRedirect(path);
+        return null;
     }
 }
 

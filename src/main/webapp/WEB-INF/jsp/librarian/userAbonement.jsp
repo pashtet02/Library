@@ -76,7 +76,31 @@
                     <td>
                         <c:if test="${bean.status == 'APPROVED' || bean.status == 'READING_HALL'}">
                             <form method="post" action="<c:url value="/controller?command=userAbonement&action=return&orderId=${bean.id}"/>">
-                                <button type="submit" class="btn btn-success">Return</button>
+
+                                <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal" type="button">
+                                    Return
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Return a book</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                You can not change this action
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Return book</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </c:if>
                     </td>

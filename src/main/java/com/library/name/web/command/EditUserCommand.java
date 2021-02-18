@@ -54,8 +54,8 @@ public class EditUserCommand extends Command {
         }
 
         log.debug("Command finished");
-        String message = "User: " + user.getUsername() + " changed succesfully";
-        request.setAttribute("message", message);
-        return Path.PAGE_SUCCESS_PAGE;
+
+        response.sendRedirect("/library/controller?command=usersList");
+        return null;
     }
 }

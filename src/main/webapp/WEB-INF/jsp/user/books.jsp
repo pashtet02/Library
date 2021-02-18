@@ -19,12 +19,12 @@
             <table border="1">
                 <thead>
                 <tr>
-                    <td>Title</td>
-                    <td>Author</td>
-                    <td>Status</td>
-                    <td>Return date</td>
-                    <td>Your comment</td>
-                    <td>Librarian`s comment</td>
+                    <td><fmt:message key="aboutBook.title"/></td>
+                    <td><fmt:message key="aboutBook.author"/></td>
+                    <td><fmt:message key="books.status"/></td>
+                    <td><fmt:message key="books.returnDate"/></td>
+                    <td><fmt:message key="books.yourComment"/></td>
+                    <td><fmt:message key="books.librariansComment"/></td>
                 </tr>
                 </thead>
                 <c:forEach var="bean" items="${requestScope.ordersList}">
@@ -34,16 +34,19 @@
                         <td>${bean.bookAuthor}</td>
                         <c:choose>
                             <c:when test="${bean.status == 'APPROVED'}">
-                                <td style="color: green">${bean.status}</td>
+                                <td style="color: green"><fmt:message key="books.statusApproved"/></td>
                             </c:when>
                             <c:when test="${bean.status == 'READING_HALL'}">
-                                <td style="color: blue">${bean.status}</td>
+                                <td style="color: blue"><fmt:message key="books.statusReadingHall"/></td>
                             </c:when>
                             <c:when test="${bean.status == 'REFUSED'}">
-                                <td style="color: red"> ${bean.status}</td>
+                                <td style="color: red"><fmt:message key="books.statusRefused"/></td>
                             </c:when>
                             <c:when test="${bean.status == 'RESERVED'}">
-                                <td style="color: #8800ff"> ${bean.status}</td>
+                                <td style="color: #8800ff"><fmt:message key="books.statusReserved"/></td>
+                            </c:when>
+                            <c:when test="${bean.status == 'RETURNED'}">
+                                <td style="color: #002aff"><fmt:message key="books.statusReturned"/></td>
                             </c:when>
                         </c:choose>
                         <td>${bean.returnDate}</td>
@@ -56,7 +59,7 @@
     </c:choose>
 
     <c:if test="${sessionScope.user.fine > 0}">
-        <h5>Your fine: ${sessionScope.user.fine} UAH</h5>
+        <h5><fmt:message key="users.fine"/> <fmt:formatNumber value="${sessionScope.user.fine}"/> UAH</h5>
     </c:if>
 </div>
 </body>

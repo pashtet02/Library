@@ -1,7 +1,6 @@
 package com.library.name.dao;
 
 import com.library.name.entity.Order;
-import com.library.name.entity.User;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -23,6 +22,40 @@ public class OrderDao implements Dao<Order> {
 
     private OrderDao() {
         // hello everyone
+    }
+
+    public boolean approveOrder(long orderId){
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        boolean result = false;
+        try {
+            con = getConnection();
+            con.setAutoCommit(false);
+            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+
+             preparedStatement =
+                    con.prepareStatement("update orders set status = 'APPROVED' where id = ?");
+            preparedStatement.setLong(1, orderId);
+            preparedStatement.executeUpdate();
+
+            Order order = get(orderId);
+
+            BookDao bookDao = BookDao.getInstance();
+            bookDao.decrementNumberBook(order.getBookId());
+
+            con.commit();
+            result = true;
+        } catch (SQLException e) {
+            if (con != null) {
+                rollbackAndClose(con);
+
+            }
+            log.error(e.getMessage()  + e.getSQLState());
+        } finally {
+            close(preparedStatement);
+            close(con);
+        }
+        return result;
     }
 
     @Override
@@ -200,7 +233,7 @@ public class OrderDao implements Dao<Order> {
             order.setBookId(rs.getLong("book_id"));
             order.setStartDate(rs.getTimestamp("startDate"));
             order.setReturnDate(rs.getDate("returnDate"));
-            order.setStatus(rs.getString("status").toUpperCase(Locale.ROOT));
+            order.setStatus(rs.getString("status"));
             order.setUserComment(rs.getString("userComment"));
             order.setLibrarianComment(rs.getString("librarianComment"));
         } catch (SQLException throwable) {
@@ -222,7 +255,6 @@ public class OrderDao implements Dao<Order> {
     public List<Order> getByBookId(Long bookId) {
         List<Order> orders = null;
 
-
         try {
             Connection con = getConnection();
             orders = getAllOrders(con, "select * from orders where book_id = " + bookId);
@@ -243,22 +275,11 @@ public class OrderDao implements Dao<Order> {
         return orders;
     }
 
-    public List<Order> getUserId(Long userId) {
-        List<Order> orders = null;
-        try {
-            Connection con = getConnection();
-            orders = getAllOrders(con, "select * from orders where user_id = " + userId);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return orders;
-    }
-
     public double countUserFineByUserId(long userId) {
         ResultSet rs = null;
         List<Order> unterminatedOrders = new ArrayList<>();
         int totalDays = 0;
-        Double fine = 0.0;
+        double fine = 0.0;
         try (Connection con = getConnection();
              PreparedStatement statement = con.prepareStatement(
                      "select * from orders where user_id = ? " +
@@ -271,13 +292,14 @@ public class OrderDao implements Dao<Order> {
             }
             logger.info("unterminaded list: " + unterminatedOrders);
 
-            for (Order order: unterminatedOrders) {
+            for (Order order : unterminatedOrders) {
                 totalDays += countUnterminatedDays(order.getId());
             }
 
             //Calculating fine
-            fine = totalDays * 3 - 0.5;
-
+            if (totalDays > 0){
+                fine = totalDays * 3.0;
+            }
             logger.info("FINE: " + fine);
         } catch (SQLException throwable) {
             logger.error("userFINE()" + throwable.getSQLState() + throwable.getMessage());
@@ -287,7 +309,7 @@ public class OrderDao implements Dao<Order> {
         return fine;
     }
 
-    private int countUnterminatedDays(long orderId){
+    private int countUnterminatedDays(long orderId) {
         ResultSet rs = null;
         int result = 0;
         try (Connection con = getConnection();

@@ -1,0 +1,17 @@
+
+M
+java:S1128"0Remove this unused import 'java.sql.Connection'.(¥ËôÖ8áùÕ¡û.
+G
+java:S1948"*Make "orderDao" transient or serializable.(›¶³ã8áùÕ¡û.
+o
+java:S1192$"MDefine a constant instead of duplicating this literal "errorMessage" 3 times.(®Š°íúÿÿÿÿ8áùÕ¡û.
+Z	java:S106H"9Replace this use of System.out or System.err by a logger.(ÍÕ§§ùÿÿÿÿ8áùÕ¡û.
+e
+java:S1192("HDefine a constant instead of duplicating this literal "comment" 3 times.(Ü ù8áùÕ¡û.
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(îıÅ‹ùÿÿÿÿ8áùÕ¡û.
+R
+java:S1128"5Remove this unused import 'java.util.logging.Logger'.(ƒ¥óš8áùÕ¡û.
+U	java:S106C"9Replace this use of System.out or System.err by a logger.(™ÇÒ…8áùÕ¡û.
+Q
+java:S1128"4Remove this unused import 'java.util.logging.Level'.(…µÛ¶8áùÕ¡û.

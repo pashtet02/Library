@@ -59,14 +59,6 @@ public class CatalogCommand extends Command {
             return Path.PAGE_CATALOG;
         }
 
-       /* //search
-        if (filter != null && !filter.isEmpty()) {
-            log.debug("request filter : " + filter);
-            book = bookDao.getByTitle(filter);
-            request.setAttribute("book", book);
-            return Path.PAGE_CATALOG;
-        }
-*/
         //About book page
         String bookId = request.getParameter("bookid");
         if (bookId != null && !bookId.isEmpty()) {

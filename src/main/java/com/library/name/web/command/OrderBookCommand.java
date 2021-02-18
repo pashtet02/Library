@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OrderBookCommand extends Command {
     private final OrderDao orderDao = OrderDao.getInstance();
@@ -18,8 +21,8 @@ public class OrderBookCommand extends Command {
     /**
      * Execution method for command.
      *
-     * @param req
-     * @param response
+     * @param req f
+     * @param response f
      */
 
     @Override
@@ -75,7 +78,7 @@ public class OrderBookCommand extends Command {
                     return Path.PAGE_ERROR_PAGE;
                 }
                 req.setAttribute("commandName", "catalog");
-                return Path.PAGE_SUCCESS_PAGE;
+                return "/controller?command=listOrders";
             } else {
                 String err = "You have ordered this book already";
                 req.setAttribute("errorMessage", err);
@@ -85,4 +88,3 @@ public class OrderBookCommand extends Command {
         return Path.PAGE_ORDER_BOOK;
     }
 }
-

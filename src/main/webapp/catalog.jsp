@@ -51,7 +51,6 @@
                 <input type="submit" value="<fmt:message key="global.sortButton"  />">
             </form>
         </div>
-
     </div>
 
     <div class="card-columns">

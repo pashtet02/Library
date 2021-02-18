@@ -40,7 +40,6 @@ public class BookDao implements Dao<Book> {
         } finally {
             close(rs);
         }
-        logger.info("get() book get successfully book description: " + book.getDescriptionUa());
         return book;
     }
 
@@ -106,13 +105,13 @@ public class BookDao implements Dao<Book> {
         update(book);
     }
 
-    public void decrementNumberBook(long id) {
+    public void decrementNumberBook(long id) throws SQLException {
         Book book = get(id);
         int i = book.getNumber() - 1;
         if (i > 0) {
             book.setNumber(book.getNumber() - 1);
             update(book);
-        }
+        } else throw new SQLException("no books available");
     }
 
     @Override

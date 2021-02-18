@@ -58,6 +58,6 @@ public class AddReviewCommand extends Command {
         req.setAttribute("commandName", "catalog");
         log.debug("Command finished");
 
-        return Path.PAGE_SUCCESS_PAGE;
+        return "/controller?command=catalog&bookid=" + review.getBookId();
     }
 }

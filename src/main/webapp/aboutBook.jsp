@@ -106,14 +106,8 @@
                                 <h6 class="mb-0"><fmt:message key="aboutBook.description"/>:</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <c:choose>
-                                    <c:when test="${requestScope.book.language == 'english'}">
                                         ${requestScope.book.descriptionEn}
-                                    </c:when>
-                                    <c:when test="${requestScope.book.language == 'ukrainian'}">
                                         ${requestScope.book.descriptionUa}
-                                    </c:when>
-                                </c:choose>
                             </div>
                         </div>
                     </div>

@@ -54,7 +54,7 @@ public class UserAbonementCommand extends Command {
             orderDao.setOrderStatus(ordId, "RETURNED");
             request.setAttribute("message", "Book returned succesfully");
             request.setAttribute("commandName", "usersList");
-            return Path.PAGE_SUCCESS_PAGE;
+            return "/controller?command=librarianMenu";
         }
 
         String userId = request.getParameter("userId");
