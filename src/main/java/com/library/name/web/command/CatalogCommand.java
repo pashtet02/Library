@@ -29,6 +29,11 @@ public class CatalogCommand extends Command {
      * Execution method for command.
      *
      * @param request HttpServletRequest request
+     *                Request params:
+     *                filterParam to search books by its title or author
+     *                bookid = return about.jsp page with book info
+     *                page = return boos from DB on selected page
+     *                sortParam = sorting books by parameter(title, author, publisher, publishingDate)
      * @param response HttpServletResponse response
      * @return Address to go once the command is executed.
      */

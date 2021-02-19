@@ -23,6 +23,9 @@ public class UpdateSettingsCommand extends Command {
 	private static final Logger log = Logger.getLogger(UpdateSettingsCommand.class);
 	private static final Dao<User> userDao = UserDao.getInstance();
 
+	/**
+	 * @return null and redirecting to viewSettingsCommand
+	 * */
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {

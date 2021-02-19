@@ -1,5 +1,8 @@
 package com.library.name.entity;
 
+/**
+ * Entity class represents records in table books in DB
+ * */
 public class Book extends Entity {
     private long id;
     private String title;

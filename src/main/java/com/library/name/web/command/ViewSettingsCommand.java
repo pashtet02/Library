@@ -15,8 +15,6 @@ import java.util.List;
 
 /**
  * View settings command.
- * 
- *
  */
 public class ViewSettingsCommand extends Command {
 	private static final Logger log = Logger.getLogger(ViewSettingsCommand.class);

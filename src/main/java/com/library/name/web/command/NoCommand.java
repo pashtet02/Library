@@ -8,9 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Forward to error page if command not found
+ * */
 public class NoCommand extends Command {
 
-    private static final long serialVersionUID = -2785976616686657267L;
+    private static final long serialVersionUID = 1L;
 
     private static final Logger log = Logger.getLogger(NoCommand.class);
 
@@ -26,5 +29,4 @@ public class NoCommand extends Command {
         log.debug("Command finished");
         return Path.PAGE_ERROR_PAGE;
     }
-
 }

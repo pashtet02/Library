@@ -31,15 +31,12 @@ public class CommandContainer {
         commands.put("logout", new LogoutCommand());
         commands.put("registration", new RegistrationCommand());
 
-
-
         //User commands
         commands.put("orderBook", new OrderBookCommand());
         commands.put("viewSettings", new ViewSettingsCommand());
         commands.put("updateSettings", new UpdateSettingsCommand());
         commands.put("listOrders", new ListOrdersCommand());
         commands.put("addReview", new AddReviewCommand());
-
 
         //Librarian commands
         commands.put("librarianMenu", new LibrarianMenuCommand());

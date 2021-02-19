@@ -30,7 +30,7 @@ public class LoginCommand extends Command {
 
         // obtain login and password from the request
         String login = request.getParameter("login");
-        log.trace("Request parameter: loging --> " + login);
+        log.trace("Request parameter: logging --> " + login);
 
         String password = request.getParameter("password");
 

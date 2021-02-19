@@ -46,7 +46,6 @@
                 <input type="password" required placeholder="Repeat password" class="fadeIn third"
                        name="password-repeat" id="password-repeat" pattern="[A-Za-z0-9]{4,32}"><br>
                 <hr>
-                <!-- Example single danger button -->
                 <input class="fadeIn fourth" type="submit" value="Register">
 
             </div>

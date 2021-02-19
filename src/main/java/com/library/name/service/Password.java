@@ -1,7 +1,9 @@
 package com.library.name.service;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
-
+/**
+ * Service class to hash passwords using BCrypt
+ * */
 public class Password {
     // Define the BCrypt workload to use when generating password hashes. 10-31 is a valid value.
     private static final int workload = 12;

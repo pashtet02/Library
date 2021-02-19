@@ -13,7 +13,10 @@ import java.util.List;
 public interface Dao<T> {
     Logger log = Logger.getLogger(Dao.class);
 
-
+    /**
+     * this method get`s a connection from tomcat dataSource
+     * @return Connection to DB from DateSource
+     * */
     default Connection getConnection() throws SQLException {
         Connection con = null;
         Context context;
@@ -24,7 +27,6 @@ public interface Dao<T> {
 
         } catch (NamingException e) {
             log.error("Cannot obtain a connection from the pool", e);
-            e.printStackTrace();
         }
         return con;
         /*Properties properties = new Properties();

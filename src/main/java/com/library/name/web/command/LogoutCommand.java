@@ -14,7 +14,8 @@ public class LogoutCommand extends Command{
      *
      * @param request HttpServletRequest
      * @param response HttpServletResponse
-     * @return Address to go once the command is executed.
+     *                 this method invalidates session and return to login page
+     * @return login.jsp
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

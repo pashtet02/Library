@@ -5,7 +5,6 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="static/login.css" rel="stylesheet">
-<!------ Include the above in your HEAD tag ---------->
 
 <div class="wrapper fadeInDown">
     <div id="formContent">
@@ -19,7 +18,7 @@
             <input type="hidden" name="command" value="login" />
             <input type="text" required placeholder="login" class="fadeIn second" name="login" id="login" pattern="[a-zA-Z0-9]{4,20}"><br>
             <input type="password" required placeholder="password" class="fadeIn third" name="password" id="password" pattern="[a-zA-Z0-9]{4,32}"><br><br>
-            <input class="fadeIn fourth" type="submit" value="Войти">
+            <input class="fadeIn fourth" type="submit" value="Enter">
         </form>
         <!-- GO To registration page -->
         <div id="formFooter">

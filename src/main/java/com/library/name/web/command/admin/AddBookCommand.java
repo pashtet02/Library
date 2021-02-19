@@ -28,6 +28,7 @@ public class AddBookCommand extends Command {
             return Path.PAGE_ADD_BOOK;
         }
 
+        //Подумати про білдер
         log.debug("ADD BOOK COMMAND ");
         BookDao bookDao = BookDao.getInstance();
 

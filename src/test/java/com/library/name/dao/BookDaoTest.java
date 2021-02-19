@@ -2,17 +2,12 @@ package com.library.name.dao;
 
 import com.library.name.entity.Book;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-import javax.xml.crypto.Data;
-import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class BookDaoTest {
     BookDao bookDao = BookDao.getInstance();
@@ -20,14 +15,14 @@ public class BookDaoTest {
 
     @Test
     public void get() {
-        Book book = null;
+        Book book;
         book = bookDao.get(1);
         Assert.assertNotNull(book);
     }
 
     @Test
     public void getSomeBooks() throws SQLException {
-        List<Book> list = new ArrayList<>();
+        List<Book> list;
         list = bookDao.getSomeBooks(1, 10, "id");
         Assert.assertEquals(10, list.size() );
         Assert.assertTrue(list.get(0).getId() < list.get(1).getId());
@@ -35,7 +30,7 @@ public class BookDaoTest {
 
     @Test
     public void getAll() throws SQLException {
-        List<Book> books = new ArrayList<>();
+        List<Book> books;
         books = bookDao.getAll();
         Assert.assertTrue(books.size() > 0);
     }

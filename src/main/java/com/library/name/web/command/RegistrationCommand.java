@@ -16,8 +16,8 @@ import static com.library.name.service.Password.hashPassword;
 public class RegistrationCommand extends Command {
     private final UserDao userDao = UserDao.getInstance();
     private static final Logger log = Logger.getLogger(RegistrationCommand.class);
-    private static String LOGIN = "login";
-    private static String password = "password";
+    private static final String LOGIN = "login";
+    private static final String PASSWORD = "password";
 
     /**
      * Execution method for command.
@@ -44,7 +44,7 @@ public class RegistrationCommand extends Command {
         user.setUsername(req.getParameter(LOGIN));
 
         //To hash passwords
-        String pass1 = req.getParameter(password);
+        String pass1 = req.getParameter(PASSWORD);
         String pass2 = req.getParameter("password-repeat");
 
         if (!pass1.equals(pass2)) {
@@ -68,13 +68,10 @@ public class RegistrationCommand extends Command {
 
         try {
             userDao.save(user);
-            req.getSession().setAttribute("login", req.getParameter(LOGIN));
-            req.getSession().setAttribute("password", req.getParameter(password));
             req.getSession().setAttribute("role", user.getRole());
             req.getSession().setAttribute("user", user);
             return "/controller?command=catalog&page=1";
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
             log.error("REGISTRATION COMMAND: " + throwables.getMessage() + throwables.getSQLState());
             return forward;
         }

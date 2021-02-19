@@ -58,6 +58,10 @@ public class UserDao implements Dao<User> {
         user.setUserLocale(rs.getString("userLocale"));
     }
 
+    /**
+     * @param login param to search from BD
+     * @return user by login from table users
+     * */
     public User getUserByLogin(String login) {
         ResultSet rs = null;
         User user = new User();
@@ -78,6 +82,9 @@ public class UserDao implements Dao<User> {
         return user;
     }
 
+    /**
+     * @return List of users with role 'USER' from BD
+     * */
     public List<User> getAllUsers() throws SQLException {
         List<User> users = new ArrayList<>();
 
