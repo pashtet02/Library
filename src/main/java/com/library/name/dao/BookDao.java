@@ -208,7 +208,14 @@ public class BookDao implements Dao<Book> {
 
     @Override
     public void delete(Book book) {
-        //hello
+        try (Connection con = getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement("delete from books where id = ?")) {
+            preparedStatement.setLong(1, book.getId());
+            preparedStatement.executeUpdate();
+            logger.debug("Deleted successfully");
+        } catch (SQLException throwable) {
+            logger.error(throwable.getSQLState() + throwable.getMessage());
+        }
     }
 
     private static Book mapBook(ResultSet rs) {

@@ -36,7 +36,7 @@
         <filter-class>com.library.name.web.filter.CommandAccessFilter</filter-class>
         <init-param>
             <param-name>admin</param-name>
-            <param-value>editBook addBook editUser usersList addImage</param-value>
+            <param-value>editBook addBook editUser usersList addImage deleteBook</param-value>
         </init-param>
         <init-param>
             <param-name>librarian</param-name>

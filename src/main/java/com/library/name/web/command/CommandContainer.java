@@ -48,6 +48,9 @@ public class CommandContainer {
         commands.put("addImage", new AddFileCommand());
         commands.put("editUser", new EditUserCommand());
         commands.put("usersList", new UsersListCommand());
+        commands.put("deleteBook", new DeleteBookCommand());
+
+
 
         log.debug("Command container was successfully initialized");
         log.trace("Number of commands --> " + commands.size());
