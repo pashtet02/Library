@@ -1,6 +1,7 @@
 com\library\name\dao\UserDao.class
 com\library\name\entity\Entity.class
 com\library\name\web\command\CommandContainer.class
+com\library\name\web\command\DeleteBookCommand.class
 com\library\name\entity\Book.class
 com\library\name\Path.class
 com\library\name\dao\BookDao.class

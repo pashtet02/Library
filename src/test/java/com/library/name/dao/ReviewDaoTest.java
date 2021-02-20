@@ -1,4 +1,7 @@
 /*
+package com.library.name.dao;
+
+import com.library.name.entity.Review;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,9 +18,9 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RewievDaoTest {
+public class ReviewDaoTest {
 
-    Account acc = new Account("login", "password", "email");
+    Review review = new Review();
 
     @Mock
     Connection mockConn;
@@ -36,21 +39,20 @@ public class RewievDaoTest {
         when(mockPreparedStmt.executeQuery()).thenReturn(mockResultSet);
         when(mockResultSet.next()).thenReturn(Boolean.FALSE);
 
-        acc.setName("name");
-        acc.setSurname("surname");
-        acc.setPhoneNumber("8798709");
-        acc.setId(0);
+        review.setId(0);
     }
 
     @Test
-    public void testFindAccountById() throws SQLException {
-        AccountDao dao = new MySqlAccountDao();
-        dao.findAccountById(mockConn, 3);
+    public void testGetById() throws SQLException {
+        ReviewDao reviewDao = ReviewDao.getInstance();
+        reviewDao.getById(mockConn, 13);
 
         verify(mockConn, times(1)).prepareStatement(anyString());
-        verify(mockPreparedStmt, times(1)).setInt(anyInt(), anyInt());
+        //verify(mockPreparedStmt, times(1)).setInt(anyInt(), anyInt());
         verify(mockPreparedStmt, times(1)).executeQuery();
         verify(mockResultSet, times(1)).next();
         verify(mockResultSet, times(1)).close();
         verify(mockPreparedStmt, times(1)).close();
-    }*/
+    }
+}
+*/

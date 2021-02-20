@@ -29,8 +29,5 @@ public class SQLConstants {
 
     public static final String SELECT_ALL_ORDERS = "SELECT * FROM orders";
     public static final String SQL_ADD_NEW_ORDER = "insert into orders (user_id, book_id, startDate, returnDate, status, userComment, librarianComment) values(?, ?,?, ?,?,?,?);";
-    public static final String UPDATE_ORDER_BY_ID = "update orders\n" +
-            "    set user_id = ?, book_id = ?,status = ?,startDate = ?,  returnDate=?,userComment=?, librarianComment = ? where id = ?;";
-
 
 }

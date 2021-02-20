@@ -33,8 +33,7 @@ public interface Dao<T> {
         try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/app.properties")) {
             properties.load(fileInputStream);
         } catch (IOException e) {
-            java.util.logging.Logger logger = java.util.logging.Logger.getAnonymousLogger();
-            logger.log(Level.SEVERE, e.getMessage(), e);
+            e.printStackTrace();
         }
         return DriverManager.getConnection(properties.getProperty("connection.url"));*/
     }
