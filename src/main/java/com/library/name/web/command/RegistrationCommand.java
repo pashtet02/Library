@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import static com.library.name.service.Password.hashPassword;
 
 public class RegistrationCommand extends Command {
-    private final UserDao userDao = UserDao.getInstance();
+    private final transient UserDao userDao = UserDao.getInstance();
     private static final Logger log = Logger.getLogger(RegistrationCommand.class);
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
@@ -70,6 +70,7 @@ public class RegistrationCommand extends Command {
             userDao.save(user);
             req.getSession().setAttribute("role", user.getRole());
             req.getSession().setAttribute("user", user);
+
             return "/controller?command=catalog&page=1";
         } catch (SQLException throwables) {
             log.error("REGISTRATION COMMAND: " + throwables.getMessage() + throwables.getSQLState());

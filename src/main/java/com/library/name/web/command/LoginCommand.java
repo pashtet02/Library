@@ -18,7 +18,7 @@ import static com.library.name.service.Password.checkPassword;
 public class LoginCommand extends Command {
 
     private static final Logger log = Logger.getLogger(LoginCommand.class);
-    private static final String errMessage = "errorMessage";
+    private static final String ERROR_MESSAGE = "errorMessage";
 
     @Override
     public String execute(HttpServletRequest request,
@@ -40,8 +40,8 @@ public class LoginCommand extends Command {
 
         if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
             errorMessage = "Login/password cannot be empty";
-            request.setAttribute(errMessage, errorMessage);
-            log.error(errMessage + errorMessage);
+            request.setAttribute(ERROR_MESSAGE, errorMessage);
+            log.error(ERROR_MESSAGE + errorMessage);
             return forward;
         }
 
@@ -51,17 +51,24 @@ public class LoginCommand extends Command {
         log.trace("Found in DB: user --> " + user);
         log.debug("LOGIN COMMAND USER: " + user.getUsername());
 
-        boolean bool = checkPassword(password, user.getPassword());
-        if (user.getUsername() == null || !bool) {
-            errorMessage = "Cannot find user with such login/password";
-            request.setAttribute("errorMessage", errorMessage);
-            log.error(errMessage + errorMessage);
+        if (user.getUsername() == null) {
+            errorMessage = "Cannot find user with such login. Please, try again.";
+            request.setAttribute(ERROR_MESSAGE, errorMessage);
+            log.error(ERROR_MESSAGE + errorMessage);
             return forward;
         }
 
-        if (user.isBanned()){
+        boolean bool = checkPassword(password, user.getPassword());
+        if (!bool) {
+            errorMessage = "Wrong password! Please, try again.";
+            request.setAttribute(ERROR_MESSAGE, errorMessage);
+            log.error(ERROR_MESSAGE + errorMessage);
+            return forward;
+        }
+
+        if (user.isBanned()) {
             errorMessage = "Sorry you were banned on this website :(";
-            request.setAttribute("errorMessage", errorMessage);
+            request.setAttribute(ERROR_MESSAGE, errorMessage);
             log.error("errorMessage --> " + errorMessage);
             return forward;
         }

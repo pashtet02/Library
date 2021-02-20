@@ -96,10 +96,6 @@ g
 7src/main/webapp/WEB-INF/jsp/librarian/librarianMenu.jsp,d\4\d4db7b5a1f22fb1f178d1cf7f5e2af3463c259e3
 g
 7src/main/java/com/library/name/web/command/Command.java,c\b\cb42633209b65bbcf8a363acfd2570e712810a17
-o
-?src/main/java/com/library/name/web/command/EditUserCommand.java,4\d\4d8ead05bbe7e74ae339124ad29d1b6c167ad9b6
-t
-Dsrc/main/java/com/library/name/web/command/LibrarianMenuCommand.java,5\0\503c6926a9f25cfaa76dbbc81c7a5fa715af7cfe
 a
 1src/main/webapp/WEB-INF/jsp/librarian/readers.jsp,1\6\1646a733bf6e0dd46a9c6565b3ef7b9c256c549b
 X
@@ -114,14 +110,8 @@ u
 Esrc/main/java/com/library/name/web/command/UpdateSettingsCommand.java,a\9\a9de7b6d4a9f7fb5626538448ea9f96bbbab3e00
 l
 <src/main/java/com/library/name/web/command/LoginCommand.java,4\b\4bf3c5aa09f94b9d56d15d7ff59b8d83ddc535d3
-t
-Dsrc/main/java/com/library/name/web/command/UserAbonementCommand.java,d\d\dd6d9babb0f3e5f71c21a22bcc4bd6c4dcf49f75
-p
-@src/main/java/com/library/name/web/command/OrderBookCommand.java,4\4\4472cfb370dceca410d6c43860e88dd8ea8de94a
 g
 7src/main/webapp/WEB-INF/jsp/librarian/userAbonement.jsp,d\0\d09104a09152650d32bb008f88c75205cc745096
-`
-0src/main/webapp/WEB-INF/jsp/admin/admin_menu.jsp,5\5\55d15027b7552ca9360fca6d2ae0c99ffacb374e
 r
 Bsrc/main/java/com/library/name/web/filter/CommandAccessFilter.java,e\4\e47037e3aa61f088efccf626cb5180b190739da1
 m
@@ -140,12 +130,6 @@ M
 src/main/webapp/aboutBook.jsp,c\b\cbebbec297da27f8248dbeeb4c2617523d742757
 P
  src/main/webapp/static/login.css,9\3\936f7205919a9052374b110e5dc34f694e88781c
-[
-+src/main/webapp/WEB-INF/jsp/successPage.jsp,2\5\25de0cdf941f9db30734490fc27435d436d4dd40
-n
->src/main/java/com/library/name/web/command/AddBookCommand.java,e\8\e802b2eef4e22f279fc6dfd4991829f9e64a7904
-n
->src/main/java/com/library/name/web/command/AddFileCommand.java,a\3\a32db6044e9b0132d8d866b3a973413dfb921dc8
 `
 0src/main/java/com/library/name/dao/OrderDao.java,9\3\9373c6c486f9d564a7ff22c983dce57d8c72ab91
 Z
@@ -156,8 +140,6 @@ Z
 .src/main/webapp/WEB-INF/jsp/user/orderBook.jsp,8\f\8f43c519cc32a5f1d6f79153cd09daf9330f5f96
 ]
 -src/main/webapp/WEB-INF/jsp/user/settings.jsp,2\1\21ab9ad35bdf866835da1f6e7cfd6aa0e4fe35d7
-^
-.src/main/webapp/WEB-INF/jsp/user/user_menu.jsp,3\7\37ad3c069592c02af4675c86c41c1a4b94e4812f
 [
 +src/main/webapp/WEB-INF/jsp/admin/users.jsp,4\3\43e8a1655f6cd7cd3b9fa7fa6b65db0d1ea5e631
 R
@@ -166,8 +148,6 @@ R
 0src/main/java/com/library/name/entity/Order.java,0\e\0e5b1ba5de5ecc48104ff4b3e11011fdd4461824
 _
 /src/main/java/com/library/name/entity/User.java,f\9\f95eb2d41ff17b9a8078cc505ed0e11b3a65aefe
-^
-.src/main/java/com/library/name/dao/Fields.java,b\9\b9394247b50921b24c3af1850ae687f96b7c38d6
 ]
 -src/main/webapp/WEB-INF/jsp/admin/addBook.jsp,2\2\226f38a231f54e7d42f6daf360c1e25090ced230
 ^
@@ -180,8 +160,6 @@ T
 $src/main/webapp/static/aboutBook.css,d\c\dc180bfbd1f86da56238a95363be2d8fd6efcaa4
 a
 1src/main/webapp/WEB-INF/jspf/directive/navbar.jsp,4\6\46cfb14e8633f43d482058e9b7628db9e6040063
-q
-Asrc/main/java/com/library/name/web/command/ListOrdersCommand.java,0\b\0b778d22648b9989449e679bccd86d41e36b1e55
 s
 Csrc/main/java/com/library/name/web/command/ViewSettingsCommand.java,9\2\92d7d8a053b30b0caaa8d277848f81c475270ac2
 p
@@ -194,8 +172,6 @@ i
 9src/main/java/com/library/name/web/command/NoCommand.java,1\6\16348b8826c7cedb2f0fc8290f714b634c8bcc05
 b
 2src/main/java/com/library/name/web/Controller.java,5\4\548e670a744bb37c157ad660e2a62a721ec5c72e
-o
-?src/main/java/com/library/name/web/command/EditBookCommand.java,b\b\bbb0a80e86b413a2fcb9210145ec1d2497616225
 ^
 .src/main/webapp/WEB-INF/jsp/admin/editBook.jsp,d\6\d680838d412ca0b40337196f58902fbe31be669d
 d
@@ -204,16 +180,12 @@ b
 2src/main/webapp/WEB-INF/jsp/user/addUserReview.jsp,e\1\e12dce53947baefde52de9b96200bd817540c6d7
 a
 1src/main/java/com/library/name/dao/ReviewDao.java,8\4\846b9efeda6f496c2285a6152241b9ad81faead0
-p
-@src/main/java/com/library/name/web/command/AddReviewCommand.java,9\6\96a61b7e7b8ed5bdbe3a81a876cd6b3bdecabf19
 c
 3src/test/java/com/library/name/dao/BookDaoTest.java,c\6\c61949988da6bc6bdd73f193d83af908d8f552d3
 a
 1src/main/java/com/library/name/entity/Review.java,c\d\cd640714e9001267a189c454121e9d9b4ecd8e53
 p
 @src/main/java/com/library/name/web/listener/ContextListener.java,b\c\bc224466eafa0465a8a87b53d9743a08265c986d
-q
-Asrc/main/java/com/library/name/web/command/EditReviewCommand.java,a\f\af427f3df661a78cb688da7989b2dd798ab81aae
 c
 3src/main/webapp/WEB-INF/jsp/user/editUserReview.jsp,f\7\f7d0376e59be63f342fad2d930c3b6dd7a322ab1
 e

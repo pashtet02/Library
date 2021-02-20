@@ -47,7 +47,6 @@ public class Controller extends HttpServlet {
         log.debug("Controller finished, now go to forward address --> " + forward);
 
 
-
         // if the forward address is not null go to the address
         if (forward != null) {
             RequestDispatcher disp = request.getRequestDispatcher(forward);

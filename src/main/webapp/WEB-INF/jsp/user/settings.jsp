@@ -1,9 +1,7 @@
 <%@ include file="/WEB-INF/jspf/directive/page.jspf" %>
 <%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
-
-
-<%@ include file="/WEB-INF/jspf/directive/page.jspf" %>
-<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
 <html>
 <head>
@@ -12,7 +10,6 @@
     <link href="static/aboutBook.css" rel="stylesheet">
 
 </head>
-
 
 <body>
 <div class="container">
@@ -89,7 +86,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Fine:</h6>
+                                    <h6 class="mb-0"><fmt:message key="settings_jsp.fine"/></h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <c:choose>
@@ -97,7 +94,7 @@
                                             ${sessionScope.user.fine} UAH <a href="user_menu.jsp">pay</a>
                                         </c:when>
                                         <c:when test="${sessionScope.user.fine <= 0}">
-                                            You don`t have any fines.
+                                            <fmt:message key="settings_jsp.youDontHaveFineText"/>
                                         </c:when>
                                     </c:choose>
                                 </div>
@@ -117,17 +114,12 @@
                     <div class="card-body">
                         <p class="card-text">${bean.userComment}</p>
                     </div>
-                    <%--<div>
-                        <form action="<c:url value="/controller?command=editBook&id=${bean.id}"/>" method="post">
-                            <button type="submit" class="btn btn-primary" value="update" name="action">Edit</button>
-                        </form>
-                    </div>--%>
                 </div>
                 <br>
             </c:forEach>
         </c:when>
         <c:when test="${requestScope.userReviews.size() == 0}">
-            <p>You dont have any reviews</p>
+            <p><fmt:message key="settings_jsp.noReviews"/></p>
         </c:when>
     </c:choose>
 </div>

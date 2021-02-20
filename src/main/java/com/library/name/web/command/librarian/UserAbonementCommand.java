@@ -29,9 +29,7 @@ public class UserAbonementCommand extends Command {
      *
      * @param request HttpServletRequest
      * @param response HttpServletResponse
-     * @return Address to go once the command is executed.
-     * Повинен відповідати за кабінет користувача
-     * -Список книг на абонементі, бажано зробития якесь розмежування типу В мене, очікують розгляду, історія, прострочені
+     * @return userAbonement.jsp
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -54,7 +52,7 @@ public class UserAbonementCommand extends Command {
             bookDao.incrementNumberBook(bookId);
             orderDao.setOrderStatus(ordId, "RETURNED");
             request.setAttribute("message", "Book returned succesfully");
-            request.setAttribute("commandName", "usersList");
+
             response.sendRedirect("/library/controller?command=usersList");
             return null;
         }
