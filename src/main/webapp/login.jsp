@@ -17,7 +17,14 @@
         <form method="post" action="<c:url value="/controller"/>">
             <input type="hidden" name="command" value="login" />
             <input type="text" required placeholder="login" class="fadeIn second" name="login" id="login" pattern="[a-zA-Z0-9]{4,20}"><br>
-            <input type="password" required placeholder="password" class="fadeIn third" name="password" id="password" pattern="[a-zA-Z0-9]{4,32}"><br><br>
+            <c:if test="${requestScope.loginError != null}">
+                <label>${requestScope.loginError}</label>
+            </c:if>
+            <input type="password" required placeholder="password" class="fadeIn third" name="password" id="password" pattern="[a-zA-Z0-9]{4,32}">
+            <c:if test="${requestScope.passwordError != null}">
+                <label>${requestScope.passwordError}</label>
+            </c:if>
+            <br><br>
             <input class="fadeIn fourth" type="submit" value="Enter">
         </form>
         <!-- GO To registration page -->

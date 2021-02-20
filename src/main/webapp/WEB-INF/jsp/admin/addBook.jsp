@@ -21,20 +21,26 @@
         <p><fmt:message key="addBook.description"/></p>
         <hr>
 
-        <label for="title"><b><fmt:message key="aboutBook.title"/></b></label>
+        <label for="title"><strong><fmt:message key="aboutBook.title"/></strong></label>
         <input class="form-control" type="text" placeholder="<fmt:message key="addBook.title"/>" name="title" id="title" required>
+        <c:if test="${requestScope.titleExistsError != null}">
+            <label>${requestScope.titleExistsError}</label>
+        </c:if>
 
-        <label for="author"><b><fmt:message key="aboutBook.author"/></b></label>
+        <label for="author"><strong><fmt:message key="aboutBook.author"/></strong></label>
         <input class="form-control" type="text" placeholder="<fmt:message key="addBook.author"/>" name="author" id="author" required>
 
-        <label for="ISBN"><b>ISBN</b></label>
+        <label for="ISBN"><strong>ISBN</strong></label>
         <input class="form-control" type="number" placeholder="<fmt:message key="addBook.ISBN"/>" name="ISBN" id="ISBN" required>
+        <c:if test="${requestScope.isbnExistsError != null}">
+            <label>${requestScope.isbnExistsError}</label><br>
+        </c:if>
         <br>
-        <label for="publisher"><b><fmt:message key="aboutBook.publisher"/></b></label>
+        <label for="publisher"><strong><fmt:message key="aboutBook.publisher"/></strong></label>
         <input class="form-control" type="text" placeholder="<fmt:message key="addBook.publisher"/>" name="publisher" id="publisher" required>
 
         <label for="publishingDate"><fmt:message key="aboutBook.publishingDate"/>: </label>
-        <input class="form-control" type="date" placeholder="<fmt:message key="addBook.publishingDate"/>" name="publishingDate" id="publishingDate" required><br>
+        <input class="form-control" type="date" placeholder="<fmt:message key="addBook.publishingDate"/>" max="${sessionScope.todayDate}" name="publishingDate" id="publishingDate" required><br>
 
         <label for="exampleFormControlTextarea1"><fmt:message key="aboutBook.description"/></label>
         <textarea class="form-control" id="exampleFormControlTextarea1" maxlength="512" name="description" rows="3" required></textarea><br>
@@ -45,8 +51,8 @@
             <option value="english"><fmt:message key="addbook.english"/></option>
         </select>
 
-        <label for="number"><b><fmt:message key="addbook.number"/></b></label>
-        <input class="form-control" type="number" placeholder="<fmt:message key="addbook.number"/>" name="number" id="number" required>
+        <label for="number"><strong><fmt:message key="addbook.number"/></strong></label>
+        <input class="form-control" type="number" placeholder="<fmt:message key="addbook.number"/>" name="number" id="number" required min="0" max="150">
         <hr>
 
         <button type="submit" class="btn btn-primary"><fmt:message key="addbook.nextPage"/></button>

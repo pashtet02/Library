@@ -24,6 +24,9 @@
                 <label for="login"><b>Login</b></label><br>
                 <input type="text" required placeholder="login" class="fadeIn second" name="login" id="login"
                        pattern="[A-Za-z0-9]{4,20}"><br>
+                <c:if test="${requestScope.userExistsError != null}">
+                    <label>${requestScope.userExistsError}</label><br>
+                </c:if>
 
                 <label for="firstName"><b>First name: </b></label>
                 <input type="text" required placeholder="first name" class="fadeIn second" name="firstName" id="firstName"><br>
@@ -33,6 +36,9 @@
 
                 <label for="email"><b>Email</b></label><br>
                 <input type="email" required placeholder="Enter email" class="fadeIn second" name="email" id="email">
+                <c:if test="${requestScope.emailExistsError != null}">
+                    <label>${requestScope.emailExistsError}</label>
+                </c:if>
                 <br>
 
                 <label for="password"><b>Password</b></label>

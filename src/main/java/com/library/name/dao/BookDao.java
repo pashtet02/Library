@@ -264,4 +264,25 @@ public class BookDao implements Dao<Book> {
         }
         return book;
     }
+
+    public Book getByISBN(long isbn) {
+        ResultSet rs = null;
+        Book book = new Book();
+
+        try (Connection con = getConnection();
+             PreparedStatement statement = con.prepareStatement(SQLConstants.GET_BOOK_BY_ISBN)) {
+            statement.setLong(1, isbn);
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                book = mapBook(rs);
+            }
+
+        } catch (SQLException throwable) {
+            logger.error("getByISBN book method exception: " + throwable.getSQLState(), throwable);
+            throwable.printStackTrace();
+        } finally {
+            close(rs);
+        }
+        return book;
+    }
 }

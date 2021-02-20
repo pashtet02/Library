@@ -23,30 +23,43 @@ public class AddBookCommand extends Command {
                           HttpServletResponse resp) throws IOException, ServletException {
         req.setCharacterEncoding("UTF-8");
         log.debug("Command starts");
-
-        if (req.getParameter("title") == null) {
+        String errorMessage;
+        String title = req.getParameter("title");
+        if (title == null || title.isEmpty()) {
             return Path.PAGE_ADD_BOOK;
         }
 
         //Подумати про білдер
         log.debug("ADD BOOK COMMAND ");
         BookDao bookDao = BookDao.getInstance();
+        if (bookDao.getByTitle(title).getTitle() != null) {
+            errorMessage = "Such book already exists";
+            req.setAttribute("titleExistsError", errorMessage);
+            log.error("errorMessage --> " + errorMessage);
+            return Path.PAGE_ADD_BOOK;
+        }
+
+        String isbn = req.getParameter("ISBN");
+        if (bookDao.getByISBN(Long.parseLong(isbn)).getISBN() > 0) {
+            errorMessage = "Book with such ISBN already exists";
+            req.setAttribute("isbnExistsError", errorMessage);
+            log.error("errorMessage --> " + errorMessage);
+            return Path.PAGE_ADD_BOOK;
+        }
 
         Book book = new Book();
-        book.setTitle(req.getParameter("title"));
+        book.setTitle(title);
         book.setAuthor(req.getParameter("author"));
-        book.setISBN(Long.parseLong(req.getParameter("ISBN")));
+        book.setISBN(Long.parseLong(isbn));
         book.setPublisher(req.getParameter("publisher"));
 
         Date date = Date.valueOf(req.getParameter("publishingDate"));
         book.setPublishingDate(date);
 
         String language = req.getParameter("language");
-        System.out.println("Language: " + language);
         book.setLanguage(language);
         book.setNumber(Integer.parseInt(req.getParameter("number")));
 
-        System.out.println("DESCRIPTION: " + req.getParameter("description"));
         if (language.equals("ukrainian")){
             book.setDescriptionUa(req.getParameter("description"));
         } else book.setDescriptionEn(req.getParameter("description"));
@@ -54,7 +67,7 @@ public class AddBookCommand extends Command {
         try {
             bookDao.save(book);
         } catch (SQLException throwables) {
-            String errorMessage = throwables.getMessage();
+             errorMessage = throwables.getMessage();
             req.setAttribute("errorMessage", errorMessage);
             log.error("Set the request attribute: errorMessage --> " + errorMessage);
             return Path.PAGE_ERROR_PAGE;

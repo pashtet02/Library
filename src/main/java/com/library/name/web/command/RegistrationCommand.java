@@ -29,15 +29,24 @@ public class RegistrationCommand extends Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
         String login = req.getParameter(LOGIN);
-        User userTest = userDao.getUserByLogin(login);
+        String email = req.getParameter("email");
+
         // error handler
         String errorMessage;
         String forward = Path.PAGE_ERROR_PAGE;
-        if (userTest.getUsername() != null) {
+
+        if (userDao.getUserByLogin(login).getUsername() != null) {
             errorMessage = "Such user already exists";
-            req.setAttribute("errorMessage", errorMessage);
+            req.setAttribute("userExistsError", errorMessage);
             log.error("errorMessage --> " + errorMessage);
-            return forward;
+            return Path.PAGE_REGISTRATION;
+        }
+
+        if (userDao.getUserByEmail(email).getMail() != null) {
+            errorMessage = "User with such email already registered";
+            req.setAttribute("emailExistsError", errorMessage);
+            log.error("errorMessage --> " + errorMessage);
+            return Path.PAGE_REGISTRATION;
         }
 
         User user = new User();
@@ -60,17 +69,15 @@ public class RegistrationCommand extends Command {
 
         user.setFirstName(req.getParameter("firstName"));
         user.setSecondName(req.getParameter("secondName"));
-        user.setMail(req.getParameter("email"));
+        user.setMail(email);
         user.setFine(0.0);
         user.setRole("USER");
         user.setBanned(false);
-
 
         try {
             userDao.save(user);
             req.getSession().setAttribute("role", user.getRole());
             req.getSession().setAttribute("user", user);
-
             return "/controller?command=catalog&page=1";
         } catch (SQLException throwables) {
             log.error("REGISTRATION COMMAND: " + throwables.getMessage() + throwables.getSQLState());

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import java.io.IOException;
+import java.sql.Date;
 
 import static com.library.name.service.Password.checkPassword;
 
@@ -53,17 +54,17 @@ public class LoginCommand extends Command {
 
         if (user.getUsername() == null) {
             errorMessage = "Cannot find user with such login. Please, try again.";
-            request.setAttribute(ERROR_MESSAGE, errorMessage);
+            request.setAttribute("loginError", errorMessage);
             log.error(ERROR_MESSAGE + errorMessage);
-            return forward;
+            return Path.PAGE_LOGIN;
         }
 
         boolean bool = checkPassword(password, user.getPassword());
         if (!bool) {
             errorMessage = "Wrong password! Please, try again.";
-            request.setAttribute(ERROR_MESSAGE, errorMessage);
+            request.setAttribute("passwordError", errorMessage);
             log.error(ERROR_MESSAGE + errorMessage);
-            return forward;
+            return Path.PAGE_LOGIN;
         }
 
         if (user.isBanned()) {
@@ -74,15 +75,6 @@ public class LoginCommand extends Command {
         }
         log.trace("userRole --> " + user.getRole());
 
-        if (user.getRole().equals("ADMIN"))
-            forward = "/controller?command=usersList";
-
-        if (user.getRole().equals("LIBRARIAN"))
-            forward = "/controller?command=librarianMenu";
-
-        if (user.getRole().equals("USER"))
-            forward = "/controller?command=listOrders";
-
         session.setAttribute("user", user);
         log.trace("Set the session attribute: user --> " + user);
 
@@ -90,11 +82,16 @@ public class LoginCommand extends Command {
         log.trace("Set the session attribute: userRole --> " + user.getRole());
 
         log.info("User " + user + " logged as " + user.getRole().toLowerCase());
-        request.getSession().setAttribute("password", password);
-        request.getSession().setAttribute("login", login);
-        request.getSession().setAttribute("role", user.getRole());
-        request.getSession().setAttribute("user", user);
-        request.getSession().setAttribute("filterParam", "title");
+        session.setAttribute("password", password);
+        session.setAttribute("login", login);
+        session.setAttribute("role", user.getRole());
+        session.setAttribute("user", user);
+        session.setAttribute("filterParam", "title");
+
+        long millis = System.currentTimeMillis();
+        Date date = new Date(millis);
+        session.setAttribute("todayDate", date);
+
         log.debug("IS BANNED " + user.isBanned());
         request.getSession().setAttribute("isBanned", Boolean.toString(user.isBanned()));
 
@@ -116,6 +113,21 @@ public class LoginCommand extends Command {
         user.setFine(orderDao.countUserFineByUserId(user.getId()));
         userDao.update(user);
         log.info("user new fine = " + user.getFine());
+
+        if (user.getRole().equals("ADMIN")) {
+            response.sendRedirect("/library/controller?command=usersList");
+            return null;
+        }
+
+        if (user.getRole().equals("LIBRARIAN")) {
+            response.sendRedirect("/library/controller?command=librarianMenu");
+            return null;
+        }
+
+        if (user.getRole().equals("USER")) {
+            response.sendRedirect("/library/controller?command=listOrders");
+            return null;
+        }
 
         log.debug("Command finished");
         return forward;

@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jspf/directive/page.jspf" %>
 <%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,7 +31,7 @@
                             <label for="librarianComment"><fmt:message key="librarianMenu.librarianComment"/></label>
                             <textarea class="form-control" placeholder="<fmt:message key="librarianMenu.librarianCommentPlaceholder"/>" name="librarianComment" id="librarianComment" rows="2" maxlength="250"></textarea><br>
                             <label for="returnDate"><fmt:message key="librarianMenu.returnTo"/></label>
-                            <input class="form-control" type="date" placeholder="Enter date" name="returnDate" id="returnDate" required><br>
+                            <input class="form-control" type="date" placeholder="Enter date" name="returnDate" id="returnDate" required min="${sessionScope.todayDate}"><br>
                             <input type="hidden" name="orderId" value="${bean.id}"/>
 
                             <button type="submit" class="btn btn-success" value="APPROVED" name="action"><fmt:message key="librarianMenu.acceptButton"/></button>

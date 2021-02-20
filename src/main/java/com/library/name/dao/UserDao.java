@@ -82,6 +82,26 @@ public class UserDao implements Dao<User> {
         return user;
     }
 
+    public User getUserByEmail(String email) {
+        ResultSet rs = null;
+        User user = new User();
+
+        try (Connection con = getConnection();
+             PreparedStatement statement = con.prepareStatement(SQLConstants.SQL_FIND_USER_BY_MAIL)) {
+            statement.setString(1, email);
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                setUserFromResSet(rs, user);
+            }
+            logger.info("getUserByEmail: " + user.getId() + " " + user.getUsername());
+        } catch (SQLException throwable) {
+            logger.error("getUserByEmail() userDao exception: " + throwable.getSQLState(), throwable);
+        } finally {
+            close(rs);
+        }
+        return user;
+    }
+
     /**
      * @return List of users with role 'USER' from BD
      * */
