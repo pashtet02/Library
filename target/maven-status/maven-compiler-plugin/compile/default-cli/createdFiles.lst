@@ -29,6 +29,7 @@ com\library\name\web\command\user\AddReviewCommand.class
 com\library\name\dao\Dao.class
 com\library\name\web\command\admin\AddBookCommand.class
 com\library\name\dao\ReviewDao.class
+com\library\name\web\listener\SessionListener.class
 com\library\name\web\command\librarian\UserAbonementCommand.class
 com\library\name\web\listener\ContextListener.class
 com\library\name\web\command\Command.class
