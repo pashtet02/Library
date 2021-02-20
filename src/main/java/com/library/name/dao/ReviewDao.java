@@ -34,7 +34,7 @@ public class ReviewDao implements Dao<Review> {
         Connection con;
         try {
             con = getConnection();
-            reviews = getAllReviews(con, "select * from reviews where user_id = " + userId);
+            reviews = getAllReviews(con, "select * from reviews where user_id = " + userId + " order by creationDate DESC");
         } catch (SQLException throwables) {
             log.error(throwables.getMessage() + throwables.getSQLState());
             throwables.printStackTrace();
@@ -49,7 +49,7 @@ public class ReviewDao implements Dao<Review> {
         Connection con;
         try {
             con = getConnection();
-            reviews = getAllReviews(con, "select * from reviews;");
+            reviews = getAllReviews(con, "select * from reviews order by creationDate DESC;");
         } catch (SQLException throwables) {
             log.error(throwables.getMessage() + throwables.getSQLState());
             throwables.printStackTrace();
@@ -62,7 +62,8 @@ public class ReviewDao implements Dao<Review> {
         ResultSet rs = null;
 
         try (Connection con = getConnection();
-             PreparedStatement pstmt = con.prepareStatement("insert into reviews (user_id, book_id, mark, user_comment) values (?, ?, ?, ?);",
+             PreparedStatement pstmt = con.prepareStatement(
+                     "insert into reviews (user_id, book_id, mark, user_comment, username, bookTitle, creationDate) values (?, ?, ?, ?, ?,?,?);",
                      Statement.RETURN_GENERATED_KEYS)) {
 
             setReviewToPrepStatement(review, pstmt);
@@ -116,7 +117,10 @@ public class ReviewDao implements Dao<Review> {
         preparedStatement.setLong(k++, review.getUserId());
         preparedStatement.setLong(k++, review.getBookId());
         preparedStatement.setInt(k++, review.getMark());
-        preparedStatement.setString(k, review.getUserComment());
+        preparedStatement.setString(k++, review.getUserComment());
+        preparedStatement.setString(k++, review.getUsername());
+        preparedStatement.setString(k++, review.getBookTitle());
+        preparedStatement.setTimestamp(k,review.getDate());
     }
 
     private static Review mapReview(ResultSet rs) {
@@ -125,6 +129,9 @@ public class ReviewDao implements Dao<Review> {
             review.setId(rs.getLong("id"));
             review.setUserId(rs.getLong("user_id"));
             review.setBookId(rs.getLong("book_id"));
+            review.setBookTitle(rs.getString("bookTitle"));
+            review.setUsername(rs.getString("username"));
+            review.setDate(rs.getTimestamp("creationDate"));
 
             review.setMark(rs.getInt("mark"));
             review.setUserComment(rs.getString("user_comment"));
@@ -153,6 +160,7 @@ public class ReviewDao implements Dao<Review> {
             while (rs.next()) {
                 reviews.add(mapReview(rs));
             }
+
             if (!reviews.isEmpty()) {
                 log.debug("getAllReviews() get successfully number of books: " + reviews.size());
             }

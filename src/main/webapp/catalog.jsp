@@ -142,9 +142,6 @@
                     <a class="page-link"
                        href="<c:url value="/controller?command=catalog&page=${sessionScope.page - 1}"/>">Previous</a>
                 </c:if>
-                <a class="page-link" href="<c:url value="/controller?command=catalog&page=1"/>">1</a>
-                <a class="page-link" href="<c:url value="/controller?command=catalog&page=2"/>">2</a>
-                <a class="page-link" href="<c:url value="/controller?command=catalog&page=3"/>">3</a>
                 <c:if test="${requestScope.listPagedBooks.size() == 6}">
                     <a class="page-link"
                        href="<c:url value="/controller?command=catalog&page=${sessionScope.page + 1}"/>">Next</a>

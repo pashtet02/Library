@@ -112,7 +112,6 @@ public class LoginCommand extends Command {
         OrderDao orderDao = OrderDao.getInstance();
         user.setFine(orderDao.countUserFineByUserId(user.getId()));
         userDao.update(user);
-        log.info("user new fine = " + user.getFine());
 
         if (user.getRole().equals("ADMIN")) {
             response.sendRedirect("/library/controller?command=usersList");

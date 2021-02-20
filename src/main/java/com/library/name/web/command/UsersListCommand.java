@@ -28,9 +28,13 @@ public class UsersListCommand extends Command{
         User user = (User) session.getAttribute("user");
         String role = user.getRole();
         List<User> users;
+        String sortParam = request.getParameter("sort");
         try {
             if (role != null && role.equals("ADMIN")){
-                users = userDao.getAll();
+                if (sortParam != null && !sortParam.isEmpty()){
+                    users = getAllSortedBy(sortParam);
+                } else users = userDao.getAll();
+
                 request.setAttribute("usersList", users);
                 return Path.PAGE_USERS_LIST;
             }
@@ -44,5 +48,34 @@ public class UsersListCommand extends Command{
         }
 
         return Path.PAGE_ERROR_PAGE;
+    }
+
+    private List<User> getAllSortedBy(String sortParam){
+        UserDao userDao = UserDao.getInstance();
+        List<User> users = null;
+        switch (sortParam){
+            case "id":
+                users = userDao.getAllOrderBy("id");
+                break;
+            case "username":
+                users = userDao.getAllOrderBy("username");
+                break;
+            case "email":
+                users = userDao.getAllOrderBy("mail");
+                break;
+            case "firstName":
+                users = userDao.getAllOrderBy("firstName");
+                break;
+            case "fine":
+                users = userDao.getAllOrderBy("fine");
+                break;
+            default:
+                try {
+                    users = userDao.getAll();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+        }
+        return users;
     }
 }

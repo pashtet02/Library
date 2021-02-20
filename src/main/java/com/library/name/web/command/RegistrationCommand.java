@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -30,6 +31,7 @@ public class RegistrationCommand extends Command {
     public String execute(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
         String login = req.getParameter(LOGIN);
         String email = req.getParameter("email");
+        HttpSession session = req.getSession();
 
         // error handler
         String errorMessage;
@@ -76,6 +78,8 @@ public class RegistrationCommand extends Command {
 
         try {
             userDao.save(user);
+            req.getSession().setAttribute("login", req.getParameter(LOGIN));
+            req.getSession().setAttribute("password", req.getParameter(PASSWORD));
             req.getSession().setAttribute("role", user.getRole());
             req.getSession().setAttribute("user", user);
             return "/controller?command=catalog&page=1";

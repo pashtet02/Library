@@ -33,7 +33,8 @@
         </div>
 
         <label for="userComment"><strong><fmt:message key="books.yourComment"/> </strong></label>
-        <textarea class="form-control" placeholder="My comment" name="userComment" id="userComment" maxlength="512" rows="5" required></textarea><br>
+        <textarea class="form-control" placeholder="My comment" name="userComment" id="userComment" maxlength="512"
+                  rows="5" required></textarea><br>
         <hr>
         <button type="submit" class="btn btn-primary"><fmt:message key="userReview.button.label"/></button>
 

@@ -1,11 +1,11 @@
 
-Z	java:S1061"9Replace this use of System.out or System.err by a logger.(ÿÔÙöüÿÿÿÿ8µğ«ú.
-M
-java:S1948"+Make "reviewDao" transient or serializable.(ˆÇ”éüÿÿÿÿ8ÙĞÌ©ú.
-i
-java:S1192&"NDefine a constant instead of duplicating this literal "sortParameter" 3 times.(­ãÊôüÿÿÿÿ
-X	java:S125]"<This block of commented-out lines of code should be removed.(Ó¡µì8ˆãÙ«ú.
-n
-java:S1192+"LDefine a constant instead of duplicating this literal "filterParam" 3 times.(ºĞõÊûÿÿÿÿ8Á³ï¬ú.
+V	java:S125"<This block of commented-out lines of code should be removed.(Ó¡µì8ˆãÙ«ú.
 K
-java:S1948")Make "bookDao" transient or serializable.(ß©Õäùÿÿÿÿ8¿ÏáÛù.
+java:S1948"+Make "reviewDao" transient or serializable.(ˆÇ”éüÿÿÿÿ8ÙĞÌ©ú.
+l
+java:S1192"LDefine a constant instead of duplicating this literal "filterParam" 3 times.(ºĞõÊûÿÿÿÿ8Á³ï¬ú.
+g
+java:S1192"NDefine a constant instead of duplicating this literal "sortParameter" 3 times.(­ãÊôüÿÿÿÿ
+I
+java:S1948")Make "bookDao" transient or serializable.(ß©Õäùÿÿÿÿ8¿ÏáÛù.
+X	java:S106"9Replace this use of System.out or System.err by a logger.(ÿÔÙöüÿÿÿÿ8µğ«ú.

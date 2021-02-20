@@ -140,6 +140,38 @@ public class UserDao implements Dao<User> {
         return users;
     }
 
+    public List<User> getAllOrderBy(String orderParam) {
+        List<User> users = new ArrayList<>();
+
+        try (Connection con = getConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery("select * from users order by " + orderParam)) {
+
+            while (rs.next()) {
+                users.add(mapUser(rs));
+            }
+        } catch (SQLException ex) {
+            logger.error(ex.getSQLState(), ex);
+        }
+        return users;
+    }
+
+    public List<User> getAllUsersOrderBy(String orderParam){
+        List<User> users = new ArrayList<>();
+
+        try (Connection con = getConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery("select * from users where role = 'USER' order by " + orderParam)) {
+
+            while (rs.next()) {
+                users.add(mapUser(rs));
+            }
+        } catch (SQLException ex) {
+            logger.error(ex.getSQLState(), ex);
+        }
+        return users;
+    }
+
     @Override
     public void save(User user) throws SQLException {
         ResultSet rs = null;

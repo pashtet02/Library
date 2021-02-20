@@ -110,8 +110,10 @@
         <c:when test="${requestScope.userReviews.size() > 0}">
             <c:forEach var="bean" items="${requestScope.userReviews}">
                 <div class="card">
-                    <h5 class="card-header">Book mark: ${bean.mark}</h5>
+                    <h5 class="card-header">Book: ${bean.bookTitle}</h5>
                     <div class="card-body">
+                        <p>Mark: ${bean.mark}</p>
+                        <p>Created: ${bean.date}</p>
                         <p class="card-text">${bean.userComment}</p>
                     </div>
                 </div>

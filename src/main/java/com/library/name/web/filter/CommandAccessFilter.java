@@ -21,8 +21,8 @@ public class CommandAccessFilter implements Filter {
 
     // commands access
     private static final Map<String, List<String>> accessMap = new HashMap<>();
-    private static List<String> commons = new ArrayList<>();
-    private static List<String> outOfControl = new ArrayList<>();
+    private List<String> commons = new ArrayList<>();
+    private List<String> outOfControl = new ArrayList<>();
 
     public void destroy() {
         log.debug("Filter destruction starts");
@@ -32,7 +32,6 @@ public class CommandAccessFilter implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         log.debug("Filter starts");
-        System.out.println("ACCES FILTER WORLS!!!!");
         if (accessAllowed(request)) {
             log.debug("Filter finished");
             chain.doFilter(request, response);

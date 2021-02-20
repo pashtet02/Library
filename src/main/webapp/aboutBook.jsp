@@ -121,6 +121,7 @@
                 <div class="card">
                     <h5 class="card-header">Book mark: ${bean.mark}</h5>
                     <div class="card-body">
+                        <p>Created: ${bean.date}</p>
                         <p class="card-text">${bean.userComment}</p>
                     </div>
                     <c:if test="${sessionScope.user.role == 'ADMIN'}">

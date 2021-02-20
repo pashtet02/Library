@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class AddReviewCommand extends Command {
     private static final Logger log = Logger.getLogger(AddReviewCommand.class);
@@ -26,10 +27,11 @@ public class AddReviewCommand extends Command {
 
         log.debug("Command starts");
 
+        BookDao bookDao = BookDao.getInstance();
+        long bookId = Long.parseLong(req.getParameter("bookId"));
+        Book book = bookDao.get(bookId);
+
         if (req.getParameter("userComment") == null) {
-            BookDao bookDao = BookDao.getInstance();
-            long bookId = Long.parseLong(req.getParameter("bookId"));
-            Book book = bookDao.get(bookId);
             req.setAttribute("book", book);
             return Path.PAGE_ADD_REVIEW;
         }
@@ -39,9 +41,15 @@ public class AddReviewCommand extends Command {
         Review review = new Review();
         User user = (User) session.getAttribute("user");
         review.setUserId(user.getId());
+        review.setUsername(user.getUsername());
         review.setBookId(Long.parseLong(req.getParameter("bookId")));
+        review.setBookTitle(book.getTitle());
         review.setMark(Integer.parseInt(req.getParameter("mark")));
         review.setUserComment(req.getParameter("userComment"));
+
+        long millis = System.currentTimeMillis();
+        Timestamp timestamp = new Timestamp(millis);
+        review.setDate(timestamp);
 
         try {
             reviewDao.save(review);

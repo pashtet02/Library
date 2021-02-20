@@ -1,5 +1,9 @@
 
-r
-java:S3008"PRename this field "LOGIN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÛÓµßÿÿÿÿÿ8ƒ°¶ù.
-E
-java:S1948")Make "userDao" transient or serializable.(ãÙÀ>8å“—µù.
+n
+java:S1192"NUse already-defined constant 'PASSWORD' instead of duplicating its value here.(ÛøÑƒùÿÿÿÿ8İ’æüû.
+V
+java:S1854";Remove this useless assignment to local variable "session".(ôÜ½¯8İ’æüû.
+G
+java:S1481",Remove this unused "session" local variable.(ôÜ½¯8İ’æüû.
+k
+java:S1192"KUse already-defined constant 'LOGIN' instead of duplicating its value here.(©›û¤úÿÿÿÿ8İ’æüû.
