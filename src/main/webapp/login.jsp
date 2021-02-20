@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -25,11 +26,11 @@
                 <label>${requestScope.passwordError}</label>
             </c:if>
             <br><br>
-            <input class="fadeIn fourth" type="submit" value="Enter">
+            <input class="fadeIn fourth" type="submit" value="<fmt:message key="global.signIn"/>">
         </form>
         <!-- GO To registration page -->
         <div id="formFooter">
-            <a class="underlineHover" href="registration.jsp">I don`t have an account :(</a>
+            <a class="underlineHover" href="registration.jsp"><fmt:message key="login.iDonHaveAnAcc"/></a>
         </div>
     </div>
 </div>

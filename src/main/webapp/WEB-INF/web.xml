@@ -18,12 +18,12 @@
         <param-value>global</param-value>
     </context-param>
 
-    <!-- this way we set the default locale (optional) -->
-    <!-- the (preferable) browser's locale will be used if we don't set the default locale -->
-    <!--<context-param>
+     <!--this way we set the default locale (optional)
+     the (preferable) browser's locale will be used if we don't set the default locale -->
+    <context-param>
         <param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
         <param-value>ua</param-value>
-    </context-param>-->
+    </context-param>
 
     <!-- supported locales -->
     <context-param>

@@ -3,7 +3,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>library</title>
     <jsp:include page="../../jspf/directive/header.jsp"/>
@@ -49,7 +49,14 @@
                 </td>
                 <td><c:out value="${user.fine}"/>
                 </td>
-                <td><c:out value="${user.banned}"/>
+                <td><c:choose>
+                    <c:when test="${user.banned == true}">
+                        <fmt:message key="editUser.yes"/>
+                    </c:when>
+                    <c:when test="${user.banned == false}">
+                        <fmt:message key="editUser.no"/>
+                    </c:when>
+                </c:choose>
                 </td>
                 <td><c:out value="${user.userLocale}"/>
                 </td>

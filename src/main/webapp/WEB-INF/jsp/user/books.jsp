@@ -5,15 +5,15 @@
 <html>
 <head>
     <jsp:include page="../../jspf/directive/header.jsp"/>
-    <title>Books</title>
+    <title>Library</title>
 </head>
 <body>
 <jsp:include page="../../jspf/directive/navbar.jsp"/>
 <div class="container">
-    <h2>List of my books</h2>
+    <h2><fmt:message key="books.mainLabel"/></h2>
     <c:choose>
         <c:when test="${requestScope.ordersList.size() == 0}">
-            <p>You dont have any orders yet, but you can <a href="<c:url value="/controller?command=catalog"/>">order a book</a></p>
+            <p><fmt:message key="books.noRecordsYet"/> <a href="<c:url value="/controller?command=catalog"/>"><fmt:message key="books.orderABook"/></a></p>
         </c:when>
         <c:when test="${requestScope.ordersList.size() > 0}">
             <table border="1">

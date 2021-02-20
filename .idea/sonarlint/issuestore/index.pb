@@ -194,12 +194,6 @@ e
 Nsrc/main/java/com/library/name/web/command/librarian/LibrarianMenuCommand.java,d\8\d8ec40405e88631b6c8550dc1c274aa1d346b5f3
 Q
 !src/main/resources/app.properties,7\1\71eabe60850628ac467d39be937efda3c107e4da
-T
-$src/main/resources/global.properties,2\c\2c1141b7d23c71faec175e3d274c2c0df322d96c
-W
-'src/main/resources/global_en.properties,f\d\fd38786146269bfc9430a5e809f3bef9c0ac347b
-W
-'src/main/resources/global_ua.properties,c\b\cb6be30c04e006af552e586b1744896d2aba8867
 ~
 Nsrc/main/java/com/library/name/web/command/librarian/UserAbonementCommand.java,3\5\35b5e73c2291f732e03ebbaa5690a41e9cc7cf22
 t

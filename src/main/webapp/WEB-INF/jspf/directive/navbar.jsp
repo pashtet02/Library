@@ -51,8 +51,8 @@
                         <i class="united kingdom flag m-0">${sessionScope.login}</i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="<c:url value="/controller?command=viewSettings"/>">My profile</a>
-                        <a class="dropdown-item" href="<c:url value="/controller?command=logout"/>">Logout</a>
+                        <a class="dropdown-item" href="<c:url value="/controller?command=viewSettings"/>"><fmt:message key="navbar.myProfile"/></a>
+                        <a class="dropdown-item" href="<c:url value="/controller?command=logout"/>"><fmt:message key="navbar.logout"/></a>
                     </div>
                 </div>
             </c:when>
