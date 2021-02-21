@@ -1,9 +1,0 @@
-
-I
-java:S1481"",Remove this unused "session" local variable.(ôÜ½¯8İ’æüû.
-m
-java:S1192Q"KUse already-defined constant 'LOGIN' instead of duplicating its value here.(©›û¤úÿÿÿÿ8İ’æüû.
-p
-java:S1192R"NUse already-defined constant 'PASSWORD' instead of duplicating its value here.(ÛøÑƒùÿÿÿÿ8İ’æüû.
-X
-java:S1854"";Remove this useless assignment to local variable "session".(ôÜ½¯8İ’æüû.

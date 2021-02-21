@@ -5,7 +5,10 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-
+/**
+ * Track number of active sessions,
+ * show number of users online
+ */
 @WebListener
 public class SessionListener implements HttpSessionListener {
 

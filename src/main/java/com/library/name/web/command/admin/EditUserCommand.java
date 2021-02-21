@@ -21,7 +21,7 @@ public class EditUserCommand extends Command {
         UserDao userDao = UserDao.getInstance();
         log.debug("Command starts");
 
-        // UPDATE USER ////////////////////////////////////////////////////////
+        // UPDATE USER
         String userId = request.getParameter("userId");
         if ( userId != null && !userId.isEmpty()){
             log.debug("IF WORKS userId:" + userId);

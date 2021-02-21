@@ -65,16 +65,18 @@ public class CommandAccessFilter implements Filter {
             return false;
 
         String userRole = null;
+        boolean banned = false;
         if (session.getAttribute("user") != null) {
             User user = (User) session.getAttribute("user");
             userRole = user.getRole();
+            banned = user.isBanned();
         }
 
         if (userRole == null)
             return false;
 
         return accessMap.get(userRole).contains(commandName)
-                || commons.contains(commandName);
+                || commons.contains(commandName) && !banned;
     }
 
     public void init(FilterConfig fConfig) {

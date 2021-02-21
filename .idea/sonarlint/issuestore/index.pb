@@ -198,8 +198,6 @@ Q
 Nsrc/main/java/com/library/name/web/command/librarian/UserAbonementCommand.java,3\5\35b5e73c2291f732e03ebbaa5690a41e9cc7cf22
 t
 Dsrc/main/java/com/library/name/web/command/admin/AddBookCommand.java,4\8\48dc4b42407ead6f4edab2e56a54d1df1f16c38a
-g
-7src/main/java/com/library/name/bean/UserReviewBean.java,8\c\8c94f566718503740f396865b6ee01bcb16c3d8c
 u
 Esrc/main/java/com/library/name/web/command/user/OrderBookCommand.java,7\5\759182364586787b31ce1dd206edb87c7e02662c
 u
@@ -210,3 +208,11 @@ u
 Esrc/main/java/com/library/name/web/command/admin/EditBookCommand.java,3\7\3764cc7ed3b3a009b455956f895eb399cd53fd0f
 q
 Asrc/main/java/com/library/name/web/command/DeleteBookCommand.java,5\7\578de0e295abd3a727e08fd3e6d6ca76b24f1df3
+>
+app.properties,0\4\04b02bfcfbb59e2ce9803e449df2cd081600b104
+h
+8src/test/java/com/library/name/service/PasswordTest.java,e\3\e300907620e7a94144627f85beea738046967acd
+T
+$src/main/resources/global.properties,2\c\2c1141b7d23c71faec175e3d274c2c0df322d96c
+p
+@src/main/java/com/library/name/web/listener/SessionListener.java,a\3\a3903f98a6cad3528ee568dbe3695a83fd51e88f

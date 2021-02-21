@@ -6,7 +6,7 @@
     <display-name>Library</display-name>
     <!-- Session Configuration -->
     <session-config>
-        <session-timeout>10</session-timeout>
+        <session-timeout>15</session-timeout>
     </session-config>
 
     <!--============================================================
@@ -90,6 +90,16 @@
     <listener>
         <listener-class>com.library.name.web.listener.ContextListener</listener-class>
     </listener>
+
+    <!--Error code handling-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/jsp/errorPages/404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/jsp/errorPages/404.jsp</location>
+    </error-page>
 
     <context-param>
         <param-name>DataSource</param-name>

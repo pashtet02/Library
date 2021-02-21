@@ -30,7 +30,6 @@ public class AddBookCommand extends Command {
         }
 
         //Подумати про білдер
-        log.debug("ADD BOOK COMMAND ");
         BookDao bookDao = BookDao.getInstance();
         if (bookDao.getByTitle(title).getTitle() != null) {
             errorMessage = "Such book already exists";

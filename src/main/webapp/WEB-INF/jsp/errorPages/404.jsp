@@ -3,23 +3,21 @@
 <%--<%@ include file="/WEB-INF/jspf/directive/page.jspf" %>--%>
 <%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
 
-<html>
-<head>
-    <jsp:include page="../jspf/directive/header.jsp"/>
+<!DOCTYPE>
+<html lang="en">
+<title>Error</title>
+    <jsp:include page="../../jspf/directive/header.jsp"/>
     <title>Error</title>
 </head>
 <body>
 <h1></h1>
 <main class="flex-shrink-0">
     <div class="container">
-        <jsp:include page="../jspf/directive/navbar.jsp"/>
+        <jsp:include page="../../jspf/directive/navbar.jsp"/>
 
         <h1 class="mt-5">Oops...</h1>
-        <p class="lead">An unexpected error occured:</p>
-        <p><c:if test="${not empty requestScope.errorMessage and empty exception and empty code}">
-        <h3>Error message: ${errorMessage}</h3>
-        </c:if>
-        </p>
+        <p class="lead">An unexpected error occured :(</p>
+
 
         <c:choose>
             <c:when test="${sessionScope.user.username == null}">
