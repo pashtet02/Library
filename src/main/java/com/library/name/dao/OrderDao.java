@@ -22,7 +22,10 @@ public class OrderDao implements Dao<Order> {
     private OrderDao() {
         // hello everyone
     }
-
+    /**
+     * @param orderId set order status to 'APPROVE' by id
+     * @return true if success false if suck :))
+     */
     public boolean approveOrder(long orderId){
         Connection con = null;
         PreparedStatement preparedStatement = null;
@@ -56,7 +59,10 @@ public class OrderDao implements Dao<Order> {
         }
         return result;
     }
-
+    /**
+     * @param id search from table by this param
+     * @return Order from BD
+     */
     @Override
     public Order get(long id) {
         ResultSet rs = null;
@@ -77,14 +83,19 @@ public class OrderDao implements Dao<Order> {
         }
         return order;
     }
-
+    /**
+     * @return a list of orders where ststus = 'RESERVED'
+     */
     public List<Order> getAllReserved() throws SQLException {
         Connection con = getConnection();
         List<Order> orders;
         orders = getAllOrders(con, "SELECT * FROM orders WHERE status= 'RESERVED'");
         return orders;
     }
-
+    /**
+     * @param id order id in table
+     * @param status set this status to order
+     */
     public void setOrderStatus(long id, String status) {
         try (Connection con = getConnection();
              PreparedStatement preparedStatement = con.prepareStatement("update orders set status = ? where id = ?")) {

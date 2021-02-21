@@ -23,25 +23,6 @@ public class ReviewDao implements Dao<Review> {
         // hello everyone
     }
 
-    public Review getById(Connection con, long id) {
-        ResultSet rs = null;
-        Review review = null;
-
-        try (
-             PreparedStatement statement = con.prepareStatement("SELECT * FROM reviews where id=?")) {
-            statement.setLong(1, id);
-            rs = statement.executeQuery();
-            while (rs.next()) {
-                review = mapReview(rs);
-            }
-        } catch (SQLException throwable) {
-            log.error("get review method exception: " + throwable.getSQLState());
-        } finally {
-            close(rs);
-        }
-        return review;
-    }
-
     public List<Review> getAllByUserId(long userId) {
         List<Review> reviews = null;
 
@@ -58,7 +39,22 @@ public class ReviewDao implements Dao<Review> {
 
     @Override
     public Review get(long id) {
-        return null;
+        ResultSet rs = null;
+        Review review = null;
+
+        try (Connection con = getConnection();
+             PreparedStatement statement = con.prepareStatement("SELECT * FROM reviews where id=?")) {
+            statement.setLong(1, id);
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                review = mapReview(rs);
+            }
+        } catch (SQLException throwable) {
+            log.error("get review method exception: " + throwable.getSQLState());
+        } finally {
+            close(rs);
+        }
+        return review;
     }
 
     @Override

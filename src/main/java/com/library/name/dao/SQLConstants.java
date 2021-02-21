@@ -20,7 +20,6 @@ public class SQLConstants {
     public static final String SELECT_ALL_USERS = "select * from users";
     public static final String SELECT_ONLY_USERS = "select * from users where role = 'USER'";
 
-
     public static final String GET_BOOK_BY_TITLE = "SELECT * FROM books WHERE title = ? AND number > 0;";
     public static final String GET_BOOK_BY_ISBN = "SELECT * FROM books WHERE ISBN = ? AND number > 0;";
     public static final String SELECT_ALL_BOOKS = "SELECT * FROM books";

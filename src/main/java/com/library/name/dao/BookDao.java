@@ -14,7 +14,7 @@ public class BookDao implements Dao<Book> {
 
     /**
      * @return instance of BookDao class
-     * */
+     */
     public static synchronized BookDao getInstance() {
         if (bookDao == null) {
             bookDao = new BookDao();
@@ -29,7 +29,7 @@ public class BookDao implements Dao<Book> {
     /**
      * @param id id of book in table books
      * @return book object or null if such record not exists
-     * */
+     */
     @Override
     public Book get(long id) {
         ResultSet rs = null;
@@ -52,21 +52,23 @@ public class BookDao implements Dao<Book> {
 
     /**
      * method for pagination
-     * @param start number of begining record
+     *
+     * @param start      number of begining record
      * @param orderParam we order by this parameter (table column)
      * @return few books from table books
-     * */
+     */
     public List<Book> getSomeBooks(int start, int numberOfBooks, String orderParam) throws SQLException {
         Connection con = getConnection();
         List<Book> books;
         books = getAllBooks(con, "select * from books where number > 0 order by + " + orderParam + " limit " + (start - 1) * numberOfBooks + "," + numberOfBooks);
         return books;
     }
+
     /**
-     * @param con connection to DB
+     * @param con   connection to DB
      * @param query method executes this query
      * @return books by query
-     * */
+     */
     private static List<Book> getAllBooks(Connection con, String query) throws SQLException {
         List<Book> books = new ArrayList<>();
 
@@ -85,9 +87,10 @@ public class BookDao implements Dao<Book> {
         }
         return books;
     }
+
     /**
      * @return all books from table books
-     * */
+     */
     @Override
     public List<Book> getAll() throws SQLException {
         List<Book> books;
@@ -100,7 +103,7 @@ public class BookDao implements Dao<Book> {
     /**
      * @param author search from table by this param
      * @return a list of books where books.author = author
-     * */
+     */
     public List<Book> getAllByAuthor(String author) {
         List<Book> books = new ArrayList<>();
 
@@ -120,19 +123,22 @@ public class BookDao implements Dao<Book> {
         }
         return books;
     }
+
     /**
      * increment book number by id when librarian return user`s book
-     * */
+     */
     public void incrementNumberBook(long id) {
         Book book = get(id);
         int i = book.getNumber() + 1;
         book.setNumber(i);
         update(book);
     }
+
     /**
      * decrement book number by id when user order book
+     *
      * @throws SQLException if book.number < 1
-     * */
+     */
     public void decrementNumberBook(long id) throws SQLException {
         Book book = get(id);
         int i = book.getNumber() - 1;
@@ -141,10 +147,12 @@ public class BookDao implements Dao<Book> {
             update(book);
         } else throw new SQLException("no books available");
     }
+
     /**
      * save book in BD
+     *
      * @throws SQLException if book can`t added by some reason
-     * */
+     */
     @Override
     public void save(Book book) throws SQLException {
         ResultSet rs = null;
@@ -169,9 +177,11 @@ public class BookDao implements Dao<Book> {
             close(rs);
         }
     }
+
     /**
      * updates book by its id in DB
-     * * */
+     * *
+     */
     @Override
     public void update(Book book) {
         try (Connection con = getConnection();
@@ -206,6 +216,11 @@ public class BookDao implements Dao<Book> {
         return k;
     }
 
+    /**
+     * @param book deletes book by its id
+     *             this method deletes book and all reviews
+     *             and orders that refers to it
+     */
     @Override
     public void delete(Book book) {
         try (Connection con = getConnection();
@@ -247,10 +262,12 @@ public class BookDao implements Dao<Book> {
             }
         }
     }
+
     /**
      * get book by its title in DB
+     *
      * @param title book title
-     * */
+     */
     public Book getByTitle(String title) {
         ResultSet rs = null;
         Book book = new Book();
@@ -272,6 +289,10 @@ public class BookDao implements Dao<Book> {
         return book;
     }
 
+    /**
+     * @param isbn search by isbn number
+     * @return Book
+     */
     public Book getByISBN(long isbn) {
         ResultSet rs = null;
         Book book = new Book();
