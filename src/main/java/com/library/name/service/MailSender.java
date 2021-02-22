@@ -40,7 +40,7 @@ public class MailSender {
         sb.append("<div>Hello!  " + user.getFirstName() + "!</div>");
 
         sb.append("<div style=\"border: 1px solid grey;  border-radius: 5px;\">");
-        sb.append("<div>Your order on book: " + book.getTitle() + " was <strong>" + order.getStatus() + "</strong></div>");
+        sb.append("<div>Your order on book: \"" + book.getTitle() + "\" was <strong>" + order.getStatus() + "</strong></div>");
         sb.append("<div>Librarian comment: " + order.getLibrarianComment() + "</div>");
         sb.append("<div>Return date: " + order.getReturnDate() + "</div>");
         sb.append("<div style=\"text-align: right; padding:10px;\"></p></div></div>");
@@ -48,8 +48,8 @@ public class MailSender {
         sb.append("<div>Have a nice day!</div>");
 
 
-        final String username = "chodak2014ua@gmail.com";
-        final String password = "25012002";
+        final String username = "khodachok02@gmail.com";
+        final String password = "Pashokchodak2014";
 
         String host = "smtp.gmail.com";
 
