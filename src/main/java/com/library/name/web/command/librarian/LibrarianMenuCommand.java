@@ -7,6 +7,7 @@ import com.library.name.dao.UserDao;
 import com.library.name.entity.Book;
 import com.library.name.entity.Order;
 import com.library.name.entity.User;
+import com.library.name.service.MailSender;
 import com.library.name.web.command.Command;
 import org.apache.log4j.Logger;
 
@@ -62,6 +63,7 @@ public class LibrarianMenuCommand extends Command {
                 log.debug("LIBRARIAN COMMENT: " + librarianComment);
                 orderDao.setLibrarianComment(id, librarianComment);
             }
+            MailSender.sendMail(request, response);
         }
 
         try {
