@@ -100,7 +100,6 @@
         <error-code>500</error-code>
         <location>/WEB-INF/jsp/errorPages/404.jsp</location>
     </error-page>
-
     <context-param>
         <param-name>DataSource</param-name>
         <param-value>jdbc/mysql</param-value>
