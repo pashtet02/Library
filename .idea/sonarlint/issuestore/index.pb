@@ -212,11 +212,15 @@ T
 $src/main/resources/global.properties,2\c\2c1141b7d23c71faec175e3d274c2c0df322d96c
 p
 @src/main/java/com/library/name/web/listener/SessionListener.java,a\3\a3903f98a6cad3528ee568dbe3695a83fd51e88f
-~
-Ntarget/maven-status/maven-compiler-plugin/compile/default-cli/createdFiles.lst,e\6\e6b2ea38611594245ca13ddc632ac15cab3ffc23
 h
 8.idea/libraries/Maven__com_sun_mail_javax_mail_1_6_2.xml,a\5\a5905c13d6ccf86a309903606bdd170f42ad2251
 j
 :.idea/libraries/Maven__javax_activation_activation_1_1.xml,8\1\816b7a27ac63caed15ff1dc79ae7d6e80c14a941
 f
 6src/main/java/com/library/name/service/MailSender.java,8\3\83c620d5d905cd550ba708dba4568ff43d9622f3
+c
+3src/test/java/com/library/name/entity/BookTest.java,c\a\ca32b24f7d90bef4164c22e3bbe867f5cbe6b965
+t
+Dsrc/main/java/com/library/name/web/command/admin/AddFileCommand.java,7\3\73f46969a37db86ea2cd42f13696fe4d7d5e3367
+u
+Esrc/main/java/com/library/name/web/command/admin/EditUserCommand.java,4\0\40ee5f52c08e2dad4058cabaff11136632e30c3f

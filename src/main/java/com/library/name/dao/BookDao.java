@@ -27,6 +27,7 @@ public class BookDao implements Dao<Book> {
     }
 
     /**
+     * gets book from BD by its id
      * @param id id of book in table books
      * @return book object or null if such record not exists
      */
@@ -52,6 +53,7 @@ public class BookDao implements Dao<Book> {
 
     /**
      * method for pagination
+     * select books with number > 0 and order them by orderParam in some range
      *
      * @param start      number of begining record
      * @param orderParam we order by this parameter (table column)
@@ -65,6 +67,7 @@ public class BookDao implements Dao<Book> {
     }
 
     /**
+     * gets all books from DB
      * @param con   connection to DB
      * @param query method executes this query
      * @return books by query
@@ -217,9 +220,10 @@ public class BookDao implements Dao<Book> {
     }
 
     /**
-     * @param book deletes book by its id
-     *             this method deletes book and all reviews
-     *             and orders that refers to it
+     * deletes book by its id
+     * this method deletes book and all reviews
+     * and orders that refers to it
+     * @param book deletes this book
      */
     @Override
     public void delete(Book book) {
@@ -290,6 +294,7 @@ public class BookDao implements Dao<Book> {
     }
 
     /**
+     * method to get book from bd by its unique ISBN number
      * @param isbn search by isbn number
      * @return Book
      */

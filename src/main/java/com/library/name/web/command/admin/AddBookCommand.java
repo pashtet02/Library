@@ -73,10 +73,11 @@ public class AddBookCommand extends Command {
         }
 
         log.debug("Command finished");
-        String message = "Book " + book.getTitle() + "added!!!";
-        req.setAttribute("massage", message);
+
         HttpSession session = req.getSession();
         session.setAttribute("bookTitle", book.getTitle());
-        return Path.PAGE_ADD_IMAGE;
+        log.debug("SESSION BOOK TITLE: " + book.getTitle());
+        resp.sendRedirect("/library/controller?command=addImage");
+        return null;
     }
 }

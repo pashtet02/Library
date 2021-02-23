@@ -101,10 +101,10 @@ public class EditBookCommand extends Command {
         }
 
         log.debug("Command finished");
-        String message = "You can change book photo: ";
-        request.setAttribute("message", message);
+
         HttpSession session = request.getSession();
         session.setAttribute("bookTitle", book.getTitle());
-        return Path.PAGE_ADD_IMAGE;
+        resp.sendRedirect("/library/controller?command=addImage");
+        return null;
     }
 }

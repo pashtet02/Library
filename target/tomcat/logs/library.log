@@ -1,0 +1,169 @@
+2021-02-23 18:13 [DEBUG]           ContextListener:    78 - Command container initialization started
+2021-02-23 18:13 [DEBUG]          CommandContainer:    55 - Command container was successfully initialized
+2021-02-23 18:13 [TRACE]          CommandContainer:    56 - Number of commands --> 18
+2021-02-23 18:13 [DEBUG]           ContextListener:    88 - Command container initialization finished
+2021-02-23 18:13 [DEBUG]           ContextListener:    38 - I18N subsystem initialization started
+2021-02-23 18:13 [DEBUG]           ContextListener:    51 - Application attribute set: locales --> [ua, en]
+2021-02-23 18:13 [DEBUG]           ContextListener:    55 - I18N subsystem initialization finished
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    44 - Filter initialization starts
+2021-02-23 18:13 [TRACE]            EncodingFilter:    46 - Encoding from web.xml --> UTF-8
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    47 - Filter initialization finished
+2021-02-23 18:13 [DEBUG]       CommandAccessFilter:    83 - Filter initialization starts
+2021-02-23 18:13 [TRACE]       CommandAccessFilter:    89 - Access map --> {LIBRARIAN=[addBook, librarianMenu, usersList, userAbonement], ADMIN=[editBook, addBook, editUser, usersList, addImage, deleteBook], USER=[listOrders, addReview, orderBook]}
+2021-02-23 18:13 [TRACE]       CommandAccessFilter:    93 - Common commands --> [logout, noCommand, viewSettings, updateSettings]
+2021-02-23 18:13 [TRACE]       CommandAccessFilter:    97 - Out of control commands --> [login, catalog, changeLocale, registration]
+2021-02-23 18:13 [DEBUG]       CommandAccessFilter:    99 - Filter initialization finished
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:13 [TRACE]            EncodingFilter:    31 - Request uri --> /library/
+2021-02-23 18:13 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:13 [TRACE]            EncodingFilter:    31 - Request uri --> /library/controller
+2021-02-23 18:13 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:13 [DEBUG]       CommandAccessFilter:    34 - Filter starts
+2021-02-23 18:13 [DEBUG]       CommandAccessFilter:    36 - Filter finished
+2021-02-23 18:13 [DEBUG]                Controller:    33 - Controller starts
+2021-02-23 18:13 [TRACE]                Controller:    37 - Request parameter: command --> catalog
+2021-02-23 18:13 [TRACE]                Controller:    41 - Obtained command --> CatalogCommand
+2021-02-23 18:13 [ INFO]                   BookDao:    85 - getAllBooks() get successfully number of books: 6
+2021-02-23 18:13 [TRACE]                Controller:    45 - Forward address --> catalog.jsp
+2021-02-23 18:13 [DEBUG]                Controller:    47 - Controller finished, now go to forward address --> catalog.jsp
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:13 [TRACE]            EncodingFilter:    31 - Request uri --> /library/view/451.jpg
+2021-02-23 18:13 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:13 [TRACE]            EncodingFilter:    31 - Request uri --> /library/view/
+2021-02-23 18:13 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:13 [TRACE]            EncodingFilter:    31 - Request uri --> /library/view/
+2021-02-23 18:13 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:13 [TRACE]            EncodingFilter:    31 - Request uri --> /library/login.jsp
+2021-02-23 18:13 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:13 [TRACE]            EncodingFilter:    31 - Request uri --> /library/controller
+2021-02-23 18:13 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:13 [DEBUG]       CommandAccessFilter:    34 - Filter starts
+2021-02-23 18:13 [DEBUG]       CommandAccessFilter:    36 - Filter finished
+2021-02-23 18:13 [DEBUG]                Controller:    33 - Controller starts
+2021-02-23 18:13 [TRACE]                Controller:    37 - Request parameter: command --> login
+2021-02-23 18:13 [TRACE]                Controller:    41 - Obtained command --> LoginCommand
+2021-02-23 18:13 [DEBUG]              LoginCommand:    28 - Command starts
+2021-02-23 18:13 [TRACE]              LoginCommand:    34 - Request parameter: logging --> Pashtet
+2021-02-23 18:13 [ INFO]                   UserDao:    76 - getUserByLogin: 32 Pashtet
+2021-02-23 18:13 [TRACE]              LoginCommand:    52 - Found in DB: user --> User{username='Pashtet', mail='chodak2014ua@gmail.com', id=32, role='ADMIN', fine=0.0, userLocale='en', firstName='Pavlo', secondName='Ходачок', isBanned=false}
+2021-02-23 18:13 [DEBUG]              LoginCommand:    53 - LOGIN COMMAND USER: Pashtet
+2021-02-23 18:13 [TRACE]              LoginCommand:    76 - userRole --> ADMIN
+2021-02-23 18:13 [TRACE]              LoginCommand:    79 - Set the session attribute: user --> User{username='Pashtet', mail='chodak2014ua@gmail.com', id=32, role='ADMIN', fine=0.0, userLocale='en', firstName='Pavlo', secondName='Ходачок', isBanned=false}
+2021-02-23 18:13 [TRACE]              LoginCommand:    82 - Set the session attribute: userRole --> ADMIN
+2021-02-23 18:13 [ INFO]              LoginCommand:    84 - User User{username='Pashtet', mail='chodak2014ua@gmail.com', id=32, role='ADMIN', fine=0.0, userLocale='en', firstName='Pavlo', secondName='Ходачок', isBanned=false} logged as admin
+2021-02-23 18:13 [DEBUG]              LoginCommand:    95 - IS BANNED false
+2021-02-23 18:13 [TRACE]              LoginCommand:   100 - userLocalName --> en
+2021-02-23 18:13 [TRACE]              LoginCommand:   106 - Set the session attribute: defaultLocaleName --> en
+2021-02-23 18:13 [DEBUG]              LoginCommand:   107 - LOCALE LOGIN COMMAND: en
+2021-02-23 18:13 [ INFO]              LoginCommand:   108 - Locale for user: defaultLocale --> en
+2021-02-23 18:13 [ INFO]              LoginCommand:   111 - user old fine = 0.0
+2021-02-23 18:13 [ INFO]                  OrderDao:   301 - unterminaded list: []
+2021-02-23 18:13 [ INFO]                  OrderDao:   311 - FINE: 0.0
+2021-02-23 18:13 [DEBUG]                   UserDao:   225 - updated userid: 32
+2021-02-23 18:13 [ERROR]                       Dao:   226 - UPDATED USER !!!!User{username='Pashtet', mail='chodak2014ua@gmail.com', id=32, role='ADMIN', fine=0.0, userLocale='en', firstName='Pavlo', secondName='Ходачок', isBanned=false}
+2021-02-23 18:13 [TRACE]                Controller:    45 - Forward address --> null
+2021-02-23 18:13 [DEBUG]                Controller:    47 - Controller finished, now go to forward address --> null
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:13 [TRACE]            EncodingFilter:    31 - Request uri --> /library/controller
+2021-02-23 18:13 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:13 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:13 [DEBUG]       CommandAccessFilter:    34 - Filter starts
+2021-02-23 18:13 [DEBUG]       CommandAccessFilter:    36 - Filter finished
+2021-02-23 18:13 [DEBUG]                Controller:    33 - Controller starts
+2021-02-23 18:13 [TRACE]                Controller:    37 - Request parameter: command --> usersList
+2021-02-23 18:13 [TRACE]                Controller:    41 - Obtained command --> UsersListCommand
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 32
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 34
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 35
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 36
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 37
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 38
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 39
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 40
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 43
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 44
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 45
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 46
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 47
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 49
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 51
+2021-02-23 18:13 [DEBUG]                   UserDao:   238 - mapUser userid: 67
+2021-02-23 18:13 [TRACE]                Controller:    45 - Forward address --> /WEB-INF/jsp/admin/users.jsp
+2021-02-23 18:13 [DEBUG]                Controller:    47 - Controller finished, now go to forward address --> /WEB-INF/jsp/admin/users.jsp
+2021-02-23 18:17 [DEBUG]           ContextListener:    78 - Command container initialization started
+2021-02-23 18:17 [DEBUG]          CommandContainer:    55 - Command container was successfully initialized
+2021-02-23 18:17 [TRACE]          CommandContainer:    56 - Number of commands --> 18
+2021-02-23 18:17 [DEBUG]           ContextListener:    88 - Command container initialization finished
+2021-02-23 18:17 [DEBUG]           ContextListener:    38 - I18N subsystem initialization started
+2021-02-23 18:17 [DEBUG]           ContextListener:    51 - Application attribute set: locales --> [ua, en]
+2021-02-23 18:17 [DEBUG]           ContextListener:    55 - I18N subsystem initialization finished
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    44 - Filter initialization starts
+2021-02-23 18:17 [TRACE]            EncodingFilter:    46 - Encoding from web.xml --> UTF-8
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    47 - Filter initialization finished
+2021-02-23 18:17 [DEBUG]       CommandAccessFilter:    83 - Filter initialization starts
+2021-02-23 18:17 [TRACE]       CommandAccessFilter:    89 - Access map --> {LIBRARIAN=[addBook, librarianMenu, usersList, userAbonement], ADMIN=[editBook, addBook, editUser, usersList, addImage, deleteBook], USER=[listOrders, addReview, orderBook]}
+2021-02-23 18:17 [TRACE]       CommandAccessFilter:    93 - Common commands --> [logout, noCommand, viewSettings, updateSettings]
+2021-02-23 18:17 [TRACE]       CommandAccessFilter:    97 - Out of control commands --> [login, catalog, changeLocale, registration]
+2021-02-23 18:17 [DEBUG]       CommandAccessFilter:    99 - Filter initialization finished
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:17 [TRACE]            EncodingFilter:    31 - Request uri --> /library/
+2021-02-23 18:17 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:17 [TRACE]            EncodingFilter:    31 - Request uri --> /library/controller
+2021-02-23 18:17 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:17 [DEBUG]       CommandAccessFilter:    34 - Filter starts
+2021-02-23 18:17 [DEBUG]       CommandAccessFilter:    36 - Filter finished
+2021-02-23 18:17 [DEBUG]                Controller:    33 - Controller starts
+2021-02-23 18:17 [TRACE]                Controller:    37 - Request parameter: command --> catalog
+2021-02-23 18:17 [TRACE]                Controller:    41 - Obtained command --> CatalogCommand
+2021-02-23 18:17 [ INFO]                   BookDao:    85 - getAllBooks() get successfully number of books: 6
+2021-02-23 18:17 [TRACE]                Controller:    45 - Forward address --> catalog.jsp
+2021-02-23 18:17 [DEBUG]                Controller:    47 - Controller finished, now go to forward address --> catalog.jsp
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:17 [TRACE]            EncodingFilter:    31 - Request uri --> /library/view/
+2021-02-23 18:17 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:17 [TRACE]            EncodingFilter:    31 - Request uri --> /library/view/
+2021-02-23 18:17 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:17 [TRACE]            EncodingFilter:    31 - Request uri --> /library/controller
+2021-02-23 18:17 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:17 [DEBUG]       CommandAccessFilter:    34 - Filter starts
+2021-02-23 18:17 [TRACE]       CommandAccessFilter:    42 - Set the request attribute: errorMessage --> You do not have permission to access the requested resource
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:17 [TRACE]            EncodingFilter:    31 - Request uri --> /library/catalog.jsp
+2021-02-23 18:17 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:17 [TRACE]            EncodingFilter:    31 - Request uri --> /library/controller
+2021-02-23 18:17 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    39 - Filter finished
+2021-02-23 18:17 [DEBUG]       CommandAccessFilter:    34 - Filter starts
+2021-02-23 18:17 [DEBUG]       CommandAccessFilter:    36 - Filter finished
+2021-02-23 18:17 [DEBUG]                Controller:    33 - Controller starts
+2021-02-23 18:17 [TRACE]                Controller:    37 - Request parameter: command --> catalog
+2021-02-23 18:17 [TRACE]                Controller:    41 - Obtained command --> CatalogCommand
+2021-02-23 18:17 [ INFO]                   BookDao:    85 - getAllBooks() get successfully number of books: 6
+2021-02-23 18:17 [TRACE]                Controller:    45 - Forward address --> catalog.jsp
+2021-02-23 18:17 [DEBUG]                Controller:    47 - Controller finished, now go to forward address --> catalog.jsp
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    28 - EncodingFilter starts
+2021-02-23 18:17 [TRACE]            EncodingFilter:    31 - Request uri --> /library/view/
+2021-02-23 18:17 [TRACE]            EncodingFilter:    35 - Request encoding = null, set encoding --> UTF-8
+2021-02-23 18:17 [DEBUG]            EncodingFilter:    39 - Filter finished

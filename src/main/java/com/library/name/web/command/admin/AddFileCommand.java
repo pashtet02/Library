@@ -1,5 +1,6 @@
 package com.library.name.web.command.admin;
 
+import com.library.name.Path;
 import com.library.name.dao.BookDao;
 import com.library.name.entity.Book;
 import com.library.name.web.command.Command;
@@ -17,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class AddFileCommand extends Command {
-    private static String fileName;
+    private String fileName;
     private static final Logger log = Logger.getLogger(AddFileCommand.class);
 
     /**
@@ -30,6 +31,7 @@ public class AddFileCommand extends Command {
     @SuppressWarnings("unchecked")
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
         //process only if its multipart content
         if (ServletFileUpload.isMultipartContent(request)) {
             try {
@@ -52,19 +54,22 @@ public class AddFileCommand extends Command {
             }
 
         } else {
-            request.setAttribute("fileMessage",
-                    "Sorry this Servlet only handles file upload request");
+            //stupid logic but im tired to rewrite it
+            if (fileName == null || fileName.isEmpty()){
+                return Path.PAGE_ADD_IMAGE;
+            }
         }
+
         BookDao bookDao = BookDao.getInstance();
         HttpSession session = request.getSession();
-        log.debug("BOOK TITLE" + request.getParameter("bookTitle"));
+        log.debug("BOOK TITLE" + session.getAttribute("bookTitle"));
         Book book = bookDao.getByTitle((String) session.getAttribute("bookTitle"));
         log.debug("Book: " + book);
         String message;
         if (fileName != null && !fileName.isEmpty()){
             book.setImage(fileName);
         }
-        else if (book.getImage() == null || !book.getImage().isEmpty()){
+        else if (book.getImage() == null || book.getImage().isEmpty()){
             book.setImage("testicon.png");
         }
         log.debug("IMAGE: " + book.getImage());
