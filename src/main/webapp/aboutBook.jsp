@@ -44,7 +44,7 @@
                                     </c:when>
                                     <c:otherwise>
                                         <p><fmt:message key="aboutBook.SignInLabel"/><br></p>
-                                        <button class="btn btn-outline-primary"><fmt:message
+                                        <button formaction="<c:url value="login.jsp"/> " class="btn btn-outline-primary"><fmt:message
                                                 key="global.signIn"/></button>
                                     </c:otherwise>
                                 </c:choose>
@@ -125,19 +125,11 @@
                         <p>Created: ${bean.date}</p>
                         <p class="card-text">${bean.userComment}</p>
                     </div>
-                    <c:if test="${sessionScope.user.role == 'ADMIN'}">
-                        <div>
-                            <form action="<c:url value="/controller?command=editBook&id=${bean.id}"/>" method="post">
-                                <button type="submit" class="btn btn-danger" value="delete" name="action">Delete
-                                </button>
-                            </form>
-                        </div>
-                    </c:if>
                 </div>
                 <br>
             </c:forEach>
         </c:when>
-        <c:when test="${requestScope.bookReviews.size() == 0}">
+        <c:when test="${requestScope.bookReviews.size() == 0 && sessionScope.user.role == 'USER'}">
             <p><fmt:message key="aboutBook.noReviewsYet"/> <a href="
 <c:url value="/controller?command=addReview&bookId=${requestScope.book.id}"/>"><fmt:message key="aboutBook.writeAReview"/></a></p>
         </c:when>

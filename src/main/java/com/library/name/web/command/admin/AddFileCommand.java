@@ -53,12 +53,7 @@ public class AddFileCommand extends Command {
                 request.setAttribute("fileMessage", "File Upload Failed due to " + ex);
             }
 
-        } else {
-            //stupid logic but im tired to rewrite it
-            if (fileName == null || fileName.isEmpty()){
-                return Path.PAGE_ADD_IMAGE;
-            }
-        }
+        } else return Path.PAGE_ADD_IMAGE;
 
         BookDao bookDao = BookDao.getInstance();
         HttpSession session = request.getSession();
@@ -68,8 +63,7 @@ public class AddFileCommand extends Command {
         String message;
         if (fileName != null && !fileName.isEmpty()){
             book.setImage(fileName);
-        }
-        else if (book.getImage() == null || book.getImage().isEmpty()){
+        } else if (book.getImage() == null || book.getImage().isEmpty()){
             book.setImage("testicon.png");
         }
         log.debug("IMAGE: " + book.getImage());

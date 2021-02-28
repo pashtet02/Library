@@ -14,9 +14,10 @@ public interface Dao<T> {
     Logger log = Logger.getLogger(Dao.class);
 
     /**
-     * this method get`s a connection from tomcat dataSource
+     * this method gets a connection from tomcat dataSource
+     *
      * @return Connection to DB from DateSource
-     * */
+     */
     default Connection getConnection() throws SQLException {
         Connection con = null;
         Context context;
@@ -29,13 +30,6 @@ public interface Dao<T> {
             log.error("Cannot obtain a connection from the pool", e);
         }
         return con;
-        /*Properties properties = new Properties();
-        try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/app.properties")) {
-            properties.load(fileInputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return DriverManager.getConnection(properties.getProperty("connection.url"));*/
     }
 
     T get(long id);
@@ -51,12 +45,11 @@ public interface Dao<T> {
     /**
      * Rollbacks and close the given connection.
      *
-     * @param con
-     *            Connection to be rollbacked and closed.
+     * @param con Connection to be rollbacked and closed.
      */
     default void rollbackAndClose(Connection con) {
         try {
-            if (con != null){
+            if (con != null) {
                 con.rollback();
                 con.close();
             }

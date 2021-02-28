@@ -52,14 +52,14 @@ public class CatalogCommand extends Command {
             log.debug("request filterParam : " + filterParam);
             if (filterParam.equals("author")){
                 System.out.println("FILTER: " + filterParam + filter);
-                books = bookDao.getAllByAuthor(filter);
+                books = bookDao.getAllByAuthorLike(filter);
                 request.setAttribute("listPagedBooks", books);
                 session.setAttribute("filterParam", filterParam);
             }
             else {
-                book = bookDao.getByTitle(filter);
+                books = bookDao.getByTitleLike(filter);
+                request.setAttribute("listPagedBooks", books);
                 session.setAttribute("filterParam", filterParam);
-                request.setAttribute("book", book);
             }
             return Path.PAGE_CATALOG;
         }

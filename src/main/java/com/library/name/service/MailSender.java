@@ -92,11 +92,9 @@ public class MailSender {
             Transport.send(message);
             logger.info("Mail sent successfully to user " + user.getMail());
 
-
         } catch (MessagingException mex) {
             logger.error(mex.getMessage());
             mex.printStackTrace();
         }
-
     }
 }

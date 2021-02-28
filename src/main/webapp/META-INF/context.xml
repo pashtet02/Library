@@ -40,10 +40,10 @@ Data source and connection pool configuration
               auth="Container"
               type="javax.sql.DataSource" maxActive="100"
 
-              maxTotal="8" maxIdle="30" maxWait="10000"
+              maxTotal="16" maxIdle="60" maxWait="10000"
               username="root" password="root"
               driverClassName="com.mysql.cj.jdbc.Driver"
               defaultAutoCommit="true"
               defaultTransactionIsolation="READ_COMMITTED"
-              url="jdbc:mysql://localhost:3306/library3?user=root&amp;password=root?sslMode=DISABLED&amp;serverTimezone=UTC"/>
+              url="jdbc:mysql://localhost:3306/library3?sslMode=DISABLED&amp;serverTimezone=UTC&amp;user=root&amp;password=root"/>
 </Context>

@@ -103,42 +103,6 @@
                     <p><fmt:message key="global.noBookFound"/></p>
                 </c:if>
             </c:when>
-
-            <c:when test="${requestScope.book.title != null}">
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="view/${requestScope.book.image}" class="card-img-top" alt="Error?">
-                            <div class="card-body">
-                                <h5 class="card-title"><c:out value="${requestScope.book.title}"/></h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><c:out
-                                        value="${requestScope.book.author}"/></h6>
-                                <p class="card-text"> <fmt:message key="aboutBook.publishingDate"/>: <c:out value="${requestScope.book.publishingDate}"/><br>
-                                    <fmt:message key="global.bookPublisher"/> <c:out
-                                            value="${requestScope.book.publisher}"/><br>
-                                    <c:if test="${sessionScope.user.role == 'ADMIN'}">
-                                    <fmt:message key="global.booksNumber"/> <c:out
-                                            value="${requestScope.book.number}"/><br>
-                                    </c:if>
-                                    <fmt:message key="global.bookLanguage"/> <c:out
-                                            value="${requestScope.book.language}"/></p>
-                                <c:choose>
-                                    <c:when test="${sessionScope.user.role == 'USER'}">
-                                        <a href="<c:url value="/controller?command=orderBook&userId=${sessionScope.userId}&bookId=${requestScope.book.id}"/>"
-                                           class="card-link"><fmt:message key="global.orderBookButton"/></a>
-                                    </c:when>
-                                    <c:when test="${sessionScope.user.role == 'ADMIN'}">
-                                        <a href="<c:url value="/controller?command=editBook&userId=${sessionScope.userId}&bookId=${requestScope.book.id}"/>"
-                                           class="card-link">edit</a>
-                                    </c:when>
-                                </c:choose>
-                                <a href="<c:url value="/controller?command=catalog&bookid=${requestScope.book.id}"/>"
-                                   class="card-link"><fmt:message key="global.bookDetails"/></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </c:when>
             <c:otherwise>
                 <p><fmt:message key="global.noBookFound"/></p>
             </c:otherwise>

@@ -61,7 +61,7 @@
                 <td><c:out value="${user.userLocale}"/>
                 </td>
                 <c:choose>
-                    <c:when test="${sessionScope.role == 'ADMIN'}">
+                    <c:when test="${sessionScope.role == 'ADMIN' && sessionScope.user.id != user.id}">
                         <td>
                             <a href="<c:url value="/controller?command=editUser&userId=${user.id}"/>"><fmt:message
                                     key="users.Edit"/></a>

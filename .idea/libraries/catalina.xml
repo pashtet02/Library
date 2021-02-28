@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="catalina">
+    <CLASSES>
+      <root url="jar://F:/TomCat/apache-tomcat-9.0.39-windows-x64/apache-tomcat-9.0.39/lib/catalina.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

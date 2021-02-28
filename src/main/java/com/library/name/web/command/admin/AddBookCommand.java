@@ -56,17 +56,20 @@ public class AddBookCommand extends Command {
         book.setPublishingDate(date);
 
         String language = req.getParameter("language");
-        book.setLanguage(language);
         book.setNumber(Integer.parseInt(req.getParameter("number")));
 
-        if (language.equals("ukrainian")){
+        if (language.equals("ukrainian")) {
+            book.setLanguage("українська");
             book.setDescriptionUa(req.getParameter("description"));
-        } else book.setDescriptionEn(req.getParameter("description"));
+        } else {
+            book.setLanguage(language);
+            book.setDescriptionEn(req.getParameter("description"));
+        }
 
         try {
             bookDao.save(book);
         } catch (SQLException throwables) {
-             errorMessage = throwables.getMessage();
+            errorMessage = throwables.getMessage();
             req.setAttribute("errorMessage", errorMessage);
             log.error("Set the request attribute: errorMessage --> " + errorMessage);
             return Path.PAGE_ERROR_PAGE;

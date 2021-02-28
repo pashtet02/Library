@@ -13,23 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class OrderBookCommand extends Command {
     private final OrderDao orderDao = OrderDao.getInstance();
     private static final Logger log = Logger.getLogger(OrderBookCommand.class);
-
-    /**
-     * Execution method for command.
-     *
-     * @param req f
-     * @param response f
-     */
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         long userId = Long.parseLong(req.getParameter("userId"));
+        OrderDao orderDao = OrderDao.getInstance();
 
         if (user.getFine() > 0){
             String err = "You have to pay fine before order a new book";
@@ -37,9 +32,23 @@ public class OrderBookCommand extends Command {
             return Path.PAGE_ERROR_PAGE;
         }
 
+        List<Order> orders = orderDao.getByUserId(user.getId());
+        long bookId = Long.parseLong(req.getParameter("bookId"));
+        boolean userHasBook = false;
+        for (Order order: orders) {
+            if (order.getBookId() == bookId && !order.getStatus().equals("RETURNED")) {
+                userHasBook = true;
+                break;
+            }
+        }
+        if (userHasBook){
+            String err = "You have ordered this book already";
+            req.setAttribute("errorMessage", err);
+            return Path.PAGE_ERROR_PAGE;
+        }
+
         String comment = req.getParameter("comment");
         if (comment != null && !comment.isEmpty()) {
-            long bookId = Long.parseLong(req.getParameter("bookId"));
             if (!orderDao.isOrderExists(userId, bookId)) {
 
                 Order order = new Order();

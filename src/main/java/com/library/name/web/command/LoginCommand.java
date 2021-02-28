@@ -48,7 +48,7 @@ public class LoginCommand extends Command {
 
         UserDao userDao = UserDao.getInstance();
         User user = userDao.getUserByLogin(login);
-
+        
         log.trace("Found in DB: user --> " + user);
         log.debug("LOGIN COMMAND USER: " + user.getUsername());
 

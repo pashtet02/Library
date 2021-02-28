@@ -1,6 +1,7 @@
 package com.library.name.web.listener;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -23,7 +24,7 @@ public class ContextListener implements ServletContextListener {
         log("Servlet context initialization starts");
 
         ServletContext servletContext = event.getServletContext();
-        //initLog4J(servletContext);
+        initLog4J(servletContext);
         initCommandContainer();
         initI18N(servletContext);
 
@@ -58,16 +59,16 @@ public class ContextListener implements ServletContextListener {
      * Initializes log4j framework.
      *
      */
-    /*private void initLog4J(ServletContext servletContext) {
+    private void initLog4J(ServletContext servletContext) {
         log("Log4J initialization started");
         try {
-            PropertyConfigurator.configure(servletContext.getRealPath("WEB-INF/log4j.properties"));
+            PropertyConfigurator.configure(servletContext.getRealPath("/WEB-INF/log4j.properties"));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
         log("Log4J initialization finished");
-    }*/
+    }
 
     /**
      * Initializes CommandContainer.

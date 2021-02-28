@@ -51,7 +51,7 @@ public class BookDaoTest {
     @Test
     public void getAllByAuthor() {
         List<Book> books;
-        books = bookDao.getAllByAuthor("TestAuthor");
+        books = bookDao.getAllByAuthorLike("TestAuthor");
         Assert.assertTrue(books.size() > 0);
     }
 

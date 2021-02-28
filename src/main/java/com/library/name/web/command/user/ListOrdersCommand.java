@@ -25,13 +25,6 @@ public class ListOrdersCommand extends Command {
     private static final Logger log = Logger.getLogger(ListOrdersCommand.class);
     private static final OrderDao orderDao = OrderDao.getInstance();
     private static final BookDao bookDao = BookDao.getInstance();
-    /**
-     * Serializable comparator used with TreeMap container. When the servlet
-     * container tries to serialize the session it may fail because the session
-     * can contain TreeMap object with not serializable comparator.
-     *
-     *
-     */
 
     @Override
     public String execute(HttpServletRequest request,

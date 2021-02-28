@@ -107,17 +107,16 @@ public class BookDao implements Dao<Book> {
      * @param author search from table by this param
      * @return a list of books where books.author = author
      */
-    public List<Book> getAllByAuthor(String author) {
+    public List<Book> getAllByAuthorLike(String author) {
         List<Book> books = new ArrayList<>();
 
         try (Connection con = getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement("select * from books where author = ?")
+             PreparedStatement preparedStatement = con.prepareStatement("select * from books where author like ?")
         ) {
-            preparedStatement.setString(1, author);
+            preparedStatement.setString(1, author + "%");
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     books.add(mapBook(resultSet));
-                    log.debug(books);
                 }
             }
         } catch (SQLException throwables) {
@@ -292,6 +291,34 @@ public class BookDao implements Dao<Book> {
         }
         return book;
     }
+
+    /**
+     * get books by its title in DB using LIKE "title%"
+     *
+     * @param title book title
+     */
+    public List<Book> getByTitleLike(String title) {
+        ResultSet rs = null;
+        List<Book> books = new ArrayList<>();
+
+        try (Connection con = getConnection();
+             PreparedStatement statement = con.prepareStatement("select * from books where title like ?")) {
+            statement.setString(1, title + "%");
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                books.add(mapBook(rs));
+            }
+
+        } catch (SQLException throwable) {
+            logger.error("getByTitle book method exception: " + throwable.getSQLState(), throwable);
+            throwable.printStackTrace();
+        } finally {
+            close(rs);
+        }
+        return books;
+    }
+
+
 
     /**
      * method to get book from bd by its unique ISBN number
